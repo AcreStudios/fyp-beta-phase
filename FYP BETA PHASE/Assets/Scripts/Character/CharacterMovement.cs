@@ -28,7 +28,7 @@ public class CharacterMovement : MonoBehaviour
 	public class JumpSettings
 	{
 		[Header("-Jump-")]
-		public float jumpSpeed = 6f;
+		public float jumpSpeed = 10f;
 
 		public float gravityModifier = 9.81f;
 		public float baseGravity = 50f;
@@ -69,6 +69,8 @@ public class CharacterMovement : MonoBehaviour
 
 		if(!CheckGrounded())
 			AirControl();
+		else
+			isJumping = false;
 	}
 
 	public void AnimateCharacter(float forward, float strafe) // Animates the character with root motion

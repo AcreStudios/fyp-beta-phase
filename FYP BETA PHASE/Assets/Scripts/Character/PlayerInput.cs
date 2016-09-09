@@ -5,13 +5,42 @@ using System.Collections.Generic;
 [RequireComponent(typeof(CharacterMovement))]
 public class PlayerInput : MonoBehaviour 
 {
-	[Header("-Dev Mode-")]
-	public bool adjustAim = false;
+	// Components
+	private Transform trans;
+	private CharacterMovement charMove;
+	private WeaponHandler wpnHandler;
+	private Transform mainCamTrans;
+	private TPCamera tpCamera;
+
+	[Header("-Inputs-"), Range(-1f, 1f)]
+	public float _horizontal;
+	[Range(-1f, 1f)]
+	public float _vertical;
+	public bool _LMB, _RMB, _MMB, _spacebar;
+
+	[System.Serializable]
+	public class InputStrings
+	{
+		[Header("-From Input Manager-")]
+		public string horizontalAxis = "Horizontal";
+		public string verticalAxis = "Vertical";
+		public string fireButton = "Fire1";
+		public string aimButton = "Fire2";
+		public string switchShoulderButton = "Fire3";
+		public string jumpButton = "Jump";
+		public string switchButton = "Switch";
+		public string reloadButton = "Reload";
+	}
+	[SerializeField]
+	private InputStrings inputStrings;
+
+	[Header("-Aiming-")]
+	public bool debugAim = false;
 
 	[System.Serializable]
 	public class AimSettings
 	{
-		[Header("-Aim-")]
+		[Header("-Aim Settings-")]
 		public bool requireMovementToTurn = true;
 		public float turnSpeed = 100f;
 		public float lookDistance = 10f;
@@ -20,37 +49,9 @@ public class PlayerInput : MonoBehaviour
 	[SerializeField]
 	private AimSettings aimSettings;
 
-	// Components
-	private Transform trans;
-	private CharacterMovement charMove;
-	private WeaponHandler wpnHandler;
-	private Transform mainCamTrans;
-
-	[Header("-Inputs-"), Range(-1f, 1f)]
-	public float _horizontal;
-	[Range(-1f, 1f)]
-	public float _vertical;
-	public bool _LMB, _RMB, _MMB;
-	public float _mouseX, _mouseY, _mouseScroll;
-
-	[System.Serializable]
-	public class InputStrings
-	{
-		[Header("-From Input Manager-")]
-		public string horizontal = "Horizontal";
-		public string vertical = "Vertical";
-		public string LMB = "Fire1";
-		public string RMB = "Fire2";
-		public string MMB = "Fire3";
-		public string mouseX = "Mouse X";
-		public string mouseY = "Mouse Y";
-		public string mouseScroll = "Mouse ScrollWheel";
-		public string jumpButton = "Jump";
-		public string switchButton = "Switch";
-		public string reloadButton = "Reload";
-	}
-	[SerializeField]
-	private InputStrings inputStrings;
+	// Movement mirror helper
+	[HideInInspector]
+	public int mirrorInt = 1;
 
 	// Aim helper
 	private bool _aiming = false;
@@ -66,19 +67,22 @@ public class PlayerInput : MonoBehaviour
 
 	void Start() 
 	{
+		// Cache TP Camera
+		tpCamera = TPCamera.GetInstance();
+		
 		// Cache camera transform
 		mainCamTrans = Camera.main.transform;
 	}
 
 	void Update() 
 	{
-		DisplayInputs();
+		HandleInput();
 		CharacterLogic();
 		CameraAimLogic();
 		WeaponLogic();
 	}
 
-	private void LateUpdate()
+	void LateUpdate()
 	{
 		//if(wpnManager.activeWeapon)
 		//{
@@ -87,16 +91,14 @@ public class PlayerInput : MonoBehaviour
 		//}
 	}
 
-	private void DisplayInputs()
+	private void HandleInput()
 	{
-		_horizontal = Input.GetAxis(inputStrings.horizontal);
-		_vertical = Input.GetAxis(inputStrings.vertical);
-		_LMB = Input.GetButton(inputStrings.LMB);
-		_RMB = Input.GetButton(inputStrings.RMB);
-		_MMB = Input.GetButton(inputStrings.MMB);
-		_mouseX = Input.GetAxis(inputStrings.mouseX);
-		_mouseY = Input.GetAxis(inputStrings.mouseY);
-		_mouseScroll = Input.GetAxis(inputStrings.mouseScroll);
+		_horizontal = Input.GetAxis(inputStrings.horizontalAxis);
+		_vertical = Input.GetAxis(inputStrings.verticalAxis);
+		_LMB = Input.GetButton(inputStrings.fireButton);
+		_RMB = Input.GetButton(inputStrings.aimButton);
+		_MMB = Input.GetButtonDown(inputStrings.switchShoulderButton);
+		_spacebar = Input.GetButtonDown(inputStrings.jumpButton);
 	}
 
 	private void CharacterLogic() // Handles character logic
@@ -105,32 +107,36 @@ public class PlayerInput : MonoBehaviour
 		float v = Mathf.Clamp(_vertical, -.5f, 1f);
 		float h = (_vertical < 0) ? Mathf.Clamp(_horizontal, -.5f, .5f) : _horizontal;
 
+		// Mirror movement
+		if(_MMB)
+			tpCamera.SwitchShoulder();
+		h *= mirrorInt;
+
 		if(!_aiming)
 			charMove.AnimateCharacter(v, h);
 		else
 			charMove.AnimateCharacter(v * .49f, h * .49f);
 
-
 		// Jump
-		if(Input.GetButtonDown(inputStrings.jumpButton))
+		if(_spacebar)
 			charMove.DoJump();
 	}
 
 	private void CameraAimLogic() // Handles camera logic when aiming
 	{
 		// Auto turn when aiming?
-		//if(aimSettings.requireMovementToTurn)
-		//{
-		//	if(_vertical != 0 || _horizontal != 0)
-		//		CharacterLook();
-		//}
-		//else
-		//	CharacterLook();
+		if(aimSettings.requireMovementToTurn)
+		{
+			if(_vertical != 0 || _horizontal != 0)
+				CharacterLook();
+		}
+		else
+			CharacterLook();
 	}
 
 	private void CharacterLook() // Make the character look at the same direction as the camera
 	{
-		Transform pivot = mainCamTrans.parent;
+		Transform pivot = mainCamTrans.parent.parent;
 		Vector3 pivotPos = pivot.position;
 		Vector3 lookTarget = pivotPos + (pivot.forward * aimSettings.lookDistance);
 		Vector3 thisPos = trans.position;
@@ -147,7 +153,7 @@ public class PlayerInput : MonoBehaviour
 	{
 		#region Aim
 
-		_aiming = _RMB || adjustAim;
+		_aiming = _RMB || debugAim;
 		wpnHandler.AimWeapon(_aiming);
 
 		#endregion
@@ -202,7 +208,6 @@ public class PlayerInput : MonoBehaviour
 		if(!aimSettings.spine)
 			return;
 
-		Transform mainCamTrans = Camera.main.transform;
 		Vector3 mainCamPos = mainCamTrans.position;
 		Vector3 dir = mainCamTrans.forward;
 		Ray ray = new Ray(mainCamPos, dir);

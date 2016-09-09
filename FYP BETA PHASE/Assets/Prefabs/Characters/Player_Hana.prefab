@@ -257,7 +257,7 @@ GameObject:
   - 114: {fileID: 11463216}
   m_Layer: 0
   m_Name: Player_Hana
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2328,14 +2328,14 @@ MonoBehaviour:
     groundedBool: isGrounded
     jumpingBool: isJumping
   jumpSettings:
-    jumpSpeed: 6
+    jumpSpeed: 10
     gravityModifier: 9.81
     baseGravity: 50
     resetGravityValue: 1.2
     groundLayer:
       serializedVersion: 2
-      m_Bits: 0
-    airTime: 0.25
+      m_Bits: 1
+    airTime: 0.283
     airSpeed: 5
 --- !u!114 &11463216
 MonoBehaviour:
@@ -2348,32 +2348,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef74893efe0e8224a9b5a6ad9c608c22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  adjustAim: 0
-  aimSettings:
-    requireMovementToTurn: 1
-    turnSpeed: 100
-    lookDistance: 10
-    spine: {fileID: 0}
   _horizontal: 0
   _vertical: 0
   _LMB: 0
   _RMB: 0
   _MMB: 0
-  _mouseX: 0
-  _mouseY: 0
-  _mouseScroll: 0
+  _spacebar: 0
   inputStrings:
-    horizontal: Horizontal
-    vertical: Vertical
-    LMB: Fire1
-    RMB: Fire2
-    MMB: Fire3
-    mouseX: Mouse X
-    mouseY: Mouse Y
-    mouseScroll: Mouse ScrollWheel
+    horizontalAxis: Horizontal
+    verticalAxis: Vertical
+    fireButton: Fire1
+    aimButton: Fire2
+    switchShoulderButton: Fire3
     jumpButton: Jump
     switchButton: Switch
     reloadButton: Reload
+  debugAim: 0
+  aimSettings:
+    requireMovementToTurn: 1
+    turnSpeed: 100
+    lookDistance: 10
+    spine: {fileID: 0}
+  mirrorInt: 1
 --- !u!114 &11478914
 MonoBehaviour:
   m_ObjectHideFlags: 1
