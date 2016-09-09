@@ -250,6 +250,11 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 403698}
+  - 95: {fileID: 9501344}
+  - 143: {fileID: 14371726}
+  - 114: {fileID: 11401776}
+  - 114: {fileID: 11478914}
+  - 114: {fileID: 11463216}
   m_Layer: 0
   m_Name: Player_Hana
   m_TagString: Untagged
@@ -2271,6 +2276,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 478110}
   m_RootOrder: 0
+--- !u!95 &9501344
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 116432}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e363f5414a1aef24f8471de0065a9f32, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!95 &9543672
 Animator:
   serializedVersion: 3
@@ -2281,13 +2303,88 @@ Animator:
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: c0fe6a089777c5f48881e520d89f7013, type: 3}
   m_Controller: {fileID: 0}
-  m_CullingMode: 1
+  m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &11401776
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 116432}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4a45dfe3522c3d40acf45a322bc7043, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  setupRequiredComponents: 1
+  animatorStrings:
+    verticalFloat: Forward
+    horizontalFloat: Strafe
+    groundedBool: isGrounded
+    jumpingBool: isJumping
+  jumpSettings:
+    jumpSpeed: 6
+    gravityModifier: 9.81
+    baseGravity: 50
+    resetGravityValue: 1.2
+    groundLayer:
+      serializedVersion: 2
+      m_Bits: 0
+    airTime: 0.25
+    airSpeed: 5
+--- !u!114 &11463216
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 116432}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef74893efe0e8224a9b5a6ad9c608c22, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  adjustAim: 0
+  aimSettings:
+    requireMovementToTurn: 1
+    turnSpeed: 100
+    lookDistance: 10
+    spine: {fileID: 0}
+  _horizontal: 0
+  _vertical: 0
+  _LMB: 0
+  _RMB: 0
+  _MMB: 0
+  _mouseX: 0
+  _mouseY: 0
+  _mouseScroll: 0
+  inputStrings:
+    horizontal: Horizontal
+    vertical: Vertical
+    LMB: Fire1
+    RMB: Fire2
+    MMB: Fire3
+    mouseX: Mouse X
+    mouseY: Mouse Y
+    mouseScroll: Mouse ScrollWheel
+    jumpButton: Jump
+    switchButton: Switch
+    reloadButton: Reload
+--- !u!114 &11478914
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 116432}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf492a4bffb82cc47907b0ae6525a1ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!137 &13700518
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
@@ -2737,6 +2834,23 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.0063798726, y: 0.2164396, z: -0.058163367}
     m_Extent: {x: 0.76192904, y: 0.34807968, z: 0.22370288}
   m_DirtyAABB: 0
+--- !u!143 &14371726
+CharacterController:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 116432}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Height: 2
+  m_Radius: 0.5
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
