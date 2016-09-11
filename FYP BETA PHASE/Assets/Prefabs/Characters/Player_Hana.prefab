@@ -2368,7 +2368,7 @@ MonoBehaviour:
     requireMovementToTurn: 1
     turnSpeed: 100
     lookDistance: 10
-    spine: {fileID: 0}
+    spine: {fileID: 416326}
   mirrorInt: 1
 --- !u!114 &11478914
 MonoBehaviour:
@@ -2381,6 +2381,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf492a4bffb82cc47907b0ae6525a1ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  activeWeapon: {fileID: 0}
+  weaponsList:
+  - {fileID: 0}
+  modelSettings:
+    rightHand: {fileID: 487922}
+    spine: {fileID: 416326}
+  animatorStrings:
+    weaponTypeInt: WeaponType
+    aimingBool: isAiming
+    reloadingBool: isReloading
 --- !u!137 &13700518
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

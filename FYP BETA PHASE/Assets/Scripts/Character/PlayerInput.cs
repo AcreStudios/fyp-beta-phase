@@ -84,11 +84,11 @@ public class PlayerInput : MonoBehaviour
 
 	void LateUpdate()
 	{
-		//if(wpnManager.activeWeapon)
-		//{
-		//	if(_aiming)
-		//		RotateSpine();
-		//}
+		if(wpnHandler.activeWeapon)
+		{
+			if(_aiming)
+				RotateSpine();
+		}
 	}
 
 	private void HandleInput()
@@ -124,7 +124,10 @@ public class PlayerInput : MonoBehaviour
 
 	private void CameraAimLogic() // Handles camera logic when aiming
 	{
-		// Auto turn when aiming?
+		// Auto turn when aiming
+		aimSettings.requireMovementToTurn = !_aiming;
+		
+		// Auto turn when not aiming?
 		if(aimSettings.requireMovementToTurn)
 		{
 			if(_vertical != 0 || _horizontal != 0)
@@ -168,13 +171,14 @@ public class PlayerInput : MonoBehaviour
 
 		#endregion
 
-		//if(!weaponHandler.activeWeapon) // If no weapon equipped
-		//{
+		if(!wpnHandler.activeWeapon) // If no weapon equipped
+		{
 		//	TurnOffAllCrosshairs();
-		//	return;
-		//}
+			return;
+		}
 
 		Ray ray = new Ray(mainCamTrans.position, mainCamTrans.forward);
+		Debug.DrawRay(mainCamTrans.position, mainCamTrans.forward, Color.red);
 
 		#region Fire
 
@@ -213,7 +217,7 @@ public class PlayerInput : MonoBehaviour
 		Ray ray = new Ray(mainCamPos, dir);
 		aimSettings.spine.LookAt(ray.GetPoint(50f));
 
-		//Vector3 eulerAngleOffset = weaponHandler.currentWeapon.modelSettings.spineRotation;
-		//aimSettings.spine.Rotate(eulerAngleOffset);
+		Vector3 eulerAngleOffset = wpnHandler.activeWeapon.modelSettings.spineRotation;
+		aimSettings.spine.Rotate(eulerAngleOffset);
 	}
 }

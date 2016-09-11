@@ -40,11 +40,11 @@ public class TPCamera : MonoBehaviour
 		public float maxAngle = 60f;
 		public float cameraRotateSpeed = 5f;
 		public float cameraMoveSpeed = 5f;
-		public float cameraSmoothing = .05f;
+		public float cameraSmoothing = .03f;
 		public bool invertY = true;
 
 		[Header("-FOV Settings-")]
-		public float defaultFOV = 70f;
+		public float defaultFOV = 60f;
 		public float aimingFOV = 30f;
 		public float zoomSpeed = 10f;
 
@@ -238,12 +238,12 @@ public class TPCamera : MonoBehaviour
 		{
 			case CameraSettings.Shoulder.LEFT:
 				cameraSettings.shoulder = CameraSettings.Shoulder.RIGHT;
-				target.GetComponent<Animator>().SetBool("idleRight", false); // <<< Cache it later
+				target.GetComponent<Animator>().SetBool("ShoulderRight", false); // <<< Cache it later
 				target.GetComponent<PlayerInput>().mirrorInt = 1;
 				break;
 			case CameraSettings.Shoulder.RIGHT:
 				cameraSettings.shoulder = CameraSettings.Shoulder.LEFT;
-				target.GetComponent<Animator>().SetBool("idleRight", true); // <<< Cache it later
+				target.GetComponent<Animator>().SetBool("ShoulderRight", true); // <<< Cache it later
 				target.GetComponent<PlayerInput>().mirrorInt = -1;
 				break;
 		}
