@@ -177,13 +177,22 @@ public class PlayerInput : MonoBehaviour
 			return;
 		}
 
-		Ray ray = new Ray(mainCamTrans.position, mainCamTrans.forward);
-		Debug.DrawRay(mainCamTrans.position, mainCamTrans.forward, Color.red);
+		#region Debug aim
+
+		if(debugAim && wpnHandler.activeWeapon)
+		{
+			Transform bPoint = wpnHandler.activeWeapon.weaponSettings.bulletSpawnPoint;
+			Vector3 start = bPoint.position;
+			Vector3 dir = bPoint.forward;
+			Debug.DrawRay(start, dir, Color.red);
+		}
+
+		#endregion
 
 		#region Fire
 
 		if(_aiming && _LMB)
-			wpnHandler.FireCurrentWeapon(ray);
+			wpnHandler.FireCurrentWeapon(mainCamTrans);
 
 		#endregion
 
@@ -207,7 +216,7 @@ public class PlayerInput : MonoBehaviour
 		#endregion
 	}
 
-	private void RotateSpine() // Helps the character to look vertically at target
+	private void RotateSpine() // Helps the character to look at target, offsetting by camera
 	{
 		if(!aimSettings.spine)
 			return;
@@ -217,7 +226,18 @@ public class PlayerInput : MonoBehaviour
 		Ray ray = new Ray(mainCamPos, dir);
 		aimSettings.spine.LookAt(ray.GetPoint(50f));
 
-		Vector3 eulerAngleOffset = wpnHandler.activeWeapon.modelSettings.spineRotation;
+		Vector3 eulerAngleOffset = new Vector3();
+
+		switch(tpCamera.cameraSettings.shoulder)
+		{
+			case TPCamera.CameraSettings.Shoulder.RIGHT:
+				eulerAngleOffset = wpnHandler.activeWeapon.modelSettings.spineRotationRight;
+				break;
+			case TPCamera.CameraSettings.Shoulder.LEFT:
+				eulerAngleOffset = wpnHandler.activeWeapon.modelSettings.spineRotationLeft;
+				break;
+		}
+
 		aimSettings.spine.Rotate(eulerAngleOffset);
 	}
 }

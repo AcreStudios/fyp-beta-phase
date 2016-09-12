@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
+[RequireComponent(typeof(AudioSource))]
 [RequireComponent(typeof(BoxCollider))]
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(Animator))]
@@ -13,6 +14,7 @@ public class Weapon : MonoBehaviour
 	private Animator animator;
 	private Transform trans;
 	private WeaponHandler weaponHandler;
+	private TPCamera tpCamera;
 
 	[System.Serializable]
 	public class WeaponSettings
@@ -23,7 +25,7 @@ public class Weapon : MonoBehaviour
 		[Header("-Weapon Options-"), Range(1, 5)]
 		public int bulletsPerShot = 1;
 		public float bulletDamage = 10f;
-		public float bulletSpread = 5f;
+		public float bulletSpread = .02f;
 		public float fireRate = .3f;
 		public float fireRange = 100f;
 		public float reloadDuration = 2f;
@@ -42,15 +44,17 @@ public class Weapon : MonoBehaviour
 		public float casingSpawnSpeed = 5f;
 
 		[Header("-Weapon Positions-")]
-		public Vector3 equipPosition = new Vector3(-.02f, .15f, .02f);
-		public Vector3 equipRotation = new Vector3(270f, 45f, 45f);
+		public Vector3 equipPositionR = new Vector3(-.02f, .15f, .02f);
+		public Vector3 equipRotationR = new Vector3(270f, 45f, 45f);
+		public Vector3 equipPositionL = new Vector3(-.02f, .15f, .02f);
+		public Vector3 equipRotationL = new Vector3(270f, 45f, 45f);
 		public Vector3 unequipPosition = new Vector3(.2f, -.2f, -.1f);
 		public Vector3 unequipRotation = new Vector3(90f, 270f, 270f);
 
 		[Header("-Weapon Animation-")]
 		public bool useAnimation = true;
 		public int fireLayer = 0;
-		public string fireName = "Anim_PistolFire";
+		public string fireName = "PistolFire";
 	}
 	public WeaponSettings weaponSettings;
 
@@ -66,12 +70,14 @@ public class Weapon : MonoBehaviour
 	[System.Serializable]
 	public class SoundSettings
 	{
-		public AudioClip[] gunshotSounds;
 		public AudioClip reloadSound;
+		public AudioClip emptySound;
+		public AudioClip[] gunshotSounds;
 		[Range(0.1f, 1f)]
 		public float pitchMin = .9f;
 		[Range(1f, 2f)]
 		public float pitchMax = 1.1f;
+		[HideInInspector]
 		public AudioSource audioSrc;
 	}
 	public SoundSettings soundSettings;
@@ -79,7 +85,8 @@ public class Weapon : MonoBehaviour
 	[System.Serializable]
 	public class ModelSettings
 	{
-		public Vector3 spineRotation = new Vector3(-7f, -42f, 0f);
+		public Vector3 spineRotationRight = new Vector3(-5f, -10f, 0f);
+		public Vector3 spineRotationLeft = new Vector3(0f, 15f, 0f);
 		public Transform leftHandIKTarget;
 		public Transform rightHandIKTarget;
 	}
@@ -96,10 +103,14 @@ public class Weapon : MonoBehaviour
 		rb = GetComponent<Rigidbody>();
 		animator = GetComponent<Animator>();
 		trans = GetComponent<Transform>();
+		soundSettings.audioSrc = GetComponent<AudioSource>();
+		soundSettings.audioSrc.spatialBlend = 1f;
 	}
 
 	void Start() 
 	{
+		tpCamera = TPCamera.GetInstance();
+
 		EquipWeapon();
 	}
 
@@ -108,7 +119,7 @@ public class Weapon : MonoBehaviour
 		CheckEquipState();
 	}
 
-	public void Shoot(Ray shootRay)
+	public void Shoot(Transform mainCamTrans)
 	{
 		if(ammoSettings.currentAmmo <= 0 || _loading || !weaponSettings.bulletSpawnPoint || !_equipped)
 			return;
@@ -118,12 +129,11 @@ public class Weapon : MonoBehaviour
 			#region Each bullet logic
 
 			RaycastHit hit;
-			Transform bSpawn = weaponSettings.bulletSpawnPoint;
-			Vector3 bPoint = bSpawn.position;
-			Vector3 dir = shootRay.GetPoint(weaponSettings.fireRange) + bPoint;
+			Vector3 start = mainCamTrans.position;
+			Vector3 dir = mainCamTrans.forward;
 			dir += (Vector3)Random.insideUnitCircle * weaponSettings.bulletSpread; // Spread the bullets, reduces accuracy
-			Debug.DrawRay(bPoint, dir, Color.green, 10f);
-			if(Physics.Raycast(bPoint, dir, out hit, weaponSettings.fireRange, weaponSettings.bulletLayer))
+			Debug.DrawRay(start, dir, Color.green);
+			if(Physics.Raycast(start, dir, out hit, weaponSettings.fireRange, weaponSettings.bulletLayer))
 			{
 				//CHAR_Health hp = hit.transform.root.GetComponent<CHAR_Health>();
 				//if(hp && hp.isActiveAndEnabled)
@@ -206,6 +216,8 @@ public class Weapon : MonoBehaviour
 				animator.Play(weaponSettings.fireName, weaponSettings.fireLayer);
 		}
 
+		weaponHandler.animator.SetTrigger("Fire");
+
 		// Shoot cooldown
 		ammoSettings.currentAmmo--;
 		StartCoroutine(FinishShooting());
@@ -273,20 +285,34 @@ public class Weapon : MonoBehaviour
 			return;
 
 		trans.SetParent(weaponHandler.modelSettings.rightHand);
-		trans.localPosition = weaponSettings.equipPosition;
-		Quaternion equipRot = Quaternion.Euler(weaponSettings.equipRotation);
-		trans.localRotation = equipRot;
+
+		switch(tpCamera.cameraSettings.shoulder)
+		{
+			case TPCamera.CameraSettings.Shoulder.RIGHT:
+				trans.localPosition = weaponSettings.equipPositionR;
+				Quaternion equipRotR = Quaternion.Euler(weaponSettings.equipRotationR);
+				trans.localRotation = equipRotR;
+				break;
+			case TPCamera.CameraSettings.Shoulder.LEFT:
+				trans.localPosition = weaponSettings.equipPositionL;
+				Quaternion equipRotL = Quaternion.Euler(weaponSettings.equipRotationL);
+				trans.localRotation = equipRotL;
+				break;
+		}
 	}
 
 	private void UnequipWeapon() // Unequip and place weapon to the desired location
 	{
 		// Fix muzzle flash staying
-		if(weaponSettings.bulletSpawnPoint.childCount > 0)
+		if(weaponSettings.bulletSpawnPoint != null)
 		{
-			foreach(Transform t in weaponSettings.bulletSpawnPoint.GetComponentsInChildren<Transform>())
+			if(weaponSettings.bulletSpawnPoint.childCount > 0)
 			{
-				if(t != weaponSettings.bulletSpawnPoint)
-					Destroy(t.gameObject);
+				foreach(Transform t in weaponSettings.bulletSpawnPoint.GetComponentsInChildren<Transform>())
+				{
+					if(t != weaponSettings.bulletSpawnPoint)
+						Destroy(t.gameObject);
+				}
 			}
 		}
 

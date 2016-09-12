@@ -125,6 +125,7 @@ GameObject:
   - 54: {fileID: 5475448}
   - 65: {fileID: 6545026}
   - 114: {fileID: 11411478}
+  - 82: {fileID: 8213220}
   m_Layer: 0
   m_Name: Wpn_Pistol
   m_TagString: Untagged
@@ -265,7 +266,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 186526}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5, y: 10, z: -2.5}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -466,6 +467,80 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!82 &8213220
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 186526}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!95 &9577316
 Animator:
   serializedVersion: 3
@@ -475,7 +550,7 @@ Animator:
   m_GameObject: {fileID: 186526}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8f8046e4326783545b79c53dec254ee2, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -498,17 +573,17 @@ MonoBehaviour:
     weaponType: 0
     bulletsPerShot: 1
     bulletDamage: 10
-    bulletSpread: 5
+    bulletSpread: 0.02
     fireRate: 0.3
     fireRange: 100
     reloadDuration: 2
     autoReload: 0
     bulletLayer:
       serializedVersion: 2
-      m_Bits: 1
+      m_Bits: 513
     bulletImpactPrefab: {fileID: 139182, guid: ba6356c9bdc6f104993a8dd5c0dacd21, type: 2}
-    muzzleFlashPrefab: {fileID: 0}
-    bulletCasingPrefab: {fileID: 0}
+    muzzleFlashPrefab: {fileID: 168962, guid: c384ee1cdaf2fbe429e05f618b285817, type: 2}
+    bulletCasingPrefab: {fileID: 117326, guid: 94916bfb9b6b2214d8aa88e800f00103, type: 2}
     bulletSpawnPoint: {fileID: 459810}
     casingSpawnPoint: {fileID: 433252}
     casingSpawnSpeed: 5
@@ -518,19 +593,25 @@ MonoBehaviour:
     unequipRotation: {x: 90, y: 270, z: 270}
     useAnimation: 1
     fireLayer: 0
-    fireName: Anim_PistolFire
+    fireName: PistolFire
   ammoSettings:
     totalAmmo: 1200
     currentAmmo: 12
     maxAmmo: 12
   soundSettings:
-    gunshotSounds: []
-    reloadSound: {fileID: 0}
+    reloadSound: {fileID: 8300000, guid: eaaefcb4415d7824a83b9d2d641e010d, type: 3}
+    emptySound: {fileID: 8300000, guid: 1ea6921298e18eb42bcf41e7d43e8d9e, type: 3}
+    gunshotSounds:
+    - {fileID: 8300000, guid: fef862b4e3d55424c8b200bda9c68fd5, type: 3}
+    - {fileID: 8300000, guid: 2b4c50c76dfc3904a93b00b7ff88e0f0, type: 3}
+    - {fileID: 8300000, guid: d1a32399149daf442b815c5deaac75ba, type: 3}
+    - {fileID: 8300000, guid: 168db42cdf89765428773131621f5dad, type: 3}
     pitchMin: 0.9
     pitchMax: 1.1
     audioSrc: {fileID: 0}
   modelSettings:
-    spineRotation: {x: -7, y: -42, z: 0}
+    spineRotationRight: {x: -5, y: -10, z: 0}
+    spineRotationLeft: {x: 0, y: 15, z: 0}
     leftHandIKTarget: {fileID: 0}
     rightHandIKTarget: {fileID: 0}
 --- !u!1001 &100100000

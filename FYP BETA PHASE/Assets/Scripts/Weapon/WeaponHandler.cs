@@ -6,17 +6,20 @@ using System.Collections.Generic;
 public class WeaponHandler : MonoBehaviour 
 {
 	// Components
-	private Animator animator;
+	[HideInInspector]
+	public Animator animator;
 	private SoundManager soundManager;
 
 	[Header("-Weapons-")]
 	public Weapon activeWeapon;
 	public List<Weapon> weaponsList = new List<Weapon>();
+
 	// Weapon helpers
 	private int _weaponIndex;
 	private bool _aiming;
 	private bool _reloading;
 	private bool _switchingWeapon;
+	private bool _empty;
 	private WaitForSeconds _switchWeaponDelay = new WaitForSeconds(.7f);
 
 	[System.Serializable]
@@ -150,20 +153,51 @@ public class WeaponHandler : MonoBehaviour
 		_switchingWeapon = false;
 	}
 
-	public void FireCurrentWeapon(Ray aimRay) // Tells the current weapon to fire
+	public void FireCurrentWeapon(Transform mainCamTrans) // Tells the current weapon to fire
 	{
 		// Fire
-		activeWeapon.Shoot(aimRay);
+		activeWeapon.Shoot(mainCamTrans);
 
 		#region Auto reload?
 
-		if(!activeWeapon.weaponSettings.autoReload)
-			return;
+		if(activeWeapon.weaponSettings.autoReload)
+		{
+			if(activeWeapon.ammoSettings.currentAmmo == 0)
+				ReloadCurrentWeapon();
 
-		if(activeWeapon.ammoSettings.currentAmmo == 0)
-			ReloadCurrentWeapon();
+			return;
+		}
 
 		#endregion
+
+		if(activeWeapon.ammoSettings.currentAmmo > 0)
+			return;
+
+		
+		#region Play empty sound
+
+		if(soundManager)
+		{
+			if(!_empty && activeWeapon.soundSettings.emptySound && activeWeapon.soundSettings.audioSrc)
+			{
+				soundManager.PlaySound(activeWeapon.soundSettings.audioSrc,
+					activeWeapon.soundSettings.emptySound,
+					true,
+					activeWeapon.soundSettings.pitchMin,
+					activeWeapon.soundSettings.pitchMax);
+
+				StartCoroutine(FinishEmptyFire());
+			}
+		}
+
+		#endregion
+	}
+
+	private IEnumerator FinishEmptyFire()
+	{
+		_empty = true;
+		yield return new WaitForSeconds(.4f);
+		_empty = false;
 	}
 
 	public void ReloadCurrentWeapon() // Reload logic
