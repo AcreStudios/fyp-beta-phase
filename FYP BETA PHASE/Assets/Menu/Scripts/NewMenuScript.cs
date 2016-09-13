@@ -277,7 +277,7 @@ public class NewMenuScript : MonoBehaviour {
         Application.Quit();
     }
     public void loadApplication() {
-        SceneManager.LoadScene("");
+        SceneManager.LoadScene("Interior_Small");
         Debug.Log("Scene Loaded");
     }
     #endregion
