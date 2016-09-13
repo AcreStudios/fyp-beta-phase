@@ -256,16 +256,18 @@ public class PlayerInput : MonoBehaviour
 		if(!coverSystem)
 			return;
 
-		if(_leftCtrl)
-			coverSystem.CheckNearestWall();
-
-		if(coverSystem.inCover)
+		if(!coverSystem.inCover)
+		{
+			if(_leftCtrl)
+				coverSystem.CheckNearestWall();
+		}
+		else
 		{
 			if(_vertical > 0.5f || _vertical < -0.5f)
 				coverSystem.inCover = false;
 
-			if(_horizontal != 0)
-				charMove.MoveAlongCover(coverSystem.coverMoveSpeed, _horizontal);
+			if(_leftCtrl)
+				coverSystem.inCover = false;
 		}
 	}
 }

@@ -16,8 +16,7 @@ public class CoverSystem : MonoBehaviour
 	public bool autoSwitchSides = true;
 	public float wallDist = 1f;
 	public LayerMask wallLayer;
-	public float coverOffsetZ = .25f;
-	public float coverMoveSpeed = 1.2f;
+	public float coverOffsetZ = .01f;
 
 	// Cover helpers
 	[SerializeField]

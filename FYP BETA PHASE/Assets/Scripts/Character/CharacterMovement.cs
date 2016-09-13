@@ -200,10 +200,4 @@ public class CharacterMovement : MonoBehaviour
 	{
 		_inCover = false;
 	}
-
-	public void MoveAlongCover(float speed, float dir)
-	{
-		Vector3 coverMove = new Vector3(dir * speed, 0f, 0f);
-		characterController.SimpleMove(coverMove);
-	}
 }
