@@ -10,10 +10,12 @@ public class AI : AIFunctions {
         Patrol,
         Attacking,
         Retreating,
-        AttackingInOpen
+        AttackingInOpen,
+        Escort
     }
 
     public float reactionTime;
+    public bool toEscort;
     AIStates currentState;
     AIStates defaultState;
 
@@ -45,6 +47,11 @@ public class AI : AIFunctions {
 
         destination = transform.position;
         currentState = defaultState;
+
+        if (toEscort) {
+            currentState = AIStates.Escort;
+            target = GameObject.FindGameObjectWithTag("Player").transform;
+        }
 
     }
 
@@ -170,12 +177,34 @@ public class AI : AIFunctions {
                     currentState = AIStates.Attacking;
                 }
                 break;
+
+            case AIStates.Escort:
+                if (patrolMod.currentLocation < patrolMod.limit) {
+                    if ((patrolMod.patrolLocations[patrolMod.currentLocation] - transform.position).magnitude < 2) {
+                        transform.LookAt(target);
+                        transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
+                        animator.SetInteger("TreeState", 0);
+                        if ((target.position - transform.position).magnitude < 2) {
+                            patrolMod.currentLocation++;
+                        }
+                    } else {
+                        agent.destination = patrolMod.patrolLocations[patrolMod.currentLocation];
+                        animator.SetInteger("TreeState", 1);
+                    }
+                } else {
+                    transform.LookAt(target);
+                    transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
+                    animator.SetInteger("TreeState", 0);
+                }
+                break;
         }
     }
 
     public override void DamageRecieved(float damage) {
         if (currentState == AIStates.Attacking || currentState == AIStates.AttackingInOpen)
             StartCoroutine(ChangeDestination());
+
+        currentState = AIStates.Attacking;
         base.DamageRecieved(damage);
     }
 

@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEditor;
 
 [ExecuteInEditMode]
 public class EventManager : MonoBehaviour {
@@ -9,11 +10,9 @@ public class EventManager : MonoBehaviour {
     public struct Events {
         public string eventName;
         public string missionUI;
-        public Triggers eventTriggers;       
+        public Triggers eventTriggers;
         public Triggered results;
     }
-
-    
 
     [System.Serializable]
     public struct Triggers {
@@ -27,18 +26,32 @@ public class EventManager : MonoBehaviour {
     public struct Triggered {
         public GameObject[] spawns;
         public GameObject[] toDestroy;
+        public EventResults[] scriptedEventsToTrigger;
     }
 
+    [System.Serializable]
+    public struct AlternateEvents {
+        public int listeningToEvent;
+        public float timer;
+        public int eventToJumpTo;
+        public Triggered results;
+    }
 
     public Events[] gameEventFlow;
+    public AlternateEvents[] alternateEventListeners;
     public Text missionUI;
     public bool ableToEdit;
 
     int currentGameEvent;
+    int currentAltEvent;
     int prevCount;
+    bool eventTriggered;
+    float timer;
 
     void Start() {
         currentGameEvent = 0;
+        currentAltEvent = 0;
+        eventTriggered = false;
     }
 
     void Update() {
@@ -57,10 +70,11 @@ public class EventManager : MonoBehaviour {
             }
         }
 
-        if (missionUI)
-            missionUI.text = gameEventFlow[currentGameEvent].missionUI;
 
         if (currentGameEvent < gameEventFlow.Length) {
+            if (missionUI)
+                missionUI.text = gameEventFlow[currentGameEvent].missionUI;
+
             if (gameEventFlow[currentGameEvent].eventTriggers.triggerRadius > 0 || gameEventFlow[currentGameEvent].eventTriggers.toCalculate) {
                 Collider[] temp;
 
@@ -69,7 +83,8 @@ public class EventManager : MonoBehaviour {
                 if (temp.Length != prevCount) {
                     foreach (Collider obj in temp) {
                         if (obj.tag == "Player") {
-                            ActivateEvent(gameEventFlow[currentGameEvent].results);                         
+                            ActivateEvent(gameEventFlow[currentGameEvent].results);
+                            currentGameEvent++;
                         }
                     }
                 }
@@ -78,6 +93,23 @@ public class EventManager : MonoBehaviour {
             } else {
                 if (!gameEventFlow[currentGameEvent].eventTriggers.checkIfDestroyed) {
                     ActivateEvent(gameEventFlow[currentGameEvent].results);
+                    currentGameEvent++;
+                }
+            }
+        }
+
+        if (currentAltEvent < alternateEventListeners.Length) {
+            if (alternateEventListeners[currentAltEvent].listeningToEvent == currentGameEvent) {
+                if (!eventTriggered) {
+                    eventTriggered = true;
+                    timer = Time.time + alternateEventListeners[currentAltEvent].timer;
+                }
+
+                if (timer < Time.time) {
+                    currentGameEvent = alternateEventListeners[currentAltEvent].eventToJumpTo;
+                    ActivateEvent(alternateEventListeners[currentAltEvent].results);
+                    eventTriggered = false;
+                    currentAltEvent++;
 
                 }
             }
@@ -85,14 +117,62 @@ public class EventManager : MonoBehaviour {
     }
 
     void ActivateEvent(Triggered endResult) {
-        foreach (GameObject spawn in endResult.spawns) {
+        foreach (GameObject spawn in endResult.spawns)
             spawn.SetActive(true);
-        }
 
-        foreach (GameObject destroy in endResult.toDestroy) {
+        foreach (GameObject destroy in endResult.toDestroy)
             Destroy(destroy);
+
+        foreach (EventResults results in endResult.scriptedEventsToTrigger)
+            results.ScriptedResult();
+    }
+}
+
+[CustomEditor(typeof(EventManager))]
+public class EventManagerEditor : Editor {
+    EventManager t;
+    int currentEvent;
+
+    void OnSceneGUI() {
+        Quaternion rotation = Quaternion.identity;
+        rotation.eulerAngles = new Vector3(90, 0, 0);
+        Handles.color = Color.red;
+
+        for (var i = 0; i < t.gameEventFlow.Length; i++)
+            Handles.CircleCap(0, t.gameEventFlow[i].eventTriggers.triggerPosition, rotation, t.gameEventFlow[i].eventTriggers.triggerRadius);
+
+
+        Event e;
+        e = Event.current;
+
+        if (e.type == EventType.keyDown) {
+            if (e.keyCode == KeyCode.Q) {
+                RaycastHit hit;
+
+                Vector2 temp = e.mousePosition;
+                temp.y = Screen.height - e.mousePosition.y;
+                Ray ray = Camera.current.ScreenPointToRay(temp);
+
+                if (Physics.Raycast(ray, out hit, Mathf.Infinity)) {
+                    //Debug.DrawLine(Vector3.zero, hit.point, Color.black);
+                    t.gameEventFlow[currentEvent].eventTriggers.triggerPosition = hit.point;
+                }
+            }
         }
-        currentGameEvent++;
+    }
+
+    public override void OnInspectorGUI() {
+        DrawDefaultInspector();
+
+        t = target as EventManager;
+
+        for (var i = 0; i < t.gameEventFlow.Length; i++) {
+            if (GUILayout.Button("Set trigger radius " + i.ToString())) {
+                currentEvent = i;
+                SceneView sceneView = SceneView.sceneViews[0] as SceneView;
+                sceneView.Focus();
+            }
+        }
     }
 }
 
