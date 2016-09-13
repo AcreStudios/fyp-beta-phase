@@ -167,8 +167,28 @@ MonoBehaviour:
   - {x: 8.188097, y: -0.07024511, z: -7.777649}
   - {x: 18.001883, y: -3.7515298e-16, z: -8.39553}
   - {x: 20.400644, y: 6.8918185e-16, z: -19.803698}
+  - {x: 17.988134, y: -3.706072e-16, z: -8.343014}
+  - {x: 6.8080273, y: -0.041551724, z: -7.3774657}
+  - {x: -1.0403285, y: -1.6438833e-15, z: -2.039924}
+  - {x: -7.46517, y: -4.968278e-15, z: 4.940487}
+  - {x: -11.0741415, y: -5.534576e-15, z: 5.959322}
+  - {x: -13.056693, y: -6.6116296e-15, z: 10.264203}
+  - {x: -20.23547, y: -5.4155755e-15, z: 7.1129074}
   currentLocation: 0
+  limit: 4
   valueToAdd: 0
+--- !u!114 &335981869
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 335981867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06c4218224909e24d9d744c4fb8034e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  toEditLimit: {fileID: 335981868}
 --- !u!1 &494917994 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 116432, guid: fa3875faf00caeb4fbba2831c223036e, type: 2}
@@ -207,17 +227,17 @@ RectTransform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 997346883}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.3400838, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
-  m_Father: {fileID: 1314423019}
+  m_Father: {fileID: 1603248596}
   m_RootOrder: 0
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -43.5, y: 122.2}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: 18.1, y: -3.9}
+  m_SizeDelta: {x: 200, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &997346885
 MonoBehaviour:
@@ -231,7 +251,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -239,7 +259,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: d24404bd6ac471e46a03b914291b8cc0, type: 3}
     m_FontSize: 14
     m_FontStyle: 0
     m_BestFit: 0
@@ -548,7 +568,7 @@ Canvas:
   serializedVersion: 2
   m_RenderMode: 1
   m_Camera: {fileID: 1618569828}
-  m_PlaneDistance: 100
+  m_PlaneDistance: 1
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
@@ -568,7 +588,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 997346884}
+  - {fileID: 1603248596}
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_AnchorMin: {x: 0, y: 0}
@@ -638,6 +658,75 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 10
+--- !u!1 &1603248595
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 224: {fileID: 1603248596}
+  - 222: {fileID: 1603248598}
+  - 114: {fileID: 1603248597}
+  m_Layer: 5
+  m_Name: Image
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1603248596
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1603248595}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 2.940452, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children:
+  - {fileID: 997346884}
+  m_Father: {fileID: 1314423019}
+  m_RootOrder: 0
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -232, y: 102.4}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1603248597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1603248595}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 21300000, guid: 964d101f6831d3348afbc14718a84062, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+--- !u!222 &1603248598
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1603248595}
 --- !u!1 &1613074118
 GameObject:
   m_ObjectHideFlags: 0
@@ -677,8 +766,9 @@ MonoBehaviour:
       spawns:
       - {fileID: 335981867}
       toDestroy: []
+      scriptedEventsToTrigger: []
   - eventName: Return to Desk
-    missionUI: Follow guard orders - Return to desk
+    missionUI: Follow the guard
     eventTriggers:
       triggerPosition: {x: 24.75662, y: 1.3928631e-15, z: -24.7366}
       triggerRadius: 5
@@ -687,8 +777,9 @@ MonoBehaviour:
     results:
       spawns: []
       toDestroy: []
+      scriptedEventsToTrigger: []
   - eventName: Kill the Guard
-    missionUI: Kill the freaking guard
+    missionUI: Shoot the guard
     eventTriggers:
       triggerPosition: {x: 8.356416, y: -0.0346806, z: -15.973281}
       triggerRadius: 0
@@ -699,8 +790,9 @@ MonoBehaviour:
       - {fileID: 1019888164}
       - {fileID: 1305789760}
       toDestroy: []
+      scriptedEventsToTrigger: []
   - eventName: Escape
-    missionUI: Escape plox!
+    missionUI: Escape
     eventTriggers:
       triggerPosition: {x: 0, y: 0, z: 0}
       triggerRadius: 0
@@ -709,6 +801,27 @@ MonoBehaviour:
     results:
       spawns: []
       toDestroy: []
+      scriptedEventsToTrigger: []
+  - eventName: Alternate Ending
+    missionUI: Follow the guard to meeting room 2
+    eventTriggers:
+      triggerPosition: {x: -17.62441, y: -5.515401e-15, z: 6.8266773}
+      triggerRadius: 2
+      toCalculate: {fileID: 0}
+      checkIfDestroyed: {fileID: 0}
+    results:
+      spawns: []
+      toDestroy: []
+      scriptedEventsToTrigger: []
+  alternateEventListeners:
+  - listeningToEvent: 2
+    timer: 10
+    eventToJumpTo: 4
+    results:
+      spawns: []
+      toDestroy: []
+      scriptedEventsToTrigger:
+      - {fileID: 335981869}
   missionUI: {fileID: 997346885}
   ableToEdit: 0
 --- !u!4 &1613074120

@@ -179,19 +179,22 @@ public class AI : AIFunctions {
                 break;
 
             case AIStates.Escort:
-                if (patrolMod.currentLocation < patrolMod.patrolLocations.Length) {
+                if (patrolMod.currentLocation < patrolMod.limit) {
                     if ((patrolMod.patrolLocations[patrolMod.currentLocation] - transform.position).magnitude < 2) {
                         transform.LookAt(target);
                         transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
+                        animator.SetInteger("TreeState", 0);
                         if ((target.position - transform.position).magnitude < 2) {
                             patrolMod.currentLocation++;
                         }
                     } else {
                         agent.destination = patrolMod.patrolLocations[patrolMod.currentLocation];
+                        animator.SetInteger("TreeState", 1);
                     }
                 } else {
                     transform.LookAt(target);
                     transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
+                    animator.SetInteger("TreeState", 0);
                 }
                 break;
         }

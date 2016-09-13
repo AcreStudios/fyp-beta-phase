@@ -14,8 +14,6 @@ public class EventManager : MonoBehaviour {
         public Triggered results;
     }
 
-
-
     [System.Serializable]
     public struct Triggers {
         public Vector3 triggerPosition;
@@ -28,18 +26,32 @@ public class EventManager : MonoBehaviour {
     public struct Triggered {
         public GameObject[] spawns;
         public GameObject[] toDestroy;
+        public EventResults[] scriptedEventsToTrigger;
     }
 
+    [System.Serializable]
+    public struct AlternateEvents {
+        public int listeningToEvent;
+        public float timer;
+        public int eventToJumpTo;
+        public Triggered results;
+    }
 
     public Events[] gameEventFlow;
+    public AlternateEvents[] alternateEventListeners;
     public Text missionUI;
     public bool ableToEdit;
 
     int currentGameEvent;
+    int currentAltEvent;
     int prevCount;
+    bool eventTriggered;
+    float timer;
 
     void Start() {
         currentGameEvent = 0;
+        currentAltEvent = 0;
+        eventTriggered = false;
     }
 
     void Update() {
@@ -58,7 +70,6 @@ public class EventManager : MonoBehaviour {
             }
         }
 
-        
 
         if (currentGameEvent < gameEventFlow.Length) {
             if (missionUI)
@@ -73,6 +84,7 @@ public class EventManager : MonoBehaviour {
                     foreach (Collider obj in temp) {
                         if (obj.tag == "Player") {
                             ActivateEvent(gameEventFlow[currentGameEvent].results);
+                            currentGameEvent++;
                         }
                     }
                 }
@@ -81,6 +93,23 @@ public class EventManager : MonoBehaviour {
             } else {
                 if (!gameEventFlow[currentGameEvent].eventTriggers.checkIfDestroyed) {
                     ActivateEvent(gameEventFlow[currentGameEvent].results);
+                    currentGameEvent++;
+                }
+            }
+        }
+
+        if (currentAltEvent < alternateEventListeners.Length) {
+            if (alternateEventListeners[currentAltEvent].listeningToEvent == currentGameEvent) {
+                if (!eventTriggered) {
+                    eventTriggered = true;
+                    timer = Time.time + alternateEventListeners[currentAltEvent].timer;
+                }
+
+                if (timer < Time.time) {
+                    currentGameEvent = alternateEventListeners[currentAltEvent].eventToJumpTo;
+                    ActivateEvent(alternateEventListeners[currentAltEvent].results);
+                    eventTriggered = false;
+                    currentAltEvent++;
 
                 }
             }
@@ -88,14 +117,14 @@ public class EventManager : MonoBehaviour {
     }
 
     void ActivateEvent(Triggered endResult) {
-        foreach (GameObject spawn in endResult.spawns) {
+        foreach (GameObject spawn in endResult.spawns)
             spawn.SetActive(true);
-        }
 
-        foreach (GameObject destroy in endResult.toDestroy) {
+        foreach (GameObject destroy in endResult.toDestroy)
             Destroy(destroy);
-        }
-        currentGameEvent++;
+
+        foreach (EventResults results in endResult.scriptedEventsToTrigger)
+            results.ScriptedResult();
     }
 }
 
@@ -118,7 +147,6 @@ public class EventManagerEditor : Editor {
 
         if (e.type == EventType.keyDown) {
             if (e.keyCode == KeyCode.Q) {
-                Debug.Log(currentEvent);
                 RaycastHit hit;
 
                 Vector2 temp = e.mousePosition;
