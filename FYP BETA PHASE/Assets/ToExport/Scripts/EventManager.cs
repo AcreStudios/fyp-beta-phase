@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEditor;
 
 [ExecuteInEditMode]
 public class EventManager : MonoBehaviour {
@@ -9,11 +10,11 @@ public class EventManager : MonoBehaviour {
     public struct Events {
         public string eventName;
         public string missionUI;
-        public Triggers eventTriggers;       
+        public Triggers eventTriggers;
         public Triggered results;
     }
 
-    
+
 
     [System.Serializable]
     public struct Triggers {
@@ -57,10 +58,12 @@ public class EventManager : MonoBehaviour {
             }
         }
 
-        if (missionUI)
-            missionUI.text = gameEventFlow[currentGameEvent].missionUI;
+        
 
         if (currentGameEvent < gameEventFlow.Length) {
+            if (missionUI)
+                missionUI.text = gameEventFlow[currentGameEvent].missionUI;
+
             if (gameEventFlow[currentGameEvent].eventTriggers.triggerRadius > 0 || gameEventFlow[currentGameEvent].eventTriggers.toCalculate) {
                 Collider[] temp;
 
@@ -69,7 +72,7 @@ public class EventManager : MonoBehaviour {
                 if (temp.Length != prevCount) {
                     foreach (Collider obj in temp) {
                         if (obj.tag == "Player") {
-                            ActivateEvent(gameEventFlow[currentGameEvent].results);                         
+                            ActivateEvent(gameEventFlow[currentGameEvent].results);
                         }
                     }
                 }
@@ -93,6 +96,55 @@ public class EventManager : MonoBehaviour {
             Destroy(destroy);
         }
         currentGameEvent++;
+    }
+}
+
+[CustomEditor(typeof(EventManager))]
+public class EventManagerEditor : Editor {
+    EventManager t;
+    int currentEvent;
+
+    void OnSceneGUI() {
+        Quaternion rotation = Quaternion.identity;
+        rotation.eulerAngles = new Vector3(90, 0, 0);
+        Handles.color = Color.red;
+
+        for (var i = 0; i < t.gameEventFlow.Length; i++)
+            Handles.CircleCap(0, t.gameEventFlow[i].eventTriggers.triggerPosition, rotation, t.gameEventFlow[i].eventTriggers.triggerRadius);
+
+
+        Event e;
+        e = Event.current;
+
+        if (e.type == EventType.keyDown) {
+            if (e.keyCode == KeyCode.Q) {
+                Debug.Log(currentEvent);
+                RaycastHit hit;
+
+                Vector2 temp = e.mousePosition;
+                temp.y = Screen.height - e.mousePosition.y;
+                Ray ray = Camera.current.ScreenPointToRay(temp);
+
+                if (Physics.Raycast(ray, out hit, Mathf.Infinity)) {
+                    //Debug.DrawLine(Vector3.zero, hit.point, Color.black);
+                    t.gameEventFlow[currentEvent].eventTriggers.triggerPosition = hit.point;
+                }
+            }
+        }
+    }
+
+    public override void OnInspectorGUI() {
+        DrawDefaultInspector();
+
+        t = target as EventManager;
+
+        for (var i = 0; i < t.gameEventFlow.Length; i++) {
+            if (GUILayout.Button("Set trigger radius " + i.ToString())) {
+                currentEvent = i;
+                SceneView sceneView = SceneView.sceneViews[0] as SceneView;
+                sceneView.Focus();
+            }
+        }
     }
 }
 
