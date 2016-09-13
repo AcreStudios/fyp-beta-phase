@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
-[RequireComponent(typeof(WeaponHandler))]
 [RequireComponent(typeof(CharacterMovement))]
 public class PlayerInput : MonoBehaviour 
 {
@@ -11,12 +10,13 @@ public class PlayerInput : MonoBehaviour
 	private WeaponHandler wpnHandler;
 	private Transform mainCamTrans;
 	private TPCamera tpCamera;
+	private CoverSystem coverSystem;
 
 	[Header("-Inputs-"), Range(-1f, 1f)]
 	public float _horizontal;
 	[Range(-1f, 1f)]
 	public float _vertical;
-	public bool _LMB, _RMB, _MMB, _spacebar;
+	public bool _LMB, _RMB, _MMB, _spacebar, _leftCtrl;
 
 	[System.Serializable]
 	public class InputStrings
@@ -30,6 +30,7 @@ public class PlayerInput : MonoBehaviour
 		public string jumpButton = "Jump";
 		public string switchButton = "Switch";
 		public string reloadButton = "Reload";
+		public string coverButton = "Cover";
 	}
 	[SerializeField]
 	private InputStrings inputStrings;
@@ -63,6 +64,7 @@ public class PlayerInput : MonoBehaviour
 		trans = GetComponent<Transform>();
 		charMove = GetComponent<CharacterMovement>();
 		wpnHandler = GetComponent<WeaponHandler>();
+		coverSystem = GetComponent<CoverSystem>();
 	}
 
 	void Start() 
@@ -80,6 +82,7 @@ public class PlayerInput : MonoBehaviour
 		CharacterLogic();
 		CameraAimLogic();
 		WeaponLogic();
+		CoverLogic();
 	}
 
 	void LateUpdate()
@@ -99,6 +102,7 @@ public class PlayerInput : MonoBehaviour
 		_RMB = Input.GetButton(inputStrings.aimButton);
 		_MMB = Input.GetButtonDown(inputStrings.switchShoulderButton);
 		_spacebar = Input.GetButtonDown(inputStrings.jumpButton);
+		_leftCtrl = Input.GetButtonDown(inputStrings.coverButton);
 	}
 
 	private void CharacterLogic() // Handles character logic
@@ -139,6 +143,9 @@ public class PlayerInput : MonoBehaviour
 
 	private void CharacterLook() // Make the character look at the same direction as the camera
 	{
+		if(coverSystem.inCover)
+			return;
+
 		Transform pivot = mainCamTrans.parent.parent;
 		Vector3 pivotPos = pivot.position;
 		Vector3 lookTarget = pivotPos + (pivot.forward * aimSettings.lookDistance);
@@ -154,6 +161,9 @@ public class PlayerInput : MonoBehaviour
 
 	private void WeaponLogic() // Handles all weapon logic + inputs
 	{
+		if(!wpnHandler)
+			return;
+		
 		#region Aim
 
 		_aiming = _RMB || debugAim;
@@ -239,5 +249,23 @@ public class PlayerInput : MonoBehaviour
 		}
 
 		aimSettings.spine.Rotate(eulerAngleOffset);
+	}
+
+	private void CoverLogic()
+	{
+		if(!coverSystem)
+			return;
+
+		if(_leftCtrl)
+			coverSystem.CheckNearestWall();
+
+		if(coverSystem.inCover)
+		{
+			if(_vertical > 0.5f || _vertical < -0.5f)
+				coverSystem.inCover = false;
+
+			if(_horizontal != 0)
+				charMove.MoveAlongCover(coverSystem.coverMoveSpeed, _horizontal);
+		}
 	}
 }

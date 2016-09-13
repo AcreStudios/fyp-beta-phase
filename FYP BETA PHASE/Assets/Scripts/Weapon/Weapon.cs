@@ -19,7 +19,7 @@ public class Weapon : MonoBehaviour
 	[System.Serializable]
 	public class WeaponSettings
 	{
-		public enum WeaponType { PISTOL, OTHER }
+		public enum WeaponType { PISTOL, RIFLE, SHOTGUN }
 		public WeaponType weaponType;
 
 		[Header("-Weapon Options-"), Range(1, 5)]
@@ -104,7 +104,6 @@ public class Weapon : MonoBehaviour
 		animator = GetComponent<Animator>();
 		trans = GetComponent<Transform>();
 		soundSettings.audioSrc = GetComponent<AudioSource>();
-		soundSettings.audioSrc.spatialBlend = 1f;
 	}
 
 	void Start() 

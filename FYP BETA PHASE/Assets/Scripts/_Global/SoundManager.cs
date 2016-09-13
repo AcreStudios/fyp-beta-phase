@@ -27,10 +27,11 @@ public class SoundManager : MonoBehaviour
 
 	public void PlaySound(AudioSource aSrc, AudioClip aClip, bool randomPitch = false, float minRandomPitch = 1, float maxRandomPitch = 1)
 	{
-		// Plays sound globally (Non-location specific)
+		// Plays sound on their own audio source
 		if(randomPitch)
 			aSrc.pitch = Random.Range(minRandomPitch, maxRandomPitch);
 
+		aSrc.spatialBlend = 1f;
 		aSrc.clip = aClip;
 		aSrc.Play();
 	}

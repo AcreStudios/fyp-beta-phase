@@ -116,8 +116,11 @@ public class WeaponHandler : MonoBehaviour
 			case Weapon.WeaponSettings.WeaponType.PISTOL:
 				_weaponIndex = 1;
 				break;
-			case Weapon.WeaponSettings.WeaponType.OTHER:
+			case Weapon.WeaponSettings.WeaponType.RIFLE:
 				_weaponIndex = 2;
+				break;
+			case Weapon.WeaponSettings.WeaponType.SHOTGUN:
+				_weaponIndex = 3;
 				break;
 		}
 	}

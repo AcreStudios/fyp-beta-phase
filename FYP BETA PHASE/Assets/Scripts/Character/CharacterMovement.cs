@@ -12,6 +12,7 @@ public class CharacterMovement : MonoBehaviour
 	private Transform trans;
 	private Animator animator;
 	private CharacterController characterController;
+	private CoverSystem coverSystem;
 
 	[System.Serializable] // Show in inspector for classes
 	public class AnimatorStrings
@@ -20,6 +21,7 @@ public class CharacterMovement : MonoBehaviour
 		public string horizontalFloat = "Strafe";
 		public string groundedBool = "isGrounded";
 		public string jumpingBool = "isJumping";
+		public string coverBool = "inCover";
 	}
 	[SerializeField]
 	private AnimatorStrings animatorStrings;
@@ -41,15 +43,17 @@ public class CharacterMovement : MonoBehaviour
 	[SerializeField]
 	private JumpSettings jumpSettings;
 
-	// Jumping helpers
-	private bool isJumping = false;
-	private bool resetGravity;
-	private float gravity;
+	// Jumping and air control helpers
+	private bool _jumping;
+	private bool _resetGravity;
+	private float _gravity;
 
-	// Air control helpers
-	private Vector3 airControlVector;
-	private float forward;
-	private float strafe;
+	private Vector3 _airControlVector;
+	private float _forward;
+	private float _strafe;
+
+	// Cover helpers
+	private bool _inCover;
 
 
 	void Awake()
@@ -58,6 +62,7 @@ public class CharacterMovement : MonoBehaviour
 		trans = GetComponent<Transform>();
 		animator = GetComponent<Animator>();
 		characterController = GetComponent<CharacterController>();
+		coverSystem = GetComponent<CoverSystem>();
 
 		SetupComponents();
 		SetupAnimator();
@@ -70,18 +75,19 @@ public class CharacterMovement : MonoBehaviour
 		if(!CheckGrounded())
 			AirControl();
 		else
-			isJumping = false;
+			_jumping = false;
 	}
 
 	public void AnimateCharacter(float forward, float strafe) // Animates the character with root motion
 	{
-		this.forward = forward;
-		this.strafe = strafe;
+		this._forward = forward;
+		this._strafe = strafe;
 
 		animator.SetFloat(animatorStrings.verticalFloat, forward);
 		animator.SetFloat(animatorStrings.horizontalFloat, strafe);
 		animator.SetBool(animatorStrings.groundedBool, CheckGrounded());
-		animator.SetBool(animatorStrings.jumpingBool, isJumping);
+		animator.SetBool(animatorStrings.jumpingBool, _jumping);
+		animator.SetBool(animatorStrings.coverBool, _inCover);
 	}
 
 	private bool CheckGrounded() // Spherecasting downwards to check ground
@@ -98,12 +104,12 @@ public class CharacterMovement : MonoBehaviour
 
 	public void DoJump()
 	{
-		if(isJumping)
+		if(_jumping)
 			return;
 
 		if(CheckGrounded())
 		{
-			isJumping = true;
+			_jumping = true;
 			StartCoroutine(ResetJump());
 		}
 	}
@@ -111,30 +117,30 @@ public class CharacterMovement : MonoBehaviour
 	private IEnumerator ResetJump() // Stops jumping
 	{
 		yield return new WaitForSeconds(jumpSettings.airTime);
-		isJumping = false;
+		_jumping = false;
 	}
 
 	private void ApplyGravity() // Applies gravity constantly and don't when jumping
 	{
 		if(!CheckGrounded())
 		{
-			if(!resetGravity)
+			if(!_resetGravity)
 			{
-				gravity = jumpSettings.resetGravityValue;
-				resetGravity = true;
+				_gravity = jumpSettings.resetGravityValue;
+				_resetGravity = true;
 			}
-			gravity += Time.deltaTime * jumpSettings.gravityModifier;
+			_gravity += Time.deltaTime * jumpSettings.gravityModifier;
 		}
 		else
 		{
-			gravity = jumpSettings.baseGravity;
-			resetGravity = false;
+			_gravity = jumpSettings.baseGravity;
+			_resetGravity = false;
 		}
 
 		Vector3 gravityVector = new Vector3();
 
-		if(!isJumping)
-			gravityVector.y -= gravity * Time.deltaTime; // Apply gravity to character
+		if(!_jumping)
+			gravityVector.y -= _gravity * Time.deltaTime; // Apply gravity to character
 		else
 			gravityVector.y = jumpSettings.jumpSpeed * Time.deltaTime; // Let character jump
 
@@ -143,12 +149,12 @@ public class CharacterMovement : MonoBehaviour
 
 	private void AirControl() // Allow movement while in the air
 	{
-		airControlVector.x = strafe;
-		airControlVector.z = forward;
-		airControlVector = trans.TransformDirection(airControlVector);
-		airControlVector *= jumpSettings.airSpeed;
+		_airControlVector.x = _strafe;
+		_airControlVector.z = _forward;
+		_airControlVector = trans.TransformDirection(_airControlVector);
+		_airControlVector *= jumpSettings.airSpeed;
 
-		characterController.Move(airControlVector * Time.deltaTime);
+		characterController.Move(_airControlVector * Time.deltaTime);
 	}
 
 	private void SetupComponents() // Initialise the components values in the editor
@@ -183,5 +189,21 @@ public class CharacterMovement : MonoBehaviour
 
 		animator.avatar = modelAva;
 		Destroy(modelAnim);
+	}
+
+	public void GetInCover()
+	{
+		_inCover = true;
+	}
+
+	public void GetOutCover()
+	{
+		_inCover = false;
+	}
+
+	public void MoveAlongCover(float speed, float dir)
+	{
+		Vector3 coverMove = new Vector3(dir * speed, 0f, 0f);
+		characterController.SimpleMove(coverMove);
 	}
 }

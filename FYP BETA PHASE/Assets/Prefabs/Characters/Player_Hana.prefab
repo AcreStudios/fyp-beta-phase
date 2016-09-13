@@ -255,6 +255,9 @@ GameObject:
   - 114: {fileID: 11401776}
   - 114: {fileID: 11478914}
   - 114: {fileID: 11463216}
+  - 82: {fileID: 8262592}
+  - 114: {fileID: 11413114}
+  - 114: {fileID: 11400870}
   m_Layer: 0
   m_Name: Player_Hana
   m_TagString: Player
@@ -2276,6 +2279,80 @@ Transform:
   m_Children: []
   m_Father: {fileID: 478110}
   m_RootOrder: 0
+--- !u!82 &8262592
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 116432}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!95 &9501344
 Animator:
   serializedVersion: 3
@@ -2310,6 +2387,25 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &11400870
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 116432}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eba44d12145a0aa41831be7c3db62e0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  autoSwitchSides: 1
+  wallDist: 1
+  wallLayer:
+    serializedVersion: 2
+    m_Bits: 1
+  coverOffsetZ: 0.25
+  coverMoveSpeed: 1.2
+  _inCover: 0
 --- !u!114 &11401776
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2327,6 +2423,7 @@ MonoBehaviour:
     horizontalFloat: Strafe
     groundedBool: isGrounded
     jumpingBool: isJumping
+    coverBool: inCover
   jumpSettings:
     jumpSpeed: 10
     gravityModifier: 9.81
@@ -2337,6 +2434,37 @@ MonoBehaviour:
       m_Bits: 1
     airTime: 0.283
     airSpeed: 5
+--- !u!114 &11413114
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 116432}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5a97429ec4b9804a920bf82e9487909, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  groundTypes:
+  - groundName: Test Ground
+    mats:
+    - {fileID: 2100000, guid: 6d50a78c8d32b054ea3e7fcea49b1ae6, type: 2}
+    footstepSounds:
+    - {fileID: 8300000, guid: 4d5f3de0e0a7a56448890f6de062aeea, type: 3}
+    - {fileID: 8300000, guid: ab7a54c290ebb1f469e2aa2fa7d1b3ec, type: 3}
+    - {fileID: 8300000, guid: 3d4185bbfe22bf54eba05b9db6472bfc, type: 3}
+    - {fileID: 8300000, guid: 07d7602dba3efa34e8a43385e10ace6c, type: 3}
+    - {fileID: 8300000, guid: 3c1843dd75a59ad4ea23cb233ac1b161, type: 3}
+    - {fileID: 8300000, guid: 08c3860f322b695488d20998d354d384, type: 3}
+    - {fileID: 8300000, guid: 97f7283f7b4cd7e4fb51e6deca2a18be, type: 3}
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 1
+  footstepVolume: 0.2
+  randomizePitch: 1
+  minPitch: 0.9
+  maxPitch: 1.1
+  stepsDelay: 0
 --- !u!114 &11463216
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2354,6 +2482,7 @@ MonoBehaviour:
   _RMB: 0
   _MMB: 0
   _spacebar: 0
+  _leftCtrl: 0
   inputStrings:
     horizontalAxis: Horizontal
     verticalAxis: Vertical
@@ -2363,7 +2492,8 @@ MonoBehaviour:
     jumpButton: Jump
     switchButton: Switch
     reloadButton: Reload
-  debugAim: 1
+    coverButton: Cover
+  debugAim: 0
   aimSettings:
     requireMovementToTurn: 1
     turnSpeed: 100
