@@ -70,7 +70,6 @@ public class EventManager : MonoBehaviour {
             }
         }
 
-
         if (currentGameEvent < gameEventFlow.Length) {
             if (missionUI)
                 missionUI.text = gameEventFlow[currentGameEvent].missionUI;
