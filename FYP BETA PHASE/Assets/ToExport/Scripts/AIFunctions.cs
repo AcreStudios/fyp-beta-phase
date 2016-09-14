@@ -121,6 +121,12 @@ public class AIFunctions : MonoBehaviour {
                 gun.LookAt(target);
                 //StartCoroutine(Test(transform.position));
                 Debug.DrawLine(gun.position, gun.position + transform.TransformDirection(0, 0, range) + offset, Color.red, 5);
+                RaycastHit hit;
+                if (Physics.Raycast(gun.position, gun.position + transform.TransformDirection(0, 0, range) + offset, out hit)) {
+                    Health hp = hit.transform.root.GetComponent<Health>();
+                    if (hp && hp.isActiveAndEnabled)
+                        hp.ReceiveDamage(5);
+                }
             }
             shootingTime = Time.time + shootInterval;
             return true;
