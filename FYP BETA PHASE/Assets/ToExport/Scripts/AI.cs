@@ -35,7 +35,7 @@ public class AI : AIFunctions {
         startingPoint = transform.position;
         eColl = GetComponent<Collider>();
 
-        animator = transform.GetChild(0).GetComponent<Animator>();
+        animator = GetComponent<Animator>();
 
         if ((patrolMod = GetComponent<PatrolModule>()) != null) {
             if (patrolMod.patrolLocations.Length > 0) {
@@ -130,7 +130,6 @@ public class AI : AIFunctions {
                     currentState = AIStates.AttackingInOpen;
                 } else {
                     if (Physics.Linecast(lastHidingPoint, target.position, out hit)) { //if player can see it in its hiding spot
-                        Debug.Log(hit.transform);
                         if (hit.transform.root.tag == "Player" || hit.transform.root == transform) {
                             destination = ObstacleHunting();
                             currentState = AIStates.Retreating;

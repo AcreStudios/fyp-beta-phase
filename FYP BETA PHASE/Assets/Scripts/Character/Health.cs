@@ -14,6 +14,7 @@ public class Health : MonoBehaviour
 
 	[Header("-Death-")]
 	public MonoBehaviour[] scriptsToDisable;
+    public bool destroyOnDeath;
 
 
 	private void Awake()
@@ -38,12 +39,23 @@ public class Health : MonoBehaviour
 		if(ragdollHandler)
 			ragdollHandler.BecomeRagdoll();
 
-		if(scriptsToDisable.Length == 0)
+        if (destroyOnDeath)
+            StartCoroutine(Destroy());
+
+        if (scriptsToDisable.Length == 0)
 			return;
 
 		foreach(MonoBehaviour script in scriptsToDisable)
 		{
 			script.enabled = false;
 		}
+
+        
 	}
+
+    IEnumerator Destroy() {
+        yield return new WaitForSeconds(3);
+        Destroy(gameObject);
+        Debug.LogWarning("Ded");
+    }
 }
