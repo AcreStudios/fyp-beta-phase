@@ -14,7 +14,10 @@ public class Weapon : MonoBehaviour
 	private Animator animator;
 	private Transform trans;
 	private WeaponHandler weaponHandler;
+
+	// Singletons
 	private TPCamera tpCamera;
+	private AmmoUIManager ammoManager;
 
 	[System.Serializable]
 	public class WeaponSettings
@@ -108,7 +111,9 @@ public class Weapon : MonoBehaviour
 
 	void Start() 
 	{
+		// Get singletons
 		tpCamera = TPCamera.GetInstance();
+		ammoManager = AmmoUIManager.GetInstance();
 
 		EquipWeapon();
 	}
@@ -219,6 +224,7 @@ public class Weapon : MonoBehaviour
 
 		// Shoot cooldown
 		ammoSettings.currentAmmo--;
+		ammoManager.SetCurrentAmmo(ammoSettings.currentAmmo);
 		StartCoroutine(FinishShooting());
 	}
 
@@ -237,11 +243,17 @@ public class Weapon : MonoBehaviour
 		{
 			ammoSettings.totalAmmo -= ammoNeeded;
 			ammoSettings.currentAmmo = ammoSettings.maxAmmo;
+
+			ammoManager.SetCurrentAmmo(ammoSettings.currentAmmo);
+			ammoManager.SetTotalAmmo(ammoSettings.totalAmmo);
 		}
 		else
 		{
 			ammoSettings.currentAmmo = ammoSettings.totalAmmo;
 			ammoSettings.totalAmmo = 0;
+
+			ammoManager.SetCurrentAmmo(ammoSettings.currentAmmo);
+			ammoManager.SetTotalAmmo(ammoSettings.totalAmmo);
 		}
 	}
 
@@ -298,6 +310,11 @@ public class Weapon : MonoBehaviour
 				trans.localRotation = equipRotL;
 				break;
 		}
+
+		// Update ammo count
+		ammoManager.SetCurrentAmmo(ammoSettings.currentAmmo);
+		ammoManager.SetMaxAmmo(ammoSettings.maxAmmo);
+		ammoManager.SetTotalAmmo(ammoSettings.totalAmmo);
 	}
 
 	private void UnequipWeapon() // Unequip and place weapon to the desired location

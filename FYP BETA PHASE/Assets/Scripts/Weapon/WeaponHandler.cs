@@ -8,7 +8,10 @@ public class WeaponHandler : MonoBehaviour
 	// Components
 	[HideInInspector]
 	public Animator animator;
+
+	// Singletons
 	private SoundManager soundManager;
+	private CrosshairManager crosshairManager;
 
 	[Header("-Weapons-")]
 	public Weapon activeWeapon;
@@ -56,11 +59,18 @@ public class WeaponHandler : MonoBehaviour
 	{
 		// Cache managers
 		soundManager = SoundManager.GetInstance();
+		crosshairManager = CrosshairManager.GetInstance();
 	}
 
 	void Update() 
 	{
 		AnimateWeapon();
+
+		// Choose and show crosshair type
+		if(_aiming)
+			crosshairManager.DefineCrosshairByIndex(_weaponIndex);
+		else
+			crosshairManager.DefineCrosshairByIndex(0);
 	}
 
 	public void SetupWeapon() // Initialise weapon states and update them

@@ -26,7 +26,8 @@ public class WeaponPickup : MonoBehaviour
 		
 		// Setup sphere collider
 		sphereCol.isTrigger = true;
-		sphereCol.radius = 1f;
+		if(sphereCol.radius < 1f)
+			sphereCol.radius = 1f;
 	}
 
 	void OnTriggerEnter(Collider col)
