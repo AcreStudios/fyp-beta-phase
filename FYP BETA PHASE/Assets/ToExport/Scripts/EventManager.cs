@@ -70,46 +70,47 @@ public class EventManager : MonoBehaviour {
             }
         }
 
-        if (currentGameEvent < gameEventFlow.Length) {
-            if (missionUI)
-                missionUI.text = gameEventFlow[currentGameEvent].missionUI;
+        if (Application.isPlaying) {
+            if (currentGameEvent < gameEventFlow.Length) {
+                if (missionUI)
+                    missionUI.text = gameEventFlow[currentGameEvent].missionUI;
 
-            if (gameEventFlow[currentGameEvent].eventTriggers.triggerRadius > 0 || gameEventFlow[currentGameEvent].eventTriggers.toCalculate) {
-                Collider[] temp;
+                if (gameEventFlow[currentGameEvent].eventTriggers.triggerRadius > 0 || gameEventFlow[currentGameEvent].eventTriggers.toCalculate) {
+                    Collider[] temp;
 
-                temp = Physics.OverlapSphere(gameEventFlow[currentGameEvent].eventTriggers.triggerPosition, gameEventFlow[currentGameEvent].eventTriggers.triggerRadius);
+                    temp = Physics.OverlapSphere(gameEventFlow[currentGameEvent].eventTriggers.triggerPosition, gameEventFlow[currentGameEvent].eventTriggers.triggerRadius);
 
-                if (temp.Length != prevCount) {
-                    foreach (Collider obj in temp) {
-                        if (obj.tag == "Player") {
-                            ActivateEvent(gameEventFlow[currentGameEvent].results);
-                            currentGameEvent++;
+                    if (temp.Length != prevCount) {
+                        foreach (Collider obj in temp) {
+                            if (obj.tag == "Player") {
+                                ActivateEvent(gameEventFlow[currentGameEvent].results);
+                                currentGameEvent++;
+                            }
                         }
                     }
-                }
 
-                prevCount = temp.Length;
-            } else {
-                if (!gameEventFlow[currentGameEvent].eventTriggers.checkIfDestroyed) {
-                    ActivateEvent(gameEventFlow[currentGameEvent].results);
-                    currentGameEvent++;
+                    prevCount = temp.Length;
+                } else {
+                    if (!gameEventFlow[currentGameEvent].eventTriggers.checkIfDestroyed) {
+                        ActivateEvent(gameEventFlow[currentGameEvent].results);
+                        currentGameEvent++;
+                    }
                 }
             }
-        }
 
-        if (currentAltEvent < alternateEventListeners.Length) {
-            if (alternateEventListeners[currentAltEvent].listeningToEvent == currentGameEvent) {
-                if (!eventTriggered) {
-                    eventTriggered = true;
-                    timer = Time.time + alternateEventListeners[currentAltEvent].timer;
-                }
+            if (currentAltEvent < alternateEventListeners.Length) {
+                if (alternateEventListeners[currentAltEvent].listeningToEvent == currentGameEvent) {
+                    if (!eventTriggered) {
+                        eventTriggered = true;
+                        timer = Time.time + alternateEventListeners[currentAltEvent].timer;
+                    }
 
-                if (timer < Time.time) {
-                    currentGameEvent = alternateEventListeners[currentAltEvent].eventToJumpTo;
-                    ActivateEvent(alternateEventListeners[currentAltEvent].results);
-                    eventTriggered = false;
-                    currentAltEvent++;
-
+                    if (timer < Time.time) {
+                        currentGameEvent = alternateEventListeners[currentAltEvent].eventToJumpTo;
+                        ActivateEvent(alternateEventListeners[currentAltEvent].results);
+                        eventTriggered = false;
+                        currentAltEvent++;
+                    }
                 }
             }
         }
@@ -137,8 +138,10 @@ public class EventManagerEditor : Editor {
         rotation.eulerAngles = new Vector3(90, 0, 0);
         Handles.color = Color.red;
 
-        for (var i = 0; i < t.gameEventFlow.Length; i++)
-            Handles.CircleCap(0, t.gameEventFlow[i].eventTriggers.triggerPosition, rotation, t.gameEventFlow[i].eventTriggers.triggerRadius);
+        if (t != null)
+            if (t.ableToEdit)
+                for (var i = 0; i < t.gameEventFlow.Length; i++)
+                    Handles.CircleCap(0, t.gameEventFlow[i].eventTriggers.triggerPosition, rotation, t.gameEventFlow[i].eventTriggers.triggerRadius);
 
 
         Event e;
@@ -164,14 +167,16 @@ public class EventManagerEditor : Editor {
         DrawDefaultInspector();
 
         t = target as EventManager;
-
-        for (var i = 0; i < t.gameEventFlow.Length; i++) {
-            if (GUILayout.Button("Set trigger radius " + i.ToString())) {
-                currentEvent = i;
-                SceneView sceneView = SceneView.sceneViews[0] as SceneView;
-                sceneView.Focus();
-            }
-        }
+        if (t != null)
+            if (t.ableToEdit)
+                if (t.gameEventFlow.Length > 0)
+                    for (var i = 0; i < t.gameEventFlow.Length; i++) {
+                        if (GUILayout.Button("Set trigger radius " + i.ToString())) {
+                            currentEvent = i;
+                            SceneView sceneView = SceneView.sceneViews[0] as SceneView;
+                            sceneView.Focus();
+                        }
+                    }
     }
 }
 
