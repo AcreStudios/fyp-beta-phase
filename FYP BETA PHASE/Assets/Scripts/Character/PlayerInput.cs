@@ -16,7 +16,7 @@ public class PlayerInput : MonoBehaviour
 	public float _horizontal;
 	[Range(-1f, 1f)]
 	public float _vertical;
-	public bool _LMB, _RMB, _MMB, _spacebar, _leftCtrl;
+	public bool _LMB, _RMB, _MMB, _spacebar, _leftCtrl, _keyE;
 
 	[System.Serializable]
 	public class InputStrings
@@ -31,6 +31,7 @@ public class PlayerInput : MonoBehaviour
 		public string switchButton = "Switch";
 		public string reloadButton = "Reload";
 		public string coverButton = "Cover";
+		public string pickupButton = "Pickup";
 	}
 	[SerializeField]
 	private InputStrings inputStrings;
@@ -103,6 +104,7 @@ public class PlayerInput : MonoBehaviour
 		_MMB = Input.GetButtonDown(inputStrings.switchShoulderButton);
 		_spacebar = Input.GetButtonDown(inputStrings.jumpButton);
 		_leftCtrl = Input.GetButtonDown(inputStrings.coverButton);
+		_keyE = Input.GetButtonDown(inputStrings.pickupButton);
 	}
 
 	private void CharacterLogic() // Handles character logic

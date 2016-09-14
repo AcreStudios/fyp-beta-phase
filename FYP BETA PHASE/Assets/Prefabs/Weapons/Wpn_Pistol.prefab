@@ -96,6 +96,23 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &174726
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 426090}
+  - 135: {fileID: 13537292}
+  - 114: {fileID: 11486784}
+  m_Layer: 0
+  m_Name: Wpn_PickupHandler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &185472
 GameObject:
   m_ObjectHideFlags: 1
@@ -162,6 +179,19 @@ Transform:
   m_LocalEulerAnglesHint: {x: -89.980194, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 460844}
+  m_RootOrder: 3
+--- !u!4 &426090
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 174726}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 490182}
   m_RootOrder: 3
 --- !u!4 &433252
 Transform:
@@ -265,14 +295,15 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 186526}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0.7071066, w: -0.70710695}
+  m_LocalPosition: {x: -5, y: 2, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 270}
   m_Children:
   - {fileID: 460844}
   - {fileID: 459810}
   - {fileID: 433252}
+  - {fileID: 426090}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!23 &2330828
@@ -465,7 +496,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 0.1, y: 0.2, z: 0.3}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!82 &8213220
 AudioSource:
@@ -587,8 +618,10 @@ MonoBehaviour:
     bulletSpawnPoint: {fileID: 459810}
     casingSpawnPoint: {fileID: 433252}
     casingSpawnSpeed: 5
-    equipPosition: {x: -0.02, y: 0.15, z: 0.02}
-    equipRotation: {x: 270, y: 45, z: 45}
+    equipPositionR: {x: -0.02, y: 0.15, z: 0.02}
+    equipRotationR: {x: 270, y: 45, z: 45}
+    equipPositionL: {x: -0.02, y: 0.15, z: 0.02}
+    equipRotationL: {x: 270, y: 45, z: 45}
     unequipPosition: {x: 0.2, y: -0.2, z: -0.1}
     unequipRotation: {x: 90, y: 270, z: 270}
     useAnimation: 1
@@ -614,6 +647,30 @@ MonoBehaviour:
     spineRotationLeft: {x: 0, y: 15, z: 0}
     leftHandIKTarget: {fileID: 0}
     rightHandIKTarget: {fileID: 0}
+--- !u!114 &11486784
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 174726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3318ae0fce106245b1b11a88a570c65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weapon: {fileID: 0}
+--- !u!135 &13537292
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 174726}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

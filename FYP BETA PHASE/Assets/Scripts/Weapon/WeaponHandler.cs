@@ -63,7 +63,7 @@ public class WeaponHandler : MonoBehaviour
 		AnimateWeapon();
 	}
 
-	private void SetupWeapon() // Initialise weapon states and update them
+	public void SetupWeapon() // Initialise weapon states and update them
 	{
 		if(activeWeapon)
 		{
