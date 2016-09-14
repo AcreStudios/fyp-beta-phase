@@ -20,6 +20,7 @@ public class CivillianAIExperiment : MonoBehaviour {
     Collider lastObs;
 
     Animator animator;
+    Collider eColl;
 
     void Start() {
         //currentState = CivillianStates.Calm;
@@ -27,6 +28,8 @@ public class CivillianAIExperiment : MonoBehaviour {
         agent = GetComponent<NavMeshAgent>();
 
         animator = transform.GetChild(0).gameObject.GetComponent<Animator>();
+        eColl = GetComponent<Collider>();
+        gameObject.tag = "Civillian";
     }
 
     void Update() {
@@ -38,11 +41,11 @@ public class CivillianAIExperiment : MonoBehaviour {
             case CivillianStates.Panic:
                 if ((destination - transform.position).magnitude < 1) {
                     animator.SetInteger("TreeState", 2);
-                    if (Physics.Linecast(transform.position, target.position, out hit)) {
-                        if (hit.transform == target) {
-                            destination = HuntForHidingSpot();
-                            //Debug.Log("Working");
-                            
+
+                    if (Physics.Linecast(eColl.bounds.center, target.position, out hit)) {
+                        Debug.DrawLine(eColl.bounds.center, hit.point, Color.red);
+                        if (hit.transform.root == target) {
+                            destination = HuntForHidingSpot();                            
                         }
                     }
                 } else {
@@ -57,8 +60,7 @@ public class CivillianAIExperiment : MonoBehaviour {
                     destination = HuntForHidingSpot();
                     currentState = CivillianStates.Panic;
                 }
-                animator.SetInteger("TreeState", 0);
-                Debug.Log("Player not in range, but AI on alert"); //Maybe play a heightened talking anim
+                animator.SetInteger("TreeState", 2);
                 break;
         }
     }

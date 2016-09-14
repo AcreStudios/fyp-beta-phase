@@ -16,6 +16,7 @@ public class AI : AIFunctions {
 
     public float reactionTime;
     public bool toEscort;
+    public bool knowsTarget;
     AIStates currentState;
     AIStates defaultState;
 
@@ -25,7 +26,8 @@ public class AI : AIFunctions {
     bool hasStarted;
     float timer;
 
-    //public bool damageTest;
+    public bool damageTest;
+
 
     void Start() {
 
@@ -53,9 +55,17 @@ public class AI : AIFunctions {
             target = GameObject.FindGameObjectWithTag("Player").transform;
         }
 
+        if (knowsTarget)
+            target = GameObject.FindGameObjectWithTag("Player").transform;
+
     }
 
     void Update() {
+
+        if (damageTest) {
+            damageTest = false;
+            DamageRecieved(0);
+        }
         if (showGunEffect) {
             //gunEffect.transform.position += scaleValue*10;
         }
@@ -120,6 +130,7 @@ public class AI : AIFunctions {
                     currentState = AIStates.AttackingInOpen;
                 } else {
                     if (Physics.Linecast(lastHidingPoint, target.position, out hit)) { //if player can see it in its hiding spot
+                        Debug.Log(hit.transform);
                         if (hit.transform.root.tag == "Player" || hit.transform.root == transform) {
                             destination = ObstacleHunting();
                             currentState = AIStates.Retreating;
@@ -133,8 +144,8 @@ public class AI : AIFunctions {
 
                     if (tempObs != null)
 
-                        if ((destination - transform.position).magnitude < 3) {
-                            if ((lastAttackPoint - transform.position).magnitude < 3) {
+                        if ((destination - transform.position).magnitude < 1.5f) {
+                            if ((lastAttackPoint - transform.position).magnitude < 1.5f) {
                                 transform.LookAt(target);
                                 if (Shooting()) {                                    
                                 }
@@ -204,13 +215,22 @@ public class AI : AIFunctions {
         if (currentState == AIStates.Attacking || currentState == AIStates.AttackingInOpen)
             StartCoroutine(ChangeDestination());
 
+        toEscort = false;
         currentState = AIStates.Attacking;
-        base.DamageRecieved(damage);
+        //base.DamageRecieved(damage);
     }
 
     IEnumerator ChangeDestination() {
+        bool ifShouldCrouch = false;
+
         destination = lastHidingPoint;
+        if (lastHidingPoint == lastAttackPoint)
+            ifShouldCrouch = true;
+
         yield return new WaitForSeconds(3);
         destination = lastAttackPoint;
+        if (ifShouldCrouch) {
+            Debug.Log("Works lke a charm");
+        }
     }
 }

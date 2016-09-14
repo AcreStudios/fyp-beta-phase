@@ -156,6 +156,9 @@ public class AIFunctions : MonoBehaviour {
         }
 
         if (tempObs != null) {
+            if ((tempObs.bounds.extents.y * 2) < (eColl.bounds.extents.y * 1.5f)) 
+                return ShortObstacleException(tempObs);
+            
             return InitializingCalculations(tempObs);
         }
 
@@ -166,6 +169,15 @@ public class AIFunctions : MonoBehaviour {
         temp = target.position - transform.position;
         temp = Vector3.Normalize(temp);
         return target.position - (temp * 30); //Scales this to hp?
+    }
+
+    Vector3 ShortObstacleException(Collider obsColl) {
+        Vector3 temp = Vector3.zero;
+        temp = obsColl.ClosestPointOnBounds(target.position) + ((obsColl.bounds.center - obsColl.ClosestPointOnBounds(target.position)) * 2);
+        lastHidingPoint = temp;
+        lastAttackPoint = temp;
+
+        return temp;
     }
 
     Vector3 InitializingCalculations(Collider obsColl) {
