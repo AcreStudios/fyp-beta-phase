@@ -139,9 +139,13 @@ public class Weapon : MonoBehaviour
 			Debug.DrawRay(start, dir, Color.green);
 			if(Physics.Raycast(start, dir, out hit, weaponSettings.fireRange, weaponSettings.bulletLayer))
 			{
-				//CHAR_Health hp = hit.transform.root.GetComponent<CHAR_Health>();
-				//if(hp && hp.isActiveAndEnabled)
-				//	hp.ReceiveDamage(weaponSettings.bulletDamage);
+				Health hp = hit.transform.root.GetComponent<Health>();
+				if(hp && hp.isActiveAndEnabled)
+					hp.ReceiveDamage(weaponSettings.bulletDamage);
+
+				AIFunctions ai = hit.transform.root.GetComponent<AIFunctions>();
+				if(ai && ai.isActiveAndEnabled)
+					ai.DamageRecieved(0);
 
 				#region Spawn bullet impact
 
