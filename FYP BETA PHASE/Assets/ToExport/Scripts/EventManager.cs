@@ -67,6 +67,12 @@ public class EventManager : MonoBehaviour {
                         gameEventFlow[i].results.spawns[j].SetActive(false);
                     }
                 }
+
+                for (var j = 0; j < alternateEventListeners[i].results.spawns.Length; j++) {
+                    if (alternateEventListeners[i].results.spawns[j] != null) {
+                        alternateEventListeners[i].results.spawns[j].SetActive(false);
+                    }
+                }
             }
         }
 
