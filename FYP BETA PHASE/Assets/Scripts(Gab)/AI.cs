@@ -8,10 +8,8 @@ public class AI : AIFunctions {
     public enum AIStates {
         Idle,
         Patrol,
-        Attacking,
-        Retreating,
-        AttackingInOpen,
-        Escort
+        Escort,
+        Attacking       
     }
 
     public float reactionTime;
@@ -66,12 +64,13 @@ public class AI : AIFunctions {
             damageTest = false;
             DamageRecieved(0);
         }
+
         if (showGunEffect) {
             //gunEffect.transform.position += scaleValue*10;
         }
+
         switch (currentState) {
             case AIStates.Idle:
-
                 if (target != null) {
                     if (!hasStarted) {
                         timer = Time.time + reactionTime;
@@ -79,7 +78,6 @@ public class AI : AIFunctions {
                     }
                     if (Time.time > timer) {
                         AlertOtherTroops();
-                        //ObstacleHunting();
                         currentState = AIStates.Attacking;
                         hasStarted = false;
                     }
@@ -123,71 +121,6 @@ public class AI : AIFunctions {
                 }
                 break;
 
-            case AIStates.Attacking:
-                RaycastHit hit;
-
-                if (tempObs == null) {
-                    currentState = AIStates.AttackingInOpen;
-                } else {
-                    if (Physics.Linecast(lastHidingPoint, target.position, out hit)) { //if player can see it in its hiding spot
-                        if (hit.transform.root.tag == "Player" || hit.transform.root == transform) {
-                            destination = ObstacleHunting();
-                            currentState = AIStates.Retreating;
-                        }
-                    }
-
-                    if ((target.position - tempObs.transform.position).magnitude > range) {
-                        destination = ObstacleHunting();
-                        currentState = AIStates.Retreating;
-                    }
-
-                    if (tempObs != null)
-
-                        if ((destination - transform.position).magnitude < 1.5f) {
-                            if ((lastAttackPoint - transform.position).magnitude < 1.5f) {
-                                transform.LookAt(target);
-                                if (Shooting()) {                                    
-                                }
-                            }
-                        } else {
-                            agent.destination = destination;
-                            animator.SetInteger("TreeState", 1);
-                            transform.LookAt(destination);
-                            transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
-                        }
-                }
-                break;
-
-            case AIStates.Retreating:
-
-                if ((destination - transform.position).magnitude < 1) {
-                    destination = ObstacleHunting();
-                    AlertOtherTroops();
-                    if ((destination - transform.position).magnitude < 1) {
-                        currentState = AIStates.Attacking;
-                    }
-                } else {
-                    agent.destination = destination;
-                    animator.SetInteger("TreeState", 1);
-                }
-                break;
-
-            case AIStates.AttackingInOpen:
-                destination = ObstacleHunting();
-                agent.destination = destination;
-                animator.SetInteger("TreeState", 1);
-
-                if ((destination - transform.position).magnitude < 1) {
-                    if (Shooting()) {
-                        transform.LookAt(target);
-                        AlertOtherTroops();
-                    }
-                }
-                if (tempObs != null) {
-                    currentState = AIStates.Attacking;
-                }
-                break;
-
             case AIStates.Escort:
                 if (patrolMod.currentLocation < patrolMod.limit) {
                     if ((patrolMod.patrolLocations[patrolMod.currentLocation] - transform.position).magnitude < 2) {
@@ -207,29 +140,20 @@ public class AI : AIFunctions {
                     animator.SetInteger("TreeState", 0);
                 }
                 break;
+
+            case AIStates.Attacking:
+                agent.destination = ObstacleHunting();
+
+                transform.LookAt(target);
+                if (Shooting()) ;
+               
+                break;        
         }
     }
 
     public override void DamageRecieved(float damage) {
-        if (currentState == AIStates.Attacking || currentState == AIStates.AttackingInOpen)
-            StartCoroutine(ChangeDestination());
-
         toEscort = false;
         currentState = AIStates.Attacking;
-        //base.DamageRecieved(damage);
-    }
 
-    IEnumerator ChangeDestination() {
-        bool ifShouldCrouch = false;
-
-        destination = lastHidingPoint;
-        if (lastHidingPoint == lastAttackPoint)
-            ifShouldCrouch = true;
-
-        yield return new WaitForSeconds(3);
-        destination = lastAttackPoint;
-        if (ifShouldCrouch) {
-            Debug.Log("Works lke a charm");
-        }
     }
 }

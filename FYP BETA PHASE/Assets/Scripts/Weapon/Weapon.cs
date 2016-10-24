@@ -140,8 +140,8 @@ public class Weapon : MonoBehaviour
 			if(Physics.Raycast(start, dir, out hit, weaponSettings.fireRange, weaponSettings.bulletLayer))
 			{
 				Health hp = hit.transform.root.GetComponent<Health>();
-				if(hp && hp.isActiveAndEnabled)
-					hp.ReceiveDamage(weaponSettings.bulletDamage);
+				//if(hp && hp.isActiveAndEnabled)
+					//hp.ReceiveDamage(weaponSettings.bulletDamage);
 
 				AIFunctions ai = hit.transform.root.GetComponent<AIFunctions>();
 				if(ai && ai.isActiveAndEnabled)
