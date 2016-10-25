@@ -29,6 +29,8 @@ public class AIFunctions : MonoBehaviour {
 
     protected Collider tempObs;
     protected Collider eColl;
+    protected NavMeshAgent agent;
+    protected Vector3 destination;
 
     void Awake() {
         Health = 100;
@@ -97,7 +99,7 @@ public class AIFunctions : MonoBehaviour {
 
     public bool Shooting() {
         animator.SetInteger("TreeState", 2);
-        if (Time.time > shootingTime) {
+        if (Time.time > shootingTime) { //Draw a raycast here to see if anything is in its line of sight?
             Vector3 offset;
             AlertOtherTroops();
 
@@ -108,8 +110,18 @@ public class AIFunctions : MonoBehaviour {
                 RaycastHit hit;
                 if (Physics.Raycast(gun.position, gun.position + transform.TransformDirection(0, 0, range) + offset, out hit)) {
                     Health hp = hit.transform.root.GetComponent<Health>();
+                    AIFunctions ai;
                     if (hp && hp.isActiveAndEnabled)
                         hp.ReceiveDamage(5);
+
+                    if ((ai = hit.transform.root.GetComponent<AIFunctions>()) != null){
+                        Vector3 toNorm = Vector3.Normalize(target.position - transform.position);
+                        toNorm.x += 0.5f;
+                        toNorm.y += 0.5f;
+                        Debug.Log(hit.transform);
+                        Debug.Log(hit.transform.root +" was hit by " + transform.root);
+                        ai.InFiringLine(toNorm);
+                    }
                 }
             }
             shootingTime = Time.time + shootInterval;
@@ -118,12 +130,17 @@ public class AIFunctions : MonoBehaviour {
         return true;
     }
 
+    public void InFiringLine(Vector3 normalizedEnemyVector) {
+        destination = target.position - (normalizedEnemyVector * range);
+        Debug.Log("Working!");
+    }
+
     public Vector3 ObstacleHunting() {
 
         if (tempObs)
             return ShortObstacleException(tempObs);
         else
-            tempObs = AIManager.instance.AssignCover(transform.position, range);
+            tempObs = AIManager.instance.AssignCover(gameObject, range);
 
         Vector3 temp = Vector3.zero;
 

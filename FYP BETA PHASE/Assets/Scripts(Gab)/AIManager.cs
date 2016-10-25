@@ -6,7 +6,7 @@ public class AIManager : MonoBehaviour {
     [System.Serializable]
     public struct ObstaclesData {
         public Collider obstacle;
-        public bool coverTaken;
+        public GameObject aiCover;
     }
 
     public static AIManager instance;
@@ -24,20 +24,16 @@ public class AIManager : MonoBehaviour {
             obstacles[i].obstacle = temp[i].GetComponent<Collider>();
     }
 
-    void Update() {
-
-    }
-
-    public Collider AssignCover(Vector3 pos, float range) {
+    public Collider AssignCover(GameObject ai, float range) {
         Collider temp = null;
         float dist = Mathf.Infinity;
 
         int reference = 0;
 
         for (var i = 0; i < obstacles.Length; i++) {
-            if (!obstacles[i].coverTaken)
+            if (!obstacles[i].aiCover)
                 if ((player.transform.position - obstacles[i].obstacle.transform.position).sqrMagnitude < range * range) {
-                    float tempDist = (obstacles[i].obstacle.transform.position - pos).sqrMagnitude;
+                    float tempDist = (obstacles[i].obstacle.transform.position - ai.transform.position).sqrMagnitude;
 
                     if (dist > tempDist) {
                         dist = tempDist;
@@ -48,7 +44,7 @@ public class AIManager : MonoBehaviour {
         }
 
         if (temp != null)
-            obstacles[reference].coverTaken = true;
+            obstacles[reference].aiCover = ai;
 
         return temp;
     }

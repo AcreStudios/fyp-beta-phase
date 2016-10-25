@@ -9,18 +9,18 @@ public class AI : AIFunctions {
         Idle,
         Patrol,
         Escort,
-        Attacking       
+        Attacking
     }
 
     public float reactionTime;
     public bool toEscort;
     public bool knowsTarget;
-    AIStates currentState;
+    public AIStates currentState;
     AIStates defaultState;
 
     PatrolModule patrolMod;
-    NavMeshAgent agent;
-    Vector3 destination;
+    
+    
     bool hasStarted;
     float timer;
 
@@ -50,7 +50,7 @@ public class AI : AIFunctions {
 
         if (toEscort) {
             currentState = AIStates.Escort;
-            target = GameObject.FindGameObjectWithTag("Player").transform;
+            knowsTarget = true;
         }
 
         if (knowsTarget)
@@ -63,10 +63,6 @@ public class AI : AIFunctions {
         if (damageTest) {
             damageTest = false;
             DamageRecieved(0);
-        }
-
-        if (showGunEffect) {
-            //gunEffect.transform.position += scaleValue*10;
         }
 
         switch (currentState) {
@@ -123,7 +119,7 @@ public class AI : AIFunctions {
 
             case AIStates.Escort:
                 if (patrolMod.currentLocation < patrolMod.limit) {
-                    if ((patrolMod.patrolLocations[patrolMod.currentLocation] - transform.position).magnitude < 2) {
+                    if ((patrolMod.patrolLocations[patrolMod.currentLocation] - transform.position).magnitude < 5) {
                         transform.LookAt(target);
                         transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
                         animator.SetInteger("TreeState", 0);
@@ -142,12 +138,18 @@ public class AI : AIFunctions {
                 break;
 
             case AIStates.Attacking:
-                agent.destination = ObstacleHunting();
 
                 transform.LookAt(target);
-                if (Shooting()) ;
-               
-                break;        
+                transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, 0);
+
+                if ((destination - transform.position).magnitude < 2) {                    
+                    if (Shooting()) ;
+                    destination = ObstacleHunting();
+                }
+
+                agent.destination = destination;
+
+                break;
         }
     }
 
