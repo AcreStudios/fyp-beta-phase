@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 using UnityEditor;
+using UnityEngine.SceneManagement;
 
 [ExecuteInEditMode]
 public class EventManager : MonoBehaviour {
@@ -18,8 +19,8 @@ public class EventManager : MonoBehaviour {
     public struct Triggers {
         public Vector3 triggerPosition;
         public float triggerRadius;
-        public Collider toCalculate;
-        public GameObject checkIfDestroyed;
+        public float timer;
+        public GameObject[] checkIfDestroyed;
     }
 
     [System.Serializable]
@@ -27,6 +28,7 @@ public class EventManager : MonoBehaviour {
         public GameObject[] spawns;
         public GameObject[] toDestroy;
         public EventResults[] scriptedEventsToTrigger;
+        public string levelNameToLoad;
     }
 
     [System.Serializable]
@@ -38,7 +40,7 @@ public class EventManager : MonoBehaviour {
     }
 
     public Events[] gameEventFlow;
-    public AlternateEvents[] alternateEventListeners;
+    //public AlternateEvents[] alternateEventListeners;
     public Text missionUI;
     public bool ableToEdit;
 
@@ -58,66 +60,80 @@ public class EventManager : MonoBehaviour {
 
         if (ableToEdit) {
             for (var i = 0; i < gameEventFlow.Length; i++) {
-                if (gameEventFlow[i].eventTriggers.toCalculate != null) {
-                    gameEventFlow[i].eventTriggers.triggerPosition = gameEventFlow[i].eventTriggers.toCalculate.bounds.center;
-                    gameEventFlow[i].eventTriggers.triggerRadius = gameEventFlow[i].eventTriggers.toCalculate.bounds.extents.x;
-                }
+
                 for (var j = 0; j < gameEventFlow[i].results.spawns.Length; j++) {
                     if (gameEventFlow[i].results.spawns[j] != null) {
                         gameEventFlow[i].results.spawns[j].SetActive(false);
                     }
                 }
 
-                for (var j = 0; j < alternateEventListeners[i].results.spawns.Length; j++) {
-                    if (alternateEventListeners[i].results.spawns[j] != null) {
-                        alternateEventListeners[i].results.spawns[j].SetActive(false);
-                    }
-                }
+                //for (var j = 0; j < alternateEventListeners[i].results.spawns.Length; j++) {
+                //if (alternateEventListeners[i].results.spawns[j] != null) {
+                //alternateEventListeners[i].results.spawns[j].SetActive(false);
+                //}
+                //}
             }
         }
-
+        Debug.Log(currentGameEvent);
         if (Application.isPlaying) {
+            //if (currentAltEvent < alternateEventListeners.Length) {
+            //if (alternateEventListeners[currentAltEvent].listeningToEvent == currentGameEvent) {
+            //if (!eventTriggered) {
+            //  eventTriggered = true;
+            //  timer = Time.time + alternateEventListeners[currentAltEvent].timer;
+            // }
+
+            //if (timer < Time.time) {
+            //currentGameEvent = alternateEventListeners[currentAltEvent].eventToJumpTo;
+            //ActivateEvent(alternateEventListeners[currentAltEvent].results);
+            // eventTriggered = false;
+            // currentAltEvent++;
+            //}
+            // }
+            // }
+
             if (currentGameEvent < gameEventFlow.Length) {
                 if (missionUI)
                     missionUI.text = gameEventFlow[currentGameEvent].missionUI;
 
-                if (gameEventFlow[currentGameEvent].eventTriggers.triggerRadius > 0 || gameEventFlow[currentGameEvent].eventTriggers.toCalculate) {
+                if (!eventTriggered) {
+                    eventTriggered = true;
+                    timer = Time.time + gameEventFlow[currentGameEvent].eventTriggers.timer;
+                }
+
+                if (gameEventFlow[currentGameEvent].eventTriggers.triggerRadius > 0) {
+
+                    int playerIsInRange = 0;
                     Collider[] temp;
 
                     temp = Physics.OverlapSphere(gameEventFlow[currentGameEvent].eventTriggers.triggerPosition, gameEventFlow[currentGameEvent].eventTriggers.triggerRadius);
 
                     if (temp.Length != prevCount) {
                         foreach (Collider obj in temp) {
-                            if (obj.tag == "Player") {
-                                ActivateEvent(gameEventFlow[currentGameEvent].results);
-                                currentGameEvent++;
+                            if (obj.transform.root.tag == "Player") {
+                                playerIsInRange++;
                             }
                         }
                     }
 
+                    if (!(playerIsInRange > 0))
+                        return;
+
                     prevCount = temp.Length;
-                } else {
-                    if (!gameEventFlow[currentGameEvent].eventTriggers.checkIfDestroyed) {
-                        ActivateEvent(gameEventFlow[currentGameEvent].results);
-                        currentGameEvent++;
-                    }
                 }
-            }
 
-            if (currentAltEvent < alternateEventListeners.Length) {
-                if (alternateEventListeners[currentAltEvent].listeningToEvent == currentGameEvent) {
-                    if (!eventTriggered) {
-                        eventTriggered = true;
-                        timer = Time.time + alternateEventListeners[currentAltEvent].timer;
-                    }
-
-                    if (timer < Time.time) {
-                        currentGameEvent = alternateEventListeners[currentAltEvent].eventToJumpTo;
-                        ActivateEvent(alternateEventListeners[currentAltEvent].results);
-                        eventTriggered = false;
-                        currentAltEvent++;
-                    }
+                foreach (GameObject toCheck in gameEventFlow[currentGameEvent].eventTriggers.checkIfDestroyed) {
+                    if (toCheck)
+                        return;
                 }
+
+                if (timer > Time.time) {
+                    return;
+                } 
+
+                eventTriggered = false;
+                ActivateEvent(gameEventFlow[currentGameEvent].results);
+                currentGameEvent++;
             }
         }
     }
@@ -131,6 +147,9 @@ public class EventManager : MonoBehaviour {
 
         foreach (EventResults results in endResult.scriptedEventsToTrigger)
             results.ScriptedResult();
+
+        if (endResult.levelNameToLoad != "")
+            SceneManager.LoadScene(endResult.levelNameToLoad);
     }
 }
 

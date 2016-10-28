@@ -142,7 +142,7 @@ public class AI : AIFunctions {
                 transform.LookAt(target);
                 transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, 0);
 
-                if ((destination - transform.position).magnitude < 2) {                    
+                if (agent.velocity.sqrMagnitude ==0) {                    
                     if (Shooting()) ;
                     destination = ObstacleHunting();
                 }
