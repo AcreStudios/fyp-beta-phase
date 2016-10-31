@@ -42,7 +42,7 @@ public class EventManager : MonoBehaviour {
     public Events[] gameEventFlow;
     //public AlternateEvents[] alternateEventListeners;
     public Text missionUI;
-    public bool ableToEdit;
+    //public bool ableToEdit;
 
     int currentGameEvent;
     int currentAltEvent;
@@ -58,23 +58,6 @@ public class EventManager : MonoBehaviour {
 
     void Update() {
 
-        if (ableToEdit) {
-            for (var i = 0; i < gameEventFlow.Length; i++) {
-
-                for (var j = 0; j < gameEventFlow[i].results.spawns.Length; j++) {
-                    if (gameEventFlow[i].results.spawns[j] != null) {
-                        gameEventFlow[i].results.spawns[j].SetActive(false);
-                    }
-                }
-
-                //for (var j = 0; j < alternateEventListeners[i].results.spawns.Length; j++) {
-                //if (alternateEventListeners[i].results.spawns[j] != null) {
-                //alternateEventListeners[i].results.spawns[j].SetActive(false);
-                //}
-                //}
-            }
-        }
-        Debug.Log(currentGameEvent);
         if (Application.isPlaying) {
             //if (currentAltEvent < alternateEventListeners.Length) {
             //if (alternateEventListeners[currentAltEvent].listeningToEvent == currentGameEvent) {
@@ -129,12 +112,22 @@ public class EventManager : MonoBehaviour {
 
                 if (timer > Time.time) {
                     return;
-                } 
+                }
 
                 eventTriggered = false;
                 ActivateEvent(gameEventFlow[currentGameEvent].results);
                 currentGameEvent++;
             }
+        } else {
+            if (gameEventFlow.Length > 0)
+                for (var i = 0; i < gameEventFlow.Length; i++) {
+                    if (gameEventFlow[i].results.spawns.Length > 0)
+                        for (var j = 0; j < gameEventFlow[i].results.spawns.Length; j++) {
+                            if (gameEventFlow[i].results.spawns[j] != null) {
+                                gameEventFlow[i].results.spawns[j].SetActive(false);
+                            }
+                        }
+                }
         }
     }
 
@@ -164,7 +157,7 @@ public class EventManagerEditor : Editor {
         Handles.color = Color.red;
 
         if (t != null)
-            if (t.ableToEdit)
+            if (t.gameEventFlow.Length > 0)
                 for (var i = 0; i < t.gameEventFlow.Length; i++)
                     Handles.CircleCap(0, t.gameEventFlow[i].eventTriggers.triggerPosition, rotation, t.gameEventFlow[i].eventTriggers.triggerRadius);
 
@@ -193,15 +186,14 @@ public class EventManagerEditor : Editor {
 
         t = target as EventManager;
         if (t != null)
-            if (t.ableToEdit)
-                if (t.gameEventFlow.Length > 0)
-                    for (var i = 0; i < t.gameEventFlow.Length; i++) {
-                        if (GUILayout.Button("Set trigger radius " + i.ToString())) {
-                            currentEvent = i;
-                            SceneView sceneView = SceneView.sceneViews[0] as SceneView;
-                            sceneView.Focus();
-                        }
+            if (t.gameEventFlow.Length > 0)
+                for (var i = 0; i < t.gameEventFlow.Length; i++) {
+                    if (GUILayout.Button("Set trigger radius " + i.ToString())) {
+                        currentEvent = i;
+                        SceneView sceneView = SceneView.sceneViews[0] as SceneView;
+                        sceneView.Focus();
                     }
+                }
     }
 }
 
