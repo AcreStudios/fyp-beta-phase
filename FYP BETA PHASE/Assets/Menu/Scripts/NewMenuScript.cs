@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class NewMenuScript : MonoBehaviour {
 
+    public string currentState;
+
     [System.Serializable]
     public class StartScreen {
         public GameObject StartCanvas;
@@ -137,6 +139,9 @@ public class NewMenuScript : MonoBehaviour {
         mainMenu.GORedSettings.SetActive(false);
         mainMenu.GORedCredits.SetActive(false);
         mainMenu.GORedQuit.SetActive(false);
+
+        currentState = "MainMenu: MO NewGame";
+        print(currentState);
     }
     public void MOSettings() {
         mainMenu.NewGame.SetActive(true);
@@ -148,6 +153,9 @@ public class NewMenuScript : MonoBehaviour {
         mainMenu.GORedSettings.SetActive(true);
         mainMenu.GORedCredits.SetActive(false);
         mainMenu.GORedQuit.SetActive(false);
+
+        currentState = "MainMenu: MO Settings";
+        print(currentState);
     }
     public void MOCredits() {
         mainMenu.NewGame.SetActive(true);
@@ -159,6 +167,9 @@ public class NewMenuScript : MonoBehaviour {
         mainMenu.GORedSettings.SetActive(false);
         mainMenu.GORedCredits.SetActive(true);
         mainMenu.GORedQuit.SetActive(false);
+
+        currentState = "MainMenu: MO Credits";
+        print(currentState);
     }
     public void MOQuit() {
         mainMenu.NewGame.SetActive(true);
@@ -170,6 +181,9 @@ public class NewMenuScript : MonoBehaviour {
         mainMenu.GORedSettings.SetActive(false);
         mainMenu.GORedCredits.SetActive(false);
         mainMenu.GORedQuit.SetActive(true);
+
+        currentState = "MainMenu: MO Quit";
+        print(currentState);
     }
     #endregion
     #region Settings Mouseover Handler
@@ -183,6 +197,9 @@ public class NewMenuScript : MonoBehaviour {
         settingsMenu.Audio.SetActive(true);
         settingsMenu.Video.SetActive(true);
         settingsMenu.Back.SetActive(true);
+
+        currentState = "SettingsMenu: MO Game";
+        print(currentState);
     }
     public void MOAudio() {
         settingsMenu.GORedGame.SetActive(false);
@@ -194,6 +211,9 @@ public class NewMenuScript : MonoBehaviour {
         settingsMenu.Audio.SetActive(false);
         settingsMenu.Video.SetActive(true);
         settingsMenu.Back.SetActive(true);
+
+        currentState = "SettingsMenu: MO Audio";
+        print(currentState);
     }
     public void MOVideo() {
         settingsMenu.GORedGame.SetActive(false);
@@ -205,6 +225,9 @@ public class NewMenuScript : MonoBehaviour {
         settingsMenu.Audio.SetActive(true);
         settingsMenu.Video.SetActive(false);
         settingsMenu.Back.SetActive(true);
+
+        currentState = "SettingsMenu: MO Video";
+        print(currentState);
     }
     public void MOBack() {
         settingsMenu.GORedGame.SetActive(false);
@@ -216,6 +239,9 @@ public class NewMenuScript : MonoBehaviour {
         settingsMenu.Audio.SetActive(true);
         settingsMenu.Video.SetActive(true);
         settingsMenu.Back.SetActive(false);
+
+        currentState = "SettingsMenu: MO Back";
+        print(currentState);
     }
     #endregion
     #region Quit Mouseover Handler
@@ -225,6 +251,9 @@ public class NewMenuScript : MonoBehaviour {
 
         quitMenu.Yes.SetActive(false);
         quitMenu.No.SetActive(true);
+
+        currentState = "QuitMenu: MO Yes";
+        print(currentState);
     }
     public void MONo() {
         quitMenu.GORedYes.SetActive(false);
@@ -232,6 +261,9 @@ public class NewMenuScript : MonoBehaviour {
 
         quitMenu.Yes.SetActive(true);
         quitMenu.No.SetActive(false);
+
+        currentState = "QuitMenu: MO No";
+        print(currentState);
     }
     #endregion
 
@@ -240,48 +272,76 @@ public class NewMenuScript : MonoBehaviour {
     public void SelectSettings() {
         settingsMenu.SettingsCanvas.SetActive(true);
         mainMenu.MainCanvas.SetActive(false);
+        currentState = "Settings Screen";
+        print(currentState);
     }
     public void SelectBack() {
         settingsMenu.SettingsCanvas.SetActive(false);
         creditsMenu.CreditsCanvas.SetActive(false);
         mainMenu.MainCanvas.SetActive(true);
+        currentState = "Menu Screen";
+        print(currentState);
     }
     public void SelectNewGame() {
         loadingScreen.LoadingCanvas.SetActive(true);
         mainMenu.MainCanvas.SetActive(false);
         loadingScreen.LoadingText.SetActive(true);
+        currentState = "Loading Screen";
+        print(currentState);
 
         StartCoroutine(loadingtime());
     }
     public void SelectCredits() {
         creditsMenu.CreditsCanvas.SetActive(true);
         mainMenu.MainCanvas.SetActive(false);
+        currentState = "Credits Screen";
+        print(currentState);
     }
     public void SelectQuit() {
         quitMenu.QuitCanvas.SetActive(true);
         mainMenu.MainCanvas.SetActive(false);
+        currentState = "Quit Screen";
+        print(currentState);
     }
     public void SelectNewQuit() {
         mainMenu.MainCanvas.SetActive(false);
         startScreen.StartCanvas.SetActive(true);
+        currentState = "Start Screen";
+        print(currentState);
     }
     public void SelectStart() {
         mainMenu.MainCanvas.SetActive(true);
         startScreen.StartCanvas.SetActive(false);
+        currentState = "Menu Screen";
+        print(currentState);
     }
     public void SelectNo() {
         quitMenu.QuitCanvas.SetActive(false);
         mainMenu.MainCanvas.SetActive(true);
+        currentState = "Menu Screen";
+        print(currentState);
     }
     public void SelectYes() {
         Application.Quit();
     }
     public void loadApplication() {
         SceneManager.LoadScene("Interior_Small");
-        Debug.Log("Scene Loaded");
     }
     #endregion
 
+    #region State Tags
+
+    //Screens:
+    //Menu Screen; Start Screen; Quit Screen; Credits Screen; Loading Screen; Settings Screen;
+
+    //Mouseovers:
+    //QuitMenu: MO No; QuitMenu: MO Yes;
+    //SettingsMenu: MO Back; SettingsMenu: MO Video; SettingsMenu: MO Audio; SettingsMenu: MO Game;
+    //MainMenu: MO Quit; MainMenu: MO Credits; MainMenu: MO Settings; MainMenu: MO NewGame;
+
+    #endregion
+
+    
     IEnumerator loadingtime() {
         Debug.Log("Scene Loading");
         yield return new WaitForSeconds(3);
