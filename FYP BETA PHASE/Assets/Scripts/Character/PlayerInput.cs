@@ -16,7 +16,7 @@ public class PlayerInput : MonoBehaviour
 	public float _horizontal;
 	[Range(-1f, 1f)]
 	public float _vertical;
-	public bool _LMB, _RMB, _MMB, _spacebar, _leftCtrl, _keyE;
+	public bool _LMB, _RMB, _MMB, _spacebar, _leftCtrl, _keyE, _leftShift;
 
 	[System.Serializable]
 	public class InputStrings
@@ -32,6 +32,7 @@ public class PlayerInput : MonoBehaviour
 		public string reloadButton = "Reload";
 		public string coverButton = "Cover";
 		public string pickupButton = "Pickup";
+		public string toggleRunButton = "ToggleRun";
 	}
 	[SerializeField]
 	private InputStrings inputStrings;
@@ -105,13 +106,14 @@ public class PlayerInput : MonoBehaviour
 		_spacebar = Input.GetButtonDown(inputStrings.jumpButton);
 		_leftCtrl = Input.GetButtonDown(inputStrings.coverButton);
 		_keyE = Input.GetButtonDown(inputStrings.pickupButton);
+		_leftShift = Input.GetButton(inputStrings.toggleRunButton);
 	}
 
 	private void CharacterLogic() // Handles character logic
 	{
-		// Movement, with clamping when walking backwards
-		float v = Mathf.Clamp(_vertical, -.5f, 1f);
-		float h = (_vertical < 0) ? Mathf.Clamp(_horizontal, -.5f, .5f) : _horizontal;
+		// Default walk movement, with clamping when walking backwards
+		float v = (_leftShift) ? Mathf.Clamp(_vertical, -.5f, 1f) : Mathf.Clamp(_vertical, -.5f, .5f);
+		float h = (_leftShift) ? ((_vertical < 0) ? Mathf.Clamp(_horizontal, -.5f, .5f) : _horizontal) : Mathf.Clamp(_horizontal, -.5f, .5f);
 
 		// Mirror movement
 		if(_MMB)

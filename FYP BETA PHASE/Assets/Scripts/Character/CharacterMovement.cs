@@ -12,7 +12,6 @@ public class CharacterMovement : MonoBehaviour
 	private Transform trans;
 	private Animator animator;
 	private CharacterController characterController;
-	private CoverSystem coverSystem;
 
 	[System.Serializable] // Show in inspector for classes
 	public class AnimatorStrings
@@ -62,7 +61,6 @@ public class CharacterMovement : MonoBehaviour
 		trans = GetComponent<Transform>();
 		animator = GetComponent<Animator>();
 		characterController = GetComponent<CharacterController>();
-		coverSystem = GetComponent<CoverSystem>();
 
 		SetupComponents();
 		SetupAnimator();

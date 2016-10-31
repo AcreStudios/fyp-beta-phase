@@ -9,8 +9,6 @@ public class CoverSystem : MonoBehaviour
 	// Components
 	private Transform trans;
 	private CharacterMovement characterMove;
-	private PlayerInput playerInput;
-	private TPCamera tpCamera;
 
 	[Header("-Cover Settings-")]
 	public bool autoSwitchSides = true;
@@ -32,13 +30,6 @@ public class CoverSystem : MonoBehaviour
 		// Cache components
 		trans = GetComponent<Transform>();
 		characterMove = GetComponent<CharacterMovement>();
-		playerInput = GetComponent<PlayerInput>();
-	}
-
-	void Start() 
-	{
-		// Cache tp camera
-		tpCamera = TPCamera.GetInstance();
 	}
 
 	void Update()

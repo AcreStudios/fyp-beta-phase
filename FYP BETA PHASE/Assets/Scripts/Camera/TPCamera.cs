@@ -9,6 +9,9 @@ public class TPCamera : MonoBehaviour
 	private Transform camPivot;
 	private Transform camTrans;
 
+	[Header("-Debug-")]
+	public CursorLockMode cursorMode = CursorLockMode.Locked;
+
 	[Header("-Inputs-")]
 	public float _mouseX;
 	public float _mouseY;
@@ -102,6 +105,9 @@ public class TPCamera : MonoBehaviour
 		// Cache all meshes to hide when camera is near, AFTER getting target
 		cameraSettings.meshes = target.GetComponentsInChildren<SkinnedMeshRenderer>();
 		cameraSettings.wpnMeshes = target.GetComponentsInChildren<MeshRenderer>();
+
+		// Set cursor lock
+		Cursor.lockState = cursorMode;
 	}
 
 	void Update() 
