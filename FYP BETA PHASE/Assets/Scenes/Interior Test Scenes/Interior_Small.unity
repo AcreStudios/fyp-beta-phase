@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.43681046, g: 0.48440892, b: 0.56459653, a: 1}
+  m_IndirectSpecularColor: {r: 0.17286429, g: 0.21599919, b: 0.29790145, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -71,7 +71,7 @@ LightmapSettings:
     m_FinalGatherFiltering: 1
     m_FinalGatherRayCount: 1024
     m_ReflectionCompression: 2
-  m_LightingDataAsset: {fileID: 112000308, guid: 4d55db84e1c47434f965ae35b464101f,
+  m_LightingDataAsset: {fileID: 112000308, guid: d62bad3178339ba4b89e38834c03b301,
     type: 2}
   m_RuntimeCPUUsage: 100
 --- !u!196 &4
@@ -20123,7 +20123,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameEventFlow:
   - eventName: Goes to Pantry
-    missionUI: Go get a coffee
+    missionUI: Head to the Pantry
     eventTriggers:
       triggerPosition: {x: 5.1842136, y: -0.02206032, z: -17.186375}
       triggerRadius: 3
@@ -20191,7 +20191,6 @@ MonoBehaviour:
       scriptedEventsToTrigger: []
       levelNameToLoad: 
   missionUI: {fileID: 997346885}
-  ableToEdit: 0
 --- !u!4 &1613074120
 Transform:
   m_ObjectHideFlags: 0
@@ -26242,6 +26241,10 @@ Prefab:
     - target: {fileID: 490182, guid: 3a076f25cae77ca41a1ff31591c6e84b, type: 2}
       propertyPath: m_RootOrder
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8213220, guid: 3a076f25cae77ca41a1ff31591c6e84b, type: 2}
+      propertyPath: spreadCustomCurve.m_RotationOrder
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3a076f25cae77ca41a1ff31591c6e84b, type: 2}
