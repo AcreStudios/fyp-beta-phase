@@ -1,8 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
-using UnityEditor;
 using UnityEngine.SceneManagement;
+
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 [ExecuteInEditMode]
 public class EventManager : MonoBehaviour {
@@ -146,6 +149,7 @@ public class EventManager : MonoBehaviour {
     }
 }
 
+#if UNITY_EDITOR
 [CustomEditor(typeof(EventManager))]
 public class EventManagerEditor : Editor {
     EventManager t;
@@ -196,5 +200,4 @@ public class EventManagerEditor : Editor {
                 }
     }
 }
-
-
+#endif

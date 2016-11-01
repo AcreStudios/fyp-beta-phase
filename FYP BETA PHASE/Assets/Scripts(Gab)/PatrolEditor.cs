@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
+
+#if UNITY_EDITOR
 using UnityEditor;
 
 [CustomEditor(typeof(PatrolModule))] //It needs a "reference to be able to run the script? Hmm interesting.
@@ -61,3 +63,4 @@ public class PatrolEditor : Editor {
                 }
     }
 }
+#endif
