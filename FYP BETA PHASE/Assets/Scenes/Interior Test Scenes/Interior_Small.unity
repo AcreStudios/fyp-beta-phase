@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.17286429, g: 0.21599919, b: 0.29790145, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -14551,6 +14551,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 11420312, guid: 01b7ae21112883d4f898839f301c1330, type: 2}
+      propertyPath: cursorMode
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 01b7ae21112883d4f898839f301c1330, type: 2}
   m_IsPrefabParent: 0
@@ -20104,7 +20108,7 @@ GameObject:
   - 4: {fileID: 1613074120}
   - 114: {fileID: 1613074119}
   m_Layer: 0
-  m_Name: GameController
+  m_Name: EventManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -20130,6 +20134,7 @@ MonoBehaviour:
       timer: 0
       checkIfDestroyed:
       - {fileID: 0}
+      key: 101
     results:
       spawns:
       - {fileID: 389732840}
@@ -20144,6 +20149,7 @@ MonoBehaviour:
       timer: 0
       checkIfDestroyed:
       - {fileID: 0}
+      key: 0
     results:
       spawns: []
       toDestroy: []
@@ -20157,6 +20163,7 @@ MonoBehaviour:
       timer: 0
       checkIfDestroyed:
       - {fileID: 0}
+      key: 0
     results:
       spawns:
       - {fileID: 1918753295}
@@ -20172,6 +20179,7 @@ MonoBehaviour:
       timer: 0
       checkIfDestroyed:
       - {fileID: 1918753295}
+      key: 0
     results:
       spawns: []
       toDestroy: []
@@ -20185,12 +20193,14 @@ MonoBehaviour:
       timer: 0
       checkIfDestroyed:
       - {fileID: 0}
+      key: 0
     results:
       spawns: []
       toDestroy: []
       scriptedEventsToTrigger: []
       levelNameToLoad: 
   missionUI: {fileID: 997346885}
+  test: 0
 --- !u!4 &1613074120
 Transform:
   m_ObjectHideFlags: 0
@@ -20531,7 +20541,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 157470, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 14494538, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
       propertyPath: m_ConnectedAnchor.x
@@ -24035,7 +24045,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 403698, guid: fa3875faf00caeb4fbba2831c223036e, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -13.64
+      value: 1.24
       objectReference: {fileID: 0}
     - target: {fileID: 403698, guid: fa3875faf00caeb4fbba2831c223036e, type: 2}
       propertyPath: m_LocalPosition.y
@@ -24043,7 +24053,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 403698, guid: fa3875faf00caeb4fbba2831c223036e, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 17.2
+      value: -6.68
       objectReference: {fileID: 0}
     - target: {fileID: 403698, guid: fa3875faf00caeb4fbba2831c223036e, type: 2}
       propertyPath: m_LocalRotation.x

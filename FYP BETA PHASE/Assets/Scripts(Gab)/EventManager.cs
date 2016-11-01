@@ -24,6 +24,7 @@ public class EventManager : MonoBehaviour {
         public float triggerRadius;
         public float timer;
         public GameObject[] checkIfDestroyed;
+        public KeyCode key;
     }
 
     [System.Serializable]
@@ -50,17 +51,21 @@ public class EventManager : MonoBehaviour {
     int currentGameEvent;
     int currentAltEvent;
     int prevCount;
+    int playerIsInRange;
+
     bool eventTriggered;
     float timer;
+
+    public KeyCode test;
 
     void Start() {
         currentGameEvent = 0;
         currentAltEvent = 0;
+        playerIsInRange = 0;
         eventTriggered = false;
     }
 
     void Update() {
-
         if (Application.isPlaying) {
             //if (currentAltEvent < alternateEventListeners.Length) {
             //if (alternateEventListeners[currentAltEvent].listeningToEvent == currentGameEvent) {
@@ -89,12 +94,13 @@ public class EventManager : MonoBehaviour {
 
                 if (gameEventFlow[currentGameEvent].eventTriggers.triggerRadius > 0) {
 
-                    int playerIsInRange = 0;
+
                     Collider[] temp;
 
                     temp = Physics.OverlapSphere(gameEventFlow[currentGameEvent].eventTriggers.triggerPosition, gameEventFlow[currentGameEvent].eventTriggers.triggerRadius);
 
                     if (temp.Length != prevCount) {
+                        playerIsInRange = 0;
                         foreach (Collider obj in temp) {
                             if (obj.transform.root.tag == "Player") {
                                 playerIsInRange++;
@@ -116,6 +122,10 @@ public class EventManager : MonoBehaviour {
                 if (timer > Time.time) {
                     return;
                 }
+
+                if (gameEventFlow[currentGameEvent].eventTriggers.key != KeyCode.None)
+                    if (!(Input.GetKey(gameEventFlow[currentGameEvent].eventTriggers.key)))
+                        return;
 
                 eventTriggered = false;
                 ActivateEvent(gameEventFlow[currentGameEvent].results);

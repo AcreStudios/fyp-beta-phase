@@ -8,6 +8,7 @@ public class AIFunctions : MonoBehaviour {
     public float shootInterval;
     public float gunSprayValue;
     public float range;
+    public Collider destinationMarker;
     //public GameObject gunEffect;
 
     public float Health { get; set; }
@@ -114,13 +115,10 @@ public class AIFunctions : MonoBehaviour {
                     if (hp && hp.isActiveAndEnabled)
                         hp.ReceiveDamage(5);
 
-                    if ((ai = hit.transform.root.GetComponent<AIFunctions>()) != null){
+                    if ((ai = hit.transform.root.GetComponent<AIFunctions>()) != null) {
                         Vector3 toNorm = Vector3.Normalize(target.position - transform.position);
-                        toNorm.x += 0.5f;
-                        toNorm.y += 0.5f;
-                        Debug.Log(hit.transform);
-                        Debug.Log(hit.transform.root +" was hit by " + transform.root);
-                        ai.InFiringLine(toNorm);
+                        Debug.Log(hit.transform.root + " was hit by " + transform.root);
+                        ai.DisplaceAILocation(toNorm);
                     }
                 }
             }
@@ -130,9 +128,23 @@ public class AIFunctions : MonoBehaviour {
         return true;
     }
 
-    public void InFiringLine(Vector3 normalizedEnemyVector) {
-        destination = target.position - (normalizedEnemyVector * range);
-        Debug.Log("Working!");
+    public void DisplaceAILocation(Vector3 normalizedEnemyVector) {
+        int ai = 0;
+
+        do {
+            ai = 0;
+            normalizedEnemyVector.x += 0.1f;
+            normalizedEnemyVector.z += 0.1f;
+            destination = target.position - (normalizedEnemyVector * range);
+
+            Collider[] check = Physics.OverlapCapsule(destination, destination, 1);
+
+            foreach (Collider toCheck in check)
+                if (toCheck.transform.tag == "Marker")
+                    ai++;
+        } while (ai > 0);
+
+        destinationMarker.transform.position = destination;
     }
 
     public Vector3 ObstacleHunting() {
@@ -146,7 +158,8 @@ public class AIFunctions : MonoBehaviour {
 
         temp = target.position - transform.position;
         temp = Vector3.Normalize(temp);
-        return target.position - (temp * range); //Scales this to hp?
+        DisplaceAILocation(temp);
+        return destination; //Scales this to hp?
     }
 
     Vector3 ShortObstacleException(Collider obsColl) {

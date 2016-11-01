@@ -151,6 +151,8 @@ public class AI : AIFunctions {
 
                 break;
         }
+
+        destinationMarker.transform.position = destination;
     }
 
     public override void DamageRecieved(float damage) {
