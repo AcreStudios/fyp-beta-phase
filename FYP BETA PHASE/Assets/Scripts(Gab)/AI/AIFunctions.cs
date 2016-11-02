@@ -129,37 +129,30 @@ public class AIFunctions : MonoBehaviour {
     }
 
     public void DisplaceAILocation(Vector3 normalizedEnemyVector) {
+
         int ai = 0;
+        Collider[] inCollision = Physics.OverlapCapsule(target.position - (normalizedEnemyVector * range), target.position - (normalizedEnemyVector * range), 1);
 
-        Collider[] check = Physics.OverlapCapsule(destination, destination, 1);
-
-        foreach (Collider toCheck in check)
-            if (toCheck != destinationMarker)
-                if (toCheck.transform.tag == "Marker")
+        foreach (Collider collision in inCollision)
+            if (collision != destinationMarker)
+                if (collision.transform.tag == "Marker")
                     ai++;
 
         while (ai > 0) {
             ai = 0;
             normalizedEnemyVector.x += 0.1f;
             normalizedEnemyVector.z += 0.1f;
-            destination = target.position - (normalizedEnemyVector * range);
 
-            check = Physics.OverlapCapsule(destination, destination, 1);
+            inCollision = Physics.OverlapCapsule(target.position - (normalizedEnemyVector * range), target.position - (normalizedEnemyVector * range), 1);
 
-            foreach (Collider toCheck in check)
-                if (toCheck != destinationMarker)
-                    if (toCheck.transform.tag == "Marker")
-                        ai++;
+            foreach (Collider collision in inCollision)
+                if (collision != destinationMarker)
+                    if (collision.transform.tag == "Marker")
+                    ai++;
         }
 
-        
-
         destination = target.position - (normalizedEnemyVector * range);
-        destinationMarker.transform.position = destination;
-    }
-
-    public void ChecksDestination() {
-
+        destinationMarker.transform.position = target.position - (normalizedEnemyVector * range);
     }
 
     public Vector3 ObstacleHunting() {

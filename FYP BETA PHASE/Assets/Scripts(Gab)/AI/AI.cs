@@ -19,8 +19,8 @@ public class AI : AIFunctions {
     AIStates defaultState;
 
     PatrolModule patrolMod;
-    
-    
+
+
     bool hasStarted;
     float timer;
 
@@ -75,6 +75,7 @@ public class AI : AIFunctions {
                     if (Time.time > timer) {
                         AlertOtherTroops();
                         currentState = AIStates.Attacking;
+                        destination = ObstacleHunting();
                         hasStarted = false;
                     }
                 } else {
@@ -142,9 +143,9 @@ public class AI : AIFunctions {
                 transform.LookAt(target);
                 transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, 0);
 
-                if (agent.velocity.sqrMagnitude ==0) {                    
-                    if (Shooting())
-						destination = ObstacleHunting();
+                if (agent.velocity.sqrMagnitude == 0) {
+                    if (Shooting()) ;
+                    destination = ObstacleHunting();
                 }
 
                 agent.destination = destination;
