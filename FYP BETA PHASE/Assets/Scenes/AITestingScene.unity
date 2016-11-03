@@ -4001,8 +4001,8 @@ Prefab:
 GameObject:
   m_PrefabParentObject: {fileID: 100000, guid: 87c881254f067d248a86c131ed54bccb, type: 3}
   m_PrefabInternal: {fileID: 1220346926}
---- !u!64 &902187548
-MeshCollider:
+--- !u!65 &902187548
+BoxCollider:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
@@ -4011,8 +4011,8 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Convex: 0
-  m_Mesh: {fileID: 4300000, guid: 87c881254f067d248a86c131ed54bccb, type: 3}
+  m_Size: {x: 201.55087, y: 137.22382, z: 329.47076}
+  m_Center: {x: -8.894722, y: 65.20447, z: 30.968681}
 --- !u!4 &912776516 stripped
 Transform:
   m_PrefabParentObject: {fileID: 405478, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
@@ -4405,6 +4405,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   testColl: {fileID: 902187548}
+  mesh: {fileID: 0}
+  testMesh: {fileID: 0}
 --- !u!4 &1027595832
 Transform:
   m_ObjectHideFlags: 0
@@ -5824,7 +5826,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 87c881254f067d248a86c131ed54bccb, type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: 87c881254f067d248a86c131ed54bccb, type: 3}
       propertyPath: m_Enabled
