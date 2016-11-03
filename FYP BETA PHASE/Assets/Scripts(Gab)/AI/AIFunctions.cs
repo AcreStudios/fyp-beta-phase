@@ -22,7 +22,6 @@ public class AIFunctions : MonoBehaviour {
     float prevHeadRotation;
     float shootingTime;
     float rotateTime;
-    bool ableToRotate;
     protected Vector3 startingPoint;
     protected bool showGunEffect;
     protected Vector3 scaleValue;
@@ -35,7 +34,6 @@ public class AIFunctions : MonoBehaviour {
 
     void Awake() {
         Health = 100;
-        ableToRotate = true;
         gameObject.tag = "Enemy";
 
         guns[0] = transform.Find("Hanna_GunL");
@@ -100,7 +98,7 @@ public class AIFunctions : MonoBehaviour {
 
     public bool Shooting() {
         animator.SetInteger("TreeState", 2);
-        if (Time.time > shootingTime) { //Draw a raycast here to see if anything is in its line of sight?
+        if (Time.time > shootingTime) { 
             Vector3 offset;
             AlertOtherTroops();
 

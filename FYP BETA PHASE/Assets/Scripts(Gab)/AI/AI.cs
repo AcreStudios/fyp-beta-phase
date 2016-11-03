@@ -144,8 +144,8 @@ public class AI : AIFunctions {
                 transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, 0);
 
                 if (agent.velocity.sqrMagnitude == 0) {
-                    if (Shooting()) ;
-                    destination = ObstacleHunting();
+                    if (Shooting())
+                        destination = ObstacleHunting();
                 }
 
                 agent.destination = destination;
