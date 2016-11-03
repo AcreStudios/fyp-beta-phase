@@ -49,7 +49,6 @@ public class EventManager : MonoBehaviour {
     //public bool ableToEdit;
 
     int currentGameEvent;
-    int currentAltEvent;
     int prevCount;
     int playerIsInRange;
 
@@ -60,7 +59,6 @@ public class EventManager : MonoBehaviour {
 
     void Start() {
         currentGameEvent = 0;
-        currentAltEvent = 0;
         playerIsInRange = 0;
         eventTriggered = false;
     }
@@ -188,7 +186,6 @@ public class EventManagerEditor : Editor {
                 Ray ray = Camera.current.ScreenPointToRay(temp);
 
                 if (Physics.Raycast(ray, out hit, Mathf.Infinity)) {
-                    //Debug.DrawLine(Vector3.zero, hit.point, Color.black);
                     t.gameEventFlow[currentEvent].eventTriggers.triggerPosition = hit.point;
                 }
             }
@@ -202,7 +199,14 @@ public class EventManagerEditor : Editor {
         if (t != null)
             if (t.gameEventFlow.Length > 0)
                 for (var i = 0; i < t.gameEventFlow.Length; i++) {
-                    if (GUILayout.Button("Set trigger radius " + i.ToString())) {
+                    string buttonName = "Set trigger radius ";
+
+                    if (t.gameEventFlow[i].eventName != "")
+                        buttonName = buttonName + t.gameEventFlow[i].eventName;
+                    else
+                        buttonName = buttonName + i.ToString();
+
+                    if (GUILayout.Button(buttonName)) {
                         currentEvent = i;
                         SceneView sceneView = SceneView.sceneViews[0] as SceneView;
                         sceneView.Focus();
