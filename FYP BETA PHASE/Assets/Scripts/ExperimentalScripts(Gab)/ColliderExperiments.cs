@@ -15,14 +15,28 @@ public class ColliderExperiments : MonoBehaviour {
     public Vector3[] multiplier;
     public int orientIndex;
 
+    Vector3 prevVector = Vector3.zero;
+    Vector3 nextVector = Vector3.zero;
+
+    Vector3 modifiedExtents = Vector3.zero;
+    RaycastHit hit;
+    Vector3 oringinalPos;
+    float timer;
+
+            
 
     void Start() {
         orientIndex = 0;
 
         testPoints.outerPoints = new List<Vector3>();
+
+        modifiedExtents = new Vector3(testColl.bounds.extents.x * multiplier[orientIndex].x, testColl.bounds.extents.y * multiplier[orientIndex].y, testColl.bounds.extents.z * multiplier[orientIndex].z);
+        oringinalPos = testColl.bounds.center + modifiedExtents;
+        prevVector = oringinalPos;
+        prevVector.y = testColl.bounds.center.y;
         //ReadColliders(testColl,testColl)
         //testMesh = testColl.sharedMesh;
-        Vector3 prevVector = Vector3.zero;
+        /*Vector3 prevVector = Vector3.zero;
         Vector3 nextVector = Vector3.zero;
 
         Vector3 modifiedExtents = Vector3.zero;
@@ -42,19 +56,39 @@ public class ColliderExperiments : MonoBehaviour {
                     testColl = hit.collider;
                     nextVector = hit.point;
                     orientIndex = AddIndex(orientIndex, -1, multiplier.Length);
-                    Debug.Log("Working");
                 }
             }
+
             Debug.DrawLine(prevVector, nextVector, Color.red, 20);
             testPoints.outerPoints.Add(nextVector);
-            prevVector = nextVector;
 
-        }
+            prevVector = nextVector;
+        }*/
     }
 
     void Update() {
-        //foreach (Vector3 points in testPoints.outerPoints)
-        //Debug.DrawLine(transform.position, points, Color.red);
+        if (nextVector != oringinalPos && Time.time > timer) {
+            orientIndex = AddIndex(orientIndex, 1, multiplier.Length);
+            modifiedExtents = new Vector3(testColl.bounds.extents.x * multiplier[orientIndex].x, testColl.bounds.extents.y * multiplier[orientIndex].y, testColl.bounds.extents.z * multiplier[orientIndex].z);
+            nextVector = testColl.bounds.center + modifiedExtents;
+            nextVector.y = testColl.bounds.center.y;
+            if (Physics.Linecast(prevVector, nextVector, out hit)) {
+                if (hit.collider != testColl) {
+                    Debug.Log("Working");
+                    testColl = hit.collider;
+                    nextVector = hit.point;
+                    orientIndex = AddIndex(orientIndex, -1, multiplier.Length);
+                    orientIndex = AddIndex(orientIndex, -1, multiplier.Length);
+                }
+            }
+
+            Debug.DrawLine(prevVector, nextVector, Color.red);
+            testPoints.outerPoints.Add(nextVector);
+
+            prevVector = nextVector;
+            
+            timer = Time.time + 1;
+        }
     }
 
     int AddIndex(int currentValue, int value, int arrayCount) {

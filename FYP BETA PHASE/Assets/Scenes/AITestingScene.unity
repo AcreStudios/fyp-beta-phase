@@ -4408,7 +4408,11 @@ MonoBehaviour:
     centrePoints: []
     outerPoints: []
   testColl: {fileID: 902187548}
-  multiplier: []
+  multiplier:
+  - {x: 1, y: 1, z: 1}
+  - {x: -1, y: 1, z: 1}
+  - {x: -1, y: 1, z: -1}
+  - {x: 1, y: 1, z: -1}
   orientIndex: 0
 --- !u!4 &1027595832
 Transform:
