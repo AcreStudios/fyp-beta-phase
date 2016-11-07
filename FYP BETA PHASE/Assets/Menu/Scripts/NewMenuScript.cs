@@ -348,15 +348,11 @@ public class NewMenuScript : MonoBehaviour {
         devMenu.DevCanvas.SetActive(true);
         devMenu.Sequence1.SetActive(true);
         devMenu.Sequence2.SetActive(true);
-        devMenu.Sequence3.SetActive(true);
     }
     public void SelectSequence1() {
         SceneManager.LoadScene("Interior01");
     }
     public void SelectSequence2() {
-        SceneManager.LoadScene("Mock_Sequence2");
-    }
-    public void SelectSequence3() {
         SceneManager.LoadScene("Exterior02");
     }
     #endregion

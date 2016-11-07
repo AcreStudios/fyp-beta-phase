@@ -14628,7 +14628,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11420312, guid: 01b7ae21112883d4f898839f301c1330, type: 2}
       propertyPath: cursorMode
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 01b7ae21112883d4f898839f301c1330, type: 2}
@@ -15348,8 +15348,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eae885dc25e864b4ba808dc796187320, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  readerInst: {fileID: 0}
   player: {fileID: 0}
-  obstacles: []
 --- !u!4 &1070972498
 Transform:
   m_ObjectHideFlags: 0
@@ -24112,7 +24112,7 @@ MonoBehaviour:
       spawns: []
       toDestroy: []
       scriptedEventsToTrigger: []
-      levelNameToLoad: Mock_Sequence2
+      levelNameToLoad: Exterior02
   - eventName: Alternate Ending
     missionUI: Follow the guard
     eventTriggers:
