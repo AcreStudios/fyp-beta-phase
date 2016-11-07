@@ -8,6 +8,7 @@ public class ColliderReaderModule : MonoBehaviour {
     public struct BoundaryPoints {
         public Vector3 centrePoint;
         public List<Vector3> outerPoints;
+        public GameObject aiCover;
     }
 
     public List<BoundaryPoints> boundPoints;
@@ -18,6 +19,13 @@ public class ColliderReaderModule : MonoBehaviour {
     void Start() {
         boundPoints = new List<BoundaryPoints>();
         SelectCollliders();
+    }
+
+    void Update() {
+        foreach (BoundaryPoints boundPoint in boundPoints) {
+            Debug.DrawLine(transform.position, boundPoint.centrePoint, Color.black);
+        }
+
     }
 
     void SelectCollliders() {

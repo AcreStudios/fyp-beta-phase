@@ -98,25 +98,27 @@ public class AIFunctions : MonoBehaviour {
 
     public bool Shooting() {
         animator.SetInteger("TreeState", 2);
-        if (Time.time > shootingTime) { 
+        if (Time.time > shootingTime) {
             Vector3 offset;
             AlertOtherTroops();
 
             offset = new Vector3(Random.Range(-gunSprayValue, gunSprayValue), Random.Range(-gunSprayValue, gunSprayValue), 0);
             foreach (Transform gun in guns) {
                 gun.LookAt(target);
-                Debug.DrawLine(gun.position, gun.position + transform.TransformDirection(0, 0, range) + offset, Color.red, 5);
+                Debug.DrawLine(gun.position, gun.position + gun.TransformDirection(0, 0, range) + offset, Color.red, 5);
                 RaycastHit hit;
-                if (Physics.Raycast(gun.position, gun.position + transform.TransformDirection(0, 0, range) + offset, out hit)) {
-                    Health hp = hit.transform.root.GetComponent<Health>();
-                    AIFunctions ai;
-                    if (hp && hp.isActiveAndEnabled)
-                        hp.ReceiveDamage(5);
+                if (Physics.Raycast(gun.position, gun.TransformDirection(0, 0, range) + offset, out hit)) {
+                    if (hit.transform.root != transform) {
+                        Health hp = hit.transform.root.GetComponent<Health>();
+                        AIFunctions ai;
+                        if (hp && hp.isActiveAndEnabled)
+                            hp.ReceiveDamage(5);
 
-                    if ((ai = hit.transform.root.GetComponent<AIFunctions>()) != null) {
-                        Vector3 toNorm = Vector3.Normalize(target.position - transform.position);
-                        Debug.Log(hit.transform.root + " was hit by " + transform.root);
-                        ai.DisplaceAILocation(toNorm);
+                        if ((ai = hit.transform.root.GetComponent<AIFunctions>()) != null) {
+                            Vector3 toNorm = Vector3.Normalize(target.position - transform.position);
+                            Debug.Log(hit.transform.root + " was hit by " + transform.root);
+                            ai.DisplaceAILocation(toNorm);
+                        }
                     }
                 }
             }
@@ -129,7 +131,7 @@ public class AIFunctions : MonoBehaviour {
     public void DisplaceAILocation(Vector3 normalizedEnemyVector) {
 
         int ai = 0;
-        Collider[] inCollision = Physics.OverlapCapsule(target.position - (normalizedEnemyVector * range), target.position - (normalizedEnemyVector * range), 1);
+        Collider[] inCollision = Physics.OverlapCapsule(target.position - (normalizedEnemyVector * (range / 2)), target.position - (normalizedEnemyVector * (range / 2)), 1);
 
         foreach (Collider collision in inCollision)
             if (collision != destinationMarker)
@@ -141,16 +143,16 @@ public class AIFunctions : MonoBehaviour {
             normalizedEnemyVector.x += 0.1f;
             normalizedEnemyVector.z += 0.1f;
 
-            inCollision = Physics.OverlapCapsule(target.position - (normalizedEnemyVector * range), target.position - (normalizedEnemyVector * range), 1);
+            inCollision = Physics.OverlapCapsule(target.position - (normalizedEnemyVector * (range / 2)), target.position - (normalizedEnemyVector * (range / 2)), 1);
 
             foreach (Collider collision in inCollision)
                 if (collision != destinationMarker)
                     if (collision.transform.tag == "Marker")
-                    ai++;
+                        ai++;
         }
 
-        destination = target.position - (normalizedEnemyVector * range);
-        destinationMarker.transform.position = target.position - (normalizedEnemyVector * range);
+        destination = target.position - (normalizedEnemyVector * (range / 2));
+        destinationMarker.transform.position = target.position - (normalizedEnemyVector * (range / 2));
     }
 
     public Vector3 ObstacleHunting() {

@@ -46,7 +46,7 @@ public class EventManager : MonoBehaviour {
     public Events[] gameEventFlow;
     public Text missionUI;
 
-    int currentGameEvent;
+    public int currentGameEvent;
     int prevCount;
     int playerIsInRange;
 
@@ -54,7 +54,7 @@ public class EventManager : MonoBehaviour {
     float timer;
 
     void Start() {
-        currentGameEvent = LevelData.currentEvent;
+        //currentGameEvent = LevelData.currentEvent;
         playerIsInRange = 0;
         eventTriggered = false;
     }
@@ -124,7 +124,7 @@ public class EventManager : MonoBehaviour {
                 eventTriggered = false;
                 ActivateEvent(gameEventFlow[currentGameEvent].results);
                 currentGameEvent++;
-                LevelData.currentEvent = currentGameEvent;
+                //LevelData.currentEvent = currentGameEvent;
             }
         } else {
             if (gameEventFlow.Length > 0)
@@ -151,7 +151,7 @@ public class EventManager : MonoBehaviour {
 
         if (endResult.levelNameToLoad != "") {
             SceneManager.LoadScene(endResult.levelNameToLoad);
-            LevelData.currentEvent = 0;
+            //LevelData.currentEvent = 0;
         }
     }
 }
