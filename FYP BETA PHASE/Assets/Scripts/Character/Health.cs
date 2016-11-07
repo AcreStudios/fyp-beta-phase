@@ -8,6 +8,9 @@ public class Health : MonoBehaviour
 	private CharacterController characterController;
 	private RagdollHandler ragdollHandler;
 
+	[Header("-Debug-")]
+	public bool debugDeath = false;
+
 	[Header("-Health-")]
 	[Range(0f, 100f)]
 	public float curHealth = 100f;
@@ -21,6 +24,17 @@ public class Health : MonoBehaviour
 	{
 		characterController = GetComponent<CharacterController>();
 		ragdollHandler = GetComponentInChildren<RagdollHandler>();
+	}
+
+	void Update() 
+	{
+		if(debugDeath)
+		{
+			debugDeath = false;
+
+			curHealth = 0f;
+			Die();
+		}
 	}
 
 	public void ReceiveDamage(float dmg)

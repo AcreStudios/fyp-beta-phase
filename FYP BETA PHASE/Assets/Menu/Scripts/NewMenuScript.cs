@@ -58,6 +58,16 @@ public class NewMenuScript : MonoBehaviour {
         public GameObject No;
     }
     public QuitMenu quitMenu;
+
+    [System.Serializable]
+    public class DevMenu {
+        public GameObject DevCanvas;
+        public GameObject Sequence1;
+        public GameObject Sequence2;
+        public GameObject Sequence3;
+        public GameObject Sequence4;
+    }
+    public DevMenu devMenu;
     
     [System.Serializable]
     public class LoadingScreen {
@@ -116,7 +126,6 @@ public class NewMenuScript : MonoBehaviour {
         quitMenu.No.SetActive(false);
         #endregion
         #region Loading Screen
-        //Loading Screen//*****************
         loadingScreen.LoadingCanvas.SetActive(false);
 
         loadingScreen.PressToContinue.SetActive(false);
@@ -124,6 +133,13 @@ public class NewMenuScript : MonoBehaviour {
 
         loadingScreen.LoadingText.SetActive(false);
         loadingScreen.DoneText.SetActive(false);
+        #endregion
+        #region Dev Menu
+        devMenu.DevCanvas.SetActive(false);
+        devMenu.Sequence1.SetActive(false);
+        devMenu.Sequence2.SetActive(false);
+        devMenu.Sequence3.SetActive(false);
+        devMenu.Sequence4.SetActive(false);
         #endregion
     }
 
@@ -325,20 +341,24 @@ public class NewMenuScript : MonoBehaviour {
         Application.Quit();
     }
     public void loadApplication() {
-        SceneManager.LoadScene("Interior_Small");
+        SceneManager.LoadScene("Interior01");
     }
-    #endregion
-
-    #region State Tags
-
-    //Screens:
-    //Menu Screen; Start Screen; Quit Screen; Credits Screen; Loading Screen; Settings Screen;
-
-    //Mouseovers:
-    //QuitMenu: MO No; QuitMenu: MO Yes;
-    //SettingsMenu: MO Back; SettingsMenu: MO Video; SettingsMenu: MO Audio; SettingsMenu: MO Game;
-    //MainMenu: MO Quit; MainMenu: MO Credits; MainMenu: MO Settings; MainMenu: MO NewGame;
-
+    public void SelectDevMenu() {
+        mainMenu.MainCanvas.SetActive(false);
+        devMenu.DevCanvas.SetActive(true);
+        devMenu.Sequence1.SetActive(true);
+        devMenu.Sequence2.SetActive(true);
+        devMenu.Sequence3.SetActive(true);
+    }
+    public void SelectSequence1() {
+        SceneManager.LoadScene("Interior01");
+    }
+    public void SelectSequence2() {
+        SceneManager.LoadScene("Mock_Sequence2");
+    }
+    public void SelectSequence3() {
+        SceneManager.LoadScene("Exterior02");
+    }
     #endregion
 
     

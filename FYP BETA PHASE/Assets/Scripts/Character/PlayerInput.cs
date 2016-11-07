@@ -10,7 +10,6 @@ public class PlayerInput : MonoBehaviour
 	private WeaponHandler wpnHandler;
 	private Transform mainCamTrans;
 	private TPCamera tpCamera;
-	private CoverSystem coverSystem;
 
 	[Header("-Inputs-"), Range(-1f, 1f)]
 	public float _horizontal;
@@ -66,7 +65,6 @@ public class PlayerInput : MonoBehaviour
 		trans = GetComponent<Transform>();
 		charMove = GetComponent<CharacterMovement>();
 		wpnHandler = GetComponent<WeaponHandler>();
-		coverSystem = GetComponent<CoverSystem>();
 	}
 
 	void Start() 
@@ -80,11 +78,10 @@ public class PlayerInput : MonoBehaviour
 
 	void Update() 
 	{
-		HandleInput();
+		HandleInputs();
 		CharacterLogic();
 		CameraAimLogic();
 		WeaponLogic();
-		CoverLogic();
 	}
 
 	void LateUpdate()
@@ -96,7 +93,7 @@ public class PlayerInput : MonoBehaviour
 		}
 	}
 
-	private void HandleInput()
+	private void HandleInputs() 
 	{
 		_horizontal = Input.GetAxis(inputStrings.horizontalAxis);
 		_vertical = Input.GetAxis(inputStrings.verticalAxis);
@@ -109,7 +106,7 @@ public class PlayerInput : MonoBehaviour
 		_leftShift = Input.GetButton(inputStrings.toggleRunButton);
 	}
 
-	private void CharacterLogic() // Handles character logic
+	private void CharacterLogic() // Handles character logic 
 	{
 		// Default walk movement, with clamping when walking backwards
 		float v = (_leftShift) ? Mathf.Clamp(_vertical, -.5f, 1f) : Mathf.Clamp(_vertical, -.5f, .5f);
@@ -128,9 +125,13 @@ public class PlayerInput : MonoBehaviour
 		// Jump
 		if(_spacebar)
 			charMove.DoJump();
+
+		// Crouch
+		if(_leftCtrl)
+			charMove.DoCrouch();
 	}
 
-	private void CameraAimLogic() // Handles camera logic when aiming
+	private void CameraAimLogic() // Handles camera logic when aiming 
 	{
 		// Auto turn when aiming
 		aimSettings.requireMovementToTurn = !_aiming;
@@ -145,11 +146,8 @@ public class PlayerInput : MonoBehaviour
 			CharacterLook();
 	}
 
-	private void CharacterLook() // Make the character look at the same direction as the camera
+	private void CharacterLook() // Make the character look at the same direction as the camera 
 	{
-		if(coverSystem.inCover)
-			return;
-
 		Transform pivot = mainCamTrans.parent.parent;
 		Vector3 pivotPos = pivot.position;
 		Vector3 lookTarget = pivotPos + (pivot.forward * aimSettings.lookDistance);
@@ -163,7 +161,7 @@ public class PlayerInput : MonoBehaviour
 		trans.rotation = newRot;
 	}
 
-	private void WeaponLogic() // Handles all weapon logic + inputs
+	private void WeaponLogic() // Handles all weapon logic + inputs 
 	{
 		if(!wpnHandler)
 			return;
@@ -230,7 +228,7 @@ public class PlayerInput : MonoBehaviour
 		#endregion
 	}
 
-	private void RotateSpine() // Helps the character to look at target, offsetting by camera
+	private void RotateSpine() // Helps the character to look at target, offsetting by camera 
 	{
 		if(!aimSettings.spine)
 			return;
@@ -253,25 +251,5 @@ public class PlayerInput : MonoBehaviour
 		}
 
 		aimSettings.spine.Rotate(eulerAngleOffset);
-	}
-
-	private void CoverLogic()
-	{
-		if(!coverSystem)
-			return;
-
-		if(!coverSystem.inCover)
-		{
-			if(_leftCtrl)
-				coverSystem.CheckNearestWall();
-		}
-		else
-		{
-			if(_vertical > 0.5f || _vertical < -0.5f)
-				coverSystem.inCover = false;
-
-			if(_leftCtrl)
-				coverSystem.inCover = false;
-		}
 	}
 }

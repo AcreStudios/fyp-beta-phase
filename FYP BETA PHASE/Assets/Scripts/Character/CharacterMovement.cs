@@ -76,10 +76,10 @@ public class CharacterMovement : MonoBehaviour
 			_jumping = false;
 	}
 
-	public void AnimateCharacter(float forward, float strafe) // Animates the character with root motion
+	public void AnimateCharacter(float forward, float strafe) // Animates the character with root motion 
 	{
-		this._forward = forward;
-		this._strafe = strafe;
+		_forward = forward;
+		_strafe = strafe;
 
 		animator.SetFloat(animatorStrings.verticalFloat, forward);
 		animator.SetFloat(animatorStrings.horizontalFloat, strafe);
@@ -88,7 +88,12 @@ public class CharacterMovement : MonoBehaviour
 		animator.SetBool(animatorStrings.coverBool, _inCover);
 	}
 
-	private bool CheckGrounded() // Spherecasting downwards to check ground
+	public void Move(Vector3 speed) // Similar to rigidBody.Addforce 
+	{
+		characterController.SimpleMove(speed);
+	}
+
+	private bool CheckGrounded() // Spherecasting downwards to check ground 
 	{
 		RaycastHit hit;
 		Vector3 start = trans.position + trans.up;
@@ -100,7 +105,7 @@ public class CharacterMovement : MonoBehaviour
 			return false;
 	}
 
-	public void DoJump()
+	public void DoJump() 
 	{
 		if(_jumping)
 			return;
@@ -112,13 +117,21 @@ public class CharacterMovement : MonoBehaviour
 		}
 	}
 
-	private IEnumerator ResetJump() // Stops jumping
+	public void DoCrouch()
+	{
+		if(_inCover)
+			return;
+
+		GetComponent<CoverSystem>().ManualGetIntoCover();
+	}
+
+	private IEnumerator ResetJump() // Stops jumping 
 	{
 		yield return new WaitForSeconds(jumpSettings.airTime);
 		_jumping = false;
 	}
 
-	private void ApplyGravity() // Applies gravity constantly and don't when jumping
+	private void ApplyGravity() // Applies gravity constantly and don't when jumping 
 	{
 		if(!CheckGrounded())
 		{
@@ -145,7 +158,7 @@ public class CharacterMovement : MonoBehaviour
 		characterController.Move(gravityVector);
 	}
 
-	private void AirControl() // Allow movement while in the air
+	private void AirControl() // Allow movement while in the air 
 	{
 		_airControlVector.x = _strafe;
 		_airControlVector.z = _forward;
@@ -155,7 +168,7 @@ public class CharacterMovement : MonoBehaviour
 		characterController.Move(_airControlVector * Time.deltaTime);
 	}
 
-	private void SetupComponents() // Initialise the components values in the editor
+	private void SetupComponents() // Initialise the components values in the editor 
 	{
 		#region Animator
 
@@ -177,7 +190,7 @@ public class CharacterMovement : MonoBehaviour
 		#endregion
 	}
 
-	private void SetupAnimator() // Setup the animator avatar with the model avatar
+	private void SetupAnimator() // Setup the animator avatar with the model avatar 
 	{
 		if(!animator.runtimeAnimatorController)
 			return;
@@ -189,13 +202,15 @@ public class CharacterMovement : MonoBehaviour
 		Destroy(modelAnim);
 	}
 
-	public void GetInCover()
+	public void GetInCover() 
 	{
 		_inCover = true;
+		animator.applyRootMotion = false;
 	}
 
-	public void GetOutCover()
+	public void GetOutCover() 
 	{
 		_inCover = false;
+		animator.applyRootMotion = true;
 	}
 }

@@ -44,21 +44,17 @@ public class EventManager : MonoBehaviour {
     }
 
     public Events[] gameEventFlow;
-    //public AlternateEvents[] alternateEventListeners;
     public Text missionUI;
-    //public bool ableToEdit;
 
-    int currentGameEvent;
+    public int currentGameEvent;
     int prevCount;
     int playerIsInRange;
 
     bool eventTriggered;
     float timer;
 
-    public KeyCode test;
-
     void Start() {
-        currentGameEvent = 0;
+        //currentGameEvent = LevelData.currentEvent;
         playerIsInRange = 0;
         eventTriggered = false;
     }
@@ -128,6 +124,7 @@ public class EventManager : MonoBehaviour {
                 eventTriggered = false;
                 ActivateEvent(gameEventFlow[currentGameEvent].results);
                 currentGameEvent++;
+                //LevelData.currentEvent = currentGameEvent;
             }
         } else {
             if (gameEventFlow.Length > 0)
@@ -152,8 +149,10 @@ public class EventManager : MonoBehaviour {
         foreach (EventResults results in endResult.scriptedEventsToTrigger)
             results.ScriptedResult();
 
-        if (endResult.levelNameToLoad != "")
+        if (endResult.levelNameToLoad != "") {
             SceneManager.LoadScene(endResult.levelNameToLoad);
+            //LevelData.currentEvent = 0;
+        }
     }
 }
 
