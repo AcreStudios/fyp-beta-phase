@@ -10,7 +10,7 @@ public class ColliderReaderModule : MonoBehaviour {
         public List<Vector3> outerPoints;
     }
 
-    public List<BoundaryPoints> boundPoints;    
+    public List<BoundaryPoints> boundPoints;
     public Vector3[] multiplier;
     public float aiRadius;
     public Collider testColl;
@@ -99,7 +99,7 @@ public class ColliderReaderModule : MonoBehaviour {
         }
 
         tempBound.centrePoint = compiledLocation / collided.Count;
-        Debug.DrawRay(tempBound.centrePoint, new Vector3(0, 10, 0), Color.green,Mathf.Infinity);
+        Debug.DrawRay(tempBound.centrePoint, new Vector3(0, 10, 0), Color.green, Mathf.Infinity);
         boundPoints[boundPoints.Count - 1] = tempBound;
     }
 
