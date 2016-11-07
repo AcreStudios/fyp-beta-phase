@@ -10,12 +10,13 @@ public class ColliderReaderModule : MonoBehaviour {
         public List<Vector3> outerPoints;
     }
 
-    public BoundaryPoints boundPoints;
-    public Collider testColl;
+    public List<BoundaryPoints> boundPoints;    
     public Vector3[] multiplier;
     public float aiRadius;
+    public Collider testColl;
 
     void Start() {
+        boundPoints = new List<BoundaryPoints>();
         SelectCollliders();
     }
 
@@ -27,8 +28,8 @@ public class ColliderReaderModule : MonoBehaviour {
                 Collider tempColl = obstacle.GetComponent<Collider>();
                 for (var i = 0; i < multiplier.Length; i++) {
                     Collider[] check = Physics.OverlapBox(tempColl.bounds.center + new Vector3(tempColl.bounds.extents.x * multiplier[i].x, tempColl.bounds.extents.y * multiplier[i].y, tempColl.bounds.extents.z * multiplier[i].z), new Vector3(aiRadius, aiRadius, aiRadius));
-                    Debug.Log(check.Length);
                     if (check.Length <= 1) {
+                        boundPoints.Add(new BoundaryPoints());
                         ReadColliders(tempColl, i);
                         break;
                     }
@@ -49,8 +50,9 @@ public class ColliderReaderModule : MonoBehaviour {
         int infiniteLoopCheck = 0;
 
         List<GameObject> collided = new List<GameObject>();
+        BoundaryPoints tempBound = new BoundaryPoints();
+        tempBound.outerPoints = new List<Vector3>();
 
-        boundPoints.outerPoints = new List<Vector3>();
         modifiedExtents = new Vector3(targetColl.bounds.extents.x * multiplier[orientIndex].x, targetColl.bounds.extents.y * multiplier[orientIndex].y, targetColl.bounds.extents.z * multiplier[orientIndex].z);
 
         prevVector = targetColl.bounds.center + modifiedExtents;
@@ -81,7 +83,7 @@ public class ColliderReaderModule : MonoBehaviour {
             }
 
             Debug.DrawLine(prevVector, nextVector, Color.red, Mathf.Infinity);
-            boundPoints.outerPoints.Add(nextVector);
+            tempBound.outerPoints.Add(nextVector);
             prevVector = nextVector;
 
             if (infiniteLoopCheck > 4) {
@@ -90,9 +92,15 @@ public class ColliderReaderModule : MonoBehaviour {
             }
         } while (targetColl != originalColl || orientIndex != 0);
 
+        Vector3 compiledLocation = Vector3.zero;
         for (var i = 0; i < collided.Count; i++) {
+            compiledLocation += collided[i].transform.position;
             collided[i].SetActive(false);
         }
+
+        tempBound.centrePoint = compiledLocation / collided.Count;
+        Debug.DrawRay(tempBound.centrePoint, new Vector3(0, 10, 0), Color.green,Mathf.Infinity);
+        boundPoints[boundPoints.Count - 1] = tempBound;
     }
 
     int AddIndex(int currentValue, int value, int arrayCount) {

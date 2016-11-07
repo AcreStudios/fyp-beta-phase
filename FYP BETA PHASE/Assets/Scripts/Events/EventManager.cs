@@ -44,9 +44,7 @@ public class EventManager : MonoBehaviour {
     }
 
     public Events[] gameEventFlow;
-    //public AlternateEvents[] alternateEventListeners;
     public Text missionUI;
-    //public bool ableToEdit;
 
     int currentGameEvent;
     int prevCount;
@@ -54,8 +52,6 @@ public class EventManager : MonoBehaviour {
 
     bool eventTriggered;
     float timer;
-
-    public KeyCode test;
 
     void Start() {
         currentGameEvent = 0;
