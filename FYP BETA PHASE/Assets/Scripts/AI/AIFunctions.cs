@@ -157,17 +157,21 @@ public class AIFunctions : MonoBehaviour {
 
     public Vector3 ObstacleHunting() {
 
-        if (tempObs)
-            return ShortObstacleException(tempObs);
-        else
-            tempObs = AIManager.instance.AssignCover(gameObject, range);
+        //if (tempObs)
+            //return ShortObstacleException(tempObs);
+        //else
+            //tempObs = AIManager.instance.AssignCover(gameObject, range);
+        //AIManager.instance.AssignCover
+        Vector3 temp = transform.position;
+        temp = AIManager.instance.AssignHidingPoint(gameObject, range); ;
 
-        Vector3 temp = Vector3.zero;
-
-        temp = target.position - transform.position;
-        temp = Vector3.Normalize(temp);
-        DisplaceAILocation(temp);
-        return destination; 
+        if (temp == transform.position) {
+            temp = target.position - transform.position;
+            temp = Vector3.Normalize(temp);
+            DisplaceAILocation(temp);
+            return destination;
+        }
+        return temp;
     }
 
     Vector3 ShortObstacleException(Collider obsColl) {

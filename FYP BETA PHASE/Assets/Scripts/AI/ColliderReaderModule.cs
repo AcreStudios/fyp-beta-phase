@@ -13,6 +13,11 @@ public class ColliderReaderModule : MonoBehaviour {
         public Vector3 centrePoint;
         //public List<Vector3> outerPoints;
         public GameObject aiCover;
+
+        public BoundaryPoints(Vector3 point, GameObject ai) {
+            centrePoint = point;
+            aiCover = ai;
+        }
     }
 
     public List<BoundaryPoints> boundPoints;
@@ -21,8 +26,9 @@ public class ColliderReaderModule : MonoBehaviour {
     public Collider testColl;
 
     void Start() {
-        boundPoints = new List<BoundaryPoints>();
-        SelectCollliders();
+        //CreateObstacleData();
+        //boundPoints = new List<BoundaryPoints>();
+        //SelectCollliders();
     }
 
     void Update() {
@@ -124,16 +130,53 @@ public class ColliderReaderModule : MonoBehaviour {
     }
     public void CreateObstacleData() {
         Debug.Log("Working");
+        boundPoints = new List<BoundaryPoints>();
+
+        GameObject[] obstacles = GameObject.FindGameObjectsWithTag("Obstacles");
+
+        foreach (GameObject obstacle in obstacles) {
+            if (obstacle.activeInHierarchy) {
+                Collider tempColl = obstacle.GetComponent<Collider>();
+                for (var i = 0; i < multiplier.Length; i++) {
+                    Vector3 tempVector = tempColl.bounds.center + new Vector3(tempColl.bounds.extents.x * multiplier[i].x, tempColl.bounds.extents.y * multiplier[i].y, tempColl.bounds.extents.z * multiplier[i].z);
+                    //Debug.DrawRay(tempVector, new )
+                    Collider[] check = Physics.OverlapBox(tempVector, new Vector3(aiRadius, aiRadius, aiRadius));
+                    Debug.Log(check.Length);
+                    if (check.Length <= 1) {
+                        boundPoints.Add(new BoundaryPoints(tempVector,null));
+                    }
+                }
+            }
+        }
     }
 }
 
 [CustomEditor(typeof(ColliderReaderModule))]
 public class ColliderReaderModuleEditor: Editor {
+
+    ColliderReaderModule t;
+
+    void OnSceneGUI() {
+        if (t != null)
+            if (t.boundPoints.Count > 0) {
+                Event e = Event.current;
+
+                Quaternion rotation = Quaternion.identity;
+                rotation.eulerAngles = new Vector3(90, 0, 0);
+                Handles.color = Color.red;
+
+                for (var i = 0; i < t.boundPoints.Count; i++) {
+
+                    Handles.CircleCap(0, t.boundPoints[i].centrePoint, rotation, 0.1f);
+
+                }
+            }
+    }
     public override void OnInspectorGUI() {
 
         DrawDefaultInspector();
 
-        ColliderReaderModule t = target as ColliderReaderModule;
+        t = target as ColliderReaderModule;
         if (t != null)
             if (GUILayout.Button("Bake obstacle data"))
                 t.CreateObstacleData();
