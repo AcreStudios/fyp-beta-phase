@@ -82,25 +82,24 @@ public class CoverSystem : MonoBehaviour
 
 	void Update() 
 	{
-		if(_inCover)
-		{
-			// Debug helper
-			if(debugCover)
-			{
-				_debugCube.transform.position = _helperTrans.position;
-				_debugCube.transform.rotation = _helperTrans.rotation;
-			}
+        if (_inCover) {
+            // Debug helper
+            if (debugCover) {
+                _debugCube.transform.position = _helperTrans.position;
+                _debugCube.transform.rotation = _helperTrans.rotation;
+            }
 
-			if(!_initCover)
-			{
-				DisableController();
-				GetIntoCover();
-			}
-			else
-				CoverMovement();
-		}
-		else if(autoSearchCover)
-			RaycastForCover();
+            if (!_initCover) {
+                DisableController();
+                GetIntoCover();
+            }
+            else
+                CoverMovement();
+        }
+        else if (autoSearchCover)
+            RaycastForCover();
+        else
+            _canManualCover = true;
 	}
 
 	public void RaycastForCover() // Raycast to check if in range for cover 
