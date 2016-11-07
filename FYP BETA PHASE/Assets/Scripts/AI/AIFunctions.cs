@@ -131,7 +131,7 @@ public class AIFunctions : MonoBehaviour {
     public void DisplaceAILocation(Vector3 normalizedEnemyVector) {
 
         int ai = 0;
-        Collider[] inCollision = Physics.OverlapCapsule(target.position - (normalizedEnemyVector * (range / 2)), target.position - (normalizedEnemyVector * (range / 2)), 1);
+        Collider[] inCollision = Physics.OverlapCapsule(target.position - (normalizedEnemyVector * range), target.position - (normalizedEnemyVector * range), 1);
 
         foreach (Collider collision in inCollision)
             if (collision != destinationMarker)
@@ -143,7 +143,7 @@ public class AIFunctions : MonoBehaviour {
             normalizedEnemyVector.x += 0.1f;
             normalizedEnemyVector.z += 0.1f;
 
-            inCollision = Physics.OverlapCapsule(target.position - (normalizedEnemyVector * (range / 2)), target.position - (normalizedEnemyVector * (range / 2)), 1);
+            inCollision = Physics.OverlapCapsule(target.position - (normalizedEnemyVector * range), target.position - (normalizedEnemyVector * range), 1);
 
             foreach (Collider collision in inCollision)
                 if (collision != destinationMarker)
@@ -151,8 +151,8 @@ public class AIFunctions : MonoBehaviour {
                         ai++;
         }
 
-        destination = target.position - (normalizedEnemyVector * (range / 2));
-        destinationMarker.transform.position = target.position - (normalizedEnemyVector * (range / 2));
+        destination = target.position - (normalizedEnemyVector * range);
+        destinationMarker.transform.position = target.position - (normalizedEnemyVector * range);
     }
 
     public Vector3 ObstacleHunting() {
@@ -167,7 +167,7 @@ public class AIFunctions : MonoBehaviour {
         temp = target.position - transform.position;
         temp = Vector3.Normalize(temp);
         DisplaceAILocation(temp);
-        return destination; //Scales this to hp?
+        return destination; 
     }
 
     Vector3 ShortObstacleException(Collider obsColl) {

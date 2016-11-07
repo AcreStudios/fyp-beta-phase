@@ -2,12 +2,16 @@
 using System.Collections;
 using System.Collections.Generic;
 
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
+
 public class ColliderReaderModule : MonoBehaviour {
 
     [System.Serializable]
     public struct BoundaryPoints {
         public Vector3 centrePoint;
-        public List<Vector3> outerPoints;
+        //public List<Vector3> outerPoints;
         public GameObject aiCover;
     }
 
@@ -22,10 +26,6 @@ public class ColliderReaderModule : MonoBehaviour {
     }
 
     void Update() {
-        foreach (BoundaryPoints boundPoint in boundPoints) {
-            Debug.DrawLine(transform.position, boundPoint.centrePoint, Color.black);
-        }
-
     }
 
     void SelectCollliders() {
@@ -38,28 +38,27 @@ public class ColliderReaderModule : MonoBehaviour {
                     Collider[] check = Physics.OverlapBox(tempColl.bounds.center + new Vector3(tempColl.bounds.extents.x * multiplier[i].x, tempColl.bounds.extents.y * multiplier[i].y, tempColl.bounds.extents.z * multiplier[i].z), new Vector3(aiRadius, aiRadius, aiRadius));
                     if (check.Length <= 1) {
                         boundPoints.Add(new BoundaryPoints());
-                        ReadColliders(tempColl, i);
                         break;
                     }
                 }
             }
         }
 
-        foreach (GameObject obstacle in obstacles)
-            obstacle.SetActive(true);
+        //foreach (GameObject obstacle in obstacles)
+            //obstacle.SetActive(true);
     }
 
-    void ReadColliders(Collider targetColl, int orientIndex) {
+    /*void ReadColliders(Collider targetColl, int orientIndex) {
         Vector3 prevVector = Vector3.zero;
         Vector3 nextVector = Vector3.zero;
         Vector3 modifiedExtents = Vector3.zero;
         RaycastHit hit;
         Collider originalColl;
         int infiniteLoopCheck = 0;
-
         List<GameObject> collided = new List<GameObject>();
         BoundaryPoints tempBound = new BoundaryPoints();
-        tempBound.outerPoints = new List<Vector3>();
+        int limit = 0;
+        //tempBound.outerPoints = new List<Vector3>();
 
         modifiedExtents = new Vector3(targetColl.bounds.extents.x * multiplier[orientIndex].x, targetColl.bounds.extents.y * multiplier[orientIndex].y, targetColl.bounds.extents.z * multiplier[orientIndex].z);
 
@@ -69,8 +68,10 @@ public class ColliderReaderModule : MonoBehaviour {
         originalColl = targetColl;
         collided.Add(targetColl.gameObject);
         targetColl.gameObject.layer = 2;
+        Debug.Log(originalColl);
 
         do {
+            limit++;
             orientIndex = AddIndex(orientIndex, 1, multiplier.Length);
             infiniteLoopCheck++;
 
@@ -91,13 +92,15 @@ public class ColliderReaderModule : MonoBehaviour {
             }
 
             Debug.DrawLine(prevVector, nextVector, Color.red, Mathf.Infinity);
-            tempBound.outerPoints.Add(nextVector);
+            //tempBound.outerPoints.Add(nextVector);
+            tempBound.centrePoint = nextVector;
             prevVector = nextVector;
 
-            if (infiniteLoopCheck > 4) {
-                Debug.LogError("Collider causing infinite loop! Please contact Gab and inform him about this gameobject/collider: " + targetColl.name);
+            if (infiniteLoopCheck > 4 || limit >99) {
+                Debug.LogError("Collider Reader not stable: " + targetColl.name);
                 break;
             }
+
         } while (targetColl != originalColl || orientIndex != 0);
 
         Vector3 compiledLocation = Vector3.zero;
@@ -106,10 +109,10 @@ public class ColliderReaderModule : MonoBehaviour {
             collided[i].SetActive(false);
         }
 
-        tempBound.centrePoint = compiledLocation / collided.Count;
-        Debug.DrawRay(tempBound.centrePoint, new Vector3(0, 10, 0), Color.green, Mathf.Infinity);
+        //tempBound.centrePoint = compiledLocation / collided.Count;
+        //Debug.DrawRay(tempBound.centrePoint, new Vector3(0, 10, 0), Color.green, Mathf.Infinity);
         boundPoints[boundPoints.Count - 1] = tempBound;
-    }
+    }*/
 
     int AddIndex(int currentValue, int value, int arrayCount) {
         if (currentValue + value < 0)
@@ -118,5 +121,21 @@ public class ColliderReaderModule : MonoBehaviour {
             return 0;
 
         return currentValue + value;
+    }
+    public void CreateObstacleData() {
+        Debug.Log("Working");
+    }
+}
+
+[CustomEditor(typeof(ColliderReaderModule))]
+public class ColliderReaderModuleEditor: Editor {
+    public override void OnInspectorGUI() {
+
+        DrawDefaultInspector();
+
+        ColliderReaderModule t = target as ColliderReaderModule;
+        if (t != null)
+            if (GUILayout.Button("Bake obstacle data"))
+                t.CreateObstacleData();
     }
 }
