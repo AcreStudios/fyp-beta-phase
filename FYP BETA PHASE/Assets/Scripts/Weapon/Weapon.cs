@@ -139,11 +139,13 @@ public class Weapon : MonoBehaviour
 			Debug.DrawRay(start, dir, Color.green);
 			if(Physics.Raycast(start, dir, out hit, weaponSettings.fireRange, weaponSettings.bulletLayer))
 			{
-				Health hp = hit.transform.root.GetComponent<Health>();
+				Health hp = hit.transform.GetComponent<Health>();
 				if(hp && hp.isActiveAndEnabled)
 					hp.ReceiveDamage(weaponSettings.bulletDamage);
+				else
+					Debug.Log(hit.transform.name);
 
-				AIFunctions ai = hit.transform.root.GetComponent<AIFunctions>();
+				AIFunctions ai = hit.transform.GetComponent<AIFunctions>();
 				if(ai && ai.isActiveAndEnabled)
 					ai.DamageRecieved(0);
 
