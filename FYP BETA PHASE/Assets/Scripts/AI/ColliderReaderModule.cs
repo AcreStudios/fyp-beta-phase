@@ -23,15 +23,18 @@ public class ColliderReaderModule : MonoBehaviour {
     public List<BoundaryPoints> boundPoints;
     public Vector3[] multiplier;
     public float aiRadius;
+    public static ColliderReaderModule instance;
     //public Collider testColl;
 
     void Start() {
+        instance = this;
         //CreateObstacleData();
         //boundPoints = new List<BoundaryPoints>();
         //SelectCollliders();
     }
 
     void Update() {
+        
     }
 
     void SelectCollliders() {
@@ -130,7 +133,6 @@ public class ColliderReaderModule : MonoBehaviour {
         return currentValue + value;
     }
     public void CreateObstacleData() {
-        Debug.Log("Working");
         boundPoints = new List<BoundaryPoints>();
 
         GameObject[] obstacles = GameObject.FindGameObjectsWithTag("Obstacles");
@@ -138,15 +140,16 @@ public class ColliderReaderModule : MonoBehaviour {
         foreach (GameObject obstacle in obstacles) {
             if (obstacle.activeInHierarchy) {
                 Collider tempColl = obstacle.GetComponent<Collider>();
-                for (var i = 0; i < multiplier.Length; i++) {
-                    Vector3 tempVector = tempColl.bounds.center + new Vector3(tempColl.bounds.extents.x * multiplier[i].x, tempColl.bounds.extents.y * multiplier[i].y, tempColl.bounds.extents.z * multiplier[i].z);
-                    //Debug.DrawRay(tempVector, new )
-                    Collider[] check = Physics.OverlapBox(tempVector, new Vector3(aiRadius, aiRadius, aiRadius));
-                    Debug.Log(check.Length);
-                    if (check.Length <= 1) {
-                        boundPoints.Add(new BoundaryPoints(tempVector, null));
+                if (tempColl)
+                    for (var i = 0; i < multiplier.Length; i++) {
+                        Vector3 tempVector = tempColl.bounds.center + new Vector3(tempColl.bounds.extents.x * multiplier[i].x, tempColl.bounds.extents.y * multiplier[i].y, tempColl.bounds.extents.z * multiplier[i].z);
+                        //Debug.DrawRay(tempVector, new )
+                        Collider[] check = Physics.OverlapBox(tempVector, new Vector3(aiRadius, aiRadius, aiRadius));
+                        Debug.Log(check.Length);
+                        if (check.Length <= 1) {
+                            boundPoints.Add(new BoundaryPoints(tempVector, null));
+                        }
                     }
-                }
             }
         }
     }

@@ -164,9 +164,10 @@ public class AIFunctions : MonoBehaviour {
             //tempObs = AIManager.instance.AssignCover(gameObject, range);
         //AIManager.instance.AssignCover
         Vector3 temp = transform.position;
+        Vector3 backUp = temp;
         temp = AIManager.instance.AssignHidingPoint(gameObject, range); ;
 
-        if (temp == transform.position) {
+        if (temp == backUp) {
             temp = target.position - transform.position;
             temp = Vector3.Normalize(temp);
             DisplaceAILocation(temp);
