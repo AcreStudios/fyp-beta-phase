@@ -41,7 +41,7 @@ public class ColliderReaderModule : MonoBehaviour {
             if (obstacle.activeInHierarchy) {
                 Collider tempColl = obstacle.GetComponent<Collider>();
                 for (var i = 0; i < multiplier.Length; i++) {
-    
+
                     Collider[] check = Physics.OverlapBox(tempColl.bounds.center + new Vector3(tempColl.bounds.extents.x * multiplier[i].x, tempColl.bounds.extents.y * multiplier[i].y, tempColl.bounds.extents.z * multiplier[i].z), new Vector3(aiRadius, aiRadius, aiRadius));
                     if (check.Length <= 1) {
                         boundPoints.Add(new BoundaryPoints());
@@ -52,7 +52,7 @@ public class ColliderReaderModule : MonoBehaviour {
         }
 
         //foreach (GameObject obstacle in obstacles)
-            //obstacle.SetActive(true);
+        //obstacle.SetActive(true);
     }
 
     /*void ReadColliders(Collider targetColl, int orientIndex) {
@@ -144,7 +144,7 @@ public class ColliderReaderModule : MonoBehaviour {
                     Collider[] check = Physics.OverlapBox(tempVector, new Vector3(aiRadius, aiRadius, aiRadius));
                     Debug.Log(check.Length);
                     if (check.Length <= 1) {
-                        boundPoints.Add(new BoundaryPoints(tempVector,null));
+                        boundPoints.Add(new BoundaryPoints(tempVector, null));
                     }
                 }
             }
@@ -153,7 +153,7 @@ public class ColliderReaderModule : MonoBehaviour {
 }
 
 [CustomEditor(typeof(ColliderReaderModule))]
-public class ColliderReaderModuleEditor: Editor {
+public class ColliderReaderModuleEditor : Editor {
 
     ColliderReaderModule t;
 
