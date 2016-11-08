@@ -1,0 +1,152 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1000012069540368}
+  m_IsPrefabParent: 1
+--- !u!1 &1000012069540368
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 4000013350405188}
+  - 114: {fileID: 114000010842273168}
+  - 114: {fileID: 114000011153844990}
+  m_Layer: 0
+  m_Name: AIDirector
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4000013350405188
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012069540368}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+--- !u!114 &114000010842273168
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012069540368}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eae885dc25e864b4ba808dc796187320, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  readerInst: {fileID: 114000011153844990}
+  player: {fileID: 0}
+--- !u!114 &114000011153844990
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012069540368}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4d9bd42da22c704bbe635129a2037ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boundPoints:
+  - centrePoint: {x: 4.05867, y: 1.0856202, z: 17.18579}
+    aiCover: {fileID: 0}
+  - centrePoint: {x: 1.7841573, y: 1.0856202, z: 17.18579}
+    aiCover: {fileID: 0}
+  - centrePoint: {x: 5.4874883, y: 1.0856202, z: 21.944277}
+    aiCover: {fileID: 0}
+  - centrePoint: {x: 5.4874883, y: 1.0856202, z: 19.611422}
+    aiCover: {fileID: 0}
+  - centrePoint: {x: 8.777829, y: 1.0856202, z: 14.360338}
+    aiCover: {fileID: 0}
+  - centrePoint: {x: 8.176917, y: 1.0856202, z: 16.560093}
+    aiCover: {fileID: 0}
+  - centrePoint: {x: 5.808446, y: 1.0856202, z: 16.560093}
+    aiCover: {fileID: 0}
+  - centrePoint: {x: 5.808446, y: 1.0856202, z: 14.32177}
+    aiCover: {fileID: 0}
+  - centrePoint: {x: 2.4805126, y: 1.0856202, z: 18.919724}
+    aiCover: {fileID: 0}
+  - centrePoint: {x: 4.764387, y: 1.0856202, z: 18.919724}
+    aiCover: {fileID: 0}
+  - centrePoint: {x: 0.9065132, y: 1.0856202, z: 22.900578}
+    aiCover: {fileID: 0}
+  - centrePoint: {x: 0.9065132, y: 1.0856202, z: 20.567722}
+    aiCover: {fileID: 0}
+  - centrePoint: {x: 6.0988083, y: 1.0856202, z: 13.343447}
+    aiCover: {fileID: 0}
+  - centrePoint: {x: 6.0988083, y: 1.0856202, z: 10.8981}
+    aiCover: {fileID: 0}
+  - centrePoint: {x: 3.913487, y: 1.0856202, z: 23.592278}
+    aiCover: {fileID: 0}
+  - centrePoint: {x: 1.6296115, y: 1.0856202, z: 23.592278}
+    aiCover: {fileID: 0}
+  - centrePoint: {x: 5.3496914, y: 1.0856202, z: 26.726831}
+    aiCover: {fileID: 0}
+  - centrePoint: {x: 5.3496914, y: 1.0856202, z: 24.765745}
+    aiCover: {fileID: 0}
+  - centrePoint: {x: 0.8389578, y: 1.0856202, z: 16.472672}
+    aiCover: {fileID: 0}
+  - centrePoint: {x: 0.8389578, y: 1.0856202, z: 14.023403}
+    aiCover: {fileID: 0}
+  - centrePoint: {x: 10.648556, y: 1.0856202, z: 22.580145}
+    aiCover: {fileID: 0}
+  - centrePoint: {x: 8.960609, y: 1.0856202, z: 23.063326}
+    aiCover: {fileID: 0}
+  - centrePoint: {x: 7.2976246, y: 1.0856202, z: 23.063326}
+    aiCover: {fileID: 0}
+  - centrePoint: {x: 7.2976246, y: 1.0856202, z: 20.585554}
+    aiCover: {fileID: 0}
+  - centrePoint: {x: 10.615196, y: 1.0856202, z: 18.2618}
+    aiCover: {fileID: 0}
+  - centrePoint: {x: 12.9142475, y: 1.0856202, z: 18.2618}
+    aiCover: {fileID: 0}
+  - centrePoint: {x: 4.8425164, y: 1.0856202, z: 15.403238}
+    aiCover: {fileID: 0}
+  - centrePoint: {x: 2.3579712, y: 1.0856202, z: 13.547945}
+    aiCover: {fileID: 0}
+  - centrePoint: {x: 4.8425164, y: 1.0856202, z: 13.547945}
+    aiCover: {fileID: 0}
+  - centrePoint: {x: 8.194934, y: 1.0856202, z: 18.557598}
+    aiCover: {fileID: 0}
+  - centrePoint: {x: 14.598957, y: 1.0856202, z: 23.053402}
+    aiCover: {fileID: 0}
+  - centrePoint: {x: 6.686775, y: 1.0856202, z: 24.195646}
+    aiCover: {fileID: 0}
+  - centrePoint: {x: 9.137391, y: 1.0856202, z: 24.195646}
+    aiCover: {fileID: 0}
+  - centrePoint: {x: 10.111944, y: 1.0856202, z: 26.848566}
+    aiCover: {fileID: 0}
+  - centrePoint: {x: 18.602518, y: 1.0856202, z: 24.433237}
+    aiCover: {fileID: 0}
+  - centrePoint: {x: 16.117971, y: 1.0856202, z: 22.577944}
+    aiCover: {fileID: 0}
+  - centrePoint: {x: 18.602518, y: 1.0856202, z: 22.577944}
+    aiCover: {fileID: 0}
+  - centrePoint: {x: 17.81867, y: 1.0856202, z: 26.215788}
+    aiCover: {fileID: 0}
+  - centrePoint: {x: 15.544157, y: 1.0856202, z: 26.215788}
+    aiCover: {fileID: 0}
+  multiplier:
+  - {x: 1, y: 1, z: 1}
+  - {x: -1, y: 1, z: 1}
+  - {x: -1, y: 1, z: -1}
+  - {x: 1, y: 1, z: -1}
+  aiRadius: 0.5

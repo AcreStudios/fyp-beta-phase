@@ -22,9 +22,9 @@ public class AIFunctions : MonoBehaviour {
     float prevHeadRotation;
     float shootingTime;
     float rotateTime;
+    protected Transform linecastCheck;
     protected Vector3 startingPoint;
     protected bool showGunEffect;
-    protected Vector3 scaleValue;
     protected Animator animator;
 
     protected Collider tempObs;
@@ -37,6 +37,7 @@ public class AIFunctions : MonoBehaviour {
         gameObject.tag = "Enemy";
 
         guns[0] = transform.Find("Hanna_GunL");
+        linecastCheck = transform.Find("LinecastChecker");
     }
 
     public virtual void DamageRecieved(float damage) {

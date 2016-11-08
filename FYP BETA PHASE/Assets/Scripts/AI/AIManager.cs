@@ -63,23 +63,21 @@ public class AIManager : MonoBehaviour {
                 if ((player.transform.position - readerInst.boundPoints[i].centrePoint).sqrMagnitude < range * range) {
                     float tempDist = (readerInst.boundPoints[i].centrePoint - ai.transform.position).sqrMagnitude;
 
-                    if (dist > tempDist) {
-                        temp = readerInst.boundPoints[i].centrePoint;
-                        dist = tempDist;
-                        reference = i;
-                        changed = true;
-                        //ColliderReaderModule.BoundaryPoints instance = readerInst.boundPoints[i];
-                        //instance.aiCover = ai;
-                        //readerInst.boundPoints[i] = instance;
 
-                        //instance = readerInst.boundPoints[prev];
-                        //instance.aiCover = null;
-                        //readerInst.boundPoints[prev] = instance;
-                        //
+                    if (dist > tempDist) {
+                        RaycastHit hit;
+                        if (Physics.Linecast(readerInst.boundPoints[i].centrePoint, player.transform.position, out hit)) {
+                            if (hit.transform != player.transform) {
+                                Debug.Log(hit.transform);
+                                temp = readerInst.boundPoints[i].centrePoint;
+                                dist = tempDist;
+                                reference = i;
+                                changed = true;
+                            }
+                        }
                     }
                 }
-            } else
-                Debug.Log("Working");
+            } 
         }
 
         if (changed) {

@@ -146,6 +146,11 @@ public class AI : AIFunctions {
                 if (agent.velocity.sqrMagnitude == 0) {
                     if (Shooting()) ;
                     //destination = ObstacleHunting();
+                    RaycastHit hit;
+                    if (Physics.Linecast(destination, target.position, out hit)) {
+                        if (hit.transform.root == target)
+                            destination = ObstacleHunting();
+                    }
                 }
 
                 agent.destination = destination;

@@ -23,7 +23,7 @@ public class ColliderReaderModule : MonoBehaviour {
     public List<BoundaryPoints> boundPoints;
     public Vector3[] multiplier;
     public float aiRadius;
-    public Collider testColl;
+    //public Collider testColl;
 
     void Start() {
         //CreateObstacleData();
@@ -41,6 +41,7 @@ public class ColliderReaderModule : MonoBehaviour {
             if (obstacle.activeInHierarchy) {
                 Collider tempColl = obstacle.GetComponent<Collider>();
                 for (var i = 0; i < multiplier.Length; i++) {
+    
                     Collider[] check = Physics.OverlapBox(tempColl.bounds.center + new Vector3(tempColl.bounds.extents.x * multiplier[i].x, tempColl.bounds.extents.y * multiplier[i].y, tempColl.bounds.extents.z * multiplier[i].z), new Vector3(aiRadius, aiRadius, aiRadius));
                     if (check.Length <= 1) {
                         boundPoints.Add(new BoundaryPoints());
