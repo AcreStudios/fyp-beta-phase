@@ -34,7 +34,7 @@ public class ColliderReaderModule : MonoBehaviour {
     }
 
     void Update() {
-        
+
     }
 
     void SelectCollliders() {
@@ -155,6 +155,8 @@ public class ColliderReaderModule : MonoBehaviour {
     }
 }
 
+#if UNITY_EDITOR
+
 [CustomEditor(typeof(ColliderReaderModule))]
 public class ColliderReaderModuleEditor : Editor {
 
@@ -186,3 +188,5 @@ public class ColliderReaderModuleEditor : Editor {
                 t.CreateObstacleData();
     }
 }
+
+#endif
