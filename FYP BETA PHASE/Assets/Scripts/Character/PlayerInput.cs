@@ -17,6 +17,9 @@ public class PlayerInput : MonoBehaviour
 	public float _vertical;
 	public bool _LMB, _RMB, _MMB, _spacebar, _leftCtrl, _keyE, _leftShift;
 
+	private float _targetH;
+	private float _targetV;
+
 	[System.Serializable]
 	public class InputStrings
 	{
@@ -39,6 +42,8 @@ public class PlayerInput : MonoBehaviour
 	[Header("-Aiming-")]
 	public bool debugAim = false;
 
+	private bool _aiming = false;
+
 	[System.Serializable]
 	public class AimSettings
 	{
@@ -51,12 +56,12 @@ public class PlayerInput : MonoBehaviour
 	[SerializeField]
 	private AimSettings aimSettings;
 
+	[Header("-Movement-")]
+	public float walkRunTransitionSpeed = 10f;
+
 	// Movement mirror helper
 	[HideInInspector]
 	public int mirrorInt = 1;
-
-	// Aim helper
-	private bool _aiming = false;
 
 
 	void Awake()
@@ -110,7 +115,9 @@ public class PlayerInput : MonoBehaviour
 	{
 		// Default walk movement, with clamping when walking backwards
 		float v = (_leftShift) ? Mathf.Clamp(_vertical, -.5f, 1f) : Mathf.Clamp(_vertical, -.5f, .5f);
+		_targetV = Mathf.Lerp(_targetV, v, walkRunTransitionSpeed * Time.deltaTime);
 		float h = (_leftShift) ? ((_vertical < 0) ? Mathf.Clamp(_horizontal, -.5f, .5f) : _horizontal) : Mathf.Clamp(_horizontal, -.5f, .5f);
+		_targetH = Mathf.Lerp(_targetH, h, walkRunTransitionSpeed * Time.deltaTime);
 
 		// Mirror movement
 		if(_MMB)
@@ -118,9 +125,9 @@ public class PlayerInput : MonoBehaviour
 		h *= mirrorInt;
 
 		if(!_aiming)
-			charMove.AnimateCharacter(v, h);
+			charMove.AnimateCharacter(_targetV, _targetH);
 		else
-			charMove.AnimateCharacter(v * .49f, h * .49f);
+			charMove.AnimateCharacter(_targetV * .49f, _targetH * .49f);
 
 		// Jump
 		if(_spacebar)
