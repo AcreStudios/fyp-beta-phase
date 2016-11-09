@@ -60,6 +60,12 @@ public class AIManager : MonoBehaviour {
 
         if (readerInst) {
             for (var i = 0; i < readerInst.boundPoints.Count; i++) {
+                if (readerInst.boundPoints[i].aiCover == ai) {
+                    ColliderReaderModule.BoundaryPoints instance = readerInst.boundPoints[i];
+                    instance.aiCover = null;
+                    readerInst.boundPoints[i] = instance;
+                }
+
                 if (!readerInst.boundPoints[i].aiCover) {
 
                     if ((player.transform.position - readerInst.boundPoints[i].centrePoint).sqrMagnitude < range * range) {
