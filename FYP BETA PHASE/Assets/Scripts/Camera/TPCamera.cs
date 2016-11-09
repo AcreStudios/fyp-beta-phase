@@ -31,8 +31,8 @@ public class TPCamera : MonoBehaviour
 	public class CameraSettings
 	{
 		[Header("-Positioning-")]
-		public Vector3 camPosOffsetLeft = new Vector3(-.75f, .5f, -2f);
-		public Vector3 camPosOffsetRight = new Vector3(.75f, .5f, -2f);
+		public Vector3 camPosOffsetLeft = new Vector3(0f, 0f, -2.5f);
+		public Vector3 camPosOffsetRight = new Vector3(0f, 0f, -2.5f);
 		public enum Shoulder { RIGHT, LEFT }
 		public Shoulder shoulder;
 
@@ -46,10 +46,12 @@ public class TPCamera : MonoBehaviour
 		public float cameraSmoothing = .03f;
 		public bool invertY = true;
 
-		[Header("-FOV Settings-")]
+		[Header("-Aim Settings-")]
 		public float defaultFOV = 60f;
 		public float aimingFOV = 30f;
 		public float zoomSpeed = 10f;
+		public Vector3 aimPosOffsetLeft = new Vector3(-2f, 0f, -2.5f);
+		public Vector3 aimPosOffsetRight = new Vector3(2f, 0f, -2.5f);
 
 		public Camera mainCam;
 		public Camera UICam;
@@ -114,7 +116,7 @@ public class TPCamera : MonoBehaviour
 	{
 		HandleInput();
 		RotateCamera();
-		CameraWallCollision();
+		CameraWallCollision(_RMB);
 		CheckMeshDistance();
 		ChangeFOV(_RMB);
 	}
@@ -154,7 +156,7 @@ public class TPCamera : MonoBehaviour
 		camPivot.localRotation = newRotation;
 	}
 
-	private void CameraWallCollision() // Spherecast to prevent collision with walls and also switch shoulders
+	private void CameraWallCollision(bool aim) // Spherecast to prevent collision with walls and also switch shoulders
 	{
 		Transform mainCamTrans = camTrans;
 		Vector3 mainCamPos = mainCamTrans.position;
@@ -172,10 +174,16 @@ public class TPCamera : MonoBehaviour
 			switch(cameraSettings.shoulder)
 			{
 				case CameraSettings.Shoulder.LEFT:
-					PositionCamera(cameraSettings.camPosOffsetLeft);
+					if(!aim)
+						PositionCamera(cameraSettings.camPosOffsetLeft);
+					else
+						PositionCamera(cameraSettings.aimPosOffsetLeft);
 					break;
 				case CameraSettings.Shoulder.RIGHT:
-					PositionCamera(cameraSettings.camPosOffsetRight);
+					if(!aim)
+						PositionCamera(cameraSettings.camPosOffsetRight);
+					else
+						PositionCamera(cameraSettings.aimPosOffsetRight);
 					break;
 			}
 		}

@@ -140,18 +140,21 @@ public class AI : AIFunctions {
 
             case AIStates.Attacking:
 
-                transform.LookAt(target);
-                transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, 0);
-
                 if (agent.velocity.sqrMagnitude == 0) {
+                    transform.LookAt(target);
                     if (Shooting()) ;
                     RaycastHit hit;
                     if (Physics.Linecast(destination, target.position, out hit)) {
                         if (hit.transform.root == target)
                             destination = ObstacleHunting();
                     }
+                } else {
+                    animator.SetInteger("TreeState", 1);
+                    transform.LookAt(destination);
+                    
                 }
 
+                transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
                 agent.destination = destination;
 
                 break;

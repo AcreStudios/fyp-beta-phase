@@ -76,6 +76,8 @@ public class NewMenuScript : MonoBehaviour {
         public GameObject PressToContinueButton;
         public GameObject LoadingText;
         public GameObject DoneText;
+        public GameObject LoadingIcon;
+        public GameObject DoNot;
     }
     public LoadingScreen loadingScreen;
 
@@ -133,6 +135,8 @@ public class NewMenuScript : MonoBehaviour {
 
         loadingScreen.LoadingText.SetActive(false);
         loadingScreen.DoneText.SetActive(false);
+        loadingScreen.LoadingIcon.SetActive(false);
+        loadingScreen.DoNot.SetActive(false);
         #endregion
         #region Dev Menu
         devMenu.DevCanvas.SetActive(false);
@@ -302,6 +306,8 @@ public class NewMenuScript : MonoBehaviour {
         loadingScreen.LoadingCanvas.SetActive(true);
         mainMenu.MainCanvas.SetActive(false);
         loadingScreen.LoadingText.SetActive(true);
+        loadingScreen.DoNot.SetActive(true);
+        loadingScreen.LoadingIcon.SetActive(true);
         currentState = "Loading Screen";
         print(currentState);
 
@@ -363,6 +369,8 @@ public class NewMenuScript : MonoBehaviour {
         yield return new WaitForSeconds(3);
         loadingScreen.PressToContinue.SetActive(true);
         loadingScreen.PressToContinueButton.SetActive(true);
+        loadingScreen.DoNot.SetActive(false);
+        loadingScreen.LoadingIcon.SetActive(false);
         loadingScreen.LoadingText.SetActive(false);
         loadingScreen.DoneText.SetActive(true);
     }

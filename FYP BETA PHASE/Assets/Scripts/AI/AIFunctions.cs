@@ -25,6 +25,7 @@ public class AIFunctions : MonoBehaviour {
     protected Transform linecastCheck;
     protected Vector3 startingPoint;
     protected bool showGunEffect;
+    public GameObject gunEffect;
     protected Animator animator;
 
     protected Collider tempObs;
@@ -101,12 +102,18 @@ public class AIFunctions : MonoBehaviour {
         animator.SetInteger("TreeState", 2);
         if (Time.time > shootingTime) {
             Vector3 offset;
-            AlertOtherTroops();
+            //AlertOtherTroops();
 
             offset = new Vector3(Random.Range(-gunSprayValue, gunSprayValue), Random.Range(-gunSprayValue, gunSprayValue), 0);
             foreach (Transform gun in guns) {
                 gun.LookAt(target);
-                Debug.DrawLine(gun.position, gun.position + gun.TransformDirection(0, 0, range) + offset, Color.red, 5);
+
+                gunEffect.transform.position = gun.position;
+                gunEffect.SetActive(true);
+
+                StartCoroutine(ChangeObjectLocation(gunEffect, gun.position + gun.TransformDirection(0, 0, range) + offset));
+                StartCoroutine(TurnOffObject(0.2f, gunEffect));
+
                 RaycastHit hit;
                 if (Physics.Raycast(gun.position, gun.TransformDirection(0, 0, range) + offset, out hit)) {
                     if (hit.transform.root != transform) {
@@ -115,9 +122,12 @@ public class AIFunctions : MonoBehaviour {
                         if (hp && hp.isActiveAndEnabled)
                             hp.ReceiveDamage(5);
 
+                        if (hit.transform.root.tag == "Player")
+                            HitFeedbackManager.instance.RetriggerHitEvent();
+
                         if ((ai = hit.transform.root.GetComponent<AIFunctions>()) != null) {
                             Vector3 toNorm = Vector3.Normalize(target.position - transform.position);
-                            Debug.Log(hit.transform.root + " was hit by " + transform.root);
+                            //Debug.Log(hit.transform.root + " was hit by " + transform.root);
                             ai.DisplaceAILocation(toNorm);
                         }
                     }
@@ -127,6 +137,16 @@ public class AIFunctions : MonoBehaviour {
             return true;
         }
         return true;
+    }
+
+    public IEnumerator TurnOffObject(float time, GameObject obj) {
+        yield return new WaitForSeconds(time);
+        obj.SetActive(false);
+    }
+
+    public IEnumerator ChangeObjectLocation(GameObject obj, Vector3 location) {
+        yield return new WaitForSeconds(0.1f);
+        obj.transform.position = location;
     }
 
     public void DisplaceAILocation(Vector3 normalizedEnemyVector) {
@@ -159,9 +179,9 @@ public class AIFunctions : MonoBehaviour {
     public Vector3 ObstacleHunting() {
 
         //if (tempObs)
-            //return ShortObstacleException(tempObs);
+        //return ShortObstacleException(tempObs);
         //else
-            //tempObs = AIManager.instance.AssignCover(gameObject, range);
+        //tempObs = AIManager.instance.AssignCover(gameObject, range);
         //AIManager.instance.AssignCover
         Vector3 temp = transform.position;
         Vector3 backUp = temp;
