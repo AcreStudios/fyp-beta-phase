@@ -10,7 +10,7 @@ public class HitFeedbackManager : MonoBehaviour {
     public static HitFeedbackManager instance;
 
     void Start() {
-
+        instance = this;
     }
 
     // Update is called once per frame
