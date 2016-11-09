@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class Health : MonoBehaviour 
 {
@@ -18,6 +19,15 @@ public class Health : MonoBehaviour
 	[Header("-Death-")]
 	public MonoBehaviour[] scriptsToDisable;
     public bool destroyOnDeath;
+
+	[Header("-Only Applies To Player-")]
+	public bool isPlayer = false;
+	public UnityStandardAssets.ImageEffects.Grayscale grayScreenEffect;
+	public float fadeScreenDelay = 3f;
+	public float fadeSpeed = .1f;
+	public float reloadSceneDelay = 1f;
+	public int sceneToLoadInt;
+	public string sceneToLoadName;
 
 
 	private void Awake()
@@ -56,20 +66,49 @@ public class Health : MonoBehaviour
         if (destroyOnDeath)
             StartCoroutine(Destroy());
 
-        if (scriptsToDisable.Length == 0)
+		if(isPlayer && grayScreenEffect)
+			StartCoroutine(ScreenFadeGray());
+
+        if(scriptsToDisable.Length == 0)
 			return;
 
 		foreach(MonoBehaviour script in scriptsToDisable)
 		{
 			script.enabled = false;
 		}
+	}
 
-        
+	private IEnumerator ScreenFadeGray()
+	{
+		yield return new WaitForSeconds(fadeScreenDelay);
+
+		grayScreenEffect.enabled = true;
+		float lerp = 0f;
+
+		while(lerp < 1f)
+		{
+			lerp += fadeSpeed * Time.deltaTime;
+			grayScreenEffect.rampOffset = lerp;
+
+			yield return null;
+		}
+
+		lerp = 1f;
+		grayScreenEffect.rampOffset = lerp;
+
+		yield return new WaitForSeconds(reloadSceneDelay);
+
+		if(sceneToLoadInt != 0)
+			SceneManager.LoadScene(sceneToLoadInt);
+		else if(sceneToLoadName != null)
+			SceneManager.LoadScene(sceneToLoadName);
+		else
+			SceneManager.LoadScene(2);
 	}
 
     IEnumerator Destroy() {
         yield return new WaitForSeconds(3);
         Destroy(gameObject);
-        Debug.LogWarning("Ded");
+        //Debug.LogWarning("Ded");
     }
 }

@@ -14,9 +14,9 @@ public class CoverSystem : MonoBehaviour
 	[Header("-Cover Settings-")]
 	public bool debugCover = true;
 	public LayerMask ignoreLayer;
-	public float minCover = .2f;
 	public float offsetFromWall = .6f;
 	public float peekDistance = .25f;
+	public float minCoverSize = .2f;
 	public Vector3 relativeInput;
 
 	private GameObject _debugCube;
@@ -162,14 +162,14 @@ public class CoverSystem : MonoBehaviour
 		bool retVal = false;
 
 		Vector3 side = (right) ? h.right : -h.right;
-		side *= minCover;
+		side *= minCoverSize;
 
 		Vector3 ori = h.transform.position + side + -h.transform.forward;
 		Vector3 dir = h.transform.forward;
 		RaycastHit hit;
 
 		Debug.DrawRay(ori, dir * 2f, Color.green);
-		if(Physics.Raycast(ori, side, out hit, minCover, ignoreLayer)) // If there is an obstacle on the left/right, cover is invalid
+		if(Physics.Raycast(ori, side, out hit, minCoverSize, ignoreLayer)) // If there is an obstacle on the left/right, cover is invalid
 			return false;
 		else // Do another raycast to determine size of cover
 		{
@@ -304,7 +304,7 @@ public class CoverSystem : MonoBehaviour
 		Vector3 dir = _helperTrans.forward;
 		RaycastHit hit;
 
-		if(Physics.Raycast(ori, side, out hit, minCover, ignoreLayer))
+		if(Physics.Raycast(ori, side, out hit, minCoverSize, ignoreLayer))
 			return false;
 		else
 		{

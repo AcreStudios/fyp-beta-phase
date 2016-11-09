@@ -60,7 +60,7 @@ public class PlayerInput : MonoBehaviour
 	public float walkRunTransitionSpeed = 10f;
 
 	// Movement mirror helper
-	[HideInInspector]
+	//[HideInInspector]
 	public int mirrorInt = 1;
 
 
@@ -115,14 +115,12 @@ public class PlayerInput : MonoBehaviour
 	{
 		// Default walk movement, with clamping when walking backwards
 		float v = (_leftShift) ? Mathf.Clamp(_vertical, -.5f, 1f) : Mathf.Clamp(_vertical, -.5f, .5f);
-		_targetV = Mathf.Lerp(_targetV, v, walkRunTransitionSpeed * Time.deltaTime);
 		float h = (_leftShift) ? ((_vertical < 0) ? Mathf.Clamp(_horizontal, -.5f, .5f) : _horizontal) : Mathf.Clamp(_horizontal, -.5f, .5f);
-		_targetH = Mathf.Lerp(_targetH, h, walkRunTransitionSpeed * Time.deltaTime);
 
 		// Mirror movement
 		if(_MMB)
 			tpCamera.SwitchShoulder();
-		h *= mirrorInt;
+		 h *= mirrorInt;
 
 		if(!_aiming)
 			charMove.AnimateCharacter(_targetV, _targetH);
@@ -136,6 +134,10 @@ public class PlayerInput : MonoBehaviour
 		// Crouch
 		if(_leftCtrl)
 			charMove.DoCrouch();
+
+		// Lerp walk-run transition
+		_targetV = Mathf.Lerp(_targetV, v, walkRunTransitionSpeed * Time.deltaTime);
+		_targetH = Mathf.Lerp(_targetH, h, walkRunTransitionSpeed * Time.deltaTime);
 	}
 
 	private void CameraAimLogic() // Handles camera logic when aiming 
