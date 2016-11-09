@@ -122,6 +122,9 @@ public class AIFunctions : MonoBehaviour {
                         if (hp && hp.isActiveAndEnabled)
                             hp.ReceiveDamage(5);
 
+                        if (hit.transform.root.tag == "Player")
+                            HitFeedbackManager.instance.RetriggerHitEvent();
+
                         if ((ai = hit.transform.root.GetComponent<AIFunctions>()) != null) {
                             Vector3 toNorm = Vector3.Normalize(target.position - transform.position);
                             //Debug.Log(hit.transform.root + " was hit by " + transform.root);
