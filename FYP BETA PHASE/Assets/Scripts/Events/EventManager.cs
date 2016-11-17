@@ -108,8 +108,8 @@ public class EventManager : MonoBehaviour {
             return;
         }
 
-        if (currentEvent.eventTriggers.key != KeyCode.None)
-            if (!(Input.GetKey(currentEvent.eventTriggers.key)))
+        if (eventTrees[currentTreeIndex].events[eventIndex].eventTriggers.key != KeyCode.None)
+            if (!(Input.GetKey(eventTrees[currentTreeIndex].events[eventIndex].eventTriggers.key)))
                 return;
 
         eventTrees[currentTreeIndex].currentGameEvent++;
