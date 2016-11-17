@@ -58,6 +58,10 @@ public class EventManager : MonoBehaviour {
 
     int prevCount;
 
+    void Awake() {
+        prevCount = 0;
+    }
+
     void Update() {
         if (Application.isPlaying) {
             if (eventTrees[currentTreeIndex].currentGameEvent < eventTrees[currentTreeIndex].events.Length) {
@@ -65,7 +69,8 @@ public class EventManager : MonoBehaviour {
                     missionUI.text = eventTrees[currentTreeIndex].events[eventTrees[currentTreeIndex].currentGameEvent].missionUI;
                 CheckTrigger(eventTrees[currentTreeIndex].events[eventTrees[currentTreeIndex].currentGameEvent], currentTreeIndex, eventTrees[currentTreeIndex].currentGameEvent);
             }
-        } else {
+        }
+        else {
             for (var i = 0; i < eventTrees.Length; i++)
                 for (var j = 0; j < eventTrees[i].events.Length; j++) {
                     for (var k = 0; k < eventTrees[i].events[j].results.spawns.Length; k++) {
@@ -89,10 +94,10 @@ public class EventManager : MonoBehaviour {
 
             temp = Physics.OverlapSphere(currentEvent.eventTriggers.triggerPosition, currentEvent.eventTriggers.triggerRadius);
 
-            if (temp.Length != prevCount)
-                foreach (Collider obj in temp)
-                    if (obj.transform.root.tag == "Player")
-                        playerIsInRange++;
+            //if (temp.Length != prevCount)
+            foreach (Collider obj in temp)
+                if (obj.transform.root.tag == "Player")
+                    playerIsInRange++;
 
             if (!(playerIsInRange > 0))
                 return;
