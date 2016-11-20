@@ -14,7 +14,7 @@ public class EventManager : MonoBehaviour {
     public struct EventTree {
         public string eventTreeName;
         //public Color eventColors;       
-        public bool treeSupercedeAll;
+        //public bool treeSupercedeAll;
         public Events[] events;
         [HideInInspector]
         public int prevTreeIndex;
@@ -26,10 +26,17 @@ public class EventManager : MonoBehaviour {
     public struct Events {
         public string eventName;
         public string missionUI;
-        public Triggers eventTriggers;
-        public Triggered results;
+
+        public EventBody eventBody;
         [HideInInspector]
         public bool calibrated;
+    }
+
+    [System.Serializable]
+    public struct EventBody {
+        public string eventBodyName;
+        public Triggers eventTriggers;
+        public Results results;
     }
 
     [System.Serializable]
@@ -42,13 +49,14 @@ public class EventManager : MonoBehaviour {
     }
 
     [System.Serializable]
-    public struct Triggered {
+    public struct Results {
         public GameObject[] spawns;
         public GameObject[] toDestroy;
-        public EventResults[] scriptedEventsToTrigger;
+        //public EventResults[] scriptedEventsToTrigger;
         public int eventTreeToJump;
         public string debugMessage;
         public string levelNameToLoad;
+        public bool unableToProceed;
     }
 
     public EventTree[] eventTrees;
@@ -56,10 +64,8 @@ public class EventManager : MonoBehaviour {
     public int currentTreeIndex;
     public Text missionUI;
 
-    int prevCount;
 
     void Awake() {
-        prevCount = 0;
     }
 
     void Update() {
@@ -69,83 +75,80 @@ public class EventManager : MonoBehaviour {
                     missionUI.text = eventTrees[currentTreeIndex].events[eventTrees[currentTreeIndex].currentGameEvent].missionUI;
                 CheckTrigger(eventTrees[currentTreeIndex].events[eventTrees[currentTreeIndex].currentGameEvent], currentTreeIndex, eventTrees[currentTreeIndex].currentGameEvent);
             }
-        }
-        else {
+        } else {
             for (var i = 0; i < eventTrees.Length; i++)
                 for (var j = 0; j < eventTrees[i].events.Length; j++) {
-                    for (var k = 0; k < eventTrees[i].events[j].results.spawns.Length; k++) {
-                        if (eventTrees[i].events[j].results.spawns[k] != null)
-                            eventTrees[i].events[j].results.spawns[k].SetActive(false);
+                    for (var k = 0; k < eventTrees[i].events[j].eventBody.results.spawns.Length; k++) {
+                        if (eventTrees[i].events[j].eventBody.results.spawns[k] != null)
+                            eventTrees[i].events[j].eventBody.results.spawns[k].SetActive(false);
                     }
                 }
         }
     }
 
     void CheckTrigger(Events currentEvent, int currentTreeIndex, int eventIndex) {
+        Debug.Log(currentEvent.eventName);
 
         if (!currentEvent.calibrated) {
-            eventTrees[currentTreeIndex].events[eventIndex].eventTriggers.timer += Time.time;
+            eventTrees[currentTreeIndex].events[eventIndex].eventBody.eventTriggers.timer += Time.time;
             eventTrees[currentTreeIndex].events[eventIndex].calibrated = true;
         }
 
-        if (currentEvent.eventTriggers.triggerRadius > 0) {
+        if (currentEvent.eventBody.eventTriggers.triggerRadius > 0) {
             Collider[] temp;
             int playerIsInRange = 0;
+            temp = Physics.OverlapSphere(currentEvent.eventBody.eventTriggers.triggerPosition, currentEvent.eventBody.eventTriggers.triggerRadius);
 
-            temp = Physics.OverlapSphere(currentEvent.eventTriggers.triggerPosition, currentEvent.eventTriggers.triggerRadius);
-
-            //if (temp.Length != prevCount)
             foreach (Collider obj in temp)
                 if (obj.transform.root.tag == "Player")
                     playerIsInRange++;
 
             if (!(playerIsInRange > 0))
                 return;
-
-            prevCount = temp.Length;
         }
 
-        foreach (GameObject toCheck in currentEvent.eventTriggers.checkIfDestroyed)
+        foreach (GameObject toCheck in currentEvent.eventBody.eventTriggers.checkIfDestroyed)
             if (toCheck)
                 return;
 
-        if (eventTrees[currentTreeIndex].events[eventIndex].eventTriggers.timer > Time.time) {
+        if (eventTrees[currentTreeIndex].events[eventIndex].eventBody.eventTriggers.timer > Time.time) {
             return;
         }
 
-        if (eventTrees[currentTreeIndex].events[eventIndex].eventTriggers.key != KeyCode.None)
-            if (!(Input.GetKey(eventTrees[currentTreeIndex].events[eventIndex].eventTriggers.key)))
+        if (currentEvent.eventBody.eventTriggers.key != KeyCode.None)
+            if (!(Input.GetKey(currentEvent.eventBody.eventTriggers.key)))
                 return;
 
-        eventTrees[currentTreeIndex].currentGameEvent++;
-        ActivateEvent(currentEvent.results);
+        ActivateEvent(currentEvent.eventBody.results);
     }
 
-    void ActivateEvent(Triggered endResult) {
+    void ActivateEvent(Results endResult) {
         foreach (GameObject spawn in endResult.spawns)
             spawn.SetActive(true);
 
         foreach (GameObject destroy in endResult.toDestroy)
             Destroy(destroy);
 
-        foreach (EventResults results in endResult.scriptedEventsToTrigger)
-            results.ScriptedResult();
+        //foreach (EventResults results in endResult.scriptedEventsToTrigger)
+        //results.ScriptedResult();
 
         if (endResult.debugMessage != "")
             Debug.Log(endResult.debugMessage);
 
-        if (endResult.levelNameToLoad != "") {
+        if (endResult.levelNameToLoad != "")
             SceneManager.LoadScene(endResult.levelNameToLoad);
-        }
 
-        currentTreeIndex = endResult.eventTreeToJump;
+        if (!endResult.unableToProceed) {
+            eventTrees[currentTreeIndex].currentGameEvent++;
+            currentTreeIndex = endResult.eventTreeToJump;
+        }
     }
 
     public void CleanUpEventTreeToJump() {
         for (var i = 0; i < eventTrees.Length; i++)
             for (var j = 0; j < eventTrees[i].events.Length; j++)
                 if (j < eventTrees[i].events.Length - 1)
-                    eventTrees[i].events[j].results.eventTreeToJump = i;
+                    eventTrees[i].events[j].eventBody.results.eventTreeToJump = i;
     }
 }
 
@@ -165,7 +168,7 @@ public class EventManagerEditor : Editor {
             for (var i = 0; i < t.eventTrees.Length; i++) {
                 //Handles.color = t.eventTrees[i].eventColors;
                 for (var j = 0; j < t.eventTrees[i].events.Length; j++)
-                    Handles.CircleCap(0, t.eventTrees[i].events[j].eventTriggers.triggerPosition, rotation, t.eventTrees[i].events[j].eventTriggers.triggerRadius);
+                    Handles.CircleCap(0, t.eventTrees[i].events[j].eventBody.eventTriggers.triggerPosition, rotation, t.eventTrees[i].events[j].eventBody.eventTriggers.triggerRadius);
             }
 
 
@@ -181,7 +184,7 @@ public class EventManagerEditor : Editor {
                 Ray ray = Camera.current.ScreenPointToRay(temp);
 
                 if (Physics.Raycast(ray, out hit, Mathf.Infinity)) {
-                    t.eventTrees[currentTree].events[currentEvent].eventTriggers.triggerPosition = hit.point;
+                    t.eventTrees[currentTree].events[currentEvent].eventBody.eventTriggers.triggerPosition = hit.point;
                 }
             }
         }
