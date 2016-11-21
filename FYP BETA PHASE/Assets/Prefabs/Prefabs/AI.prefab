@@ -1323,7 +1323,7 @@ Transform:
   m_GameObject: {fileID: 157470}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.51473355, y: -0.5, z: -3.4478097}
-  m_LocalScale: {x: 0.38522997, y: 1, z: 0.38523012}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 4000012195923668}
@@ -2532,6 +2532,13 @@ MonoBehaviour:
   scriptsToDisable:
   - {fileID: 11445470}
   destroyOnDeath: 1
+  isPlayer: 0
+  grayScreenEffect: {fileID: 0}
+  fadeScreenDelay: 3
+  fadeSpeed: 0.1
+  reloadSceneDelay: 1
+  sceneToLoadInt: 0
+  sceneToLoadName: 
 --- !u!114 &11445470
 MonoBehaviour:
   m_ObjectHideFlags: 1
