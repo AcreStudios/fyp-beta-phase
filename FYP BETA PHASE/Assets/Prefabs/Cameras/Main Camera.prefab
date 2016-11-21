@@ -47,7 +47,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011108103214}
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -14.5130005, y: 1.958, z: -20.923}
+  m_LocalPosition: {x: -0, y: 10, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -324,8 +324,8 @@ MonoBehaviour:
       m_NumColorKeys: 5
       m_NumAlphaKeys: 5
     m_glareMaxPassCount: 4
-    m_currentWidth: 110
-    m_currentHeight: 62
+    m_currentWidth: 205
+    m_currentHeight: 115
     m_currentGlareType: 0
     m_currentGlareIdx: 0
     m_perPassDisplacement: 4
@@ -541,9 +541,9 @@ MonoBehaviour:
       localContrastAdaptationFactor: 2
     predication:
       enabled: 0
-      threshold: 0.0001
-      scale: 1
-      strength: 1
+      threshold: 0.01
+      scale: 2
+      strength: 0.4
     temporal:
       enabled: 0
       fuzzSize: 2
