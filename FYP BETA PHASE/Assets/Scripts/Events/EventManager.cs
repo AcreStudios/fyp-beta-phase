@@ -191,6 +191,7 @@ public class EventManagerEditor : Editor {
 
                 if (Physics.Raycast(ray, out hit, Mathf.Infinity)) {
                     t.eventTrees[currentTree].events[currentEvent].eventBody[currentTrigger].eventTriggers.triggerPosition = hit.point;
+                    t.eventTrees[currentTree].events[currentEvent].eventBody[currentTrigger].eventTriggers.triggerRadius = 1;
                 }
             }
         }

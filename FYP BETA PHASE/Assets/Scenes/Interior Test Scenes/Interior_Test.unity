@@ -509,11 +509,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8b5a1118312f9b147b217acd8886b5a8, type: 3}
   m_IsPrefabParent: 0
---- !u!1 &848578285 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1000011464208014, guid: 8d2c8080256b7074ba0c2be6a5a51b15,
-    type: 2}
-  m_PrefabInternal: {fileID: 2140532490}
 --- !u!4 &914616243 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 83b08c48903b14945aa3b094e184991b, type: 3}
@@ -1139,128 +1134,86 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eventTrees:
-  - eventTreeName: Tutorial
-    treeSupercedeAll: 0
+  - eventTreeName: Sequence1_M1
     events:
-    - eventName: R | Camera
+    - eventName: Teach Camera
       missionUI: 
-      eventTriggers:
-        triggerPosition: {x: -2.5, y: 0, z: -5.5}
-        triggerRadius: 2
-        timer: 0
-        checkIfDestroyed: []
-        key: 0
-      results:
-        spawns:
-        - {fileID: 1047276342}
-        toDestroy: []
-        scriptedEventsToTrigger: []
-        eventTreeToJump: 0
-        debugMessage: Mouse UI
-        levelNameToLoad: 
+      eventBody:
+      - eventBodyName: Teach Camera
+        eventTriggers:
+          triggerPosition: {x: -2.5, y: 0, z: -5.5}
+          triggerRadius: 1.5
+          timer: 0
+          checkIfDestroyed: []
+          key: 0
+        results:
+          spawns:
+          - {fileID: 1047276342}
+          toDestroy: []
+          eventTreeToJump: 0
+          debugMessage: Camera
+          levelNameToLoad: 
+          unableToProceed: 0
+      - eventBodyName: Teach Interact
+        eventTriggers:
+          triggerPosition: {x: -2.5, y: 0, z: -5.5}
+          triggerRadius: 1.5
+          timer: 0
+          checkIfDestroyed: []
+          key: 0
+        results:
+          spawns:
+          - {fileID: 2068630610}
+          toDestroy:
+          - {fileID: 1047276342}
+          eventTreeToJump: 0
+          debugMessage: Interact
+          levelNameToLoad: 
+          unableToProceed: 0
+      - eventBodyName: Teach_Move
+        eventTriggers:
+          triggerPosition: {x: -2.5, y: 0, z: -5.5}
+          triggerRadius: 1.5
+          timer: 0
+          checkIfDestroyed: []
+          key: 101
+        results:
+          spawns:
+          - {fileID: 222609227}
+          toDestroy:
+          - {fileID: 2068630610}
+          eventTreeToJump: 0
+          debugMessage: 
+          levelNameToLoad: 
+          unableToProceed: 0
       calibrated: 0
-    - eventName: E | Interact
+    - eventName: Trigger Next Event
       missionUI: 
-      eventTriggers:
-        triggerPosition: {x: -2.5, y: 0, z: -5.5}
-        triggerRadius: 2
-        timer: 3
-        checkIfDestroyed: []
-        key: 0
-      results:
-        spawns:
-        - {fileID: 2068630610}
-        toDestroy:
-        - {fileID: 1047276342}
-        scriptedEventsToTrigger: []
-        eventTreeToJump: 0
-        debugMessage: Interact UI
-        levelNameToLoad: 
+      eventBody:
+      - eventBodyName: Trigger Next Event
+        eventTriggers:
+          triggerPosition: {x: 5.0308137, y: 0.09681677, z: -2.8270986}
+          triggerRadius: 1
+          timer: 0
+          checkIfDestroyed: []
+          key: 0
+        results:
+          spawns: []
+          toDestroy:
+          - {fileID: 222609227}
+          eventTreeToJump: 1
+          debugMessage: Sequence1_M2
+          levelNameToLoad: 
+          unableToProceed: 0
       calibrated: 0
-    - eventName: L | Move
-      missionUI: 
-      eventTriggers:
-        triggerPosition: {x: -2.5, y: 0, z: -5.5}
-        triggerRadius: 2
-        timer: 0
-        checkIfDestroyed: []
-        key: 101
-      results:
-        spawns:
-        - {fileID: 222609227}
-        toDestroy:
-        - {fileID: 2068630610}
-        scriptedEventsToTrigger: []
-        eventTreeToJump: 0
-        debugMessage: Move UI
-        levelNameToLoad: 
-      calibrated: 0
-    - eventName: Destroy UI
-      missionUI: 
-      eventTriggers:
-        triggerPosition: {x: 4.91688, y: 0.09678501, z: -2.927108}
-        triggerRadius: 1
-        timer: 0
-        checkIfDestroyed: []
-        key: 0
-      results:
-        spawns:
-        - {fileID: 222609227}
-        toDestroy:
-        - {fileID: 848578285}
-        scriptedEventsToTrigger: []
-        eventTreeToJump: 0
-        debugMessage: Destroy UI
-        levelNameToLoad: 
-      calibrated: 0
-    - eventName: Meeting Room
-      missionUI: 
-      eventTriggers:
-        triggerPosition: {x: -9.328417, y: 0.09677411, z: -20.061554}
-        triggerRadius: 1.5
-        timer: 0
-        checkIfDestroyed: []
-        key: 101
-      results:
-        spawns: []
-        toDestroy: []
-        scriptedEventsToTrigger: []
-        eventTreeToJump: 0
-        debugMessage: Enter Meeting!!
-        levelNameToLoad: 
-      calibrated: 0
-    - eventName: Go to seat
-      missionUI: 
-      eventTriggers:
-        triggerPosition: {x: -20.23089, y: 0.096776724, z: -26.865728}
-        triggerRadius: 1
-        timer: 0
-        checkIfDestroyed: []
-        key: 101
-      results:
-        spawns: []
-        toDestroy: []
-        scriptedEventsToTrigger: []
-        eventTreeToJump: 0
-        debugMessage: go to seat
-        levelNameToLoad: 
-      calibrated: 0
-    - eventName: Grab some coffee
-      missionUI: 
-      eventTriggers:
-        triggerPosition: {x: -9.328417, y: 0.09677411, z: -20.06155}
-        triggerRadius: 1.5
-        timer: 0
-        checkIfDestroyed: []
-        key: 0
-      results:
-        spawns: []
-        toDestroy: []
-        scriptedEventsToTrigger: []
-        eventTreeToJump: 0
-        debugMessage: Coffeeeeeeeee
-        levelNameToLoad: 
-      calibrated: 0
+    prevTreeIndex: 0
+    currentGameEvent: 0
+  - eventTreeName: Sequence1_M2
+    events: []
+    prevTreeIndex: 0
+    currentGameEvent: 0
+  - eventTreeName: 
+    events: []
     prevTreeIndex: 0
     currentGameEvent: 0
   currentTreeIndex: 0
