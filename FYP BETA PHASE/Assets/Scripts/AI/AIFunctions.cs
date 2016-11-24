@@ -123,7 +123,8 @@ public class AIFunctions : MonoBehaviour {
                             hp.ReceiveDamage(5);
 
                         if (hit.transform.root.tag == "Player")
-                            HitFeedbackManager.instance.RetriggerHitEvent();
+                            if (HitFeedbackManager.instance)
+                                HitFeedbackManager.instance.RetriggerHitEvent();
 
                         if ((ai = hit.transform.root.GetComponent<AIFunctions>()) != null) {
                             Vector3 toNorm = Vector3.Normalize(target.position - transform.position);

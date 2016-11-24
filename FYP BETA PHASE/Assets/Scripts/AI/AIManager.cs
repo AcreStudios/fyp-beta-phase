@@ -57,42 +57,39 @@ public class AIManager : MonoBehaviour {
         float dist = Mathf.Infinity;
         bool changed = false;
         int reference = 0;
+        for (var i = 0; i < readerInst.boundPoints.Count; i++) {
 
-        if (readerInst) {
-            for (var i = 0; i < readerInst.boundPoints.Count; i++) {
-                if (readerInst.boundPoints[i].aiCover == ai) {
-                    ColliderReaderModule.BoundaryPoints instance = readerInst.boundPoints[i];
-                    instance.aiCover = null;
-                    readerInst.boundPoints[i] = instance;
-                }
+            if (readerInst.boundPoints[i].aiCover == ai) {
+                ColliderReaderModule.BoundaryPoints boundInst = readerInst.boundPoints[i];                
+                boundInst.aiCover = null;
+                readerInst.boundPoints[i] = boundInst;                
+            }
 
-                if (!readerInst.boundPoints[i].aiCover) {
-                    if ((player.transform.position - readerInst.boundPoints[i].centrePoint).sqrMagnitude < range * range) {
-                        float tempDist = (readerInst.boundPoints[i].centrePoint - ai.transform.position).sqrMagnitude;
+            if (!readerInst.boundPoints[i].aiCover) {
+                //Debug.Log();
+                if ((player.transform.position - readerInst.boundPoints[i].centrePoint).sqrMagnitude < range * range) {
+                    float tempDist = (readerInst.boundPoints[i].centrePoint - ai.transform.position).sqrMagnitude;
 
-                        if (dist > tempDist) {
-                            RaycastHit hit;
-                            if (Physics.Linecast(readerInst.boundPoints[i].centrePoint, player.transform.position, out hit)) {
-                                if (hit.transform != player.transform) {
-                                    Debug.Log(hit.transform);
-                                    temp = readerInst.boundPoints[i].centrePoint;
-                                    dist = tempDist;
-                                    reference = i;
-                                    changed = true;
-                                }
+                    if (dist > tempDist) {
+                        RaycastHit hit;
+                        if (Physics.Linecast(readerInst.boundPoints[i].centrePoint, player.transform.position, out hit)) {
+                            if (hit.transform.root != player.transform) {
+                                temp = readerInst.boundPoints[i].centrePoint;
+                                dist = tempDist;
+                                reference = i;
+                                changed = true;
                             }
                         }
                     }
                 }
             }
 
+
             if (changed) {
-                ColliderReaderModule.BoundaryPoints instance = readerInst.boundPoints[reference];
-                instance.aiCover = ai;
-                readerInst.boundPoints[reference] = instance;
+                ColliderReaderModule.BoundaryPoints boundInst = readerInst.boundPoints[reference];
+                boundInst.aiCover = ai;
+                readerInst.boundPoints[reference] = boundInst;
             }
-        } else {
-            Debug.Log("Doesn't exist!");
         }
 
         return temp;

@@ -27,9 +27,7 @@ public class EventManager : MonoBehaviour {
         public string eventName;
         public string missionUI;
 
-        public EventBody[] eventBody;
-        [HideInInspector]
-        public bool calibrated;
+        public EventBody[] eventBody;        
     }
 
     [System.Serializable]
@@ -37,6 +35,8 @@ public class EventManager : MonoBehaviour {
         public string eventBodyName;
         public Triggers eventTriggers;
         public Results results;
+        [HideInInspector]
+        public bool calibrated;
     }
 
     [System.Serializable]
@@ -59,11 +59,10 @@ public class EventManager : MonoBehaviour {
         public bool unableToProceed;
     }
 
-    public EventTree[] eventTrees;
+    public EventTree[] eventTrees = new EventTree[0];
 
     public int currentTreeIndex;
     public Text missionUI;
-
 
     void Awake() {
     }
@@ -91,10 +90,10 @@ public class EventManager : MonoBehaviour {
     void CheckTrigger(EventBody currentEvent, int currentTreeIndex, int eventIndex) {
         //Debug.Log(eventTrees[currentTreeIndex].events[eventIndex].eventName);
 
-        if (!eventTrees[currentTreeIndex].events[eventIndex].calibrated) {
+        if (!eventTrees[currentTreeIndex].events[eventIndex].eventBody[eventTrees[currentTreeIndex].currentGameEvent].calibrated) {
             for (var i = 0; i < eventTrees[currentTreeIndex].events[eventIndex].eventBody.Length; i++)
                 eventTrees[currentTreeIndex].events[eventIndex].eventBody[i].eventTriggers.timer += Time.time;
-            eventTrees[currentTreeIndex].events[eventIndex].calibrated = true;
+            eventTrees[currentTreeIndex].events[eventIndex].eventBody[eventTrees[currentTreeIndex].currentGameEvent].calibrated = true;
         }
 
         if (currentEvent.eventTriggers.triggerRadius > 0) {

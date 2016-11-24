@@ -20,12 +20,10 @@ public class AI : AIFunctions {
 
     PatrolModule patrolMod;
 
-
     bool hasStarted;
     float timer;
 
     public bool damageTest;
-
 
     void Start() {
 
@@ -120,7 +118,7 @@ public class AI : AIFunctions {
 
             case AIStates.Escort:
                 if (patrolMod.currentLocation < patrolMod.limit) {
-                    if ((patrolMod.patrolLocations[patrolMod.currentLocation] - transform.position).magnitude < 5) {
+                    if (agent.velocity.sqrMagnitude == 0) {
                         transform.LookAt(target);
                         transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
                         animator.SetInteger("TreeState", 0);
@@ -139,19 +137,22 @@ public class AI : AIFunctions {
                 break;
 
             case AIStates.Attacking:
-
                 if (agent.velocity.sqrMagnitude == 0) {
                     transform.LookAt(target);
                     if (Shooting()) ;
                     RaycastHit hit;
                     if (Physics.Linecast(destination, target.position, out hit)) {
+                        //Debug.Log(hit.transform.root);
+                        //Debug.Log(target);
+                        Debug.DrawLine(destination, hit.point, Color.red, 20);
                         if (hit.transform.root == target)
                             destination = ObstacleHunting();
+
                     }
                 } else {
                     animator.SetInteger("TreeState", 1);
                     transform.LookAt(destination);
-                    
+
                 }
 
                 transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
@@ -166,6 +167,5 @@ public class AI : AIFunctions {
     public override void DamageRecieved(float damage) {
         toEscort = false;
         currentState = AIStates.Attacking;
-
     }
 }
