@@ -2365,81 +2365,59 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eventTrees:
-  - eventTreeName: MainTree
+  - eventTreeName: Fuck You
     events:
-    - eventName: FirstTestEvent(MT)
+    - eventName: LOL
       missionUI: 
       eventBody:
-        eventBodyName: 
-        eventTriggers:
-          triggerPosition: {x: 7.710706, y: 0.65999997, z: -3.0243106}
-          triggerRadius: 1
-          timer: 0
-          checkIfDestroyed: []
-          key: 101
-        results:
-          spawns: []
-          toDestroy: []
-          eventTreeToJump: 0
-          debugMessage: 
-          levelNameToLoad: 
-          unableToProceed: 0
-      calibrated: 0
-    - eventName: SecondTestEvent(MT)
-      missionUI: 
-      eventBody:
-        eventBodyName: Fuck you
+      - eventBodyName: 
         eventTriggers:
           triggerPosition: {x: 0, y: 0, z: 0}
           triggerRadius: 0
-          timer: 0
+          timer: 1
           checkIfDestroyed: []
           key: 0
         results:
           spawns: []
           toDestroy: []
           eventTreeToJump: 0
-          debugMessage: 
+          debugMessage: 1
           levelNameToLoad: 
           unableToProceed: 0
       calibrated: 0
-    prevTreeIndex: 0
-    currentGameEvent: 0
-  - eventTreeName: Sub Tree
-    events:
-    - eventName: FirstTestEvent(ST)
+    - eventName: 
       missionUI: 
       eventBody:
-        eventBodyName: 
+      - eventBodyName: 
         eventTriggers:
           triggerPosition: {x: 0, y: 0, z: 0}
           triggerRadius: 0
-          timer: 0
+          timer: 5
           checkIfDestroyed: []
           key: 0
         results:
           spawns: []
           toDestroy: []
           eventTreeToJump: 0
-          debugMessage: 
+          debugMessage: 2
           levelNameToLoad: 
           unableToProceed: 0
       calibrated: 0
-    - eventName: SecondTestEvent(ST)
+    - eventName: 
       missionUI: 
       eventBody:
-        eventBodyName: 
+      - eventBodyName: 
         eventTriggers:
           triggerPosition: {x: 0, y: 0, z: 0}
           triggerRadius: 0
-          timer: 0
+          timer: 5
           checkIfDestroyed: []
           key: 0
         results:
           spawns: []
           toDestroy: []
           eventTreeToJump: 0
-          debugMessage: 
+          debugMessage: 3
           levelNameToLoad: 
           unableToProceed: 0
       calibrated: 0
@@ -2453,13 +2431,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 497401154}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 640, y: 360, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 631.87, y: 359.84, z: 2.8858373}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_Father: {fileID: 1846147484}
+  m_RootOrder: 0
 --- !u!1001 &499133212
 Prefab:
   m_ObjectHideFlags: 0
@@ -4800,7 +4778,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1027595831
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6412,6 +6390,14 @@ Prefab:
       propertyPath: m_Name
       value: AI (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 405478, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 0.38523
+      objectReference: {fileID: 0}
+    - target: {fileID: 405478, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
+      propertyPath: m_LocalScale.z
+      value: 0.38523
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
   m_IsPrefabParent: 0
@@ -6437,7 +6423,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!23 &1303999804
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -6905,7 +6891,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1498179586
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7207,7 +7193,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1579657219
 Transform:
   m_ObjectHideFlags: 0
@@ -8137,13 +8123,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1781359342}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.13, y: 0.16, z: -2.8858373}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_Father: {fileID: 1846147484}
+  m_RootOrder: 2
 --- !u!4 &1807088779 stripped
 Transform:
   m_PrefabParentObject: {fileID: 405478, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
@@ -8152,6 +8138,37 @@ Transform:
 Transform:
   m_PrefabParentObject: {fileID: 405478, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
   m_PrefabInternal: {fileID: 197335200}
+--- !u!1 &1846147483
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1846147484}
+  m_Layer: 0
+  m_Name: EventManagerTest
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1846147484
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1846147483}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 8.13, y: 0.15999997, z: -2.8858373}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children:
+  - {fileID: 497401156}
+  - {fileID: 1942644821}
+  - {fileID: 1781359346}
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
 --- !u!1 &1889360754
 GameObject:
   m_ObjectHideFlags: 0
@@ -8388,6 +8405,14 @@ Prefab:
       propertyPath: shootInterval
       value: 0.25
       objectReference: {fileID: 0}
+    - target: {fileID: 405478, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 0.38523
+      objectReference: {fileID: 0}
+    - target: {fileID: 405478, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
+      propertyPath: m_LocalScale.z
+      value: 0.38523
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
   m_IsPrefabParent: 0
@@ -8463,13 +8488,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1942644817}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.276772, y: -0.3061695, z: -2.8858373}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.1467714, y: -0.46616948, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_Father: {fileID: 1846147484}
+  m_RootOrder: 1
 --- !u!1001 &1966724781
 Prefab:
   m_ObjectHideFlags: 0
@@ -9033,6 +9058,14 @@ Prefab:
     - target: {fileID: 14494620, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
       propertyPath: m_ConnectedAnchor.z
       value: -0.0000009187497
+      objectReference: {fileID: 0}
+    - target: {fileID: 405478, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 0.38523
+      objectReference: {fileID: 0}
+    - target: {fileID: 405478, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
+      propertyPath: m_LocalScale.z
+      value: 0.38523
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}

@@ -59,11 +59,10 @@ public class EventManager : MonoBehaviour {
         public bool unableToProceed;
     }
 
-    public EventTree[] eventTrees;
+    public EventTree[] eventTrees = new EventTree[0];
 
     public int currentTreeIndex;
     public Text missionUI;
-
 
     void Awake() {
     }
@@ -94,6 +93,7 @@ public class EventManager : MonoBehaviour {
         if (!eventTrees[currentTreeIndex].events[eventIndex].calibrated) {
             for (var i = 0; i < eventTrees[currentTreeIndex].events[eventIndex].eventBody.Length; i++)
                 eventTrees[currentTreeIndex].events[eventIndex].eventBody[i].eventTriggers.timer += Time.time;
+            currentEvent.eventTriggers.timer = eventTrees[currentTreeIndex].events[eventIndex].eventBody[0].eventTriggers.timer;
             eventTrees[currentTreeIndex].events[eventIndex].calibrated = true;
         }
 
@@ -177,7 +177,6 @@ public class EventManagerEditor : Editor {
                         Handles.CircleCap(0, t.eventTrees[i].events[j].eventBody[k].eventTriggers.triggerPosition, rotation, t.eventTrees[i].events[j].eventBody[k].eventTriggers.triggerRadius);
             }
 
-
         Event e;
         e = Event.current;
 
@@ -199,7 +198,6 @@ public class EventManagerEditor : Editor {
 
     public override void OnInspectorGUI() {
         DrawDefaultInspector();
-
         t = target as EventManager;
 
         if (t != null)
