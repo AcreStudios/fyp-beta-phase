@@ -27,7 +27,9 @@ public class EventManager : MonoBehaviour {
         public string eventName;
         public string missionUI;
 
-        public EventBody[] eventBody;        
+        public EventBody[] eventBody;
+        //[HideInInspector]
+        public bool calibrated;
     }
 
     [System.Serializable]
@@ -35,8 +37,6 @@ public class EventManager : MonoBehaviour {
         public string eventBodyName;
         public Triggers eventTriggers;
         public Results results;
-        [HideInInspector]
-        public bool calibrated;
     }
 
     [System.Serializable]
@@ -90,10 +90,11 @@ public class EventManager : MonoBehaviour {
     void CheckTrigger(EventBody currentEvent, int currentTreeIndex, int eventIndex) {
         //Debug.Log(eventTrees[currentTreeIndex].events[eventIndex].eventName);
 
-        if (!eventTrees[currentTreeIndex].events[eventIndex].eventBody[eventTrees[currentTreeIndex].currentGameEvent].calibrated) {
+        if (!eventTrees[currentTreeIndex].events[eventIndex].calibrated) {
             for (var i = 0; i < eventTrees[currentTreeIndex].events[eventIndex].eventBody.Length; i++)
                 eventTrees[currentTreeIndex].events[eventIndex].eventBody[i].eventTriggers.timer += Time.time;
-            eventTrees[currentTreeIndex].events[eventIndex].eventBody[eventTrees[currentTreeIndex].currentGameEvent].calibrated = true;
+            currentEvent.eventTriggers.timer = eventTrees[currentTreeIndex].events[eventIndex].eventBody[0].eventTriggers.timer;
+            eventTrees[currentTreeIndex].events[eventIndex].calibrated = true;
         }
 
         if (currentEvent.eventTriggers.triggerRadius > 0) {
