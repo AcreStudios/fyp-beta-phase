@@ -28,7 +28,7 @@ public class EventManager : MonoBehaviour {
         public string missionUI;
 
         public EventBody[] eventBody;
-        //[HideInInspector]
+        [HideInInspector]
         public bool calibrated;
     }
 
@@ -177,7 +177,6 @@ public class EventManagerEditor : Editor {
                         Handles.CircleCap(0, t.eventTrees[i].events[j].eventBody[k].eventTriggers.triggerPosition, rotation, t.eventTrees[i].events[j].eventBody[k].eventTriggers.triggerRadius);
             }
 
-
         Event e;
         e = Event.current;
 
@@ -199,7 +198,6 @@ public class EventManagerEditor : Editor {
 
     public override void OnInspectorGUI() {
         DrawDefaultInspector();
-
         t = target as EventManager;
 
         if (t != null)

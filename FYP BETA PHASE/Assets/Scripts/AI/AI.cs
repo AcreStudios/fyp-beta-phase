@@ -12,18 +12,29 @@ public class AI : AIFunctions {
         Attacking
     }
 
+    public enum WeaponType {
+        RaycastShooting,
+        Area
+    }
+
     public float reactionTime;
     public bool toEscort;
     public bool knowsTarget;
     public AIStates currentState;
+
     AIStates defaultState;
-
     PatrolModule patrolMod;
-
     bool hasStarted;
     float timer;
 
     public bool damageTest;
+
+    [Header("Weapons")]
+    public WeaponType attackType;
+    public float weaponRange;
+    public float areaTestRadius;
+    public bool aoe;
+    public float aoeRadius;
 
     void Start() {
 

@@ -2364,7 +2364,65 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08b2fb0488100794a87dc3262f2e47e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eventTrees: []
+  eventTrees:
+  - eventTreeName: Fuck You
+    events:
+    - eventName: LOL
+      missionUI: 
+      eventBody:
+      - eventBodyName: 
+        eventTriggers:
+          triggerPosition: {x: 0, y: 0, z: 0}
+          triggerRadius: 0
+          timer: 1
+          checkIfDestroyed: []
+          key: 0
+        results:
+          spawns: []
+          toDestroy: []
+          eventTreeToJump: 0
+          debugMessage: 1
+          levelNameToLoad: 
+          unableToProceed: 0
+      calibrated: 0
+    - eventName: 
+      missionUI: 
+      eventBody:
+      - eventBodyName: 
+        eventTriggers:
+          triggerPosition: {x: 0, y: 0, z: 0}
+          triggerRadius: 0
+          timer: 5
+          checkIfDestroyed: []
+          key: 0
+        results:
+          spawns: []
+          toDestroy: []
+          eventTreeToJump: 0
+          debugMessage: 2
+          levelNameToLoad: 
+          unableToProceed: 0
+      calibrated: 0
+    - eventName: 
+      missionUI: 
+      eventBody:
+      - eventBodyName: 
+        eventTriggers:
+          triggerPosition: {x: 0, y: 0, z: 0}
+          triggerRadius: 0
+          timer: 5
+          checkIfDestroyed: []
+          key: 0
+        results:
+          spawns: []
+          toDestroy: []
+          eventTreeToJump: 0
+          debugMessage: 3
+          levelNameToLoad: 
+          unableToProceed: 0
+      calibrated: 0
+    prevTreeIndex: 0
+    currentGameEvent: 0
   currentTreeIndex: 0
   missionUI: {fileID: 0}
 --- !u!4 &497401156
