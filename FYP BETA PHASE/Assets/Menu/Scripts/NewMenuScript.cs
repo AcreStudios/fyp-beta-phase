@@ -65,7 +65,6 @@ public class NewMenuScript : MonoBehaviour {
         public GameObject Sequence1;
         public GameObject Sequence2;
         public GameObject Sequence3;
-        public GameObject Sequence4;
     }
     public DevMenu devMenu;
     
@@ -143,7 +142,6 @@ public class NewMenuScript : MonoBehaviour {
         devMenu.Sequence1.SetActive(false);
         devMenu.Sequence2.SetActive(false);
         devMenu.Sequence3.SetActive(false);
-        devMenu.Sequence4.SetActive(false);
         #endregion
     }
 
@@ -298,6 +296,7 @@ public class NewMenuScript : MonoBehaviour {
     public void SelectBack() {
         settingsMenu.SettingsCanvas.SetActive(false);
         creditsMenu.CreditsCanvas.SetActive(false);
+        devMenu.DevCanvas.SetActive(false);
         mainMenu.MainCanvas.SetActive(true);
         currentState = "Menu Screen";
         print(currentState);
@@ -354,12 +353,14 @@ public class NewMenuScript : MonoBehaviour {
         devMenu.DevCanvas.SetActive(true);
         devMenu.Sequence1.SetActive(true);
         devMenu.Sequence2.SetActive(true);
+        devMenu.Sequence3.SetActive(true);
+        currentState = "Dev Screen";
     }
-    public void SelectSequence1() {
-        SceneManager.LoadScene("Interior01");
+    public void SelectInterior() {
+        SceneManager.LoadScene("Interior_Test");
     }
-    public void SelectSequence2() {
-        SceneManager.LoadScene("Exterior02");
+    public void SelectExterior() {
+        SceneManager.LoadScene("Exterior_Test");
     }
     #endregion
 

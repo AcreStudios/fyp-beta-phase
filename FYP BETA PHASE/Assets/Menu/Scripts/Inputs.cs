@@ -239,6 +239,17 @@ public class Inputs : MonoBehaviour {
                 menuScript.SelectNo();
             }
             #endregion
+            #region DevScript
+            else if(menuScript.currentState == "Dev Screen") {
+                menuScript.SelectBack();
+            }
+            else if(menuScript.currentState == "Interior") {
+                menuScript.SelectInterior();
+            }
+            else if(menuScript.currentState == "Exterior") {
+                menuScript.SelectExterior();
+            }
+            #endregion
         }
         #endregion
     }
