@@ -73,7 +73,8 @@ public class EventManager : MonoBehaviour {
                 if (missionUI)
                     missionUI.text = eventTrees[currentTreeIndex].events[eventTrees[currentTreeIndex].currentGameEvent].missionUI;
                 foreach (EventBody eventB in eventTrees[currentTreeIndex].events[eventTrees[currentTreeIndex].currentGameEvent].eventBody)
-                    CheckTrigger(eventB, currentTreeIndex, eventTrees[currentTreeIndex].currentGameEvent);
+                    if (CheckTrigger(eventB, currentTreeIndex, eventTrees[currentTreeIndex].currentGameEvent))
+                        break;
             }
         } else {
             for (var i = 0; i < eventTrees.Length; i++)
@@ -87,8 +88,8 @@ public class EventManager : MonoBehaviour {
         }
     }
 
-    void CheckTrigger(EventBody currentEvent, int currentTreeIndex, int eventIndex) {
-        //Debug.Log(eventTrees[currentTreeIndex].events[eventIndex].eventName);
+    bool CheckTrigger(EventBody currentEvent, int currentTreeIndex, int eventIndex) {
+        Debug.Log(currentEvent.eventBodyName);
 
         if (!eventTrees[currentTreeIndex].events[eventIndex].calibrated) {
             for (var i = 0; i < eventTrees[currentTreeIndex].events[eventIndex].eventBody.Length; i++)
@@ -107,22 +108,23 @@ public class EventManager : MonoBehaviour {
                     playerIsInRange++;
 
             if (!(playerIsInRange > 0))
-                return;
+                return false;
         }
 
         foreach (GameObject toCheck in currentEvent.eventTriggers.checkIfDestroyed)
             if (toCheck)
-                return;
+                return false;
 
         if (currentEvent.eventTriggers.timer > Time.time) {
-            return;
+            return false;
         }
 
         if (currentEvent.eventTriggers.key != KeyCode.None)
             if (!(Input.GetKey(currentEvent.eventTriggers.key)))
-                return;
+                return false;
 
         ActivateEvent(currentEvent.results);
+        return true;
     }
 
     void ActivateEvent(Results endResult) {
