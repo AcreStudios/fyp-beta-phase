@@ -22,6 +22,7 @@ public class PauseInputs : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         HandleInput();
+        PauseMenuTrigger();
 	}
 
     private void HandleInput() {
@@ -30,6 +31,7 @@ public class PauseInputs : MonoBehaviour {
 
     private void PauseMenuTrigger() {
         if(escKey) {
+            Time.timeScale = 0;
             PausePrefab.SetActive(true);
             PauseTrigger.SetActive(false);
         }

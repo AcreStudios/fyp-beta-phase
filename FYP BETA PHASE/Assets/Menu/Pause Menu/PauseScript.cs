@@ -5,6 +5,7 @@ using System.Collections;
 public class PauseScript : MonoBehaviour {
 
     public string currentState;
+    public GameObject PauseTrigger;
 
     [System.Serializable]
     public class PauseCanvas {
@@ -91,6 +92,7 @@ public class PauseScript : MonoBehaviour {
         #endregion
     }
     void Start () {
+        PauseTrigger.SetActive(true);
         #region Pause Canvas
         pauseCanvas.pauseCanvas.SetActive(true);
 
@@ -248,6 +250,7 @@ public class PauseScript : MonoBehaviour {
         quitTitleCanvas.quitTitleCanvas.SetActive(false);
         quitCanvas.quitCanvas.SetActive(false);
         pauseCanvas.PausePrefab.SetActive(false);
+        PauseTrigger.SetActive(true);
     }
     public void SelectReload() {
         pauseCanvas.pauseCanvas.SetActive(false);
