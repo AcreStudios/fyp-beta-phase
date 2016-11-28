@@ -4,6 +4,8 @@ using System.Collections.Generic;
 [RequireComponent(typeof(CharacterMovement))]
 public class PlayerInput : MonoBehaviour 
 {
+    public GameObject PausePrefab;
+
 	// Components
 	private Transform trans;
 	private CharacterMovement charMove;
@@ -15,7 +17,7 @@ public class PlayerInput : MonoBehaviour
 	public float _horizontal;
 	[Range(-1f, 1f)]
 	public float _vertical;
-	public bool _LMB, _RMB, _MMB, _spacebar, _leftCtrl, _keyE, _leftShift;
+	public bool _LMB, _RMB, _MMB, _spacebar, _leftCtrl, _keyE, _leftShift, _escKey;
 
 	private float _targetH;
 	private float _targetV;
@@ -35,6 +37,7 @@ public class PlayerInput : MonoBehaviour
 		public string coverButton = "Cover";
 		public string pickupButton = "Pickup";
 		public string toggleRunButton = "ToggleRun";
+        public string escKey = "escKeyK";
 	}
 	[SerializeField]
 	private InputStrings inputStrings;
@@ -79,6 +82,8 @@ public class PlayerInput : MonoBehaviour
 		
 		// Cache camera transform
 		mainCamTrans = Camera.main.transform;
+
+        PausePrefab.SetActive(false);
 	}
 
 	void Update() 
@@ -109,6 +114,7 @@ public class PlayerInput : MonoBehaviour
 		_leftCtrl = Input.GetButtonDown(inputStrings.coverButton);
 		_keyE = Input.GetButtonDown(inputStrings.pickupButton);
 		_leftShift = Input.GetButton(inputStrings.toggleRunButton);
+        _escKey = Input.GetButtonDown(inputStrings.escKey);
 	}
 
 	private void CharacterLogic() // Handles character logic 
@@ -135,10 +141,20 @@ public class PlayerInput : MonoBehaviour
 		if(_leftCtrl)
 			charMove.DoCrouch();
 
+        // Pause
+        if(_escKey) {
+            PauseGame();
+        }
+
 		// Lerp walk-run transition
 		_targetV = Mathf.Lerp(_targetV, v, walkRunTransitionSpeed * Time.deltaTime);
 		_targetH = Mathf.Lerp(_targetH, h, walkRunTransitionSpeed * Time.deltaTime);
 	}
+
+    private void PauseGame() {
+        PausePrefab.SetActive(true);
+        Time.timeScale = 0;
+    }
 
 	private void CameraAimLogic() // Handles camera logic when aiming 
 	{
