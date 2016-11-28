@@ -5,39 +5,10 @@ using System.Collections;
 
 public class AI : AIFunctions {
 
-    public enum AIStates {
-        Idle,
-        Patrol,
-        Escort,
-        Attacking
-    }
-
-    public enum WeaponType {
-        RaycastShooting,
-        Area
-    }
-
-    public float reactionTime;
-    public bool toEscort;
-    public bool knowsTarget;
-    public AIStates currentState;
-
-    AIStates defaultState;
     PatrolModule patrolMod;
-    bool hasStarted;
-    float timer;
-
-    public bool damageTest;
-
-    [Header("Weapons")]
-    public WeaponType attackType;
-    public float weaponRange;
-    public float areaTestRadius;
-    public bool aoe;
-    public float aoeRadius;
+    float stateChangeTimer;
 
     void Start() {
-
         agent = GetComponent<NavMeshAgent>();
         startingPoint = transform.position;
         eColl = GetComponent<Collider>();
@@ -64,7 +35,6 @@ public class AI : AIFunctions {
 
         if (knowsTarget)
             target = GameObject.FindGameObjectWithTag("Player").transform;
-
     }
 
     void Update() {
@@ -77,20 +47,12 @@ public class AI : AIFunctions {
         switch (currentState) {
             case AIStates.Idle:
                 if (target != null) {
-                    if (!hasStarted) {
-                        timer = Time.time + reactionTime;
-                        hasStarted = true;
-                    }
-                    if (Time.time > timer) {
-                        AlertOtherTroops();
-                        currentState = AIStates.Attacking;
-                        destination = ObstacleHunting();
-                        hasStarted = false;
-                    }
+                    AlertOtherTroops();
+                    stateChangeTimer = Time.time +  reactionTime;
+                    currentState = AIStates.Attacking;
+                    destination = ObstacleHunting(ableToHide);
                 } else {
-                    hasStarted = false;
                     if ((startingPoint - transform.position).magnitude < 1) {
-                        LookAround();
                         animator.SetInteger("TreeState", 0);
                     } else {
                         agent.destination = startingPoint;
@@ -100,15 +62,10 @@ public class AI : AIFunctions {
 
             case AIStates.Patrol:
                 if (target != null) {
-                    if (!hasStarted) {
-                        timer = Time.time + reactionTime;
-                        hasStarted = true;
-                    }
-                    if (Time.time > timer) {
-                        AlertOtherTroops();
-                        currentState = AIStates.Attacking;
-                        hasStarted = false;
-                    }
+                    AlertOtherTroops();
+                    stateChangeTimer = Time.time + reactionTime;
+                    currentState = AIStates.Attacking;
+                    destination = ObstacleHunting(ableToHide);
                 } else {
                     if ((patrolMod.patrolLocations[patrolMod.currentLocation] - transform.position).magnitude < 1) {
                         if (patrolMod.currentLocation >= patrolMod.patrolLocations.Length - 1) {
@@ -148,26 +105,26 @@ public class AI : AIFunctions {
                 break;
 
             case AIStates.Attacking:
-                if (agent.velocity.sqrMagnitude == 0) {
-                    transform.LookAt(target);
-                    if (Shooting()) ;
-                    RaycastHit hit;
-                    if (Physics.Linecast(destination, target.position, out hit)) {
-                        //Debug.Log(hit.transform.root);
-                        //Debug.Log(target);
-                        Debug.DrawLine(destination, hit.point, Color.red, 20);
-                        if (hit.transform.root == target)
-                            destination = ObstacleHunting();
+                if (Time.time > stateChangeTimer) {
+                    if (agent.velocity.sqrMagnitude == 0) {
+                        transform.LookAt(target);
+                        Attack();
 
+                        RaycastHit hit;
+
+                        if (Physics.Linecast(destination, target.position, out hit)) {
+                            //Debug.DrawLine(destination, hit.point, Color.red, 20);
+                            if (hit.transform.root == target)
+                                destination = ObstacleHunting(ableToHide);
+                        }
+                    } else {
+                        animator.SetInteger("TreeState", 1);
+                        transform.LookAt(destination);
                     }
-                } else {
-                    animator.SetInteger("TreeState", 1);
-                    transform.LookAt(destination);
 
+                    transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
+                    agent.destination = destination;
                 }
-
-                transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
-                agent.destination = destination;
 
                 break;
         }

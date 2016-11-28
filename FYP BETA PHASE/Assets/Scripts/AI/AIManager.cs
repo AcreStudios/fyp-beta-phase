@@ -57,6 +57,7 @@ public class AIManager : MonoBehaviour {
         float dist = Mathf.Infinity;
         bool changed = false;
         int reference = 0;
+
         for (var i = 0; i < readerInst.boundPoints.Count; i++) {
 
             if (readerInst.boundPoints[i].aiCover == ai) {
@@ -83,15 +84,13 @@ public class AIManager : MonoBehaviour {
                     }
                 }
             }
-
-
-            if (changed) {
-                ColliderReaderModule.BoundaryPoints boundInst = readerInst.boundPoints[reference];
-                boundInst.aiCover = ai;
-                readerInst.boundPoints[reference] = boundInst;
-            }
         }
 
+        if (changed) {
+            ColliderReaderModule.BoundaryPoints boundInst = readerInst.boundPoints[reference];
+            boundInst.aiCover = ai;
+            readerInst.boundPoints[reference] = boundInst;
+        }
         return temp;
     }
 }

@@ -2,26 +2,48 @@
 using System.Collections;
 
 public class AIFunctions : MonoBehaviour {
+    public enum AIStates {
+        Idle,
+        Patrol,
+        Escort,
+        Attacking
+    }
 
-    Transform[] guns = new Transform[1];
-    public Vector2 rotationRange;
-    public float shootInterval;
+    public enum WeaponType {
+        RaycastShooting,
+        Area
+    }
+
+    [Header("Behaviours")]
+    public AIStates currentState;
+    public float reactionTime;
+    public bool ableToHide;
+    public bool ableToCommunicate;
+    public bool toEscort;
+    public bool knowsTarget;
+    protected AIStates defaultState;
+
+    [Header("Weapons")]
+    public WeaponType attackType;
+    public float attackInterval;
+    public float weaponRange;
+    public bool piercing;
+    float attackTimer;
+
+    [Header("Raycast Shooting Attack Settings")]
     public float gunSprayValue;
-    public float range;
-    public Collider destinationMarker;
-    //public GameObject gunEffect;
 
-    public float Health { get; set; }
+    [Header("Area Attack Settings")]
+    public float areaTestRadius;
+
+    [Header("Debug")]
+    public bool damageTest;
+    
+    public Collider destinationMarker;
 
     protected Transform target;
-    const float lerpAdditionValue = 0.03f;
-
-    float lerpValue;
-    float targetHeadRotation;
-
-    float prevHeadRotation;
-    float shootingTime;
-    float rotateTime;
+    Transform[] guns = new Transform[1];
+   
     protected Transform linecastCheck;
     protected Vector3 startingPoint;
     protected bool showGunEffect;
@@ -34,7 +56,6 @@ public class AIFunctions : MonoBehaviour {
     protected Vector3 destination;
 
     void Awake() {
-        Health = 100;
         gameObject.tag = "Enemy";
 
         guns[0] = transform.Find("Hanna_GunL");
@@ -42,27 +63,6 @@ public class AIFunctions : MonoBehaviour {
     }
 
     public virtual void DamageRecieved(float damage) {
-        Health -= damage;
-        if (Health <= 0) {
-            Destroy(gameObject);
-        }
-    }
-
-    public void LookAround() {
-        if (rotateTime < Time.time) {
-            if (lerpValue >= 1 || prevHeadRotation == targetHeadRotation) {
-                lerpValue = 0;
-
-                prevHeadRotation = targetHeadRotation;
-                targetHeadRotation = Random.Range(rotationRange.x, rotationRange.y);
-            } else {
-                transform.eulerAngles = new Vector3(transform.eulerAngles.x, Mathf.Lerp(prevHeadRotation, targetHeadRotation, lerpValue), transform.eulerAngles.z);
-                lerpValue += lerpAdditionValue;
-                if (lerpValue >= 1 || prevHeadRotation == targetHeadRotation) {
-                    rotateTime = Time.time + Random.Range(3, 6);
-                }
-            }
-        }
     }
 
     public void AlertOtherTroops() {
@@ -98,46 +98,54 @@ public class AIFunctions : MonoBehaviour {
         }
     } //Keep for future reference.
 
-    public bool Shooting() {
+    public void Attack() {
         animator.SetInteger("TreeState", 2);
-        if (Time.time > shootingTime) {
-            Vector3 offset;
-            //AlertOtherTroops();
+        if (Time.time > attackTimer) {
+            Transform targetHit = null;
+            switch (attackType) {
+                case WeaponType.RaycastShooting:
+                    Vector3 offset;
+                    offset = new Vector3(Random.Range(-gunSprayValue, gunSprayValue), Random.Range(-gunSprayValue, gunSprayValue), 0);
+                    foreach (Transform gun in guns) {
+                        gun.LookAt(target);
 
-            offset = new Vector3(Random.Range(-gunSprayValue, gunSprayValue), Random.Range(-gunSprayValue, gunSprayValue), 0);
-            foreach (Transform gun in guns) {
-                gun.LookAt(target);
+                        gunEffect.transform.position = gun.position;
+                        gunEffect.SetActive(true);
 
-                gunEffect.transform.position = gun.position;
-                gunEffect.SetActive(true);
+                        StartCoroutine(ChangeObjectLocation(gunEffect, gun.position + gun.TransformDirection(0, 0, weaponRange) + offset));
+                        StartCoroutine(TurnOffObject(0.2f, gunEffect));
 
-                StartCoroutine(ChangeObjectLocation(gunEffect, gun.position + gun.TransformDirection(0, 0, range) + offset));
-                StartCoroutine(TurnOffObject(0.2f, gunEffect));
-
-                RaycastHit hit;
-                if (Physics.Raycast(gun.position, gun.TransformDirection(0, 0, range) + offset, out hit)) {
-                    if (hit.transform.root != transform) {
-                        Health hp = hit.transform.root.GetComponent<Health>();
-                        AIFunctions ai;
-                        if (hp && hp.isActiveAndEnabled)
-                            hp.ReceiveDamage(5);
-
-                        if (hit.transform.root.tag == "Player")
-                            if (HitFeedbackManager.instance)
-                                HitFeedbackManager.instance.RetriggerHitEvent();
-
-                        if ((ai = hit.transform.root.GetComponent<AIFunctions>()) != null) {
-                            Vector3 toNorm = Vector3.Normalize(target.position - transform.position);
-                            //Debug.Log(hit.transform.root + " was hit by " + transform.root);
-                            ai.DisplaceAILocation(toNorm);
+                        RaycastHit hit;
+                        if (Physics.Raycast(gun.position, gun.TransformDirection(0, 0, weaponRange) + offset, out hit)) {
+                            targetHit = hit.transform.root;
                         }
                     }
-                }
+                    break;
+                case WeaponType.Area:
+                    //Collider[] units = Physics.OverlapSphere()
+                    break;
             }
-            shootingTime = Time.time + shootInterval;
-            return true;
+
+            //Handle hits here
+            if (targetHit != null)
+                if (targetHit != transform) {
+                    Health hp = targetHit.GetComponent<Health>();
+                    AIFunctions ai;
+                    if (hp && hp.isActiveAndEnabled)
+                        hp.ReceiveDamage(5);
+
+                    if (targetHit.tag == "Player")
+                        if (HitFeedbackManager.instance)
+                            HitFeedbackManager.instance.RetriggerHitEvent();
+
+                    if ((ai = targetHit.GetComponent<AIFunctions>()) != null) {
+                        Vector3 toNorm = Vector3.Normalize(target.position - transform.position);
+                        //Debug.Log(hit.transform.root + " was hit by " + transform.root);
+                        ai.DisplaceAILocation(toNorm);
+                    }
+                    attackTimer = Time.time + attackInterval;
+                }
         }
-        return true;
     }
 
     public IEnumerator TurnOffObject(float time, GameObject obj) {
@@ -153,7 +161,7 @@ public class AIFunctions : MonoBehaviour {
     public void DisplaceAILocation(Vector3 normalizedEnemyVector) {
 
         int ai = 0;
-        Collider[] inCollision = Physics.OverlapCapsule(target.position - (normalizedEnemyVector * range), target.position - (normalizedEnemyVector * range), 1);
+        Collider[] inCollision = Physics.OverlapCapsule(target.position - (normalizedEnemyVector * weaponRange), target.position - (normalizedEnemyVector * weaponRange), 1);
 
         foreach (Collider collision in inCollision)
             if (collision != destinationMarker)
@@ -165,7 +173,7 @@ public class AIFunctions : MonoBehaviour {
             normalizedEnemyVector.x += 0.1f;
             normalizedEnemyVector.z += 0.1f;
 
-            inCollision = Physics.OverlapCapsule(target.position - (normalizedEnemyVector * range), target.position - (normalizedEnemyVector * range), 1);
+            inCollision = Physics.OverlapCapsule(target.position - (normalizedEnemyVector * weaponRange), target.position - (normalizedEnemyVector * weaponRange), 1);
 
             foreach (Collider collision in inCollision)
                 if (collision != destinationMarker)
@@ -173,20 +181,16 @@ public class AIFunctions : MonoBehaviour {
                         ai++;
         }
 
-        destination = target.position - (normalizedEnemyVector * range);
-        destinationMarker.transform.position = target.position - (normalizedEnemyVector * range);
+        destination = target.position - (normalizedEnemyVector * weaponRange);
+        destinationMarker.transform.position = target.position - (normalizedEnemyVector * weaponRange);
     }
 
-    public Vector3 ObstacleHunting() {
-
-        //if (tempObs)
-        //return ShortObstacleException(tempObs);
-        //else
-        //tempObs = AIManager.instance.AssignCover(gameObject, range);
-        //AIManager.instance.AssignCover
+    public Vector3 ObstacleHunting(bool hide) {
         Vector3 temp = transform.position;
         Vector3 backUp = temp;
-        temp = AIManager.instance.AssignHidingPoint(gameObject, range); ;
+
+        if (hide)
+            temp = AIManager.instance.AssignHidingPoint(gameObject, weaponRange);
 
         if (temp == backUp) {
             temp = target.position - transform.position;

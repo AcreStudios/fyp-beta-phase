@@ -89,7 +89,7 @@ public class EventManager : MonoBehaviour {
     }
 
     bool CheckTrigger(EventBody currentEvent, int currentTreeIndex, int eventIndex) {
-        Debug.Log(currentEvent.eventBodyName);
+        //Debug.Log(currentEvent.eventBodyName);
 
         if (!eventTrees[currentTreeIndex].events[eventIndex].calibrated) {
             for (var i = 0; i < eventTrees[currentTreeIndex].events[eventIndex].eventBody.Length; i++)
