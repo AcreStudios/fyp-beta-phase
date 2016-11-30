@@ -82,6 +82,8 @@ public class Weapon : MonoBehaviour
 		public float pitchMax = 1.1f;
 		[HideInInspector]
 		public AudioSource audioSrc;
+
+		public BulletImpactMaterialType[] impactSounds;
 	}
 	public SoundSettings soundSettings;
 
@@ -149,23 +151,7 @@ public class Weapon : MonoBehaviour
 				if(ai && ai.isActiveAndEnabled)
 					ai.DamageRecieved(0);
 
-				#region Spawn bullet impact
-
-				if(weaponSettings.bulletImpactPrefab)
-				{
-					if(hit.collider.gameObject.isStatic)
-					{
-						Vector3 hitPoint = hit.point;
-						Quaternion lookRot = Quaternion.LookRotation(hit.normal);
-						GameObject decal = (GameObject)Instantiate(weaponSettings.bulletImpactPrefab, hitPoint, lookRot);
-						Transform decalTrans = decal.transform;
-						Transform hitTrans = hit.transform;
-						decalTrans.SetParent(hitTrans);
-						Destroy(decal, 20f);
-					}
-				}
-
-				#endregion
+				BulletImpactLogic(hit);
 			}
 
 			#endregion
@@ -239,6 +225,40 @@ public class Weapon : MonoBehaviour
 		_loading = true;
 		yield return new WaitForSeconds(weaponSettings.fireRate);
 		_loading = false;
+	}
+
+	private void BulletImpactLogic(RaycastHit hit) // Spawn decals and play sounds on bullet impact 
+	{
+		// Impact decal
+		if(weaponSettings.bulletImpactPrefab)
+		{
+			if(hit.collider.gameObject.isStatic)
+			{
+				Vector3 hitPoint = hit.point;
+				Quaternion lookRot = Quaternion.LookRotation(hit.normal);
+				GameObject decal = (GameObject)Instantiate(weaponSettings.bulletImpactPrefab, hitPoint, lookRot);
+				Transform decalTrans = decal.transform;
+				Transform hitTrans = hit.transform;
+				decalTrans.SetParent(hitTrans);
+				Destroy(decal, 20f);
+			}
+		}
+
+		// Sounds
+		if(soundSettings.impactSounds.Length > 0) // If we defined a impact sound type
+		{
+			foreach(BulletImpactMaterialType bTypes in soundSettings.impactSounds)
+			{
+				if(bTypes.impactSounds.Length > 0) // If we have impact sounds
+				{
+					foreach(Material mat in bTypes.mats)
+					{
+						if(hit.collider.GetComponent<MeshRenderer>().material.mainTexture == mat.mainTexture) // Compare
+							SoundManager.GetInstance().PlaySoundOnce(hit.point, bTypes.impactSounds[Random.Range(0, bTypes.impactSounds.Length)]);
+					}
+				}
+			}
+		}
 	}
 
 	public void LoadAmmo() // Calculate and reload ammo
@@ -356,4 +376,12 @@ public class Weapon : MonoBehaviour
 	{
 		weaponHandler = wh;
 	}
+}
+
+[System.Serializable]
+public class BulletImpactMaterialType
+{
+	public string impactName;
+	public Material[] mats;
+	public AudioClip[] impactSounds;
 }

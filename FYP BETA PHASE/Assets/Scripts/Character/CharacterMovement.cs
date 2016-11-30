@@ -55,7 +55,7 @@ public class CharacterMovement : MonoBehaviour
 	private bool _inCover;
 
 
-	void Awake()
+	void Awake() 
 	{
 		// Cache components
 		trans = GetComponent<Transform>();
@@ -119,9 +119,6 @@ public class CharacterMovement : MonoBehaviour
 
 	public void DoCrouch()
 	{
-		if(_inCover)
-			return;
-
 		GetComponent<CoverSystem>().ManualGetIntoCover();
 	}
 
