@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18053626, g: 0.22601849, b: 0.30718803, a: 1}
+  m_IndirectSpecularColor: {r: 0.18053587, g: 0.22601774, b: 0.30718702, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -1014,7 +1014,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1000012683640346, guid: 8d832414d0e330743ba127ab2975fe40, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114000011512328544, guid: 8d832414d0e330743ba127ab2975fe40,
         type: 2}
@@ -2350,6 +2350,10 @@ Prefab:
       propertyPath: curHealth
       value: 30
       objectReference: {fileID: 0}
+    - target: {fileID: 11445470, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
+      propertyPath: weaponRange
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
   m_IsPrefabParent: 0
@@ -2770,7 +2774,7 @@ CanvasRenderer:
 GameObject:
   m_PrefabParentObject: {fileID: 1000013672259102, guid: 8d2c8080256b7074ba0c2be6a5a51b15,
     type: 2}
-  m_PrefabInternal: {fileID: 2140532490}
+  m_PrefabInternal: {fileID: 1369737619}
 --- !u!1001 &224502989
 Prefab:
   m_ObjectHideFlags: 0
@@ -3652,6 +3656,11 @@ Transform:
   - {fileID: 92645172}
   m_Father: {fileID: 1990782056}
   m_RootOrder: 1
+--- !u!1 &498557579 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1000012181006068, guid: 8d2c8080256b7074ba0c2be6a5a51b15,
+    type: 2}
+  m_PrefabInternal: {fileID: 1369737619}
 --- !u!1 &547825172
 GameObject:
   m_ObjectHideFlags: 0
@@ -4061,12 +4070,12 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 1002873830}
-  m_RootOrder: 9
+  m_RootOrder: 10
 --- !u!1 &671078796 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1000010194209050, guid: 8d2c8080256b7074ba0c2be6a5a51b15,
     type: 2}
-  m_PrefabInternal: {fileID: 2140532490}
+  m_PrefabInternal: {fileID: 1369737619}
 --- !u!1 &677384607
 GameObject:
   m_ObjectHideFlags: 0
@@ -4157,7 +4166,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &680843238
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4966,6 +4975,10 @@ Prefab:
       propertyPath: m_Name
       value: AI (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 11445470, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
+      propertyPath: weaponRange
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
   m_IsPrefabParent: 0
@@ -5562,7 +5575,7 @@ Transform:
 GameObject:
   m_PrefabParentObject: {fileID: 1000013817600306, guid: 8d2c8080256b7074ba0c2be6a5a51b15,
     type: 2}
-  m_PrefabInternal: {fileID: 2140532490}
+  m_PrefabInternal: {fileID: 1369737619}
 --- !u!1 &961214159
 GameObject:
   m_ObjectHideFlags: 0
@@ -5957,6 +5970,7 @@ Transform:
   - {fileID: 719077803}
   - {fileID: 966752008}
   - {fileID: 680843239}
+  - {fileID: 1307263483}
   - {fileID: 669702897}
   - {fileID: 359825652}
   m_Father: {fileID: 0}
@@ -5969,7 +5983,7 @@ Transform:
 GameObject:
   m_PrefabParentObject: {fileID: 1000010869289902, guid: 8d2c8080256b7074ba0c2be6a5a51b15,
     type: 2}
-  m_PrefabInternal: {fileID: 2140532490}
+  m_PrefabInternal: {fileID: 1369737619}
 --- !u!1 &1085541902
 GameObject:
   m_ObjectHideFlags: 0
@@ -6503,12 +6517,12 @@ CanvasRenderer:
 GameObject:
   m_PrefabParentObject: {fileID: 1000010505560504, guid: 8d2c8080256b7074ba0c2be6a5a51b15,
     type: 2}
-  m_PrefabInternal: {fileID: 2140532490}
+  m_PrefabInternal: {fileID: 1369737619}
 --- !u!1 &1211956370 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1000012091763724, guid: 8d2c8080256b7074ba0c2be6a5a51b15,
     type: 2}
-  m_PrefabInternal: {fileID: 2140532490}
+  m_PrefabInternal: {fileID: 1369737619}
 --- !u!4 &1223044383 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 81d5122ca86260b4db056d51aaea63df, type: 3}
@@ -6616,6 +6630,687 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1313157558}
   m_RootOrder: 2
+--- !u!1 &1307263482
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1307263483}
+  - 114: {fileID: 1307263484}
+  m_Layer: 0
+  m_Name: Event Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1307263483
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1307263482}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 1002873830}
+  m_RootOrder: 9
+--- !u!114 &1307263484
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1307263482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08b2fb0488100794a87dc3262f2e47e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventTrees:
+  - eventTreeName: Sequence1_M1
+    events:
+    - eventName: Teach Camera
+      missionUI: 
+      eventBody:
+      - eventBodyName: Spawn Camera UI
+        eventTriggers:
+          triggerPosition: {x: -2.5, y: 0, z: -5.5}
+          triggerRadius: 1.5
+          timer: 0
+          checkIfDestroyed: []
+          key: 0
+        results:
+          spawns:
+          - {fileID: 1047276342}
+          - {fileID: 1906310200}
+          toDestroy: []
+          eventTreeToJump: 0
+          debugMessage: Camera UI Spawned
+          levelNameToLoad: 
+          unableToProceed: 0
+      calibrated: 0
+    - eventName: Teach Interact
+      missionUI: 
+      eventBody:
+      - eventBodyName: Spawn Interact UI
+        eventTriggers:
+          triggerPosition: {x: -2.5, y: 0, z: -5.5}
+          triggerRadius: 1.5
+          timer: 5
+          checkIfDestroyed: []
+          key: 0
+        results:
+          spawns:
+          - {fileID: 2068630610}
+          toDestroy:
+          - {fileID: 1047276342}
+          - {fileID: 1906310200}
+          eventTreeToJump: 0
+          debugMessage: Interact UI Spawned
+          levelNameToLoad: 
+          unableToProceed: 0
+      calibrated: 0
+    - eventName: Lift Button Press
+      missionUI: 
+      eventBody:
+      - eventBodyName: Lift Button Press
+        eventTriggers:
+          triggerPosition: {x: -2.5, y: 0, z: -5.5}
+          triggerRadius: 1.5
+          timer: 0
+          checkIfDestroyed: []
+          key: 101
+        results:
+          spawns:
+          - {fileID: 1457166500}
+          - {fileID: 1085541902}
+          toDestroy: []
+          eventTreeToJump: 0
+          debugMessage: Lift Button Pressed
+          levelNameToLoad: 
+          unableToProceed: 0
+      calibrated: 0
+    - eventName: Teach Move
+      missionUI: 
+      eventBody:
+      - eventBodyName: Move UI Spawned
+        eventTriggers:
+          triggerPosition: {x: -2.5, y: 0, z: -5.5}
+          triggerRadius: 1.5
+          timer: 5
+          checkIfDestroyed: []
+          key: 0
+        results:
+          spawns:
+          - {fileID: 222609227}
+          - {fileID: 498557579}
+          toDestroy:
+          - {fileID: 2068630610}
+          eventTreeToJump: 0
+          debugMessage: Move UI Spawned
+          levelNameToLoad: 
+          unableToProceed: 0
+      calibrated: 0
+    - eventName: Doors Open
+      missionUI: 
+      eventBody:
+      - eventBodyName: Doors Open
+        eventTriggers:
+          triggerPosition: {x: -2.5, y: 0, z: -5.5}
+          triggerRadius: 1.5
+          timer: 0
+          checkIfDestroyed: []
+          key: 0
+        results:
+          spawns:
+          - {fileID: 589329873}
+          toDestroy:
+          - {fileID: 257086548}
+          - {fileID: 419476457}
+          eventTreeToJump: 0
+          debugMessage: Doors Opened
+          levelNameToLoad: 
+          unableToProceed: 0
+      calibrated: 0
+    - eventName: M2 Trigger
+      missionUI: 
+      eventBody:
+      - eventBodyName: Trigger M2
+        eventTriggers:
+          triggerPosition: {x: 4.72, y: 0.09687331, z: -2.8324046}
+          triggerRadius: 1
+          timer: 0
+          checkIfDestroyed: []
+          key: 0
+        results:
+          spawns:
+          - {fileID: 161922685}
+          toDestroy:
+          - {fileID: 222609227}
+          - {fileID: 589329873}
+          - {fileID: 1085541902}
+          - {fileID: 498557579}
+          eventTreeToJump: 1
+          debugMessage: M1 Ended | M2 Started
+          levelNameToLoad: 
+          unableToProceed: 0
+      calibrated: 0
+    prevTreeIndex: 0
+    currentGameEvent: 0
+  - eventTreeName: Sequence1_M2
+    events:
+    - eventName: Get to Meeting
+      missionUI: 
+      eventBody:
+      - eventBodyName: No Access to Studio
+        eventTriggers:
+          triggerPosition: {x: 3.5410888, y: 0.09677036, z: 7.705412}
+          triggerRadius: 1
+          timer: 0
+          checkIfDestroyed: []
+          key: 0
+        results:
+          spawns: []
+          toDestroy:
+          - {fileID: 1181996093}
+          eventTreeToJump: 0
+          debugMessage: No Access Studio
+          levelNameToLoad: 
+          unableToProceed: 1
+      - eventBodyName: No Access to Pantry
+        eventTriggers:
+          triggerPosition: {x: 9.131462, y: 0.09703922, z: -2.4285088}
+          triggerRadius: 1
+          timer: 0
+          checkIfDestroyed: []
+          key: 0
+        results:
+          spawns: []
+          toDestroy:
+          - {fileID: 961214159}
+          eventTreeToJump: 0
+          debugMessage: No Access Pantry
+          levelNameToLoad: 
+          unableToProceed: 1
+      - eventBodyName: Trigger M3
+        eventTriggers:
+          triggerPosition: {x: -9.663612, y: 0.096774, z: -20.065392}
+          triggerRadius: 2
+          timer: 0
+          checkIfDestroyed: []
+          key: 0
+        results:
+          spawns:
+          - {fileID: 19020999}
+          toDestroy:
+          - {fileID: 161922685}
+          eventTreeToJump: 2
+          debugMessage: M2 Ended | M3 Started
+          levelNameToLoad: 
+          unableToProceed: 0
+      calibrated: 0
+    prevTreeIndex: 0
+    currentGameEvent: 0
+  - eventTreeName: Sequence1_M3
+    events:
+    - eventName: Trigger Inside
+      missionUI: 
+      eventBody:
+      - eventBodyName: Trigger Inside
+        eventTriggers:
+          triggerPosition: {x: -20.19582, y: 0.09677398, z: -25.75847}
+          triggerRadius: 1
+          timer: 0
+          checkIfDestroyed: []
+          key: 0
+        results:
+          spawns:
+          - {fileID: 771482260}
+          toDestroy:
+          - {fileID: 19020999}
+          eventTreeToJump: 2
+          debugMessage: Triggered
+          levelNameToLoad: 
+          unableToProceed: 0
+      calibrated: 0
+    - eventName: Proc UI
+      missionUI: 
+      eventBody:
+      - eventBodyName: Proc UI
+        eventTriggers:
+          triggerPosition: {x: -9.666579, y: 0, z: -20.11152}
+          triggerRadius: 2
+          timer: 0
+          checkIfDestroyed: []
+          key: 0
+        results:
+          spawns:
+          - {fileID: 816349926}
+          toDestroy:
+          - {fileID: 771482260}
+          eventTreeToJump: 3
+          debugMessage: M3 Ended | M4 Started
+          levelNameToLoad: 
+          unableToProceed: 0
+      calibrated: 0
+    prevTreeIndex: 0
+    currentGameEvent: 0
+  - eventTreeName: Sequence1_M4
+    events:
+    - eventName: Get to Pantry
+      missionUI: 
+      eventBody:
+      - eventBodyName: No Access Exit
+        eventTriggers:
+          triggerPosition: {x: 3.9387465, y: 0.09677245, z: -2.8048444}
+          triggerRadius: 1
+          timer: 0
+          checkIfDestroyed: []
+          key: 0
+        results:
+          spawns: []
+          toDestroy: []
+          eventTreeToJump: 0
+          debugMessage: No Access Exit
+          levelNameToLoad: 
+          unableToProceed: 1
+      - eventBodyName: No Access Studio
+        eventTriggers:
+          triggerPosition: {x: 3.5517907, y: 0.09677037, z: 7.6558948}
+          triggerRadius: 1
+          timer: 0
+          checkIfDestroyed: []
+          key: 0
+        results:
+          spawns: []
+          toDestroy: []
+          eventTreeToJump: 0
+          debugMessage: No Access Studio
+          levelNameToLoad: 
+          unableToProceed: 1
+      - eventBodyName: Enter Pantry
+        eventTriggers:
+          triggerPosition: {x: 9.405435, y: 0.09703535, z: -2.3511622}
+          triggerRadius: 1
+          timer: 0
+          checkIfDestroyed: []
+          key: 0
+        results:
+          spawns:
+          - {fileID: 167643070}
+          toDestroy:
+          - {fileID: 816349926}
+          eventTreeToJump: 3
+          debugMessage: Pantry Entered
+          levelNameToLoad: 
+          unableToProceed: 0
+      calibrated: 0
+    - eventName: Make Coffee
+      missionUI: 
+      eventBody:
+      - eventBodyName: Make Coffee
+        eventTriggers:
+          triggerPosition: {x: 14.320247, y: 0, z: -0.72035164}
+          triggerRadius: 1
+          timer: 0
+          checkIfDestroyed: []
+          key: 0
+        results:
+          spawns:
+          - {fileID: 1190913162}
+          toDestroy:
+          - {fileID: 167643070}
+          eventTreeToJump: 3
+          debugMessage: Stepped into Coffee Area
+          levelNameToLoad: 
+          unableToProceed: 0
+      calibrated: 0
+    - eventName: Check Make Coffee
+      missionUI: 
+      eventBody:
+      - eventBodyName: Check Make Coffee
+        eventTriggers:
+          triggerPosition: {x: 14.32025, y: 0, z: -0.7203516}
+          triggerRadius: 1
+          timer: 0
+          checkIfDestroyed: []
+          key: 101
+        results:
+          spawns:
+          - {fileID: 994031273}
+          toDestroy:
+          - {fileID: 1190913162}
+          eventTreeToJump: 3
+          debugMessage: Coffee Made
+          levelNameToLoad: 
+          unableToProceed: 0
+      calibrated: 0
+    - eventName: Check Make Coffee
+      missionUI: 
+      eventBody:
+      - eventBodyName: Check Make Coffee
+        eventTriggers:
+          triggerPosition: {x: 14.32025, y: 0, z: -0.7203516}
+          triggerRadius: 0
+          timer: 8
+          checkIfDestroyed: []
+          key: 0
+        results:
+          spawns:
+          - {fileID: 1960068825}
+          toDestroy: []
+          eventTreeToJump: 3
+          debugMessage: Coffee Made
+          levelNameToLoad: 
+          unableToProceed: 0
+      calibrated: 0
+    - eventName: Trigger M5
+      missionUI: 
+      eventBody:
+      - eventBodyName: Trigger M5
+        eventTriggers:
+          triggerPosition: {x: 7.9005866, y: 0.0972109, z: -2.5368612}
+          triggerRadius: 1
+          timer: 0
+          checkIfDestroyed: []
+          key: 0
+        results:
+          spawns: []
+          toDestroy: []
+          eventTreeToJump: 4
+          debugMessage: M4 Ended | M5 Started
+          levelNameToLoad: 
+          unableToProceed: 0
+      calibrated: 0
+    prevTreeIndex: 0
+    currentGameEvent: 0
+  - eventTreeName: Sequence1_M5
+    events:
+    - eventName: Enter Studio
+      missionUI: 
+      eventBody:
+      - eventBodyName: Enter Studio
+        eventTriggers:
+          triggerPosition: {x: 3.5318685, y: 0.09677037, z: 7.6303387}
+          triggerRadius: 1
+          timer: 0
+          checkIfDestroyed: []
+          key: 0
+        results:
+          spawns:
+          - {fileID: 1535761628}
+          - {fileID: 677384607}
+          toDestroy:
+          - {fileID: 1960068825}
+          eventTreeToJump: 4
+          debugMessage: Studio Entered
+          levelNameToLoad: 
+          unableToProceed: 0
+      calibrated: 0
+    - eventName: Go to Desk
+      missionUI: 
+      eventBody:
+      - eventBodyName: Go to Desk
+        eventTriggers:
+          triggerPosition: {x: 13.893499, y: 0.09676869, z: 25.287699}
+          triggerRadius: 1
+          timer: 0
+          checkIfDestroyed: []
+          key: 0
+        results:
+          spawns:
+          - {fileID: 208579335}
+          - {fileID: 954165549}
+          toDestroy:
+          - {fileID: 677384607}
+          eventTreeToJump: 4
+          debugMessage: Desk Reached
+          levelNameToLoad: 
+          unableToProceed: 0
+      calibrated: 0
+    - eventName: Pick up Gun
+      missionUI: 
+      eventBody:
+      - eventBodyName: Pick Up Gun
+        eventTriggers:
+          triggerPosition: {x: 14.01464, y: 0, z: 25.32424}
+          triggerRadius: 1
+          timer: 0
+          checkIfDestroyed: []
+          key: 101
+        results:
+          spawns:
+          - {fileID: 2128934485}
+          - {fileID: 12602667}
+          - {fileID: 671078796}
+          toDestroy:
+          - {fileID: 208579335}
+          - {fileID: 954165549}
+          eventTreeToJump: 4
+          debugMessage: Gun Picked Up
+          levelNameToLoad: 
+          unableToProceed: 0
+      calibrated: 0
+    - eventName: Trigger M6
+      missionUI: 
+      eventBody:
+      - eventBodyName: Trigger M6
+        eventTriggers:
+          triggerPosition: {x: 0, y: 0, z: 0}
+          triggerRadius: 0
+          timer: 3
+          checkIfDestroyed: []
+          key: 0
+        results:
+          spawns: []
+          toDestroy: []
+          eventTreeToJump: 5
+          debugMessage: M5 Ended | M6 Started
+          levelNameToLoad: 
+          unableToProceed: 0
+      calibrated: 0
+    prevTreeIndex: 0
+    currentGameEvent: 0
+  - eventTreeName: Sequence1_M6
+    events:
+    - eventName: Timer
+      missionUI: 
+      eventBody:
+      - eventBodyName: Timer
+        eventTriggers:
+          triggerPosition: {x: 11.43802, y: 1, z: 24.62009}
+          triggerRadius: 8
+          timer: 0
+          checkIfDestroyed: []
+          key: 0
+        results:
+          spawns: []
+          toDestroy: []
+          eventTreeToJump: 5
+          debugMessage: Timer
+          levelNameToLoad: 
+          unableToProceed: 0
+      calibrated: 0
+    - eventName: Destroy Aim UI
+      missionUI: 
+      eventBody:
+      - eventBodyName: Destroy Aim UI
+        eventTriggers:
+          triggerPosition: {x: 11.43802, y: 0, z: 24.62009}
+          triggerRadius: 8
+          timer: 5
+          checkIfDestroyed: []
+          key: 0
+        results:
+          spawns:
+          - {fileID: 2140532491}
+          toDestroy:
+          - {fileID: 671078796}
+          eventTreeToJump: 5
+          debugMessage: Aim UI Destroyed
+          levelNameToLoad: 
+          unableToProceed: 0
+      calibrated: 0
+    - eventName: Destroy Cover UI
+      missionUI: 
+      eventBody:
+      - eventBodyName: Destroy Cover UI
+        eventTriggers:
+          triggerPosition: {x: 11.4380245, y: 0, z: 24.620089}
+          triggerRadius: 8
+          timer: 0
+          checkIfDestroyed: []
+          key: 306
+        results:
+          spawns: []
+          toDestroy:
+          - {fileID: 2140532491}
+          eventTreeToJump: 5
+          debugMessage: Cover UI Destroyed
+          levelNameToLoad: 
+          unableToProceed: 0
+      calibrated: 0
+    - eventName: Spawn Guards
+      missionUI: 
+      eventBody:
+      - eventBodyName: Spawn Guards
+        eventTriggers:
+          triggerPosition: {x: 0, y: 0, z: 0}
+          triggerRadius: 0
+          timer: 0
+          checkIfDestroyed: []
+          key: 0
+        results:
+          spawns:
+          - {fileID: 1425386986}
+          - {fileID: 1397879681}
+          - {fileID: 465230082}
+          - {fileID: 1144211125}
+          toDestroy: []
+          eventTreeToJump: 5
+          debugMessage: Guards Spawned
+          levelNameToLoad: 
+          unableToProceed: 0
+      calibrated: 0
+    - eventName: Spawn Guards 2
+      missionUI: 
+      eventBody:
+      - eventBodyName: Spawn Guards 2
+        eventTriggers:
+          triggerPosition: {x: 0, y: 0, z: 0}
+          triggerRadius: 0
+          timer: 0
+          checkIfDestroyed:
+          - {fileID: 1425386986}
+          - {fileID: 1397879681}
+          key: 0
+        results:
+          spawns:
+          - {fileID: 118867793}
+          - {fileID: 691953869}
+          - {fileID: 1380465070}
+          toDestroy:
+          - {fileID: 12602667}
+          eventTreeToJump: 5
+          debugMessage: 
+          levelNameToLoad: 
+          unableToProceed: 0
+      calibrated: 0
+    - eventName: Guard Death Check
+      missionUI: 
+      eventBody:
+      - eventBodyName: Check Death
+        eventTriggers:
+          triggerPosition: {x: 0, y: 0, z: 0}
+          triggerRadius: 0
+          timer: 0
+          checkIfDestroyed:
+          - {fileID: 1425386986}
+          - {fileID: 1397879681}
+          - {fileID: 118867793}
+          - {fileID: 691953869}
+          key: 0
+        results:
+          spawns:
+          - {fileID: 868816200}
+          toDestroy:
+          - {fileID: 1380465070}
+          eventTreeToJump: 5
+          debugMessage: Guards all Dead
+          levelNameToLoad: 
+          unableToProceed: 0
+      calibrated: 0
+    - eventName: Call Lift UI
+      missionUI: 
+      eventBody:
+      - eventBodyName: Call Lift UI Trigger
+        eventTriggers:
+          triggerPosition: {x: -2.541203, y: 0.09677273, z: -3.154616}
+          triggerRadius: 3
+          timer: 0
+          checkIfDestroyed: []
+          key: 0
+        results:
+          spawns:
+          - {fileID: 1211956370}
+          toDestroy: []
+          eventTreeToJump: 5
+          debugMessage: UI Called
+          levelNameToLoad: 
+          unableToProceed: 0
+      calibrated: 0
+    - eventName: Call Lift
+      missionUI: 
+      eventBody:
+      - eventBodyName: Call Lift Trigger
+        eventTriggers:
+          triggerPosition: {x: -2.541203, y: 0.09677273, z: -3.154616}
+          triggerRadius: 1
+          timer: 0
+          checkIfDestroyed: []
+          key: 101
+        results:
+          spawns:
+          - {fileID: 1250992313}
+          toDestroy:
+          - {fileID: 868816200}
+          - {fileID: 465230082}
+          - {fileID: 1144211125}
+          eventTreeToJump: 5
+          debugMessage: Lift Called
+          levelNameToLoad: 
+          unableToProceed: 0
+      calibrated: 0
+    - eventName: Load Next Level
+      missionUI: 
+      eventBody:
+      - eventBodyName: Load Next Level
+        eventTriggers:
+          triggerPosition: {x: -2.5, y: 0.09677273, z: -5.5}
+          triggerRadius: 1.5
+          timer: 3
+          checkIfDestroyed: []
+          key: 101
+        results:
+          spawns: []
+          toDestroy: []
+          eventTreeToJump: 0
+          debugMessage: Lift Called
+          levelNameToLoad: Menu_Improvised
+          unableToProceed: 0
+      calibrated: 0
+    prevTreeIndex: 0
+    currentGameEvent: 0
+  - eventTreeName: Sequence1_M7
+    events: []
+    prevTreeIndex: 0
+    currentGameEvent: 0
+  currentTreeIndex: 0
+  missionUI: {fileID: 1754463684}
 --- !u!1 &1313157557
 GameObject:
   m_ObjectHideFlags: 0
@@ -6793,6 +7488,114 @@ Prefab:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fe3e685d82a01b943874d579ab139da5, type: 3}
+  m_IsPrefabParent: 0
+--- !u!1001 &1369737619
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 455964402}
+    m_Modifications:
+    - target: {fileID: 224000014220027310, guid: 8d2c8080256b7074ba0c2be6a5a51b15,
+        type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000014220027310, guid: 8d2c8080256b7074ba0c2be6a5a51b15,
+        type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000014220027310, guid: 8d2c8080256b7074ba0c2be6a5a51b15,
+        type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 1.72
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000014220027310, guid: 8d2c8080256b7074ba0c2be6a5a51b15,
+        type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000014220027310, guid: 8d2c8080256b7074ba0c2be6a5a51b15,
+        type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000014220027310, guid: 8d2c8080256b7074ba0c2be6a5a51b15,
+        type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000014220027310, guid: 8d2c8080256b7074ba0c2be6a5a51b15,
+        type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000014220027310, guid: 8d2c8080256b7074ba0c2be6a5a51b15,
+        type: 2}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000014220027310, guid: 8d2c8080256b7074ba0c2be6a5a51b15,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.79
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000014220027310, guid: 8d2c8080256b7074ba0c2be6a5a51b15,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.07
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000014220027310, guid: 8d2c8080256b7074ba0c2be6a5a51b15,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 1280
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000014220027310, guid: 8d2c8080256b7074ba0c2be6a5a51b15,
+        type: 2}
+      propertyPath: m_SizeDelta.y
+      value: 1200
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000014220027310, guid: 8d2c8080256b7074ba0c2be6a5a51b15,
+        type: 2}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000014220027310, guid: 8d2c8080256b7074ba0c2be6a5a51b15,
+        type: 2}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000014220027310, guid: 8d2c8080256b7074ba0c2be6a5a51b15,
+        type: 2}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000014220027310, guid: 8d2c8080256b7074ba0c2be6a5a51b15,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000014220027310, guid: 8d2c8080256b7074ba0c2be6a5a51b15,
+        type: 2}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000014220027310, guid: 8d2c8080256b7074ba0c2be6a5a51b15,
+        type: 2}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000013672259102, guid: 8d2c8080256b7074ba0c2be6a5a51b15, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000012181006068, guid: 8d2c8080256b7074ba0c2be6a5a51b15, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 8d2c8080256b7074ba0c2be6a5a51b15, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1370887577
 GameObject:
@@ -7098,6 +7901,10 @@ Prefab:
       propertyPath: curHealth
       value: 30
       objectReference: {fileID: 0}
+    - target: {fileID: 11445470, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
+      propertyPath: weaponRange
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
   m_IsPrefabParent: 0
@@ -7287,6 +8094,10 @@ Prefab:
     - target: {fileID: 11423156, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
       propertyPath: curHealth
       value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 11445470, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
+      propertyPath: weaponRange
+      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
@@ -7897,7 +8708,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 490182, guid: 3a076f25cae77ca41a1ff31591c6e84b, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 14.719
+      value: 14.658
       objectReference: {fileID: 0}
     - target: {fileID: 490182, guid: 3a076f25cae77ca41a1ff31591c6e84b, type: 2}
       propertyPath: m_LocalPosition.y
@@ -7926,10 +8737,6 @@ Prefab:
     - target: {fileID: 490182, guid: 3a076f25cae77ca41a1ff31591c6e84b, type: 2}
       propertyPath: m_RootOrder
       value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 186526, guid: 3a076f25cae77ca41a1ff31591c6e84b, type: 2}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3a076f25cae77ca41a1ff31591c6e84b, type: 2}
@@ -8141,7 +8948,7 @@ Prefab:
     - target: {fileID: 224000013438663288, guid: b37576d2f30fb674d9cad1461be7ce8e,
         type: 2}
       propertyPath: m_RootOrder
-      value: 10
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 224000013438663288, guid: b37576d2f30fb674d9cad1461be7ce8e,
         type: 2}
@@ -8192,6 +8999,106 @@ Prefab:
         type: 2}
       propertyPath: m_Pivot.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000010026329072, guid: b37576d2f30fb674d9cad1461be7ce8e,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 640
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000010026329072, guid: b37576d2f30fb674d9cad1461be7ce8e,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: 360
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000010026329072, guid: b37576d2f30fb674d9cad1461be7ce8e,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 1280
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000010026329072, guid: b37576d2f30fb674d9cad1461be7ce8e,
+        type: 2}
+      propertyPath: m_SizeDelta.y
+      value: 720
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000013496938854, guid: b37576d2f30fb674d9cad1461be7ce8e,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 640
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000013496938854, guid: b37576d2f30fb674d9cad1461be7ce8e,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: 360
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000013496938854, guid: b37576d2f30fb674d9cad1461be7ce8e,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 1280
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000013496938854, guid: b37576d2f30fb674d9cad1461be7ce8e,
+        type: 2}
+      propertyPath: m_SizeDelta.y
+      value: 720
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000012246806832, guid: b37576d2f30fb674d9cad1461be7ce8e,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 640
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000012246806832, guid: b37576d2f30fb674d9cad1461be7ce8e,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: 360
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000012246806832, guid: b37576d2f30fb674d9cad1461be7ce8e,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 1280
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000012246806832, guid: b37576d2f30fb674d9cad1461be7ce8e,
+        type: 2}
+      propertyPath: m_SizeDelta.y
+      value: 720
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000010137614306, guid: b37576d2f30fb674d9cad1461be7ce8e,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 640
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000010137614306, guid: b37576d2f30fb674d9cad1461be7ce8e,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: 360
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000010137614306, guid: b37576d2f30fb674d9cad1461be7ce8e,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 1280
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000010137614306, guid: b37576d2f30fb674d9cad1461be7ce8e,
+        type: 2}
+      propertyPath: m_SizeDelta.y
+      value: 720
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000014153040646, guid: b37576d2f30fb674d9cad1461be7ce8e,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 640
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000014153040646, guid: b37576d2f30fb674d9cad1461be7ce8e,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: 360
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000014153040646, guid: b37576d2f30fb674d9cad1461be7ce8e,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 1280
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000014153040646, guid: b37576d2f30fb674d9cad1461be7ce8e,
+        type: 2}
+      propertyPath: m_SizeDelta.y
+      value: 720
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b37576d2f30fb674d9cad1461be7ce8e, type: 2}
@@ -9281,7 +10188,7 @@ Prefab:
 GameObject:
   m_PrefabParentObject: {fileID: 1000012496262984, guid: 8d2c8080256b7074ba0c2be6a5a51b15,
     type: 2}
-  m_PrefabInternal: {fileID: 2140532490}
+  m_PrefabInternal: {fileID: 1369737619}
 --- !u!1001 &2098346679
 Prefab:
   m_ObjectHideFlags: 0
@@ -9379,6 +10286,11 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 223000010596691158, guid: db04463a5cfba9746be280c061da5188,
+        type: 2}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 1327790745}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: db04463a5cfba9746be280c061da5188, type: 2}
   m_IsPrefabParent: 0
@@ -9569,108 +10481,8 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1313157558}
   m_RootOrder: 3
---- !u!1001 &2140532490
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 455964402}
-    m_Modifications:
-    - target: {fileID: 224000014220027310, guid: 8d2c8080256b7074ba0c2be6a5a51b15,
-        type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000014220027310, guid: 8d2c8080256b7074ba0c2be6a5a51b15,
-        type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000014220027310, guid: 8d2c8080256b7074ba0c2be6a5a51b15,
-        type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 1.72
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000014220027310, guid: 8d2c8080256b7074ba0c2be6a5a51b15,
-        type: 2}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000014220027310, guid: 8d2c8080256b7074ba0c2be6a5a51b15,
-        type: 2}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000014220027310, guid: 8d2c8080256b7074ba0c2be6a5a51b15,
-        type: 2}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000014220027310, guid: 8d2c8080256b7074ba0c2be6a5a51b15,
-        type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000014220027310, guid: 8d2c8080256b7074ba0c2be6a5a51b15,
-        type: 2}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000014220027310, guid: 8d2c8080256b7074ba0c2be6a5a51b15,
-        type: 2}
-      propertyPath: m_AnchoredPosition.x
-      value: 0.79
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000014220027310, guid: 8d2c8080256b7074ba0c2be6a5a51b15,
-        type: 2}
-      propertyPath: m_AnchoredPosition.y
-      value: -0.07
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000014220027310, guid: 8d2c8080256b7074ba0c2be6a5a51b15,
-        type: 2}
-      propertyPath: m_SizeDelta.x
-      value: 1280
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000014220027310, guid: 8d2c8080256b7074ba0c2be6a5a51b15,
-        type: 2}
-      propertyPath: m_SizeDelta.y
-      value: 1200
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000014220027310, guid: 8d2c8080256b7074ba0c2be6a5a51b15,
-        type: 2}
-      propertyPath: m_AnchorMin.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000014220027310, guid: 8d2c8080256b7074ba0c2be6a5a51b15,
-        type: 2}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000014220027310, guid: 8d2c8080256b7074ba0c2be6a5a51b15,
-        type: 2}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000014220027310, guid: 8d2c8080256b7074ba0c2be6a5a51b15,
-        type: 2}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000014220027310, guid: 8d2c8080256b7074ba0c2be6a5a51b15,
-        type: 2}
-      propertyPath: m_Pivot.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000014220027310, guid: 8d2c8080256b7074ba0c2be6a5a51b15,
-        type: 2}
-      propertyPath: m_Pivot.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 8d2c8080256b7074ba0c2be6a5a51b15, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1 &2140532491 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1000011532781834, guid: 8d2c8080256b7074ba0c2be6a5a51b15,
     type: 2}
-  m_PrefabInternal: {fileID: 2140532490}
+  m_PrefabInternal: {fileID: 1369737619}
