@@ -145,6 +145,8 @@ public class CoverSystem : MonoBehaviour
 
 			RaycastForCover();
 		}
+		else
+			EnableController();
 	}
 
 	private Vector3 PosWithOffset(Vector3 ori, Vector3 target) // Position the helper with offset 
@@ -236,44 +238,48 @@ public class CoverSystem : MonoBehaviour
 		if(relativeInput.z < 0f)
 		{
 			EnableController();
-			_canManualCover = true;
 			return;
 		}
 
-		if(relativeInput.x != 0f)
+		if(relativeInput.x == 0f)
+			return;
+
+		_movePositive = (relativeInput.x > 0f);
+		//_coverDirection = (_movePositive) ? 1 : -1;
+		//_crouchCover = !CheckCoverType();
+
+		//if(_crouchCover)
+		//	_crouching = _crouchCover;
+
+		bool isCover = CanMoveOnSide(_movePositive);
+
+		if(twoPointValidation)
 		{
-			_movePositive = (relativeInput.x > 0f);
-			//_coverDirection = (_movePositive) ? 1 : -1;
-			//_crouchCover = !CheckCoverType();
-
-			//if(_crouchCover)
-			//	_crouching = _crouchCover;
-
-			bool isCover = CanMoveOnSide(_movePositive);
-
-			if(twoPointValidation)
-			{
-				if(!isCover)
-					isCover = CanMoveOnSide(_movePositive, .1f);
-			}
-
-			Vector3 targetDir = (_helperTrans.position - trans.position).normalized;
-			targetDir *= Mathf.Abs(relativeInput.x);
-
 			if(!isCover)
-			{
-				targetDir = Vector3.zero;
-				relativeInput.x = 0f;
-			}
-
-			//_aimAtSides = !isCover;
-			//_canAim = _aimAtSides;
-
-			characterMove.Move(targetDir * coverMovespeed);
-			Quaternion targetRot = _helperTrans.rotation;
-			trans.rotation = Quaternion.Slerp(trans.rotation, targetRot, Time.deltaTime * 5f);
-			//HandleCoverAnimation(relativeInput);
+				isCover = CanMoveOnSide(_movePositive, .1f);
 		}
+
+		Vector3 targetDir = (_helperTrans.position - trans.position).normalized;
+		targetDir *= Mathf.Abs(relativeInput.x);
+
+		if(!isCover)
+		{
+			targetDir = Vector3.zero;
+			relativeInput.x = 0f;
+		}
+
+		//_aimAtSides = !isCover;
+		//_canAim = _aimAtSides;
+
+		characterMove.Move(targetDir * coverMovespeed);
+		Quaternion targetRot = _helperTrans.rotation;
+		trans.rotation = Quaternion.Slerp(trans.rotation, targetRot, Time.deltaTime * 5f);
+		//HandleCoverAnimation(relativeInput);
+
+		if(playerInput.mirrorInt == 1 && relativeInput.x < 0f)
+			TPCamera.GetInstance().SwitchShoulder();
+		else if(playerInput.mirrorInt == -1 && relativeInput.x > 0f)
+			TPCamera.GetInstance().SwitchShoulder();
 	}
 
 	private bool CheckCoverType() // Check if its a full wall or half wall 
@@ -342,6 +348,7 @@ public class CoverSystem : MonoBehaviour
 		GetComponent<CharacterController>().detectCollisions = false;
 		characterMove.GetOutCover();
 		_inCover = false;
+		_canManualCover = true;
 
 		if(autoSearchCover)
 		{

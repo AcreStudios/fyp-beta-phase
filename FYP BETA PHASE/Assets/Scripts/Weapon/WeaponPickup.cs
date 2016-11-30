@@ -7,6 +7,7 @@ public class WeaponPickup : MonoBehaviour
 {
 	[Header("-Drag weapon to be picked up here-")]
 	public Weapon weapon;
+	public AudioClip pickupSound;
 
 	private SphereCollider sphereCol;
 	private WeaponHandler wpnHandler;
@@ -67,6 +68,9 @@ public class WeaponPickup : MonoBehaviour
 
 		wpnHandler.weaponsList.Add(weapon);
 		wpnHandler.SetupWeapon();
+
+		if(pickupSound)
+			SoundManager.GetInstance().PlaySoundOnce(transform.position, pickupSound);
 
 		// Destroy self after pickup
 		Destroy(gameObject);

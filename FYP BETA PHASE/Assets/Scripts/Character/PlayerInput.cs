@@ -10,6 +10,7 @@ public class PlayerInput : MonoBehaviour
 	private WeaponHandler wpnHandler;
 	private Transform mainCamTrans;
 	private TPCamera tpCamera;
+	private CoverSystem coverSystem;
 
 	[Header("-Inputs-"), Range(-1f, 1f)]
 	public float _horizontal;
@@ -60,7 +61,7 @@ public class PlayerInput : MonoBehaviour
 	public float walkRunTransitionSpeed = 10f;
 
 	// Movement mirror helper
-	//[HideInInspector]
+	[HideInInspector]
 	public int mirrorInt = 1;
 
 
@@ -70,6 +71,7 @@ public class PlayerInput : MonoBehaviour
 		trans = GetComponent<Transform>();
 		charMove = GetComponent<CharacterMovement>();
 		wpnHandler = GetComponent<WeaponHandler>();
+		coverSystem = GetComponent<CoverSystem>();
 	}
 
 	void Start() 
@@ -115,7 +117,7 @@ public class PlayerInput : MonoBehaviour
 	{
 		// Default walk movement, with clamping when walking backwards
 		float v = (_leftShift) ? Mathf.Clamp(_vertical, -.5f, 1f) : Mathf.Clamp(_vertical, -.5f, .5f);
-		float h = (_leftShift) ? ((_vertical < 0) ? Mathf.Clamp(_horizontal, -.5f, .5f) : _horizontal) : Mathf.Clamp(_horizontal, -.5f, .5f);
+		float h = (coverSystem.GetCoverStatus()) ? _horizontal : ((_leftShift) ? ((_vertical < 0) ? Mathf.Clamp(_horizontal, -.5f, .5f) : _horizontal) : Mathf.Clamp(_horizontal, -.5f, .5f));
 
 		// Mirror movement
 		if(_MMB)
@@ -131,7 +133,7 @@ public class PlayerInput : MonoBehaviour
 		if(_spacebar)
 			charMove.DoJump();
 
-		// Crouch
+		// Cover
 		if(_leftCtrl)
 			charMove.DoCrouch();
 
@@ -157,6 +159,9 @@ public class PlayerInput : MonoBehaviour
 
 	private void CharacterLook() // Make the character look at the same direction as the camera 
 	{
+		if(coverSystem.GetCoverStatus())
+			return;
+
 		Transform pivot = mainCamTrans.parent.parent;
 		Vector3 pivotPos = pivot.position;
 		Vector3 lookTarget = pivotPos + (pivot.forward * aimSettings.lookDistance);
