@@ -4,14 +4,25 @@ using System.Collections;
 public class NormaliseTest : MonoBehaviour {
 
     public Transform target;
+    public float spaceBetweenChecks;
+    public float length;
+    public int possibleSpotsPerSide;
 
-    // Use this for initialization
+    Color color;
+
     void Start() {
-
+        color = Color.red;
     }
 
-    // Update is called once per frame
     void Update() {
-        Debug.Log(Vector3.Normalize(target.position - transform.position));
+        //color = Random.ColorHSV();
+        for (var i = -(possibleSpotsPerSide/2); i < (possibleSpotsPerSide/2) +1; i++) {
+            Debug.DrawLine(transform.position, transform.position + (new Vector3(spaceBetweenChecks * i, transform.position.y, 1) * length), color);
+            Debug.DrawLine(transform.position, transform.position + (new Vector3(spaceBetweenChecks * i, transform.position.y, 1) * -length), color);
+
+            Debug.DrawLine(transform.position, transform.position + (new Vector3(1, transform.position.y, spaceBetweenChecks * i) * length), color);
+            Debug.DrawLine(transform.position, transform.position + (new Vector3(1, transform.position.y, spaceBetweenChecks * i) * -length), color);
+        }
+
     }
 }

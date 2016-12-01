@@ -24,6 +24,7 @@ public class AIFunctions : MonoBehaviour {
     protected AIStates defaultState;
 
     [Header("Weapons")]
+    public float damage;
     public WeaponType attackType;
     public float attackInterval;
     public float weaponRange;
@@ -132,7 +133,7 @@ public class AIFunctions : MonoBehaviour {
                     Health hp = targetHit.GetComponent<Health>();
                     AIFunctions ai;
                     if (hp && hp.isActiveAndEnabled)
-                        hp.ReceiveDamage(5);
+                        hp.ReceiveDamage(damage);
 
                     if (targetHit.tag == "Player")
                         if (HitFeedbackManager.instance)

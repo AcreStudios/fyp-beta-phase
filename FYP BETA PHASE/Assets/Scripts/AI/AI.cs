@@ -121,7 +121,6 @@ public class AI : AIFunctions {
                         animator.SetInteger("TreeState", 1);
                         transform.LookAt(destination);
                     }
-
                     transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
                     agent.destination = destination;
                 }
