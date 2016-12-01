@@ -67,7 +67,6 @@ public class AIManager : MonoBehaviour {
             }
 
             if (!readerInst.boundPoints[i].aiCover) {
-                //Debug.Log();
                 if ((player.transform.position - readerInst.boundPoints[i].centrePoint).sqrMagnitude < range * range) {
                     float tempDist = (readerInst.boundPoints[i].centrePoint - ai.transform.position).sqrMagnitude;
 

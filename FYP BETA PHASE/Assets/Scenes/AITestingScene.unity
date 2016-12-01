@@ -265,6 +265,18 @@ Prefab:
       propertyPath: m_ConnectedAnchor.z
       value: -0.008009214
       objectReference: {fileID: 0}
+    - target: {fileID: 11445470, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
+      propertyPath: weaponRange
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 11445470, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
+      propertyPath: attackInterval
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11445470, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
+      propertyPath: reactionTime
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
   m_IsPrefabParent: 0
@@ -534,6 +546,18 @@ Prefab:
       propertyPath: ableToHide
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11445470, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
+      propertyPath: weaponRange
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 11445470, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
+      propertyPath: attackInterval
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11445470, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
+      propertyPath: reactionTime
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
   m_IsPrefabParent: 0
@@ -784,6 +808,18 @@ Prefab:
     - target: {fileID: 11445470, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
       propertyPath: ableToHide
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11445470, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
+      propertyPath: weaponRange
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 11445470, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
+      propertyPath: attackInterval
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11445470, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
+      propertyPath: reactionTime
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
@@ -1036,6 +1072,18 @@ Prefab:
       propertyPath: m_ConnectedAnchor.z
       value: -0.008008756
       objectReference: {fileID: 0}
+    - target: {fileID: 11445470, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
+      propertyPath: weaponRange
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 11445470, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
+      propertyPath: attackInterval
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11445470, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
+      propertyPath: reactionTime
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
   m_IsPrefabParent: 0
@@ -1222,6 +1270,18 @@ Prefab:
       propertyPath: m_ConnectedAnchor.z
       value: -0.008009214
       objectReference: {fileID: 0}
+    - target: {fileID: 11445470, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
+      propertyPath: weaponRange
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 11445470, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
+      propertyPath: attackInterval
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11445470, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
+      propertyPath: reactionTime
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
   m_IsPrefabParent: 0
@@ -1246,12 +1306,12 @@ GameObject:
   - 23: {fileID: 286184077}
   - 114: {fileID: 286184076}
   m_Layer: 0
-  m_Name: Cube (1)
+  m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &286184076
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1264,6 +1324,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 591332578}
+  spaceBetweenChecks: 0.1
+  length: 10
+  possibleSpotsPerSide: 300
 --- !u!23 &286184077
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1319,8 +1382,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 286184075}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.8225, y: -24.786968, z: -18.08}
-  m_LocalScale: {x: 4.7118773, y: 4.7118773, z: 4.7118773}
+  m_LocalPosition: {x: 3.8225, y: 0, z: -18.7}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1503,6 +1566,18 @@ Prefab:
     - target: {fileID: 11445470, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
       propertyPath: ableToHide
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11445470, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
+      propertyPath: weaponRange
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 11445470, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
+      propertyPath: attackInterval
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11445470, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
+      propertyPath: reactionTime
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
@@ -1765,6 +1840,18 @@ Prefab:
       propertyPath: ableToHide
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11445470, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
+      propertyPath: weaponRange
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 11445470, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
+      propertyPath: attackInterval
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11445470, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
+      propertyPath: reactionTime
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
   m_IsPrefabParent: 0
@@ -1946,6 +2033,18 @@ Prefab:
     - target: {fileID: 11445470, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
       propertyPath: ableToHide
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11445470, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
+      propertyPath: weaponRange
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 11445470, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
+      propertyPath: attackInterval
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11445470, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
+      propertyPath: reactionTime
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
@@ -2262,6 +2361,18 @@ Prefab:
     - target: {fileID: 14470556, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
       propertyPath: m_ConnectedAnchor.z
       value: -0.008008905
+      objectReference: {fileID: 0}
+    - target: {fileID: 11445470, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
+      propertyPath: weaponRange
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 11445470, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
+      propertyPath: attackInterval
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11445470, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
+      propertyPath: reactionTime
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
@@ -2633,6 +2744,18 @@ Prefab:
       propertyPath: m_ConnectedAnchor.z
       value: -0.008009214
       objectReference: {fileID: 0}
+    - target: {fileID: 11445470, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
+      propertyPath: weaponRange
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 11445470, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
+      propertyPath: attackInterval
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11445470, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
+      propertyPath: reactionTime
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
   m_IsPrefabParent: 0
@@ -2884,6 +3007,18 @@ Prefab:
       propertyPath: m_ConnectedAnchor.y
       value: 0.49542087
       objectReference: {fileID: 0}
+    - target: {fileID: 11445470, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
+      propertyPath: weaponRange
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 11445470, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
+      propertyPath: attackInterval
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11445470, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
+      propertyPath: reactionTime
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
   m_IsPrefabParent: 0
@@ -2973,7 +3108,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &591332578
 Transform:
   m_ObjectHideFlags: 0
@@ -2981,7 +3116,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 591332577}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.822481, y: -24.786968, z: -13.11}
+  m_LocalPosition: {x: 3.822481, y: 0, z: -13.11}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -3213,6 +3348,18 @@ Prefab:
     - target: {fileID: 14470556, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
       propertyPath: m_ConnectedAnchor.z
       value: -0.008008905
+      objectReference: {fileID: 0}
+    - target: {fileID: 11445470, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
+      propertyPath: weaponRange
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 11445470, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
+      propertyPath: attackInterval
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11445470, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
+      propertyPath: reactionTime
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
@@ -3479,6 +3626,18 @@ Prefab:
       propertyPath: m_ConnectedAnchor.y
       value: 0.49542087
       objectReference: {fileID: 0}
+    - target: {fileID: 11445470, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
+      propertyPath: weaponRange
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 11445470, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
+      propertyPath: attackInterval
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11445470, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
+      propertyPath: reactionTime
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
   m_IsPrefabParent: 0
@@ -3661,6 +3820,18 @@ Prefab:
       propertyPath: m_ConnectedAnchor.y
       value: 0.49542087
       objectReference: {fileID: 0}
+    - target: {fileID: 11445470, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
+      propertyPath: weaponRange
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 11445470, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
+      propertyPath: attackInterval
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11445470, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
+      propertyPath: reactionTime
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
   m_IsPrefabParent: 0
@@ -3838,6 +4009,18 @@ Prefab:
     - target: {fileID: 14494538, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
       propertyPath: m_ConnectedAnchor.y
       value: 0.49542087
+      objectReference: {fileID: 0}
+    - target: {fileID: 11445470, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
+      propertyPath: weaponRange
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 11445470, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
+      propertyPath: attackInterval
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11445470, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
+      propertyPath: reactionTime
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
@@ -4084,6 +4267,18 @@ Prefab:
       propertyPath: m_ConnectedAnchor.y
       value: 0.49542087
       objectReference: {fileID: 0}
+    - target: {fileID: 11445470, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
+      propertyPath: weaponRange
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 11445470, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
+      propertyPath: attackInterval
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11445470, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
+      propertyPath: reactionTime
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
   m_IsPrefabParent: 0
@@ -4266,6 +4461,18 @@ Prefab:
       propertyPath: ableToHide
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11445470, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
+      propertyPath: weaponRange
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 11445470, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
+      propertyPath: attackInterval
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11445470, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
+      propertyPath: reactionTime
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
   m_IsPrefabParent: 0
@@ -4447,6 +4654,18 @@ Prefab:
     - target: {fileID: 11445470, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
       propertyPath: ableToHide
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11445470, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
+      propertyPath: weaponRange
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 11445470, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
+      propertyPath: attackInterval
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11445470, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
+      propertyPath: reactionTime
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
@@ -4634,6 +4853,18 @@ Prefab:
       propertyPath: m_ConnectedAnchor.z
       value: -0.008008756
       objectReference: {fileID: 0}
+    - target: {fileID: 11445470, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
+      propertyPath: weaponRange
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 11445470, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
+      propertyPath: attackInterval
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11445470, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
+      propertyPath: reactionTime
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
   m_IsPrefabParent: 0
@@ -4811,6 +5042,18 @@ Prefab:
     - target: {fileID: 14470556, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
       propertyPath: m_ConnectedAnchor.z
       value: -0.008009214
+      objectReference: {fileID: 0}
+    - target: {fileID: 11445470, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
+      propertyPath: weaponRange
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 11445470, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
+      propertyPath: attackInterval
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11445470, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
+      propertyPath: reactionTime
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
@@ -5070,6 +5313,18 @@ Prefab:
     - target: {fileID: 11445470, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
       propertyPath: ableToHide
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11445470, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
+      propertyPath: weaponRange
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 11445470, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
+      propertyPath: attackInterval
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11445470, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
+      propertyPath: reactionTime
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
@@ -5492,6 +5747,18 @@ Prefab:
       propertyPath: m_ConnectedAnchor.z
       value: -0.008008905
       objectReference: {fileID: 0}
+    - target: {fileID: 11445470, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
+      propertyPath: weaponRange
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 11445470, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
+      propertyPath: attackInterval
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11445470, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
+      propertyPath: reactionTime
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
   m_IsPrefabParent: 0
@@ -5747,6 +6014,18 @@ Prefab:
       propertyPath: ableToHide
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11445470, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
+      propertyPath: weaponRange
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 11445470, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
+      propertyPath: attackInterval
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11445470, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
+      propertyPath: reactionTime
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
   m_IsPrefabParent: 0
@@ -5924,6 +6203,18 @@ Prefab:
     - target: {fileID: 14470556, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
       propertyPath: m_ConnectedAnchor.z
       value: -0.008009214
+      objectReference: {fileID: 0}
+    - target: {fileID: 11445470, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
+      propertyPath: weaponRange
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 11445470, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
+      propertyPath: attackInterval
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11445470, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
+      propertyPath: reactionTime
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
@@ -6186,6 +6477,18 @@ Prefab:
       propertyPath: m_ConnectedAnchor.y
       value: 0.49542087
       objectReference: {fileID: 0}
+    - target: {fileID: 11445470, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
+      propertyPath: weaponRange
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 11445470, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
+      propertyPath: attackInterval
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11445470, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
+      propertyPath: reactionTime
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
   m_IsPrefabParent: 0
@@ -6408,6 +6711,18 @@ Prefab:
       propertyPath: m_ConnectedAnchor.z
       value: -0.008008905
       objectReference: {fileID: 0}
+    - target: {fileID: 11445470, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
+      propertyPath: weaponRange
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 11445470, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
+      propertyPath: attackInterval
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11445470, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
+      propertyPath: reactionTime
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
   m_IsPrefabParent: 0
@@ -6465,6 +6780,18 @@ Prefab:
     - target: {fileID: 405478, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
       propertyPath: m_LocalScale.z
       value: 0.38523
+      objectReference: {fileID: 0}
+    - target: {fileID: 11445470, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
+      propertyPath: weaponRange
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 11445470, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
+      propertyPath: attackInterval
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11445470, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
+      propertyPath: reactionTime
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
@@ -7165,6 +7492,18 @@ Prefab:
       propertyPath: ableToHide
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11445470, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
+      propertyPath: weaponRange
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 11445470, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
+      propertyPath: attackInterval
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11445470, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
+      propertyPath: reactionTime
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
   m_IsPrefabParent: 0
@@ -7265,7 +7604,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1579657219
 Transform:
   m_ObjectHideFlags: 0
@@ -7491,6 +7830,22 @@ Prefab:
     - target: {fileID: 14470556, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
       propertyPath: m_ConnectedAnchor.z
       value: -0.008009519
+      objectReference: {fileID: 0}
+    - target: {fileID: 11445470, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
+      propertyPath: weaponRange
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 11445470, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
+      propertyPath: attackInterval
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11445470, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
+      propertyPath: piercing
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11445470, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
+      propertyPath: reactionTime
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
@@ -8124,6 +8479,18 @@ Prefab:
       propertyPath: m_ConnectedAnchor.y
       value: 0.49542087
       objectReference: {fileID: 0}
+    - target: {fileID: 11445470, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
+      propertyPath: weaponRange
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 11445470, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
+      propertyPath: attackInterval
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11445470, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
+      propertyPath: reactionTime
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
   m_IsPrefabParent: 0
@@ -8228,7 +8595,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1846147484
 Transform:
   m_ObjectHideFlags: 0
@@ -8493,6 +8860,18 @@ Prefab:
       propertyPath: ableToHide
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11445470, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
+      propertyPath: weaponRange
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 11445470, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
+      propertyPath: attackInterval
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11445470, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
+      propertyPath: reactionTime
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
   m_IsPrefabParent: 0
@@ -8741,6 +9120,18 @@ Prefab:
     - target: {fileID: 14424444, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
       propertyPath: m_ConnectedAnchor.z
       value: 0.00000014528632
+      objectReference: {fileID: 0}
+    - target: {fileID: 11445470, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
+      propertyPath: weaponRange
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 11445470, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
+      propertyPath: attackInterval
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11445470, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
+      propertyPath: reactionTime
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
@@ -9146,6 +9537,18 @@ Prefab:
     - target: {fileID: 405478, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
       propertyPath: m_LocalScale.z
       value: 0.38523
+      objectReference: {fileID: 0}
+    - target: {fileID: 11445470, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
+      propertyPath: weaponRange
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 11445470, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
+      propertyPath: attackInterval
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11445470, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
+      propertyPath: reactionTime
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a9ca89a1d058b9143a364e3b9c31d9d9, type: 2}
