@@ -23,6 +23,11 @@ public class AIFunctions : MonoBehaviour {
     public bool knowsTarget;
     protected AIStates defaultState;
 
+    [Header("Seek Settings (Do not touch)")]
+    public float spaceBetweenChecks;
+    public int possibleSpotsPerSide;
+    Vector3[] multiplier;
+
     [Header("Weapons")]
     public float damage;
     public WeaponType attackType;
@@ -33,22 +38,24 @@ public class AIFunctions : MonoBehaviour {
 
     [Header("Raycast Shooting Attack Settings")]
     public float gunSprayValue;
+    public GameObject gunEffect;
 
     [Header("Area Attack Settings")]
     public float areaTestRadius;
 
     [Header("Debug")]
     public bool damageTest;
-    
+    public bool displayDebugMessage;
+
     public Collider destinationMarker;
 
     protected Transform target;
     Transform[] guns = new Transform[1];
-   
+
     protected Transform linecastCheck;
     protected Vector3 startingPoint;
     protected bool showGunEffect;
-    public GameObject gunEffect;
+
     protected Animator animator;
 
     protected Collider tempObs;
@@ -56,11 +63,17 @@ public class AIFunctions : MonoBehaviour {
     protected NavMeshAgent agent;
     protected Vector3 destination;
 
+    Vector3 currentNormalizedDist;
+
     void Awake() {
         gameObject.tag = "Enemy";
 
         guns[0] = transform.Find("Hanna_GunL");
         linecastCheck = transform.Find("LinecastChecker");
+
+        multiplier = new Vector3[2];
+        multiplier[0] = new Vector3(1, 0, 0);
+        multiplier[1] = new Vector3(0, 0, 1);
     }
 
     public virtual void DamageRecieved(float damage) {
@@ -123,7 +136,11 @@ public class AIFunctions : MonoBehaviour {
                     }
                     break;
                 case WeaponType.Area:
-                    //Collider[] units = Physics.OverlapSphere()
+                    Collider[] units = Physics.OverlapSphere(transform.position + transform.TransformDirection(0, 0, weaponRange), areaTestRadius);
+
+                    foreach (Collider unit in units) 
+                        if (unit.transform.CompareTag("Player"))
+                            targetHit = unit.transform;
                     break;
             }
 
@@ -142,7 +159,7 @@ public class AIFunctions : MonoBehaviour {
                     if ((ai = targetHit.GetComponent<AIFunctions>()) != null) {
                         Vector3 toNorm = Vector3.Normalize(target.position - transform.position);
                         //Debug.Log(hit.transform.root + " was hit by " + transform.root);
-                        ai.DisplaceAILocation(toNorm);
+                        ai.destination = ai.DisplaceAILocation();
                     }
                     attackTimer = Time.time + attackInterval;
                 }
@@ -159,31 +176,58 @@ public class AIFunctions : MonoBehaviour {
         obj.transform.position = location;
     }
 
-    public void DisplaceAILocation(Vector3 normalizedEnemyVector) {
+    public Vector3 DisplaceAILocation() {
+        Vector3 cachedV3 = transform.position;
+        Vector3 temp = Vector3.zero;
+        float dist = Mathf.Infinity;
 
-        int ai = 0;
-        Collider[] inCollision = Physics.OverlapCapsule(target.position - (normalizedEnemyVector * weaponRange), target.position - (normalizedEnemyVector * weaponRange), 1);
+        for (var k = -1; k < 2; k += 2) {
+            foreach (Vector3 multiply in multiplier) {
+                //color = Random.ColorHSV();
+                for (var i = -(possibleSpotsPerSide / 2); i < (possibleSpotsPerSide / 2) + 1; i++) {
+                    temp = Vector3.one;
 
-        foreach (Collider collision in inCollision)
-            if (collision != destinationMarker)
-                if (collision.transform.tag == "Marker")
-                    ai++;
+                    for (var j = 0; j < 3; j++)
+                        if (multiply[j] == 1)
+                            temp[j] = spaceBetweenChecks * i;
 
-        while (ai > 0) {
-            ai = 0;
-            normalizedEnemyVector.x += 0.1f;
-            normalizedEnemyVector.z += 0.1f;
+                    temp *= k;
+                    temp.y = 0;
+                    temp = Vector3.Normalize(temp);
 
-            inCollision = Physics.OverlapCapsule(target.position - (normalizedEnemyVector * weaponRange), target.position - (normalizedEnemyVector * weaponRange), 1);
+                    Vector3 tempNormStore = temp;
+                    temp *= weaponRange;
+                    temp += target.position;
 
-            foreach (Collider collision in inCollision)
-                if (collision != destinationMarker)
-                    if (collision.transform.tag == "Marker")
-                        ai++;
+                    if (ColliderCheck(temp)) {
+                        if ((temp - transform.position).sqrMagnitude < dist) {
+                            destinationMarker.transform.position = temp;
+                            dist = (temp - transform.position).sqrMagnitude;
+                            cachedV3 = temp;
+                            currentNormalizedDist = tempNormStore;
+                        }
+                    }
+                }
+            }
         }
+        return cachedV3;
+    }
 
-        destination = target.position - (normalizedEnemyVector * weaponRange);
-        destinationMarker.transform.position = target.position - (normalizedEnemyVector * weaponRange);
+    public bool ColliderCheck(Vector3 temp) {
+        bool hitFloor = false;
+        if (displayDebugMessage)
+            Debug.DrawLine(target.position, temp, Color.red, 10);
+        Collider[] inCollision = Physics.OverlapCapsule(temp, temp, 1);
+
+        foreach (Collider collision in inCollision) {
+            if (collision != destinationMarker)
+                if (collision.transform.tag == "Marker") {
+                    return false;
+                }
+            if (collision.transform.tag == "Floor")
+                hitFloor = true;
+        }
+        return hitFloor;
     }
 
     public Vector3 ObstacleHunting(bool hide) {
@@ -193,19 +237,16 @@ public class AIFunctions : MonoBehaviour {
         if (hide)
             temp = AIManager.instance.AssignHidingPoint(gameObject, weaponRange);
 
-        if (temp == backUp) {
-            temp = target.position - transform.position;
-            temp = Vector3.Normalize(temp);
-            DisplaceAILocation(temp);
-            return destination;
-        }
-        return temp;
-    }
+        if (temp == backUp)
+            if (currentNormalizedDist == Vector3.zero)
+                temp = DisplaceAILocation();
+            else
+                if (ColliderCheck(target.position + (currentNormalizedDist * weaponRange)))
+                temp = target.position + (currentNormalizedDist * weaponRange);
+            else
+                temp = DisplaceAILocation();
 
-    Vector3 ShortObstacleException(Collider obsColl) {
-        Vector3 temp = Vector3.zero;
-        temp = obsColl.ClosestPointOnBounds(target.position) + ((obsColl.bounds.center - obsColl.ClosestPointOnBounds(target.position)) * 2);
-
+        destinationMarker.transform.position = temp;
         return temp;
     }
 }

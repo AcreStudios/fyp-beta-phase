@@ -48,7 +48,7 @@ public class AI : AIFunctions {
             case AIStates.Idle:
                 if (target != null) {
                     AlertOtherTroops();
-                    stateChangeTimer = Time.time +  reactionTime;
+                    stateChangeTimer = Time.time + reactionTime;
                     currentState = AIStates.Attacking;
                     destination = ObstacleHunting(ableToHide);
                 } else {
