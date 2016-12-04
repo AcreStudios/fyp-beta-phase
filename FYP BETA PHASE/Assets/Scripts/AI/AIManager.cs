@@ -60,11 +60,6 @@ public class AIManager : MonoBehaviour {
 
         for (var i = 0; i < readerInst.boundPoints.Count; i++) {
 
-            if (readerInst.boundPoints[i].aiCover == ai) {
-                ColliderReaderModule.BoundaryPoints boundInst = readerInst.boundPoints[i];                
-                boundInst.aiCover = null;
-                readerInst.boundPoints[i] = boundInst;                
-            }
 
             if (!readerInst.boundPoints[i].aiCover) {
                 if ((player.transform.position - readerInst.boundPoints[i].centrePoint).sqrMagnitude < range * range) {
@@ -82,6 +77,10 @@ public class AIManager : MonoBehaviour {
                         }
                     }
                 }
+            } else if (readerInst.boundPoints[i].aiCover == ai) {
+                ColliderReaderModule.BoundaryPoints boundInst = readerInst.boundPoints[i];
+                boundInst.aiCover = null;
+                readerInst.boundPoints[i] = boundInst;
             }
         }
 

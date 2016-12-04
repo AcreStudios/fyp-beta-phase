@@ -107,6 +107,7 @@ public class AI : AIFunctions {
             case AIStates.Attacking:
                 if (Time.time > stateChangeTimer) {
                     if (agent.velocity.sqrMagnitude == 0) {
+                        destination = transform.position;
                         transform.LookAt(target);
                         Attack();
 
@@ -114,9 +115,17 @@ public class AI : AIFunctions {
 
                         if (Physics.Linecast(destination, target.position, out hit)) {
                             //Debug.DrawLine(destination, hit.point, Color.red, 20);
-                            if (hit.transform.root == target)
+                            //Debug.DrawLine(transform.position, hit.point, Color.green);
+                            if (hit.transform.root == target) {
                                 destination = ObstacleHunting(ableToHide);
+                                //Debug.DrawLine(transform.position, hit.point, Color.red);
+                            }
                         }
+
+
+                        if ((target.position - transform.position).sqrMagnitude > weaponRange * weaponRange)
+                            destination = ObstacleHunting(ableToHide);
+
                     } else {
                         animator.SetInteger("TreeState", 1);
                         transform.LookAt(destination);

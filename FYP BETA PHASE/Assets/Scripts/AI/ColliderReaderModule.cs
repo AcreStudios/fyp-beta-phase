@@ -132,6 +132,7 @@ public class ColliderReaderModule : MonoBehaviour {
 
         return currentValue + value;
     }
+
     public void CreateObstacleData() {
         boundPoints = new List<BoundaryPoints>();
 
@@ -142,11 +143,13 @@ public class ColliderReaderModule : MonoBehaviour {
                 Collider tempColl = obstacle.GetComponent<Collider>();
                 if (tempColl)
                     for (var i = 0; i < multiplier.Length; i++) {
-                        Vector3 tempVector = tempColl.bounds.center + new Vector3(tempColl.bounds.extents.x * multiplier[i].x, tempColl.bounds.extents.y * multiplier[i].y, tempColl.bounds.extents.z * multiplier[i].z);
+                        Vector3 extentsValue = new Vector3(tempColl.bounds.extents.x * multiplier[i].x, 0, tempColl.bounds.extents.z * multiplier[i].z);
+                        Vector3 tempVector = tempColl.bounds.center + extentsValue + (Vector3.Normalize(extentsValue) * aiRadius);
+
                         //Debug.DrawRay(tempVector, new )
                         Collider[] check = Physics.OverlapBox(tempVector, new Vector3(aiRadius, aiRadius, aiRadius));
-                        Debug.Log(check.Length);
-                        if (check.Length <= 1) {
+                        //Debug.Log(check.Length);
+                        if (check.Length <= 2) {
                             boundPoints.Add(new BoundaryPoints(tempVector, null));
                         }
                     }

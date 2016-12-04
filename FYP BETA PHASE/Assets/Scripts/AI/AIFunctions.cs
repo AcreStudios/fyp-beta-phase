@@ -157,7 +157,7 @@ public class AIFunctions : MonoBehaviour {
                             HitFeedbackManager.instance.RetriggerHitEvent();
 
                     if ((ai = targetHit.GetComponent<AIFunctions>()) != null) {
-                        Vector3 toNorm = Vector3.Normalize(target.position - transform.position);
+                        //Vector3 toNorm = Vector3.Normalize(target.position - transform.position);
                         //Debug.Log(hit.transform.root + " was hit by " + transform.root);
                         ai.destination = ai.DisplaceAILocation();
                     }
