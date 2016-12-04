@@ -11,11 +11,13 @@ public class NewMenuScript : MonoBehaviour {
     public class StartScreen {
         public GameObject StartCanvas;
         public Button PressToStart;
+		public GameObject StartBackground;
     }
     public StartScreen startScreen;
 
     [System.Serializable]
     public class MainMenu {
+		public GameObject MenuBackground;
         public GameObject MainCanvas;
         public GameObject GORedNewGame;
         public GameObject GORedSettings;
@@ -30,6 +32,7 @@ public class NewMenuScript : MonoBehaviour {
 
     [System.Serializable]
     public class SettingsMenu {
+		public GameObject SettingsBackground;
         public GameObject SettingsCanvas;
         public GameObject GORedGame;
         public GameObject GORedAudio;
@@ -44,6 +47,7 @@ public class NewMenuScript : MonoBehaviour {
 
     [System.Serializable]
     public class CreditsMenu {
+		public GameObject CreditsBackground;
         public GameObject CreditsCanvas;
         public GameObject GORedCreditsBack;
     }
@@ -51,6 +55,7 @@ public class NewMenuScript : MonoBehaviour {
 
     [System.Serializable]
     public class QuitMenu {
+		public GameObject QuitBackground;
         public GameObject QuitCanvas;
         public GameObject GORedYes;
         public GameObject GORedNo;
@@ -61,6 +66,7 @@ public class NewMenuScript : MonoBehaviour {
 
     [System.Serializable]
     public class DevMenu {
+		public GameObject DevBackground;
         public GameObject DevCanvas;
         public GameObject Sequence1;
         public GameObject Sequence2;
@@ -70,6 +76,7 @@ public class NewMenuScript : MonoBehaviour {
     
     [System.Serializable]
     public class LoadingScreen {
+		public GameObject LoadingBackground;
         public GameObject LoadingCanvas;
         public GameObject PressToContinue;
         public GameObject PressToContinueButton;
@@ -85,10 +92,11 @@ public class NewMenuScript : MonoBehaviour {
         startScreen.StartCanvas.SetActive(true);
 
         startScreen.PressToStart.enabled = true;
+		startScreen.StartBackground.SetActive(true);
         #endregion
         #region Main Menu
         mainMenu.MainCanvas.SetActive(false);
-
+		mainMenu.MenuBackground.SetActive(true);
         mainMenu.GORedNewGame.SetActive(true);
         mainMenu.GORedSettings.SetActive(false);
         mainMenu.GORedCredits.SetActive(false);
@@ -101,6 +109,7 @@ public class NewMenuScript : MonoBehaviour {
         #endregion
         #region Settings Menu
         settingsMenu.SettingsCanvas.SetActive(false);
+		settingsMenu.SettingsBackground.SetActive(true);
 
         settingsMenu.GORedGame.SetActive(true);
         settingsMenu.GORedAudio.SetActive(false);
@@ -114,11 +123,13 @@ public class NewMenuScript : MonoBehaviour {
         #endregion
         #region Credits Menu
         creditsMenu.CreditsCanvas.SetActive(false);
+		creditsMenu.CreditsBackground.SetActive(true);
 
         creditsMenu.GORedCreditsBack.SetActive(true);
         #endregion
         #region Quit Menu
         quitMenu.QuitCanvas.SetActive(false);
+		quitMenu.QuitBackground.SetActive(true);
 
         quitMenu.GORedYes.SetActive(false);
         quitMenu.GORedNo.SetActive(true);
@@ -128,6 +139,7 @@ public class NewMenuScript : MonoBehaviour {
         #endregion
         #region Loading Screen
         loadingScreen.LoadingCanvas.SetActive(false);
+		loadingScreen.LoadingBackground.SetActive(true);
 
         loadingScreen.PressToContinue.SetActive(false);
         loadingScreen.PressToContinueButton.SetActive(false);
@@ -142,6 +154,7 @@ public class NewMenuScript : MonoBehaviour {
         devMenu.Sequence1.SetActive(false);
         devMenu.Sequence2.SetActive(false);
         devMenu.Sequence3.SetActive(false);
+		devMenu.DevBackground.SetActive(true);
         #endregion
     }
 
