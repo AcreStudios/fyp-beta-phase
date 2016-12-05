@@ -254,7 +254,12 @@ public class Weapon : MonoBehaviour
 				{
 					foreach(Material mat in bTypes.mats)
 					{
-						if(hit.collider.GetComponent<MeshRenderer>().material.mainTexture == mat.mainTexture) // Compare
+						Renderer rend = hit.collider.GetComponent<Renderer> ();
+
+						if (!rend)
+							return;
+						
+						if(rend.material.mainTexture == mat.mainTexture) // Compare
 							SoundManager.GetInstance().PlaySoundOnce(hit.point, bTypes.impactSounds[Random.Range(0, bTypes.impactSounds.Length)]);
 					}
 				}
