@@ -43,54 +43,28 @@ public class AmmoUIManager : MonoBehaviour
 			ammobar[i] = AmmobarTrans.GetChild(i).gameObject;
 			ammobar[i].SetActive(false);
 		}
+
+		// Turn off at start
+		ToggleAmmobar(false);
 	}
 	
 	public void UpdateAmmobar(int curAmmo) // Call this to update ammobar 
 	{
-		switch(curAmmo)
+		if(curAmmo == 12)
 		{
-			case 0:
-				ammobar[0].SetActive(false);
-				break;
-			case 1:
-				ammobar[1].SetActive(false);
-				break;
-			case 2:
-				ammobar[2].SetActive(false);
-				break;
-			case 3:
-				ammobar[3].SetActive(false);
-				break;
-			case 4:
-				ammobar[4].SetActive(false);
-				break;
-			case 5:
-				ammobar[5].SetActive(false);
-				break;
-			case 6:
-				ammobar[6].SetActive(false);
-				break;
-			case 7:
-				ammobar[7].SetActive(false);
-				break;
-			case 8:
-				ammobar[8].SetActive(false);
-				break;
-			case 9:
-				ammobar[9].SetActive(false);
-				break;
-			case 10:
-				ammobar[10].SetActive(false);
-				break;
-			case 11:
-				ammobar[11].SetActive(false);
-				break;
-			default:
-				// Reset bar to full
-				foreach(GameObject b in ammobar)
-					b.SetActive(true);
-				break;
+			foreach(GameObject b in ammobar)
+				b.SetActive(true);
 		}
+		else
+			ammobar[curAmmo].SetActive(false);
+
+		print(curAmmo);
+
+	}
+
+	public void ToggleAmmobar(bool enabled) // Turn it on/off
+	{
+		transform.parent.gameObject.SetActive(enabled);
 	}
 
 }

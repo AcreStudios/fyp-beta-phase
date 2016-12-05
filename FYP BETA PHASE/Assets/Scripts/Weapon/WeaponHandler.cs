@@ -68,9 +68,20 @@ public class WeaponHandler : MonoBehaviour
 
 		// Choose and show crosshair type
 		if(_aiming)
+		{
 			crosshairManager.DefineCrosshairByIndex(_weaponIndex);
+
+			if(_weaponIndex == 0)
+				AmmoUIManager.GetInstance().ToggleAmmobar(false);
+			else
+				AmmoUIManager.GetInstance().ToggleAmmobar(true);
+		}
 		else
+		{
 			crosshairManager.DefineCrosshairByIndex(0);
+
+			AmmoUIManager.GetInstance().ToggleAmmobar(false);
+		}
 	}
 
 	public void SetupWeapon() // Initialise weapon states and update them
