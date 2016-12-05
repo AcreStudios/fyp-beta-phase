@@ -145,7 +145,7 @@ public class ColliderReaderModule : MonoBehaviour {
                     for (var i = 0; i < multiplier.Length; i++) {
                         Vector3 extentsValue = new Vector3(tempColl.bounds.extents.x * multiplier[i].x, 0, tempColl.bounds.extents.z * multiplier[i].z);
                         Vector3 tempVector = tempColl.bounds.center + extentsValue + (Vector3.Normalize(extentsValue) * aiRadius);
-
+                        tempVector.y = 0.1f;
                         //Debug.DrawRay(tempVector, new )
                         Collider[] check = Physics.OverlapBox(tempVector, new Vector3(aiRadius, aiRadius, aiRadius));
                         //Debug.Log(check.Length);

@@ -59,7 +59,11 @@ public class AIManager : MonoBehaviour {
         int reference = 0;
 
         for (var i = 0; i < readerInst.boundPoints.Count; i++) {
-
+            if (readerInst.boundPoints[i].aiCover == ai) {
+                ColliderReaderModule.BoundaryPoints boundInst = readerInst.boundPoints[i];
+                boundInst.aiCover = null;
+                readerInst.boundPoints[i] = boundInst;
+            }
 
             if (!readerInst.boundPoints[i].aiCover) {
                 if ((player.transform.position - readerInst.boundPoints[i].centrePoint).sqrMagnitude < range * range) {
@@ -68,20 +72,17 @@ public class AIManager : MonoBehaviour {
                     if (dist > tempDist) {
                         RaycastHit hit;
                         if (Physics.Linecast(readerInst.boundPoints[i].centrePoint, player.transform.position, out hit)) {
-                            if (hit.transform.root != player.transform) {
+                            if (hit.transform.root != player && !hit.transform.root.CompareTag("Enemy")) {
                                 temp = readerInst.boundPoints[i].centrePoint;
                                 dist = tempDist;
                                 reference = i;
                                 changed = true;
+                                Debug.DrawLine(player.transform.position, readerInst.boundPoints[i].centrePoint, Color.black, 10f);
                             }
                         }
                     }
                 }
-            } else if (readerInst.boundPoints[i].aiCover == ai) {
-                ColliderReaderModule.BoundaryPoints boundInst = readerInst.boundPoints[i];
-                boundInst.aiCover = null;
-                readerInst.boundPoints[i] = boundInst;
-            }
+            } 
         }
 
         if (changed) {

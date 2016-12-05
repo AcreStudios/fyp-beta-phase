@@ -149,7 +149,7 @@ public class Weapon : MonoBehaviour
 
 				AIFunctions ai = hit.transform.GetComponent<AIFunctions>();
 				if(ai && ai.isActiveAndEnabled)
-					ai.DamageRecieved(0);
+					ai.DamageRecieved();
 
 				BulletImpactLogic(hit);
 			}

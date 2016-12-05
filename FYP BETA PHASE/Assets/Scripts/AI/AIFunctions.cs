@@ -49,7 +49,7 @@ public class AIFunctions : MonoBehaviour {
 
     public Collider destinationMarker;
 
-    protected Transform target;
+    public Transform target;
     Transform[] guns = new Transform[1];
 
     protected Transform linecastCheck;
@@ -76,7 +76,7 @@ public class AIFunctions : MonoBehaviour {
         multiplier[1] = new Vector3(0, 0, 1);
     }
 
-    public virtual void DamageRecieved(float damage) {
+    public virtual void DamageRecieved() {
     }
 
     public void AlertOtherTroops() {
@@ -138,7 +138,7 @@ public class AIFunctions : MonoBehaviour {
                 case WeaponType.Area:
                     Collider[] units = Physics.OverlapSphere(transform.position + transform.TransformDirection(0, 0, weaponRange), areaTestRadius);
 
-                    foreach (Collider unit in units) 
+                    foreach (Collider unit in units)
                         if (unit.transform.CompareTag("Player"))
                             targetHit = unit.transform;
                     break;
@@ -192,7 +192,7 @@ public class AIFunctions : MonoBehaviour {
                             temp[j] = spaceBetweenChecks * i;
 
                     temp *= k;
-                    temp.y = 0;
+
                     temp = Vector3.Normalize(temp);
 
                     Vector3 tempNormStore = temp;
@@ -214,9 +214,10 @@ public class AIFunctions : MonoBehaviour {
     }
 
     public bool ColliderCheck(Vector3 temp) {
+        temp.y = 0.1f;
         bool hitFloor = false;
-        if (displayDebugMessage)
-            Debug.DrawLine(target.position, temp, Color.red, 10);
+        //if (displayDebugMessage)
+        // Debug.DrawLine(target.position, temp, Color.red, 10);
         Collider[] inCollision = Physics.OverlapCapsule(temp, temp, 1);
 
         foreach (Collider collision in inCollision) {
@@ -227,6 +228,7 @@ public class AIFunctions : MonoBehaviour {
             if (collision.transform.tag == "Floor")
                 hitFloor = true;
         }
+
         return hitFloor;
     }
 
@@ -240,12 +242,12 @@ public class AIFunctions : MonoBehaviour {
         if (temp == backUp)
             if (currentNormalizedDist == Vector3.zero)
                 temp = DisplaceAILocation();
-            else
-                if (ColliderCheck(target.position + (currentNormalizedDist * weaponRange)))
+            else if (ColliderCheck(target.position + (currentNormalizedDist * weaponRange))) {
                 temp = target.position + (currentNormalizedDist * weaponRange);
-            else
+            } else
                 temp = DisplaceAILocation();
 
+        temp.y = 0.1f;
         destinationMarker.transform.position = temp;
         return temp;
     }

@@ -41,16 +41,16 @@ public class AI : AIFunctions {
 
         if (damageTest) {
             damageTest = false;
-            DamageRecieved(0);
+            DamageRecieved();
         }
 
         switch (currentState) {
             case AIStates.Idle:
-                if (target != null) {
-                    AlertOtherTroops();
+                if (target) {
+                    //AlertOtherTroops();
                     stateChangeTimer = Time.time + reactionTime;
-                    currentState = AIStates.Attacking;
                     destination = ObstacleHunting(ableToHide);
+                    currentState = AIStates.Attacking;
                 } else {
                     if ((startingPoint - transform.position).magnitude < 1) {
                         animator.SetInteger("TreeState", 0);
@@ -64,8 +64,8 @@ public class AI : AIFunctions {
                 if (target != null) {
                     AlertOtherTroops();
                     stateChangeTimer = Time.time + reactionTime;
-                    currentState = AIStates.Attacking;
                     destination = ObstacleHunting(ableToHide);
+                    currentState = AIStates.Attacking;                   
                 } else {
                     if ((patrolMod.patrolLocations[patrolMod.currentLocation] - transform.position).magnitude < 1) {
                         if (patrolMod.currentLocation >= patrolMod.patrolLocations.Length - 1) {
@@ -108,23 +108,25 @@ public class AI : AIFunctions {
                 if (Time.time > stateChangeTimer) {
                     if (agent.velocity.sqrMagnitude == 0) {
                         destination = transform.position;
-                        transform.LookAt(target);
-                        Attack();
 
-                        RaycastHit hit;
+                        if (target) {
+                            transform.LookAt(target);
+                            Attack();
 
-                        if (Physics.Linecast(destination, target.position, out hit)) {
-                            //Debug.DrawLine(destination, hit.point, Color.red, 20);
-                            //Debug.DrawLine(transform.position, hit.point, Color.green);
-                            if (hit.transform.root == target) {
-                                destination = ObstacleHunting(ableToHide);
-                                //Debug.DrawLine(transform.position, hit.point, Color.red);
+                            RaycastHit hit;
+
+                            if (Physics.Linecast(destination, target.position, out hit)) {
+                                //Debug.DrawLine(destination, hit.point, Color.red, 20);
+                                Debug.DrawLine(transform.position, hit.point, Color.green);
+                                if (hit.transform.root == target) {
+                                    destination = ObstacleHunting(ableToHide);
+                                    //Debug.DrawLine(transform.position, hit.point, Color.red);
+                                }
                             }
+
+                            if ((target.position - transform.position).sqrMagnitude > weaponRange * weaponRange)
+                                destination = ObstacleHunting(ableToHide);
                         }
-
-
-                        if ((target.position - transform.position).sqrMagnitude > weaponRange * weaponRange)
-                            destination = ObstacleHunting(ableToHide);
 
                     } else {
                         animator.SetInteger("TreeState", 1);
@@ -133,6 +135,9 @@ public class AI : AIFunctions {
                     transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
                     agent.destination = destination;
                 }
+                //Debug.Log(destination);
+
+                //Debug.DrawLine(destination, target.position, Color.blue);
 
                 break;
         }
@@ -140,8 +145,9 @@ public class AI : AIFunctions {
         destinationMarker.transform.position = destination;
     }
 
-    public override void DamageRecieved(float damage) {
+    public override void DamageRecieved() {
         toEscort = false;
+        target = GameObject.FindGameObjectWithTag("Player").transform;
         currentState = AIStates.Attacking;
     }
 }
