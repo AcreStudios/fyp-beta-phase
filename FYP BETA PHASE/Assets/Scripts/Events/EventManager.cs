@@ -36,6 +36,7 @@ public class EventManager : MonoBehaviour {
     public struct EventBody {
         public string eventBodyName;
         public Triggers eventTriggers;
+        public OnEventActive onEventActive;
         public Results results;
     }
 
@@ -59,6 +60,16 @@ public class EventManager : MonoBehaviour {
         public bool unableToProceed;
     }
 
+    [System.Serializable]
+    public struct OnEventActive {
+        [HideInInspector]
+        public float timer;
+        public float duration;
+        public Vector3 location;
+        public float randomRange;
+        public GameObject[] spawns;
+    }
+
     public EventTree[] eventTrees = new EventTree[0];
 
     public int currentTreeIndex;
@@ -72,9 +83,12 @@ public class EventManager : MonoBehaviour {
             if (eventTrees[currentTreeIndex].currentGameEvent < eventTrees[currentTreeIndex].events.Length) {
                 if (missionUI)
                     missionUI.text = eventTrees[currentTreeIndex].events[eventTrees[currentTreeIndex].currentGameEvent].missionUI;
-                foreach (EventBody eventB in eventTrees[currentTreeIndex].events[eventTrees[currentTreeIndex].currentGameEvent].eventBody)
+                foreach (EventBody eventB in eventTrees[currentTreeIndex].events[eventTrees[currentTreeIndex].currentGameEvent].eventBody) {
+                    EventActive(eventB, currentTreeIndex, eventTrees[currentTreeIndex].currentGameEvent);
+
                     if (CheckTrigger(eventB, currentTreeIndex, eventTrees[currentTreeIndex].currentGameEvent))
                         break;
+                }
             }
         } else {
             for (var i = 0; i < eventTrees.Length; i++)
@@ -127,6 +141,24 @@ public class EventManager : MonoBehaviour {
         return true;
     }
 
+    void EventActive(EventBody currentEvent, int currentTreeIndex, int eventIndex) {
+
+        if (currentEvent.onEventActive.spawns.Length > 0)
+            if (currentEvent.onEventActive.timer < Time.time) {
+                for (var i = 0; i < eventTrees[currentTreeIndex].events[eventIndex].eventBody.Length; i++) {
+                    eventTrees[currentTreeIndex].events[eventIndex].eventBody[i].onEventActive.timer += eventTrees[currentTreeIndex].events[eventIndex].eventBody[i].onEventActive.duration;
+                    foreach (GameObject toSpawn in currentEvent.onEventActive.spawns) {
+
+                        Vector3 spawnLoc = currentEvent.onEventActive.location;
+                        if (currentEvent.onEventActive.randomRange > 0)
+                            spawnLoc += new Vector3(Random.Range(-(currentEvent.onEventActive.randomRange), currentEvent.onEventActive.randomRange), 0.5f, Random.Range(-(currentEvent.onEventActive.randomRange), currentEvent.onEventActive.randomRange));
+                        Instantiate(toSpawn, spawnLoc, Quaternion.identity);
+                    }
+                }
+            }
+
+    }
+
     void ActivateEvent(Results endResult) {
         foreach (GameObject spawn in endResult.spawns)
             spawn.SetActive(true);
@@ -149,6 +181,8 @@ public class EventManager : MonoBehaviour {
         }
     }
 
+
+
     public void CleanUpEventTreeToJump() {
         for (var i = 0; i < eventTrees.Length; i++)
             for (var j = 0; j < eventTrees[i].events.Length; j++)
@@ -161,10 +195,16 @@ public class EventManager : MonoBehaviour {
 #if UNITY_EDITOR
 [CustomEditor(typeof(EventManager))]
 public class EventManagerEditor : Editor {
+
+    public enum ButtonType {
+        Trigger, OnEventActive
+    }
+
     EventManager t;
     int currentTree;
     int currentEvent;
     int currentTrigger;
+    ButtonType clickedType;
 
     void OnSceneGUI() {
         Quaternion rotation = Quaternion.identity;
@@ -175,10 +215,19 @@ public class EventManagerEditor : Editor {
             for (var i = 0; i < t.eventTrees.Length; i++) {
                 //Handles.color = t.eventTrees[i].eventColors;
                 for (var j = 0; j < t.eventTrees[i].events.Length; j++)
-                    for (var k = 0; k < t.eventTrees[i].events[j].eventBody.Length; k++)
+                    for (var k = 0; k < t.eventTrees[i].events[j].eventBody.Length; k++) {
                         Handles.CircleCap(0, t.eventTrees[i].events[j].eventBody[k].eventTriggers.triggerPosition, rotation, t.eventTrees[i].events[j].eventBody[k].eventTriggers.triggerRadius);
-            }
 
+                        float rad = 0;
+                        if (t.eventTrees[i].events[j].eventBody[k].onEventActive.randomRange == 0)
+                            rad = 1;
+                        else
+                            rad = t.eventTrees[i].events[j].eventBody[k].onEventActive.randomRange;
+                        Handles.color = Color.blue;
+
+                        Handles.CircleCap(0, t.eventTrees[i].events[j].eventBody[k].onEventActive.location, rotation, rad);
+                    }
+            }
         Event e;
         e = Event.current;
 
@@ -191,8 +240,15 @@ public class EventManagerEditor : Editor {
                 Ray ray = Camera.current.ScreenPointToRay(temp);
 
                 if (Physics.Raycast(ray, out hit, Mathf.Infinity)) {
-                    t.eventTrees[currentTree].events[currentEvent].eventBody[currentTrigger].eventTriggers.triggerPosition = hit.point;
-                    t.eventTrees[currentTree].events[currentEvent].eventBody[currentTrigger].eventTriggers.triggerRadius = 1;
+                    switch (clickedType) {
+                        case ButtonType.Trigger:
+                            t.eventTrees[currentTree].events[currentEvent].eventBody[currentTrigger].eventTriggers.triggerPosition = hit.point;
+                            t.eventTrees[currentTree].events[currentEvent].eventBody[currentTrigger].eventTriggers.triggerRadius = 1;
+                            break;
+                        case ButtonType.OnEventActive:
+                            t.eventTrees[currentTree].events[currentEvent].eventBody[currentTrigger].onEventActive.location = hit.point;
+                            break;
+                    }
                 }
             }
         }
@@ -219,6 +275,22 @@ public class EventManagerEditor : Editor {
                             currentTree = i;
                             currentEvent = j;
                             currentTrigger = k;
+                            clickedType = ButtonType.Trigger;
+                        }
+
+                        buttonName = "Set OnEventActive radius ";
+                        if (t.eventTrees[i].events[j].eventName != "")
+                            buttonName = buttonName + "(" + t.eventTrees[i].eventTreeName + ") " + t.eventTrees[i].events[j].eventName + " [" + t.eventTrees[i].events[j].eventBody[k].eventBodyName + "]";
+                        else
+                            buttonName = buttonName + i.ToString();
+
+                        if (GUILayout.Button(buttonName)) {
+                            SceneView sceneView = SceneView.sceneViews[0] as SceneView;
+                            sceneView.Focus();
+                            currentTree = i;
+                            currentEvent = j;
+                            currentTrigger = k;
+                            clickedType = ButtonType.OnEventActive;
                         }
                     }
 

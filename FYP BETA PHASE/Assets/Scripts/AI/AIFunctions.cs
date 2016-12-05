@@ -178,33 +178,36 @@ public class AIFunctions : MonoBehaviour {
 
     public Vector3 DisplaceAILocation() {
         Vector3 cachedV3 = transform.position;
-        Vector3 temp = Vector3.zero;
-        float dist = Mathf.Infinity;
 
-        for (var k = -1; k < 2; k += 2) {
-            foreach (Vector3 multiply in multiplier) {
-                //color = Random.ColorHSV();
-                for (var i = -(possibleSpotsPerSide / 2); i < (possibleSpotsPerSide / 2) + 1; i++) {
-                    temp = Vector3.one;
+        if (target) {
+            Vector3 temp = Vector3.zero;
+            float dist = Mathf.Infinity;
 
-                    for (var j = 0; j < 3; j++)
-                        if (multiply[j] == 1)
-                            temp[j] = spaceBetweenChecks * i;
+            for (var k = -1; k < 2; k += 2) {
+                foreach (Vector3 multiply in multiplier) {
+                    //color = Random.ColorHSV();
+                    for (var i = -(possibleSpotsPerSide / 2); i < (possibleSpotsPerSide / 2) + 1; i++) {
+                        temp = Vector3.one;
 
-                    temp *= k;
+                        for (var j = 0; j < 3; j++)
+                            if (multiply[j] == 1)
+                                temp[j] = spaceBetweenChecks * i;
 
-                    temp = Vector3.Normalize(temp);
+                        temp *= k;
 
-                    Vector3 tempNormStore = temp;
-                    temp *= weaponRange;
-                    temp += target.position;
+                        temp = Vector3.Normalize(temp);
 
-                    if (ColliderCheck(temp)) {
-                        if ((temp - transform.position).sqrMagnitude < dist) {
-                            destinationMarker.transform.position = temp;
-                            dist = (temp - transform.position).sqrMagnitude;
-                            cachedV3 = temp;
-                            currentNormalizedDist = tempNormStore;
+                        Vector3 tempNormStore = temp;
+                        temp *= weaponRange;
+                        temp += target.position;
+
+                        if (ColliderCheck(temp)) {
+                            if ((temp - transform.position).sqrMagnitude < dist) {
+                                destinationMarker.transform.position = temp;
+                                dist = (temp - transform.position).sqrMagnitude;
+                                cachedV3 = temp;
+                                currentNormalizedDist = tempNormStore;
+                            }
                         }
                     }
                 }
