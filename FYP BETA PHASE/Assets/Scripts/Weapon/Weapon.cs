@@ -102,7 +102,7 @@ public class Weapon : MonoBehaviour
 	private bool _loading;
 
 
-	void Awake()
+	void Awake() 
 	{
 		col = GetComponent<BoxCollider>();
 		rb = GetComponent<Rigidbody>();
@@ -215,9 +215,10 @@ public class Weapon : MonoBehaviour
 		weaponHandler.animator.SetTrigger("Fire");
 
 		// Shoot cooldown
-		ammoSettings.currentAmmo--;
-		ammoManager.SetCurrentAmmo(ammoSettings.currentAmmo);
 		StartCoroutine(FinishShooting());
+		ammoSettings.currentAmmo--;
+		if(ammoManager)
+			ammoManager.UpdateAmmobar(ammoSettings.currentAmmo);
 	}
 
 	private IEnumerator FinishShooting() // Loads next bullet; Cooldown interval between bullets
@@ -270,16 +271,16 @@ public class Weapon : MonoBehaviour
 			ammoSettings.totalAmmo -= ammoNeeded;
 			ammoSettings.currentAmmo = ammoSettings.maxAmmo;
 
-			ammoManager.SetCurrentAmmo(ammoSettings.currentAmmo);
-			ammoManager.SetTotalAmmo(ammoSettings.totalAmmo);
+			if(ammoManager)
+				ammoManager.UpdateAmmobar(ammoSettings.currentAmmo);
 		}
 		else
 		{
 			ammoSettings.currentAmmo = ammoSettings.totalAmmo;
 			ammoSettings.totalAmmo = 0;
 
-			ammoManager.SetCurrentAmmo(ammoSettings.currentAmmo);
-			ammoManager.SetTotalAmmo(ammoSettings.totalAmmo);
+			if(ammoManager)
+				ammoManager.UpdateAmmobar(ammoSettings.currentAmmo);
 		}
 	}
 
@@ -337,10 +338,9 @@ public class Weapon : MonoBehaviour
 				break;
 		}
 
-		// Update ammo count
-		ammoManager.SetCurrentAmmo(ammoSettings.currentAmmo);
-		ammoManager.SetMaxAmmo(ammoSettings.maxAmmo);
-		ammoManager.SetTotalAmmo(ammoSettings.totalAmmo);
+		// Update ammobar
+		if(ammoManager)
+			ammoManager.UpdateAmmobar(ammoSettings.currentAmmo);
 	}
 
 	private void UnequipWeapon() // Unequip and place weapon to the desired location
