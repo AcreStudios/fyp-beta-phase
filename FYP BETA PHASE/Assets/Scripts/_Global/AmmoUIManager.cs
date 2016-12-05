@@ -5,10 +5,14 @@ using UnityEngine.UI;
 
 public class AmmoUIManager : MonoBehaviour 
 {
-	[Header("-Drag Ammo Bar Here-")]
-	public Transform AmmobarTrans;
+	[Header("-Drag Ammo Texts Here-")]
+	public Text currentAmmoText;
+	public Text maxAmmoText;
+	public Text totalAmmoText;
 
-	private GameObject[] ammobar;
+	//private float currentAmmoCount;
+	//private float maxAmmoCount;
+	//private float totalAmmoCount;
 
 	// Singleton
 	public static AmmoUIManager instance;
@@ -32,65 +36,26 @@ public class AmmoUIManager : MonoBehaviour
 		}
 	}
 
-	void Start() 
+	void Start()
 	{
-		// Cache ammobar children
-		AmmobarTrans = transform;
-		ammobar = new GameObject[AmmobarTrans.childCount];
-
-		for(int i = 0; i < AmmobarTrans.childCount; i++)
-		{
-			ammobar[i] = AmmobarTrans.GetChild(i).gameObject;
-			ammobar[i].SetActive(false);
-		}
-	}
-	
-	public void UpdateAmmobar(int curAmmo) // Call this to update ammobar 
-	{
-		switch(curAmmo)
-		{
-			case 0:
-				ammobar[0].SetActive(false);
-				break;
-			case 1:
-				ammobar[1].SetActive(false);
-				break;
-			case 2:
-				ammobar[2].SetActive(false);
-				break;
-			case 3:
-				ammobar[3].SetActive(false);
-				break;
-			case 4:
-				ammobar[4].SetActive(false);
-				break;
-			case 5:
-				ammobar[5].SetActive(false);
-				break;
-			case 6:
-				ammobar[6].SetActive(false);
-				break;
-			case 7:
-				ammobar[7].SetActive(false);
-				break;
-			case 8:
-				ammobar[8].SetActive(false);
-				break;
-			case 9:
-				ammobar[9].SetActive(false);
-				break;
-			case 10:
-				ammobar[10].SetActive(false);
-				break;
-			case 11:
-				ammobar[11].SetActive(false);
-				break;
-			default:
-				// Reset bar to full
-				foreach(GameObject b in ammobar)
-					b.SetActive(true);
-				break;
-		}
+		// Unequipped
+		currentAmmoText.text = "-";
+		maxAmmoText.text = "-";
+		totalAmmoText.text = "Unequipped";
 	}
 
+	public void SetCurrentAmmo(int amount)
+	{
+		currentAmmoText.text = amount.ToString();
+	}
+
+	public void SetMaxAmmo(int amount)
+	{
+		maxAmmoText.text = amount.ToString();
+	}
+
+	public void SetTotalAmmo(int amount)
+	{
+		totalAmmoText.text = amount.ToString();
+	}
 }
