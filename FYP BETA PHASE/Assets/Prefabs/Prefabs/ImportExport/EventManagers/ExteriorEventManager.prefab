@@ -938,7 +938,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1000010412211148
 GameObject:
   m_ObjectHideFlags: 1
@@ -3178,7 +3178,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1000011386110378
 GameObject:
   m_ObjectHideFlags: 1
@@ -3398,7 +3398,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1000011454945380
 GameObject:
   m_ObjectHideFlags: 1
@@ -6337,7 +6337,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1000012530883106
 GameObject:
   m_ObjectHideFlags: 1
@@ -26036,7 +26036,7 @@ MonoBehaviour:
         eventTriggers:
           triggerPosition: {x: 0, y: 0, z: 0}
           triggerRadius: 0
-          timer: 3
+          timer: 2
           checkIfDestroyed: []
           key: 0
         onEventActive:
@@ -26049,10 +26049,12 @@ MonoBehaviour:
           spawns:
           - {fileID: 1000014062771812}
           - {fileID: 1000012722624116}
+          - {fileID: 1000012525744242}
           toDestroy:
           - {fileID: 1000014280166948}
           - {fileID: 1000012956930844}
           - {fileID: 1000011676250872}
+          - {fileID: 1000010165569874}
           eventTreeToJump: 0
           debugMessage: Lift Opened
           levelNameToLoad: 
@@ -26132,6 +26134,7 @@ MonoBehaviour:
         results:
           spawns:
           - {fileID: 1000010792538034}
+          - {fileID: 1000011377420600}
           toDestroy: []
           eventTreeToJump: 0
           debugMessage: Front Entrance
@@ -26157,8 +26160,10 @@ MonoBehaviour:
         results:
           spawns:
           - {fileID: 1000011135168814}
+          - {fileID: 1000010401275384}
           toDestroy:
           - {fileID: 1000010792538034}
+          - {fileID: 1000011377420600}
           eventTreeToJump: 0
           debugMessage: Back Entrance
           levelNameToLoad: 
@@ -26183,8 +26188,10 @@ MonoBehaviour:
         results:
           spawns:
           - {fileID: 1000011104021592}
+          - {fileID: 1000011452702020}
           toDestroy:
           - {fileID: 1000011135168814}
+          - {fileID: 1000010401275384}
           eventTreeToJump: 0
           debugMessage: Keycard
           levelNameToLoad: 
@@ -27199,7 +27206,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: But first, I got to escape this building
+  m_Text: 'But first, I have to get out of this building
+
+'
 --- !u!114 &114000012151048684
 MonoBehaviour:
   m_ObjectHideFlags: 1
