@@ -7248,7 +7248,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1000012212937966
 GameObject:
   m_ObjectHideFlags: 1
@@ -8217,7 +8217,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1000012525744242
 GameObject:
   m_ObjectHideFlags: 1
@@ -31773,7 +31773,7 @@ MonoBehaviour:
         eventTriggers:
           triggerPosition: {x: 0, y: 0, z: 0}
           triggerRadius: 0
-          timer: 1
+          timer: 2
           checkIfDestroyed: []
           key: 0
         onEventActive:
@@ -31788,8 +31788,8 @@ MonoBehaviour:
           - {fileID: 1000012722624116}
           - {fileID: 1000012525744242}
           toDestroy:
-          - {fileID: 1000014280166948}
-          - {fileID: 1000012956930844}
+          - {fileID: 0}
+          - {fileID: 0}
           - {fileID: 1000011676250872}
           - {fileID: 1000010165569874}
           eventTreeToJump: 0
@@ -31802,7 +31802,7 @@ MonoBehaviour:
       eventBody:
       - eventBodyName: Step into Unknown
         eventTriggers:
-          triggerPosition: {x: -9.728638, y: -0.6941533, z: 20.686798}
+          triggerPosition: {x: -8.5, y: -0.6941533, z: 17.73}
           triggerRadius: 3
           timer: 0
           checkIfDestroyed: []
@@ -31827,7 +31827,7 @@ MonoBehaviour:
       eventBody:
       - eventBodyName: Camera Flythrough
         eventTriggers:
-          triggerPosition: {x: -10.4, y: -0.69415325, z: 19.59}
+          triggerPosition: {x: -9.32, y: -0.69415325, z: 16.5}
           triggerRadius: 3
           timer: 0
           checkIfDestroyed: []
