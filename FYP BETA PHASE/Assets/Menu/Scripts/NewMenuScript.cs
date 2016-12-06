@@ -359,7 +359,7 @@ public class NewMenuScript : MonoBehaviour {
         Application.Quit();
     }
     public void loadApplication() {
-        SceneManager.LoadScene("Interior01");
+        SceneManager.LoadScene("Interior_Test");
     }
     public void SelectDevMenu() {
         mainMenu.MainCanvas.SetActive(false);
