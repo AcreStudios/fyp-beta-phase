@@ -359,7 +359,7 @@ public class NewMenuScript : MonoBehaviour {
         Application.Quit();
     }
     public void loadApplication() {
-        SceneManager.LoadScene("Interior_Test");
+        SceneManager.LoadScene("Interior02");
     }
     public void SelectDevMenu() {
         mainMenu.MainCanvas.SetActive(false);
@@ -370,10 +370,10 @@ public class NewMenuScript : MonoBehaviour {
         currentState = "Dev Screen";
     }
     public void SelectInterior() {
-        SceneManager.LoadScene("Interior_Test");
+        SceneManager.LoadScene("Interior02");
     }
     public void SelectExterior() {
-        SceneManager.LoadScene("Exterior_Test");
+        SceneManager.LoadScene("Exterior03");
     }
     #endregion
 
