@@ -99,7 +99,7 @@ public class CharacterMovement : MonoBehaviour
 		Vector3 start = trans.position + trans.up;
 		Vector3 dir = Vector3.down;
 
-		if(Physics.SphereCast(start, characterController.radius, dir, out hit, characterController.height * .5f, jumpSettings.groundLayer))
+		if(Physics.SphereCast(start, characterController.radius, dir, out hit, .8f, jumpSettings.groundLayer))
 			return true;
 		else
 			return false;
@@ -180,9 +180,9 @@ public class CharacterMovement : MonoBehaviour
 		#region Character controller
 
 		characterController.skinWidth = 0.0001f;
-		characterController.center = new Vector3(0f, .8f, 0f);
+		characterController.center = new Vector3(0f, .6f, 0f);
 		characterController.radius = .25f;
-		characterController.height = 1.6f;
+		characterController.height = 1.2f;
 
 		#endregion
 	}
