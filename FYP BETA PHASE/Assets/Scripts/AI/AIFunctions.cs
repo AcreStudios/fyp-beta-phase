@@ -38,7 +38,7 @@ public class AIFunctions : MonoBehaviour {
 
     [Header("Raycast Shooting Attack Settings")]
     public float gunSprayValue;
-    public GameObject gunEffect;
+    public TrailEffectFade gunEffect;
 
     [Header("Area Attack Settings")]
     public float areaTestRadius;
@@ -124,16 +124,20 @@ public class AIFunctions : MonoBehaviour {
                         gun.LookAt(target);
 
                         gunEffect.transform.position = gun.position;
-                        gunEffect.SetActive(true);
-
-                        StartCoroutine(ChangeObjectLocation(gunEffect, gun.position + gun.TransformDirection(0, 0, weaponRange) + offset));
-                        StartCoroutine(TurnOffObject(0.2f, gunEffect));
+                        gunEffect.gameObject.SetActive(true);
+                        gunEffect.ObjectActive();
+                        StartCoroutine(ChangeObjectLocation(gunEffect.gameObject, gun.position + gun.TransformDirection(0, 0, weaponRange) + offset));
 
                         RaycastHit hit;
-                        Debug.DrawRay(gun.position, gun.TransformDirection(0, 0, weaponRange) + offset,Color.red);
-                        if (Physics.Raycast(gun.position, gun.TransformDirection(0, 0, weaponRange) + offset, out hit)) {
+                        Debug.DrawRay(gun.position, gun.TransformDirection(0, 0, weaponRange) + offset, Color.red);
+                        if (Physics.Raycast(gun.position, gun.TransformDirection(0, 0, weaponRange) + offset, out hit))
+                            if (hit.transform.CompareTag("NearPlayer"))
+                                AIManager.instance.PlayRandomSound(hit.point);
+
+                        if (Physics.Raycast(gun.position, gun.TransformDirection(0, 0, weaponRange) + offset, out hit, weaponRange, 1))
                             targetHit = hit.transform.root;
-                        }
+
+
                     }
                     break;
                 case WeaponType.Area:
@@ -168,11 +172,6 @@ public class AIFunctions : MonoBehaviour {
                     attackTimer = Time.time + attackInterval;
                 }
         }
-    }
-
-    public IEnumerator TurnOffObject(float time, GameObject obj) {
-        yield return new WaitForSeconds(time);
-        obj.SetActive(false);
     }
 
     public IEnumerator ChangeObjectLocation(GameObject obj, Vector3 location) {

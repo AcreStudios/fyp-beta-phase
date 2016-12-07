@@ -4,6 +4,8 @@ using System.Collections;
 public class NormalizeTest : MonoBehaviour {
 
     public Transform[] specimens;
+    public TrailEffectFade trail;
+    public bool test;
     // Use this for initialization
     void Start() {
         
@@ -16,5 +18,11 @@ public class NormalizeTest : MonoBehaviour {
             inst.x += 0.1f;
             Debug.DrawLine(transform.position, inst * 10, Color.red);
         }
+
+        if (test) {
+            test = false;
+            trail.ObjectActive();
+        }
+
     }
 }

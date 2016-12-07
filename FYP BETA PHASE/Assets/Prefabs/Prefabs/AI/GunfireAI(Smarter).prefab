@@ -2564,7 +2564,7 @@ MonoBehaviour:
   weaponRange: 20
   piercing: 0
   gunSprayValue: 1
-  gunEffect: {fileID: 1000012049455072}
+  gunEffect: {fileID: 114000011517731252}
   areaTestRadius: 1
   damageTest: 0
   displayDebugMessage: 0
@@ -3661,6 +3661,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000013660141338}
   - 96: {fileID: 96000010774298106}
+  - 114: {fileID: 114000011517731252}
   m_Layer: 0
   m_Name: GunshotEffect
   m_TagString: Untagged
@@ -3751,6 +3752,19 @@ TrailRenderer:
       rgba: 0
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
+--- !u!114 &114000011517731252
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012049455072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2cd37d6ac187d81449a867ed3555c4f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  toGetColor: {fileID: 0}
+  rateOfDecay: 0.1
 --- !u!136 &136000012030540420
 CapsuleCollider:
   m_ObjectHideFlags: 1

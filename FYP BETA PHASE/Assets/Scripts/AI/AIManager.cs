@@ -12,6 +12,7 @@ public class AIManager : MonoBehaviour {
     public static AIManager instance;
     public ColliderReaderModule readerInst;
     public Transform player;
+    public AudioClip[] sfxList;
     //public ObstaclesData[] obstacles;
 
     void Start() {
@@ -25,6 +26,8 @@ public class AIManager : MonoBehaviour {
         for (var i = 0; i < obstacles.Length; i++)
             obstacles[i].obstacle = temp[i].GetComponent<Collider>();*/
     }
+
+
 
     /*public Collider AssignCover(GameObject ai, float range) {
         Collider temp = null;
@@ -97,5 +100,10 @@ public class AIManager : MonoBehaviour {
             readerInst.boundPoints[reference] = boundInst;
         }
         return temp;
+    }
+
+    public void PlayRandomSound(Vector3 position) {
+        if (sfxList.Length > 0)
+            SoundManager.instance.PlaySoundOnce(position, sfxList[Random.Range(0, sfxList.Length)]);
     }
 }
