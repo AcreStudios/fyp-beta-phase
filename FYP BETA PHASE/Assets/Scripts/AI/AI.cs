@@ -47,7 +47,7 @@ public class AI : AIFunctions {
         switch (currentState) {
             case AIStates.Idle:
                 if (target) {
-                    //AlertOtherTroops();
+                    AlertOtherTroops();
                     stateChangeTimer = Time.time + reactionTime;
                     destination = ObstacleHunting(ableToHide);
                     currentState = AIStates.Attacking;
@@ -107,7 +107,7 @@ public class AI : AIFunctions {
             case AIStates.Attacking:
                 if (Time.time > stateChangeTimer) {
                     if (agent.velocity.sqrMagnitude == 0) {
-                        destination = transform.position;
+                        //destination = transform.position;
 
                         if (target) {
                             transform.LookAt(target);
@@ -117,7 +117,7 @@ public class AI : AIFunctions {
 
                             if (Physics.Linecast(destination, target.position, out hit)) {
                                 //Debug.DrawLine(destination, hit.point, Color.red, 20);
-                                Debug.DrawLine(transform.position, hit.point, Color.green);
+                                //Debug.DrawLine(transform.position, hit.point, Color.green);
                                 if (hit.transform.root == target) {
                                     destination = ObstacleHunting(ableToHide);
                                     //Debug.DrawLine(transform.position, hit.point, Color.red);

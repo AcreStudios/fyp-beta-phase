@@ -51,7 +51,7 @@ public class AIManager : MonoBehaviour {
         return temp;
     }*/
 
-    public Vector3 AssignHidingPoint(GameObject ai, float range) {
+    public Vector3 AssignHidingPoint(GameObject ai, GameObject toReplace, float range) {
 
         Vector3 temp = ai.transform.position;
         float dist = Mathf.Infinity;
@@ -60,12 +60,18 @@ public class AIManager : MonoBehaviour {
 
         for (var i = 0; i < readerInst.boundPoints.Count; i++) {
             if (readerInst.boundPoints[i].aiCover == ai) {
+
                 ColliderReaderModule.BoundaryPoints boundInst = readerInst.boundPoints[i];
-                boundInst.aiCover = null;
+
+                if (!toReplace)
+                    boundInst.aiCover = null;
+                else
+                    boundInst.aiCover = toReplace;
+
                 readerInst.boundPoints[i] = boundInst;
             }
 
-            if (!readerInst.boundPoints[i].aiCover) {
+            if (!readerInst.boundPoints[i].aiCover && !toReplace) {
                 if ((player.transform.position - readerInst.boundPoints[i].centrePoint).sqrMagnitude < range * range) {
                     float tempDist = (readerInst.boundPoints[i].centrePoint - ai.transform.position).sqrMagnitude;
 
@@ -82,7 +88,7 @@ public class AIManager : MonoBehaviour {
                         }
                     }
                 }
-            } 
+            }
         }
 
         if (changed) {

@@ -130,6 +130,7 @@ public class AIFunctions : MonoBehaviour {
                         StartCoroutine(TurnOffObject(0.2f, gunEffect));
 
                         RaycastHit hit;
+                        Debug.DrawRay(gun.position, gun.TransformDirection(0, 0, weaponRange) + offset,Color.red);
                         if (Physics.Raycast(gun.position, gun.TransformDirection(0, 0, weaponRange) + offset, out hit)) {
                             targetHit = hit.transform.root;
                         }
@@ -158,8 +159,11 @@ public class AIFunctions : MonoBehaviour {
 
                     if ((ai = targetHit.GetComponent<AIFunctions>()) != null) {
                         //Vector3 toNorm = Vector3.Normalize(target.position - transform.position);
-                        //Debug.Log(hit.transform.root + " was hit by " + transform.root);
-                        ai.destination = ai.DisplaceAILocation();
+                        //Debug.Log(targetHit.root + " was hit by " + transform.root);
+                        AIManager.instance.AssignHidingPoint(ai.gameObject, gameObject, weaponRange);
+                        //Debug.Log(ai.destination);
+                        ai.destination = ai.ObstacleHunting(ai.ableToHide);
+                        //Debug.Log(ai.destination);
                     }
                     attackTimer = Time.time + attackInterval;
                 }
@@ -240,7 +244,7 @@ public class AIFunctions : MonoBehaviour {
         Vector3 backUp = temp;
 
         if (hide)
-            temp = AIManager.instance.AssignHidingPoint(gameObject, weaponRange);
+            temp = AIManager.instance.AssignHidingPoint(gameObject, null, weaponRange);
 
         if (temp == backUp)
             if (currentNormalizedDist == Vector3.zero)
@@ -250,7 +254,7 @@ public class AIFunctions : MonoBehaviour {
             } else
                 temp = DisplaceAILocation();
 
-        temp.y = 0.1f;
+        temp.y = 0.3f;
         destinationMarker.transform.position = temp;
         return temp;
     }
