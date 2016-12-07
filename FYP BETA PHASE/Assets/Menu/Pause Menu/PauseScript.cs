@@ -6,6 +6,8 @@ public class PauseScript : MonoBehaviour {
 
     public string currentState;
     public GameObject PauseTrigger;
+    public CursorLockMode cursorLocked = CursorLockMode.Locked;
+    public CursorLockMode cursorUnlocked = CursorLockMode.None;
 
     [System.Serializable]
     public class PauseCanvas {
@@ -93,6 +95,7 @@ public class PauseScript : MonoBehaviour {
     }
     void Start () {
         PauseTrigger.SetActive(true);
+        Cursor.lockState = cursorUnlocked;
         #region Pause Canvas
         pauseCanvas.pauseCanvas.SetActive(true);
 
@@ -251,6 +254,7 @@ public class PauseScript : MonoBehaviour {
         quitCanvas.quitCanvas.SetActive(false);
         pauseCanvas.PausePrefab.SetActive(false);
         PauseTrigger.SetActive(true);
+        Cursor.lockState = cursorLocked;
     }
     public void SelectReload() {
         pauseCanvas.pauseCanvas.SetActive(false);
