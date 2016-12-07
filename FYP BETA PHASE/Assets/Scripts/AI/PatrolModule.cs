@@ -6,6 +6,6 @@ public class PatrolModule : MonoBehaviour {
 
     public Vector3[] patrolLocations;
     public int currentLocation;
-    public int limit;
+    //public int limit;
     [HideInInspector] public int valueToAdd;
 }

@@ -18,6 +18,7 @@ public class AI : AIFunctions {
         if ((patrolMod = GetComponent<PatrolModule>()) != null) {
             if (patrolMod.patrolLocations.Length > 0) {
                 defaultState = AIStates.Patrol;
+                agent.destination = patrolMod.patrolLocations[0];
             } else {
                 defaultState = AIStates.Idle;
             }
@@ -31,6 +32,8 @@ public class AI : AIFunctions {
         if (toEscort) {
             currentState = AIStates.Escort;
             knowsTarget = true;
+
+            agent.destination = patrolMod.patrolLocations[0];
         }
 
         if (knowsTarget)
@@ -65,7 +68,7 @@ public class AI : AIFunctions {
                     AlertOtherTroops();
                     stateChangeTimer = Time.time + reactionTime;
                     destination = ObstacleHunting(ableToHide);
-                    currentState = AIStates.Attacking;                   
+                    currentState = AIStates.Attacking;
                 } else {
                     if ((patrolMod.patrolLocations[patrolMod.currentLocation] - transform.position).magnitude < 1) {
                         if (patrolMod.currentLocation >= patrolMod.patrolLocations.Length - 1) {
@@ -85,13 +88,15 @@ public class AI : AIFunctions {
                 break;
 
             case AIStates.Escort:
-                if (patrolMod.currentLocation < patrolMod.limit) {
+                if (patrolMod.currentLocation < patrolMod.patrolLocations.Length) {
                     if (agent.velocity.sqrMagnitude == 0) {
                         transform.LookAt(target);
                         transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
                         animator.SetInteger("TreeState", 0);
-                        if ((target.position - transform.position).magnitude < 2) {
-                            patrolMod.currentLocation++;
+                        if ((target.position - transform.position).sqrMagnitude < 5) {
+                            patrolMod.currentLocation++;                           
+                            agent.destination = patrolMod.patrolLocations[patrolMod.currentLocation];
+                            agent.velocity = new Vector3(0.5f, 0.5f, 0.5f);
                         }
                     } else {
                         agent.destination = patrolMod.patrolLocations[patrolMod.currentLocation];
