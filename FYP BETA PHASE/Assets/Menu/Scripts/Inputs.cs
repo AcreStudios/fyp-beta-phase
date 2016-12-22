@@ -10,6 +10,7 @@ public class Inputs : MonoBehaviour {
     public bool keyArrowDown;
     public bool keyEnter;
     public bool escKey;
+    public bool keySpace;
     #endregion
     #region Gamepad Inputs
     public bool buttonA;
@@ -26,6 +27,7 @@ public class Inputs : MonoBehaviour {
     public string arrowKeyUp;
     public string enterKey;
     public string escKeyK;
+    public string spaceKey;
     #endregion
     #region Gamepad Inputs Initialization
     public string DPad;
@@ -33,10 +35,11 @@ public class Inputs : MonoBehaviour {
     public string bButton;
     #endregion
 
-    public NewMenuScript menuScript;
+    public MenuScript menuScript;
+    public GameObject video;
 
     void Awake() {
-        menuScript = GetComponent<NewMenuScript>();
+        menuScript = GetComponent<MenuScript>();
         selectK = "SelectK";
         selectJ = "SelectJ";
         wKey = "wKey";
@@ -49,11 +52,12 @@ public class Inputs : MonoBehaviour {
         DPad = "dPad";
         aButton = "aButton";
         bButton = "bButton";
+        spaceKey = "spaceKey";
 }
 
 	// Use this for initialization
 	void Start () {
-
+        video.SetActive(true);
 	}
 	
 	// Update is called once per frame
@@ -71,6 +75,7 @@ public class Inputs : MonoBehaviour {
         keyArrowUp = Input.GetButtonDown(arrowKeyUp);
         keyEnter = Input.GetButtonDown(enterKey);
         escKey = Input.GetButtonDown(escKeyK);
+        keySpace = Input.GetButtonDown(spaceKey);
     }
 
     private void HandleGamepadInput() {
@@ -250,6 +255,16 @@ public class Inputs : MonoBehaviour {
                 menuScript.SelectExterior();
             }
             #endregion
+        }
+        #endregion
+        #region Space Key Handler
+        if ((keySpace)&&(menuScript.currentState == "Loading Done")) {
+            menuScript.loadApplication();
+        }
+        #endregion
+        #region Misc Key Handler
+        if((Input.anyKeyDown)&&(menuScript.currentState == "Start screen")&&(video == null)) {
+            menuScript.SelectStart();
         }
         #endregion
     }

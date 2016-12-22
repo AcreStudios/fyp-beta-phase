@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-[RequireComponent(typeof(NavMeshAgent))]
+[RequireComponent(typeof(UnityEngine.AI.NavMeshAgent))]
 
 public class AI : AIFunctions {
 
@@ -9,7 +9,7 @@ public class AI : AIFunctions {
     float stateChangeTimer;
 
     void Start() {
-        agent = GetComponent<NavMeshAgent>();
+        agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
         startingPoint = transform.position;
         eColl = GetComponent<Collider>();
 

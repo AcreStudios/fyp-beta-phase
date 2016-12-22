@@ -3,7 +3,7 @@ using System.Collections;
 
 public class StartScreenControllerScript : MonoBehaviour {
 
-    public NewMenuScript newMenuScript;
+    public MenuScript MenuScript;
 
 	// Use this for initialization
 	void Start () {
@@ -13,7 +13,7 @@ public class StartScreenControllerScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         if(Input.anyKeyDown) {
-            newMenuScript.SelectStart();
+            MenuScript.SelectStart();
         }
 	}
 }
