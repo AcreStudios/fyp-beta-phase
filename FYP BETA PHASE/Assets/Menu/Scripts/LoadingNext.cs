@@ -3,7 +3,7 @@ using System.Collections;
 
 public class LoadingNext : MonoBehaviour {
 
-    public NewMenuScript menuScript;
+    public MenuScript menuScript;
 
 	// Use this for initialization
 	void Start () {
