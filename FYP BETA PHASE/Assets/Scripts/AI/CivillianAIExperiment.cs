@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-[RequireComponent(typeof(NavMeshAgent))]
+[RequireComponent(typeof(UnityEngine.AI.NavMeshAgent))]
 public class CivillianAIExperiment : MonoBehaviour {
 
     public enum CivillianStates {
@@ -12,7 +12,7 @@ public class CivillianAIExperiment : MonoBehaviour {
     public float detectionRadius;
     public Transform target;
 
-    NavMeshAgent agent;
+    UnityEngine.AI.NavMeshAgent agent;
     Vector3 destination;
     RaycastHit hit;
 
@@ -25,7 +25,7 @@ public class CivillianAIExperiment : MonoBehaviour {
     void Start() {
         //currentState = CivillianStates.Calm;
         destination = transform.position;
-        agent = GetComponent<NavMeshAgent>();
+        agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
 
         animator = transform.GetChild(0).gameObject.GetComponent<Animator>();
         eColl = GetComponent<Collider>();

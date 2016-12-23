@@ -60,7 +60,7 @@ public class AIFunctions : MonoBehaviour {
 
     protected Collider tempObs;
     protected Collider eColl;
-    protected NavMeshAgent agent;
+    protected UnityEngine.AI.NavMeshAgent agent;
     protected Vector3 destination;
 
     Vector3 currentNormalizedDist;
