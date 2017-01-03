@@ -1,16 +1,27 @@
 fileFormatVersion: 2
-guid: b726c5c314bf64548862016f84421ef7
-timeCreated: 1473591794
+guid: 4a322b5157486384c989a8e69b7e12db
+timeCreated: 1483435504
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
-    100000: //RootNode
-    400000: //RootNode
-    2300000: //RootNode
-    3300000: //RootNode
-    4300000: polySurface74
-    9500000: //RootNode
+    100000: Ceiling
+    100002: Floor
+    100004: //RootNode
+    100006: Walls
+    400000: Ceiling
+    400002: Floor
+    400004: //RootNode
+    400006: Walls
+    2300000: Ceiling
+    2300002: Floor
+    2300004: Walls
+    3300000: Ceiling
+    3300002: Floor
+    3300004: Walls
+    4300000: Floor
+    4300002: Walls
+    4300004: Ceiling
   materials:
     importMaterials: 1
     materialName: 0
@@ -18,7 +29,7 @@ ModelImporter:
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
-    resampleRotations: 1
+    resampleCurves: 1
     optimizeGameObjects: 0
     motionNodeName: 
     animationImportErrors: 
@@ -57,6 +68,7 @@ ModelImporter:
   importAnimation: 1
   copyAvatar: 0
   humanDescription:
+    serializedVersion: 2
     human: []
     skeleton: []
     armTwist: 0.5
@@ -67,7 +79,10 @@ ModelImporter:
     legStretch: 0.05
     feetSpacing: 0
     rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   animationType: 0
   humanoidOversampling: 1
