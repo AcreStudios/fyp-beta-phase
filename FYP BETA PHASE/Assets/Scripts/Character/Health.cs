@@ -11,6 +11,7 @@ public class Health : MonoBehaviour
 
 	[Header("-Debug-")]
 	public bool debugDeath = false;
+	public bool DebugDamage = false;
 
 	[Header("-Health-")]
 	[Range(0f, 100f)]
@@ -20,14 +21,26 @@ public class Health : MonoBehaviour
 	public MonoBehaviour[] scriptsToDisable;
     public bool destroyOnDeath;
 
-	[Header("-Only Applies To Player-")]
+	[Header("------Only Applies To Player------")]
 	public bool isPlayer = false;
+	[Header("-Death Effect-")]
 	public UnityStandardAssets.ImageEffects.Grayscale grayScreenEffect;
 	public float fadeScreenDelay = 3f;
 	public float fadeSpeed = .1f;
 	public float reloadSceneDelay = 1f;
 	public int sceneToLoadInt;
 	public string sceneToLoadName;
+	[Header("-Screen Flash When Damaged-")]
+	public Color BloodSplatterShowColor = new Color(1f, 1f, 1f, .75f);
+	public Color BloodSplatterFadeColor = new Color(1f, 1f, 1f, 0f);
+	public Color ShowBloodTintColor = new Color(1f, 1f, 1f, 1f);
+	public Color CurrentBloodTintColor = new Color(1f, 1f, 1f, 0f);
+	public float DamageFlashSpeed = 3f;
+	public UnityEngine.UI.Image CurrentBloodSpatterImage;
+	public UnityEngine.UI.Image CurrentBloodTintImage;
+	public UnityEngine.Sprite[] BloodSpatterSprites;
+
+	private bool damaged = false;
 
 
 	private void Awake()
@@ -38,6 +51,7 @@ public class Health : MonoBehaviour
 
 	void Update() 
 	{
+		// Debug in inspector only
 		if(debugDeath)
 		{
 			debugDeath = false;
@@ -45,20 +59,47 @@ public class Health : MonoBehaviour
 			curHealth = 0f;
 			Die();
 		}
+		
+		if(DebugDamage)
+		{
+			DebugDamage = false;
+
+			ReceiveDamage();
+		}
+
+		// Fade out screen damage flash
+		CurrentBloodSpatterImage.color = Color.Lerp(CurrentBloodSpatterImage.color, new Color(1f, 1f, 1f, 0f), DamageFlashSpeed * Time.deltaTime);
+		CurrentBloodTintImage.color = Color.Lerp(CurrentBloodTintImage.color, CurrentBloodTintColor, DamageFlashSpeed * Time.deltaTime);
 	}
 
-	public void ReceiveDamage(float dmg)
+	public void ReceiveDamage(float dmg = 5f)
 	{
 		curHealth -= dmg;
+
+		FlashScreenOnDamage();
 
 		// If no health, die
 		if(curHealth <= 0)
 			Die();
 	}
 
+	private void FlashScreenOnDamage()
+	{
+		if(BloodSpatterSprites.Length == 0) return;
+
+		damaged = true;
+
+		CurrentBloodSpatterImage.sprite = BloodSpatterSprites[Random.Range(0, BloodSpatterSprites.Length)];
+		CurrentBloodSpatterImage.color = BloodSplatterShowColor;
+		CurrentBloodTintImage.color = ShowBloodTintColor;
+		CurrentBloodTintColor.a = 0f + (1f - (curHealth / 100f));
+}
+
 	private void Die()
 	{
 		characterController.enabled = false;
+		CurrentBloodSpatterImage.color = new Color(0f, 0f, 0f, 0f);
+		CurrentBloodTintImage.color = new Color(0f, 0f, 0f, 0f);
 
 		if(ragdollHandler)
 			ragdollHandler.BecomeRagdoll();
