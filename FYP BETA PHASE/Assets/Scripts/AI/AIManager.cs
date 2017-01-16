@@ -99,6 +99,7 @@ public class AIManager : MonoBehaviour {
             boundInst.aiCover = ai;
             readerInst.boundPoints[reference] = boundInst;
         }
+
         return temp;
     }
 

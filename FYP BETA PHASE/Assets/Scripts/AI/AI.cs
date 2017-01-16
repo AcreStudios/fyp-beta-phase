@@ -9,6 +9,11 @@ public class AI : AIFunctions {
     float stateChangeTimer;
 
     void Start() {
+        gameObject.tag = "Enemy";
+
+        guns[0] = transform.Find("Hanna_GunL");
+        linecastCheck = transform.Find("LinecastChecker");
+
         agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
         startingPoint = transform.position;
         eColl = GetComponent<Collider>();

@@ -50,7 +50,7 @@ public class AIFunctions : MonoBehaviour {
     public Collider destinationMarker;
 
     public Transform target;
-    Transform[] guns = new Transform[1];
+    protected Transform[] guns = new Transform[1];
 
     protected Transform linecastCheck;
     protected Vector3 startingPoint;
@@ -66,17 +66,12 @@ public class AIFunctions : MonoBehaviour {
     Vector3 currentNormalizedDist;
 
     void Awake() {
-        gameObject.tag = "Enemy";
-
-        guns[0] = transform.Find("Hanna_GunL");
-        linecastCheck = transform.Find("LinecastChecker");
-
         multiplier = new Vector3[2];
         multiplier[0] = new Vector3(1, 0, 0);
         multiplier[1] = new Vector3(0, 0, 1);
     }
 
-    public virtual void DamageRecieved() {
+    public virtual void DamageRecieved() {       
     }
 
     public void AlertOtherTroops() {
@@ -158,8 +153,13 @@ public class AIFunctions : MonoBehaviour {
                         hp.ReceiveDamage(damage);
 
                     if (targetHit.tag == "Player")
-                        if (HitFeedbackManager.instance)
+                        if (HitFeedbackManager.instance) {
+                            CoverSystem inst = targetHit.GetComponent<CoverSystem>();
+                            //if (inst.GetCoverStatus())
+                                //inst.
                             HitFeedbackManager.instance.RetriggerHitEvent();
+
+                        }
 
                     if ((ai = targetHit.GetComponent<AIFunctions>()) != null) {
                         //Vector3 toNorm = Vector3.Normalize(target.position - transform.position);
