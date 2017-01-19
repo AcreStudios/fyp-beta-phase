@@ -5,9 +5,9 @@ GameObject:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Component:
-  - 4: {fileID: 404270}
+  - component: {fileID: 404270}
   m_Layer: 0
   m_Name: Cam_Pos
   m_TagString: Untagged
@@ -20,10 +20,10 @@ GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Component:
-  - 4: {fileID: 425142}
-  - 114: {fileID: 11420312}
+  - component: {fileID: 425142}
+  - component: {fileID: 11420312}
   m_Layer: 0
   m_Name: TPCam_Rig
   m_TagString: Untagged
@@ -36,9 +36,9 @@ GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Component:
-  - 4: {fileID: 438966}
+  - component: {fileID: 438966}
   m_Layer: 0
   m_Name: Cam_Pivot
   m_TagString: Untagged
@@ -55,24 +55,24 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.14, y: 0.5, z: -2.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 438966}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &425142
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 110036}
-  m_LocalRotation: {x: -0, y: 0.9488082, z: -0, w: -0.31585282}
-  m_LocalPosition: {x: -161.7, y: 2.011, z: 147.83}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -5}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 217.07999, z: 0}
   m_Children:
   - {fileID: 438966}
   m_Father: {fileID: 0}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 217.07999, z: 0}
 --- !u!4 &438966
 Transform:
   m_ObjectHideFlags: 1
@@ -82,11 +82,11 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1.458, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 404270}
   m_Father: {fileID: 425142}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &11420312
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -116,7 +116,7 @@ MonoBehaviour:
     maxAngle: 60
     cameraRotateSpeed: 10
     cameraMoveSpeed: 5
-    cameraSmoothing: 0.00001
+    cameraSmoothing: 0.01
     invertY: 1
     defaultFOV: 60
     aimingFOV: 30
@@ -126,8 +126,8 @@ MonoBehaviour:
     mainCam: {fileID: 0}
     UICam: {fileID: 0}
     visionCam: {fileID: 0}
-    wallCheckDist: 0.3
-    hideMeshDistance: 1
+    wallCheckDist: 0.1
+    hideMeshDistance: 0.75
     wallLayer:
       serializedVersion: 2
       m_Bits: 1
