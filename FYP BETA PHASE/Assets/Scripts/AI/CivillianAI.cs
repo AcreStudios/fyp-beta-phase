@@ -14,7 +14,7 @@ public class CivillianAI : MonoBehaviour {
     [Range(0, 1)]
     public float talkativity = 0.5f; //slider value  
     [Range(0, 1)]
-    public float socialbility = 0.5f;
+    public float socialbility = 0.5f; 
     public float attentionSpan = 30;
     public bool randomlyGeneratedValues;
 
