@@ -1,242 +1,198 @@
 fileFormatVersion: 2
-guid: f321d2b9f1acb454394bc4dd368c165f
-timeCreated: 1484791639
+guid: 0cfd6ef73df5a1447837ded5faeb8a2b
+timeCreated: 1484941075
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
     100000: Body_CTRL
-    100002: Haha_Joints_GRP
-    100004: //RootNode
-    100006: hana_belt
-    100008: hana_boots
-    100010: Hana_Controller_GRP
-    100012: hana_eyes
-    100014: hana_face
-    100016: hana_geo
-    100018: hana_hair
-    100020: hana_hands
-    100022: hana_pants
-    100024: hana_pt
-    100026: hana_sleeves
-    100028: hana_top
-    100030: Head_CTRL
-    100032: Head_JNT
-    100034: Head_Top_End_JNT
-    100036: HipControl_JNT
-    100038: Hips_JNT
-    100040: L_Ankle_CTRL
-    100042: L_Ankle_IK_HDL
-    100044: L_Ankle_JNT
-    100046: L_Arm_IK_CTRL
-    100048: L_Arm_IK_HDL
-    100050: L_Clavicle_JNT
-    100052: L_Elbow_JNT
-    100054: L_Foot_Orient_CTRL
-    100056: L_Hand_JNT
-    100058: L_Hand_Orient_CTRL
-    100060: L_Hips_JNT
-    100062: L_Index1_CTRL
-    100064: L_Index2_CTRL
-    100066: L_Index3_CTRL
-    100068: L_Index3_JNT
-    100070: L_Knee_JNT
-    100072: L_Middle1_CTRL
-    100074: L_Middle2_CTRL
-    100076: L_Middle3_CTRL
-    100078: L_Middle4_JNT
-    100080: L_Palm_CTRL
-    100082: L_Pinky1_CTRL
-    100084: L_Pinky2_CTRL
-    100086: L_Pinky3_CTRL
-    100088: L_Pinky4_JNT
-    100090: L_Ring1_CTRL
-    100092: L_Ring2_CTRL
-    100094: L_Ring3_CTRL
-    100096: L_Ring4_JNT
-    100098: L_Shoulder_CTRL
-    100100: L_Shoulder_JNT
-    100102: L_Thumb1_CTRL
-    100104: L_Thumb2_CTRL
-    100106: L_Thumb3_JNT
-    100108: L_Toe_End_JNT
-    100110: left
-    100112: Main_CTRL
-    100114: Neck_Base_JNT
-    100116: Neck_CTRL
-    100118: R_Ankle_CTRL
-    100120: R_Ankle_IK_HDL
-    100122: R_Ankle_JNT
-    100124: R_Arm_IK_CTRL
-    100126: R_Arm_IK_HDL
-    100128: R_Clavicle_JNT
-    100130: R_Elbow_JNT
-    100132: R_Foot_Orient_CTRL
-    100134: R_Hand_JNT
-    100136: R_Hand_Orient_CTRL
-    100138: R_Hips_JNT
-    100140: R_Index1_CTRL
-    100142: R_Index2_CTRL
-    100144: R_Index3_CTRL
-    100146: R_Index4_JNT
-    100148: R_Knee_JNT
-    100150: R_Middle1_CTRL
-    100152: R_Middle2_CTRL
-    100154: R_Middle3_CTRL
-    100156: R_Middle4_JNT
-    100158: R_Palm_CTRL
-    100160: R_Pinky1_CTRL
-    100162: R_Pinky2_CTRL
-    100164: R_Pinky3_CTRL
-    100166: R_Pinky4_JNT
-    100168: R_Ring1_CTRL
-    100170: R_Ring2_CTRL
-    100172: R_Ring3_CTRL
-    100174: R_Ring4_JNT
-    100176: R_Shoulder_CTRL
-    100178: R_Shoulder_JNT
-    100180: R_Thumb1_CTRL
-    100182: R_Thumb2_CTRL
-    100184: R_Thumb3_JNT
-    100186: R_Toe_End_JNT
-    100188: Spine_1_CTRL
-    100190: Spine_1_JNT
-    100192: Spine_2_CTRL
-    100194: Spine_2_JNT
-    100196: Spine_3_CTRL
-    100198: Spine_3_JNT
-    100200: transform3
-    100202: transform4
-    100204: transform7
-    100206: transform8
-    100208: Waist_CTRL
+    100002: //RootNode
+    100004: Hana_Controller_GRP
+    100006: Head_CTRL
+    100008: Head_JNT
+    100010: Head_Top_End_JNT
+    100012: HipControl_JNT
+    100014: Hips_JNT
+    100016: L_Ankle_CTRL
+    100018: L_Ankle_IK_HDL
+    100020: L_Ankle_JNT
+    100022: L_Arm_IK_CTRL
+    100024: L_Arm_IK_HDL
+    100026: L_Clavicle_JNT
+    100028: L_Elbow_JNT
+    100030: L_Foot_Orient_CTRL
+    100032: L_Hand_JNT
+    100034: L_Hand_Orient_CTRL
+    100036: L_Hips_JNT
+    100038: L_Index1_CTRL
+    100040: L_Index2_CTRL
+    100042: L_Index3_CTRL
+    100044: L_Index3_JNT
+    100046: L_Knee_JNT
+    100048: L_Middle1_CTRL
+    100050: L_Middle2_CTRL
+    100052: L_Middle3_CTRL
+    100054: L_Middle4_JNT
+    100056: L_Palm_CTRL
+    100058: L_Pinky1_CTRL
+    100060: L_Pinky2_CTRL
+    100062: L_Pinky3_CTRL
+    100064: L_Pinky4_JNT
+    100066: L_Ring1_CTRL
+    100068: L_Ring2_CTRL
+    100070: L_Ring3_CTRL
+    100072: L_Ring4_JNT
+    100074: L_Shoulder_CTRL
+    100076: L_Shoulder_JNT
+    100078: L_Thumb1_CTRL
+    100080: L_Thumb2_CTRL
+    100082: L_Thumb3_JNT
+    100084: L_Toe_End_JNT
+    100086: Main_CTRL
+    100088: Neck_Base_JNT
+    100090: Neck_CTRL
+    100092: R_Ankle_CTRL
+    100094: R_Ankle_IK_HDL
+    100096: R_Ankle_JNT
+    100098: R_Arm_IK_CTRL
+    100100: R_Arm_IK_HDL
+    100102: R_Clavicle_JNT
+    100104: R_Elbow_JNT
+    100106: R_Foot_Orient_CTRL
+    100108: R_Hand_JNT
+    100110: R_Hand_Orient_CTRL
+    100112: R_Hips_JNT
+    100114: R_Index1_CTRL
+    100116: R_Index2_CTRL
+    100118: R_Index3_CTRL
+    100120: R_Index4_JNT
+    100122: R_Knee_JNT
+    100124: R_Middle1_CTRL
+    100126: R_Middle2_CTRL
+    100128: R_Middle3_CTRL
+    100130: R_Middle4_JNT
+    100132: R_Palm_CTRL
+    100134: R_Pinky1_CTRL
+    100136: R_Pinky2_CTRL
+    100138: R_Pinky3_CTRL
+    100140: R_Pinky4_JNT
+    100142: R_Ring1_CTRL
+    100144: R_Ring2_CTRL
+    100146: R_Ring3_CTRL
+    100148: R_Ring4_JNT
+    100150: R_Shoulder_CTRL
+    100152: R_Shoulder_JNT
+    100154: R_Thumb1_CTRL
+    100156: R_Thumb2_CTRL
+    100158: R_Thumb3_JNT
+    100160: R_Toe_End_JNT
+    100162: Spine_1_CTRL
+    100164: Spine_1_JNT
+    100166: Spine_2_CTRL
+    100168: Spine_2_JNT
+    100170: Spine_3_CTRL
+    100172: Spine_3_JNT
+    100174: transform3
+    100176: transform4
+    100178: transform7
+    100180: transform8
+    100182: Waist_CTRL
+    100184: Haha_Joints_GRP
     400000: Body_CTRL
-    400002: Haha_Joints_GRP
-    400004: //RootNode
-    400006: hana_belt
-    400008: hana_boots
-    400010: Hana_Controller_GRP
-    400012: hana_eyes
-    400014: hana_face
-    400016: hana_geo
-    400018: hana_hair
-    400020: hana_hands
-    400022: hana_pants
-    400024: hana_pt
-    400026: hana_sleeves
-    400028: hana_top
-    400030: Head_CTRL
-    400032: Head_JNT
-    400034: Head_Top_End_JNT
-    400036: HipControl_JNT
-    400038: Hips_JNT
-    400040: L_Ankle_CTRL
-    400042: L_Ankle_IK_HDL
-    400044: L_Ankle_JNT
-    400046: L_Arm_IK_CTRL
-    400048: L_Arm_IK_HDL
-    400050: L_Clavicle_JNT
-    400052: L_Elbow_JNT
-    400054: L_Foot_Orient_CTRL
-    400056: L_Hand_JNT
-    400058: L_Hand_Orient_CTRL
-    400060: L_Hips_JNT
-    400062: L_Index1_CTRL
-    400064: L_Index2_CTRL
-    400066: L_Index3_CTRL
-    400068: L_Index3_JNT
-    400070: L_Knee_JNT
-    400072: L_Middle1_CTRL
-    400074: L_Middle2_CTRL
-    400076: L_Middle3_CTRL
-    400078: L_Middle4_JNT
-    400080: L_Palm_CTRL
-    400082: L_Pinky1_CTRL
-    400084: L_Pinky2_CTRL
-    400086: L_Pinky3_CTRL
-    400088: L_Pinky4_JNT
-    400090: L_Ring1_CTRL
-    400092: L_Ring2_CTRL
-    400094: L_Ring3_CTRL
-    400096: L_Ring4_JNT
-    400098: L_Shoulder_CTRL
-    400100: L_Shoulder_JNT
-    400102: L_Thumb1_CTRL
-    400104: L_Thumb2_CTRL
-    400106: L_Thumb3_JNT
-    400108: L_Toe_End_JNT
-    400110: left
-    400112: Main_CTRL
-    400114: Neck_Base_JNT
-    400116: Neck_CTRL
-    400118: R_Ankle_CTRL
-    400120: R_Ankle_IK_HDL
-    400122: R_Ankle_JNT
-    400124: R_Arm_IK_CTRL
-    400126: R_Arm_IK_HDL
-    400128: R_Clavicle_JNT
-    400130: R_Elbow_JNT
-    400132: R_Foot_Orient_CTRL
-    400134: R_Hand_JNT
-    400136: R_Hand_Orient_CTRL
-    400138: R_Hips_JNT
-    400140: R_Index1_CTRL
-    400142: R_Index2_CTRL
-    400144: R_Index3_CTRL
-    400146: R_Index4_JNT
-    400148: R_Knee_JNT
-    400150: R_Middle1_CTRL
-    400152: R_Middle2_CTRL
-    400154: R_Middle3_CTRL
-    400156: R_Middle4_JNT
-    400158: R_Palm_CTRL
-    400160: R_Pinky1_CTRL
-    400162: R_Pinky2_CTRL
-    400164: R_Pinky3_CTRL
-    400166: R_Pinky4_JNT
-    400168: R_Ring1_CTRL
-    400170: R_Ring2_CTRL
-    400172: R_Ring3_CTRL
-    400174: R_Ring4_JNT
-    400176: R_Shoulder_CTRL
-    400178: R_Shoulder_JNT
-    400180: R_Thumb1_CTRL
-    400182: R_Thumb2_CTRL
-    400184: R_Thumb3_JNT
-    400186: R_Toe_End_JNT
-    400188: Spine_1_CTRL
-    400190: Spine_1_JNT
-    400192: Spine_2_CTRL
-    400194: Spine_2_JNT
-    400196: Spine_3_CTRL
-    400198: Spine_3_JNT
-    400200: transform3
-    400202: transform4
-    400204: transform7
-    400206: transform8
-    400208: Waist_CTRL
-    4300000: hana_eyes
-    4300002: hana_hair
-    4300004: hana_face
-    4300006: hana_pt
-    4300008: hana_top
-    4300010: hana_sleeves
-    4300012: hana_hands
-    4300014: hana_pants
-    4300016: hana_boots
-    4300018: hana_belt
-    7400000: walk_forward
+    400002: //RootNode
+    400004: Hana_Controller_GRP
+    400006: Head_CTRL
+    400008: Head_JNT
+    400010: Head_Top_End_JNT
+    400012: HipControl_JNT
+    400014: Hips_JNT
+    400016: L_Ankle_CTRL
+    400018: L_Ankle_IK_HDL
+    400020: L_Ankle_JNT
+    400022: L_Arm_IK_CTRL
+    400024: L_Arm_IK_HDL
+    400026: L_Clavicle_JNT
+    400028: L_Elbow_JNT
+    400030: L_Foot_Orient_CTRL
+    400032: L_Hand_JNT
+    400034: L_Hand_Orient_CTRL
+    400036: L_Hips_JNT
+    400038: L_Index1_CTRL
+    400040: L_Index2_CTRL
+    400042: L_Index3_CTRL
+    400044: L_Index3_JNT
+    400046: L_Knee_JNT
+    400048: L_Middle1_CTRL
+    400050: L_Middle2_CTRL
+    400052: L_Middle3_CTRL
+    400054: L_Middle4_JNT
+    400056: L_Palm_CTRL
+    400058: L_Pinky1_CTRL
+    400060: L_Pinky2_CTRL
+    400062: L_Pinky3_CTRL
+    400064: L_Pinky4_JNT
+    400066: L_Ring1_CTRL
+    400068: L_Ring2_CTRL
+    400070: L_Ring3_CTRL
+    400072: L_Ring4_JNT
+    400074: L_Shoulder_CTRL
+    400076: L_Shoulder_JNT
+    400078: L_Thumb1_CTRL
+    400080: L_Thumb2_CTRL
+    400082: L_Thumb3_JNT
+    400084: L_Toe_End_JNT
+    400086: Main_CTRL
+    400088: Neck_Base_JNT
+    400090: Neck_CTRL
+    400092: R_Ankle_CTRL
+    400094: R_Ankle_IK_HDL
+    400096: R_Ankle_JNT
+    400098: R_Arm_IK_CTRL
+    400100: R_Arm_IK_HDL
+    400102: R_Clavicle_JNT
+    400104: R_Elbow_JNT
+    400106: R_Foot_Orient_CTRL
+    400108: R_Hand_JNT
+    400110: R_Hand_Orient_CTRL
+    400112: R_Hips_JNT
+    400114: R_Index1_CTRL
+    400116: R_Index2_CTRL
+    400118: R_Index3_CTRL
+    400120: R_Index4_JNT
+    400122: R_Knee_JNT
+    400124: R_Middle1_CTRL
+    400126: R_Middle2_CTRL
+    400128: R_Middle3_CTRL
+    400130: R_Middle4_JNT
+    400132: R_Palm_CTRL
+    400134: R_Pinky1_CTRL
+    400136: R_Pinky2_CTRL
+    400138: R_Pinky3_CTRL
+    400140: R_Pinky4_JNT
+    400142: R_Ring1_CTRL
+    400144: R_Ring2_CTRL
+    400146: R_Ring3_CTRL
+    400148: R_Ring4_JNT
+    400150: R_Shoulder_CTRL
+    400152: R_Shoulder_JNT
+    400154: R_Thumb1_CTRL
+    400156: R_Thumb2_CTRL
+    400158: R_Thumb3_JNT
+    400160: R_Toe_End_JNT
+    400162: Spine_1_CTRL
+    400164: Spine_1_JNT
+    400166: Spine_2_CTRL
+    400168: Spine_2_JNT
+    400170: Spine_3_CTRL
+    400172: Spine_3_JNT
+    400174: transform3
+    400176: transform4
+    400178: transform7
+    400180: transform8
+    400182: Waist_CTRL
+    400184: Haha_Joints_GRP
+    7400000: run_forward
     9500000: //RootNode
-    13700000: hana_belt
-    13700002: hana_boots
-    13700004: hana_eyes
-    13700006: hana_face
-    13700008: hana_hair
-    13700010: hana_hands
-    13700012: hana_pants
-    13700014: hana_pt
-    13700016: hana_sleeves
-    13700018: hana_top
   materials:
     importMaterials: 0
     materialName: 0
@@ -249,7 +205,7 @@ ModelImporter:
     motionNodeName: 
     animationImportErrors: 
     animationImportWarnings: "Copied Avatar Rig Configuration mis-match. Inbetween
-      bone rotation in copied configuration does not match rotation in animation file\nHana_Anim_Locomotion_Forward\nClip
+      bone rotation in copied configuration does not match rotation in animation file\nHana_Anim_Locomotion_Run_Forward\nClip
       'Take 001' has import animation warnings that might lower retargeting quality:\nNote:
       Activate translation DOF on avatar to improve retargeting quality.\n\t'Spine_3_JNT'
       is inbetween humanoid transforms and has rotation animation that will be discarded.\n"
@@ -263,10 +219,10 @@ ModelImporter:
     extraExposedTransformPaths: []
     clipAnimations:
     - serializedVersion: 16
-      name: walk_forward
+      name: run_forward
       takeName: Take 001
       firstFrame: 1
-      lastFrame: 60
+      lastFrame: 30
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -285,21 +241,7 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events:
-      - time: 0.30353817
-        functionName: PlayFootstepSound
-        data: 
-        objectReferenceParameter: {instanceID: 0}
-        floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
-      - time: 0.8081937
-        functionName: PlayFootstepSound
-        data: 
-        objectReferenceParameter: {instanceID: 0}
-        floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
+      events: []
       transformMask:
       - path: 
         weight: 1
@@ -486,30 +428,6 @@ ModelImporter:
       - path: Haha_Joints_GRP/Hips_JNT/Spine_1_JNT/Spine_2_JNT/Spine_3_JNT/R_Clavicle_JNT/R_Shoulder_JNT/R_Elbow_JNT/R_Hand_JNT/R_Thumb1_CTRL/R_Thumb2_CTRL
         weight: 1
       - path: Haha_Joints_GRP/Hips_JNT/Spine_1_JNT/Spine_2_JNT/Spine_3_JNT/R_Clavicle_JNT/R_Shoulder_JNT/R_Elbow_JNT/R_Hand_JNT/R_Thumb1_CTRL/R_Thumb2_CTRL/R_Thumb3_JNT
-        weight: 0
-      - path: hana_geo
-        weight: 0
-      - path: hana_geo/hana_belt
-        weight: 0
-      - path: hana_geo/hana_boots
-        weight: 0
-      - path: hana_geo/hana_eyes
-        weight: 0
-      - path: hana_geo/hana_face
-        weight: 0
-      - path: hana_geo/hana_hair
-        weight: 0
-      - path: hana_geo/hana_hands
-        weight: 0
-      - path: hana_geo/hana_pants
-        weight: 0
-      - path: hana_geo/hana_pt
-        weight: 0
-      - path: hana_geo/hana_sleeves
-        weight: 0
-      - path: hana_geo/hana_top
-        weight: 0
-      - path: left
         weight: 0
       maskType: 3
       maskSource: {instanceID: 0}
