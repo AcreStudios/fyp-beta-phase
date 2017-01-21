@@ -341,7 +341,7 @@ public class CoverSystem : MonoBehaviour
 		characterMove.GetInCover();
 	}
 
-	private void EnableController() // Exiting cover, enable stuffs 
+	public void EnableController() // Exiting cover, enable stuffs 
 	{
 		_initLerp = false;
 		_initCover = false;
