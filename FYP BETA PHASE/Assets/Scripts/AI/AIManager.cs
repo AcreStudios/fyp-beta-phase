@@ -1,13 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class AIManager : MonoBehaviour {
-    //Stores obstacle data, group data.
-    [System.Serializable]
-    public struct ObstaclesData {
-        public Collider obstacle;
-        public GameObject aiCover;
-    }
 
     public static AIManager instance;
     public ColliderReaderModule readerInst;
@@ -74,3 +69,4 @@ public class AIManager : MonoBehaviour {
             SoundManager.instance.PlaySoundOnce(position, sfxList[Random.Range(0, sfxList.Length)]);
     }
 }
+

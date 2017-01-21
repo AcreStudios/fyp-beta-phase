@@ -21,12 +21,14 @@ public class CivillianManager : MonoBehaviour {
         public GameObject[] civillianOnTask;
     }
 
+    [HideInInspector]
+    public List<CivillianAI> civillianAIList = new List<CivillianAI>();
     public static CivillianManager instance;
+    public int civillianCount;
     public TaskList[] taskLists;
 
-    void Start() {
+    void Awake() {
         instance = this;
-
         for (var i = 0; i < taskLists.Length; i++) {
             GameObject[] taskLocations = GameObject.FindGameObjectsWithTag(taskLists[i].taskTag);
             taskLists[i].tasks = new TaskLocation[taskLocations.Length];
