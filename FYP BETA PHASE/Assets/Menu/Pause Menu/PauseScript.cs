@@ -109,7 +109,7 @@ public class PauseScript : MonoBehaviour {
         pauseCanvas.quitTitle_Blk.SetActive(true);
         pauseCanvas.quit_Blk.SetActive(true);
 
-        currentState = "Pause Screen";
+        //currentState = "Pause Screen";
         #endregion
         #region Reload Canvas
         reloadCanvas.reloadCanvas.SetActive(false);
@@ -120,7 +120,7 @@ public class PauseScript : MonoBehaviour {
         reloadCanvas.reloadNo_Blk.SetActive(false);
         reloadCanvas.reloadYes_Blk.SetActive(true);
 
-        currentState = "Reload Screen";
+        //currentState = "Reload Screen";
         #endregion
         #region Quit Title Canvas
         quitTitleCanvas.quitTitleCanvas.SetActive(false);
@@ -131,7 +131,7 @@ public class PauseScript : MonoBehaviour {
         quitTitleCanvas.QTNo_Blk.SetActive(false);
         quitTitleCanvas.QTYes_Blk.SetActive(true);
 
-        currentState = "Quit Title Screen";
+        //currentState = "Quit Title Screen";
         #endregion
         #region Quit Canvas
         quitCanvas.quitCanvas.SetActive(false);
@@ -142,7 +142,8 @@ public class PauseScript : MonoBehaviour {
         quitCanvas.QCNo_Blk.SetActive(false);
         quitCanvas.QCYes_Blk.SetActive(true);
 
-        currentState = "Quit Screen";
+        //currentState = "Quit Screen";
+        currentState = "MOResume";
         #endregion
     }
 	
