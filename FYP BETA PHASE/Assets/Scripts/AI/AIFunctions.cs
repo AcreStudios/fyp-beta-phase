@@ -257,4 +257,8 @@ public class AIFunctions : MonoBehaviour {
         destinationMarker.transform.position = temp;
         return temp;
     }
+
+    public void GetDestinationPoint() {
+
+    }
 }

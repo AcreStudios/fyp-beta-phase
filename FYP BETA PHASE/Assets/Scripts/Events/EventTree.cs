@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Collections.Generic;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -76,30 +77,42 @@ public class EventTree : MonoBehaviour {
     public int currentEvent;
 
     public Text missionUI;
+    public List<EventTree> treesDisabled;
 
     public void TreeEnabled(EventTree treeCalling) {
         enabled = true;
+        treesDisabled = new List<EventTree>();
 
         if (disablePrevTree)
-            TreeExceptionCheck(treeCalling);
+            if (TreeExceptionCheck(treeCalling, false, disableExceptions))
+                treesDisabled.Add(treeCalling);
+
 
         if (disableAllOtherActiveTrees)
             for (var i = 0; i < EventData.eventTrees.Count; i++)
-                TreeExceptionCheck(EventData.eventTrees[i]);
+                if (TreeExceptionCheck(EventData.eventTrees[i], false, disableExceptions))
+                    treesDisabled.Add(EventData.eventTrees[i]);
     }
 
-    void TreeExceptionCheck(EventTree treeToCheck) {
-        foreach (EventTree exception in disableExceptions)
-            if (exception == treeToCheck || treeToCheck == this)
-                return;
+    void OnEventTreeEnd() {
+        enabled = false;
 
-        treeToCheck.enabled = false;
+        if (reactivePrevTrees)
+            for (var i = 0; i < treesDisabled.Count; i++)
+                TreeExceptionCheck(treesDisabled[i], true, reactiveExceptions);
+    }
+
+    bool TreeExceptionCheck(EventTree treeToCheck, bool toggle, EventTree[] trees) {
+        foreach (EventTree exception in trees)
+            if (exception == treeToCheck || treeToCheck == this)
+                return false;
+
+        treeToCheck.enabled = toggle;
+        return true;
     }
 
     void Awake() {
         EventData.eventTrees.Add(this);
-        Debug.Log(EventData.eventTrees.Count);
-        //TreeEnabled(this);
     }
 
     void Update() {
@@ -110,8 +123,11 @@ public class EventTree : MonoBehaviour {
                 for (var i = 0; i < events[currentEvent].eventBody.Length; i++) {
                     EventActive(i, currentEvent);
 
-                    if (CheckTrigger(i, currentEvent))
+                    if (CheckTrigger(i, currentEvent)) {
+                        if (currentEvent == events.Length)
+                            OnEventTreeEnd();
                         break;
+                    }
                 }
             }
         } else {
@@ -126,7 +142,6 @@ public class EventTree : MonoBehaviour {
     }
 
     bool CheckTrigger(int bodyIndex, int eventIndex) {
-        //Debug.Log(currentEvent.eventBodyName);
 
         if (!events[eventIndex].calibrated) {
             for (var i = 0; i < events[eventIndex].eventBody.Length; i++)
@@ -167,7 +182,6 @@ public class EventTree : MonoBehaviour {
         if (events[currentEvent].eventBody[bodyIndex].onEventActive.timer < Time.time) {
             events[eventIndex].eventBody[bodyIndex].onEventActive.timer += events[eventIndex].eventBody[bodyIndex].onEventActive.duration;
             foreach (GameObject toSpawn in events[currentEvent].eventBody[bodyIndex].onEventActive.spawns) {
-                Debug.Log(toSpawn.name);
                 Vector3 spawnLoc = events[currentEvent].eventBody[bodyIndex].onEventActive.location;
                 if (events[currentEvent].eventBody[bodyIndex].onEventActive.randomRange > 0) {
                     float tempRandomRange = events[currentEvent].eventBody[bodyIndex].onEventActive.randomRange;

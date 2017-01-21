@@ -21,12 +21,14 @@ public class CivillianManager : MonoBehaviour {
         public GameObject[] civillianOnTask;
     }
 
+    [HideInInspector]
+    public List<CivillianAI> civillianAIList = new List<CivillianAI>();
     public static CivillianManager instance;
+    public int civillianCount;
     public TaskList[] taskLists;
 
-    void Start() {
+    void Awake() {
         instance = this;
-
         for (var i = 0; i < taskLists.Length; i++) {
             GameObject[] taskLocations = GameObject.FindGameObjectsWithTag(taskLists[i].taskTag);
             taskLists[i].tasks = new TaskLocation[taskLocations.Length];
@@ -37,11 +39,7 @@ public class CivillianManager : MonoBehaviour {
         }
     }
 
-    void Update() {
-
-    }
-
-    public TaskLocation TaskQuery(GameObject query, out float taskDuration,out int taskUser) {
+    public TaskLocation TaskQuery(GameObject query, out float taskDuration, out int taskUser) {
         for (var i = 0; i < taskLists.Length; i++)
             for (var j = 0; j < taskLists[i].tasks.Length; j++)
                 for (var k = 0; k < taskLists[i].tasks[j].civillianOnTask.Length; k++)
@@ -49,14 +47,12 @@ public class CivillianManager : MonoBehaviour {
                         taskDuration = taskLists[i].taskTimer;
                         taskUser = k;
 
-                        taskLists[i].tasks[j].civillianOnTask[k] = query;                       
+                        taskLists[i].tasks[j].civillianOnTask[k] = query;
                         return taskLists[i].tasks[j];
                     }
 
-        taskDuration = 5;
+        taskDuration = 0.1f;
         taskUser = 0;
         return new TaskLocation();
     }
-
-    
 }

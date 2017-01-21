@@ -1,13 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class AIManager : MonoBehaviour {
-    //Stores obstacle data, group data.
-    [System.Serializable]
-    public struct ObstaclesData {
-        public Collider obstacle;
-        public GameObject aiCover;
-    }
 
     public static AIManager instance;
     public ColliderReaderModule readerInst;
@@ -18,41 +13,7 @@ public class AIManager : MonoBehaviour {
     void Start() {
         instance = this;
         player = GameObject.FindGameObjectWithTag("Player").transform;
-        //readerInst = GameObject.Find("ColliderTester").GetComponent<ColliderReaderModule>();
-        //readerInst = ColliderReaderModule.instance;
-        /*GameObject[] temp = GameObject.FindGameObjectsWithTag("Obstacles");
-        obstacles = new ObstaclesData[temp.Length];
-
-        for (var i = 0; i < obstacles.Length; i++)
-            obstacles[i].obstacle = temp[i].GetComponent<Collider>();*/
     }
-
-
-
-    /*public Collider AssignCover(GameObject ai, float range) {
-        Collider temp = null;
-        float dist = Mathf.Infinity;
-
-        int reference = 0;
-
-        for (var i = 0; i < obstacles.Length; i++) {
-            if (!obstacles[i].aiCover)
-                if ((player.transform.position - obstacles[i].obstacle.transform.position).sqrMagnitude < range * range) {
-                    float tempDist = (obstacles[i].obstacle.transform.position - ai.transform.position).sqrMagnitude;
-
-                    if (dist > tempDist) {
-                        dist = tempDist;
-                        reference = i;
-                        temp = obstacles[reference].obstacle;
-                    }
-                }
-        }
-
-        if (temp != null)
-            obstacles[reference].aiCover = ai;
-
-        return temp;
-    }*/
 
     public Vector3 AssignHidingPoint(GameObject ai, GameObject toReplace, float range) {
 
@@ -108,3 +69,4 @@ public class AIManager : MonoBehaviour {
             SoundManager.instance.PlaySoundOnce(position, sfxList[Random.Range(0, sfxList.Length)]);
     }
 }
+

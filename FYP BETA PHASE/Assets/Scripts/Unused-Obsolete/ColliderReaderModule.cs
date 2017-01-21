@@ -20,6 +20,8 @@ public class ColliderReaderModule : MonoBehaviour {
         }
     }
 
+    
+
     public List<BoundaryPoints> boundPoints;
     public Vector3[] multiplier;
     public float aiRadius;
@@ -158,7 +160,7 @@ public class ColliderReaderModule : MonoBehaviour {
     }
 }
 
-#if UNITY_EDITOR
+/*#if UNITY_EDITOR
 [CustomEditor(typeof(ColliderReaderModule))]
 public class ColliderReaderModuleEditor : Editor {
 
@@ -190,4 +192,4 @@ public class ColliderReaderModuleEditor : Editor {
                 t.CreateObstacleData();
     }
 }
-#endif
+#endif*/
