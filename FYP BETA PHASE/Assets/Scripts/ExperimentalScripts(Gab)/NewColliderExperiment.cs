@@ -9,8 +9,7 @@ using UnityEditor;
 public class NewColliderExperiment : MonoBehaviour {
 
     public Transform target;
-    float targetAmount;
-
+    public Vector3 test;
     public int radius;
 
     public void GetNewPoint() {
@@ -30,17 +29,19 @@ public class NewColliderExperiment : MonoBehaviour {
         }
     }
 
-    public void ExperimentForArc() {
-        for (var i = -radius; i < radius; i++) {
+    public void ExperimentForArc(Vector3 givenVector) {
+        float total = Mathf.Abs(givenVector.x) + Mathf.Abs(givenVector.z);
+        
+        for (var i = -total; i < total + 1; i++) { //Need to find a way to add x depending on angle...
             Vector3 temp = new Vector3();
-            temp.x = i;
-            temp.z = 50 - Mathf.Abs(i);
+
+            temp.x = i; //Make the .x + a value which is offset rather than start at 0.
+            temp.z = total - Mathf.Abs(i);
+            //temp += new Vector3(total, 0, 0) - givenVector;
+            temp = Vector3.Normalize(temp) * total;
             Debug.DrawLine(transform.position, transform.position + temp, Color.red, 5f);
-        }
-        for (var i = radius; i > -radius; i--) {
-            Vector3 temp = new Vector3();
-            temp.x = i;
-            temp.z = -(50 - Mathf.Abs(i));
+
+            temp.z *= -1;
             Debug.DrawLine(transform.position, transform.position + temp, Color.blue, 5f);
         }
     }
@@ -62,7 +63,7 @@ public class NewColliderExperimentUI : Editor {
                 t.GetNewPoint();
 
             if (GUILayout.Button("Show new arc"))
-                t.ExperimentForArc();
+                t.ExperimentForArc(t.test);
         }
     }
 }

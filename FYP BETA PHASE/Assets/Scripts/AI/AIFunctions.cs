@@ -34,6 +34,7 @@ public class AIFunctions : MonoBehaviour {
     public float attackInterval;
     public float weaponRange;
     public bool piercing;
+    public bool ableToDragPlayerOutOfCover;
     float attackTimer;
 
     [Header("Raycast Shooting Attack Settings")]
@@ -71,7 +72,7 @@ public class AIFunctions : MonoBehaviour {
         multiplier[1] = new Vector3(0, 0, 1);
     }
 
-    public virtual void DamageRecieved() {       
+    public virtual void DamageRecieved() {
     }
 
     public void AlertOtherTroops() {
@@ -152,22 +153,18 @@ public class AIFunctions : MonoBehaviour {
                     if (hp && hp.isActiveAndEnabled)
                         hp.ReceiveDamage(damage);
 
-                    if (targetHit.tag == "Player")
-                        if (HitFeedbackManager.instance) {
-                            CoverSystem inst = targetHit.GetComponent<CoverSystem>();
-                            //if (inst.GetCoverStatus())
-                                //inst.
-                            HitFeedbackManager.instance.RetriggerHitEvent();
+                    if (targetHit.tag == "Player") {
 
+                        if (ableToDragPlayerOutOfCover) {
+                            CoverSystem inst = targetHit.GetComponent<CoverSystem>();
+                            inst.EnableController();
                         }
+                    }
 
                     if ((ai = targetHit.GetComponent<AIFunctions>()) != null) {
-                        //Vector3 toNorm = Vector3.Normalize(target.position - transform.position);
-                        //Debug.Log(targetHit.root + " was hit by " + transform.root);
-                        AIManager.instance.AssignHidingPoint(ai.gameObject, gameObject, weaponRange);
-                        //Debug.Log(ai.destination);
-                        ai.destination = ai.ObstacleHunting(ai.ableToHide);
-                        //Debug.Log(ai.destination);
+                        //AIManager.instance.AssignHidingPoint(ai.gameObject, gameObject, weaponRange);
+                        //ai.destination = ai.ObstacleHunting(ai.ableToHide);
+                        ai.destination = ai.GetDestinationPoint();
                     }
                     attackTimer = Time.time + attackInterval;
                 }
@@ -179,51 +176,54 @@ public class AIFunctions : MonoBehaviour {
         obj.transform.position = location;
     }
 
-    public Vector3 DisplaceAILocation() {
-        Vector3 cachedV3 = transform.position;
+    public Vector3 GetDestinationPoint() {
+        Collider[] colliders = Physics.OverlapSphere(target.position, 100);
+        //Will return a position based on obstacles here if its enabled.
+        for (var i = 0; i < colliders.Length; i++) {
+            if (colliders[i].transform.CompareTag("Obstacles")) {
+                Vector3 temp = Vector3.zero;
+                temp = colliders[i].bounds.center - target.position;
 
-        if (target) {
-            Vector3 temp = Vector3.zero;
-            float dist = Mathf.Infinity;
+                temp.x = (temp.x / Mathf.Abs(temp.x)) * colliders[i].bounds.extents.x;
+                temp.y = 0;
+                temp.z = (temp.z / Mathf.Abs(temp.z)) * colliders[i].bounds.extents.z;
 
-            for (var k = -1; k < 2; k += 2) {
-                foreach (Vector3 multiply in multiplier) {
-                    //color = Random.ColorHSV();
-                    for (var i = -(possibleSpotsPerSide / 2); i < (possibleSpotsPerSide / 2) + 1; i++) {
-                        temp = Vector3.one;
-
-                        for (var j = 0; j < 3; j++)
-                            if (multiply[j] == 1)
-                                temp[j] = spaceBetweenChecks * i;
-
-                        temp *= k;
-
-                        temp = Vector3.Normalize(temp);
-
-                        Vector3 tempNormStore = temp;
-                        temp *= weaponRange;
-                        temp += target.position;
-
-                        if (ColliderCheck(temp)) {
-                            if ((temp - transform.position).sqrMagnitude < dist) {
-                                destinationMarker.transform.position = temp;
-                                dist = (temp - transform.position).sqrMagnitude;
-                                cachedV3 = temp;
-                                currentNormalizedDist = tempNormStore;
-                            }
-                        }
-                    }
-                }
+                //Debug.DrawLine(target.position, colliders[i].bounds.center + temp, Color.red, 5f);
+                if (CheckIfPosAvail(colliders[i].bounds.center + temp))
+                    return colliders[i].bounds.center + temp;
             }
         }
-        return cachedV3;
+        return ArcBasedPosition(target.position - transform.position);
     }
 
-    public bool ColliderCheck(Vector3 temp) {
+    //This method still needs some working on...
+    public Vector3 ArcBasedPosition(Vector3 givenVector) {
+        float total = Mathf.Abs(givenVector.x) + Mathf.Abs(givenVector.z);
+
+        for (var i = -total; i < total + 1; i++) {
+            Vector3 temp = new Vector3();
+
+            temp.x = i;
+            temp.z = total - Mathf.Abs(i);
+            temp = Vector3.Normalize(temp) * total;
+
+            //Debug.DrawLine(transform.position, transform.position + temp, Color.red, 5f);
+            if (CheckIfPosAvail(transform.position + temp))
+                return transform.position + temp;
+
+            //Debug.DrawLine(transform.position, transform.position + temp, Color.blue, 5f);
+            temp.z *= -1;
+
+            if (CheckIfPosAvail(transform.position + temp))
+                return transform.position + temp;
+        }
+        return transform.position;
+    }
+
+    public bool CheckIfPosAvail(Vector3 temp) {
         temp.y = 0.1f;
         bool hitFloor = false;
-        //if (displayDebugMessage)
-        // Debug.DrawLine(target.position, temp, Color.red, 10);
+
         Collider[] inCollision = Physics.OverlapCapsule(temp, temp, 1);
 
         foreach (Collider collision in inCollision) {
@@ -235,30 +235,9 @@ public class AIFunctions : MonoBehaviour {
                 hitFloor = true;
         }
 
+        if (hitFloor)
+            destinationMarker.transform.position = temp;
+
         return hitFloor;
-    }
-
-    public Vector3 ObstacleHunting(bool hide) {
-        Vector3 temp = transform.position;
-        Vector3 backUp = temp;
-
-        if (hide)
-            temp = AIManager.instance.AssignHidingPoint(gameObject, null, weaponRange);
-
-        if (temp == backUp)
-            if (currentNormalizedDist == Vector3.zero)
-                temp = DisplaceAILocation();
-            else if (ColliderCheck(target.position + (currentNormalizedDist * weaponRange))) {
-                temp = target.position + (currentNormalizedDist * weaponRange);
-            } else
-                temp = DisplaceAILocation();
-
-        temp.y = 0.3f;
-        destinationMarker.transform.position = temp;
-        return temp;
-    }
-
-    public void GetDestinationPoint() {
-
     }
 }

@@ -57,7 +57,7 @@ public class AI : AIFunctions {
                 if (target) {
                     AlertOtherTroops();
                     stateChangeTimer = Time.time + reactionTime;
-                    destination = ObstacleHunting(ableToHide);
+                    destination = GetDestinationPoint();
                     currentState = AIStates.Attacking;
                 } else {
                     if ((startingPoint - transform.position).magnitude < 1) {
@@ -72,7 +72,7 @@ public class AI : AIFunctions {
                 if (target != null) {
                     AlertOtherTroops();
                     stateChangeTimer = Time.time + reactionTime;
-                    destination = ObstacleHunting(ableToHide);
+                    destination = GetDestinationPoint();
                     currentState = AIStates.Attacking;
                 } else {
                     if ((patrolMod.patrolLocations[patrolMod.currentLocation] - transform.position).magnitude < 1) {
@@ -99,7 +99,7 @@ public class AI : AIFunctions {
                         transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
                         animator.SetInteger("TreeState", 0);
                         if ((target.position - transform.position).sqrMagnitude < 5) {
-                            patrolMod.currentLocation++;                           
+                            patrolMod.currentLocation++;
                             agent.destination = patrolMod.patrolLocations[patrolMod.currentLocation];
                         }
                     } else {
@@ -128,13 +128,13 @@ public class AI : AIFunctions {
                                 //Debug.DrawLine(destination, hit.point, Color.red, 20);
                                 //Debug.DrawLine(transform.position, hit.point, Color.green);
                                 if (hit.transform.root == target) {
-                                    destination = ObstacleHunting(ableToHide);
+                                    destination = GetDestinationPoint();
                                     //Debug.DrawLine(transform.position, hit.point, Color.red);
                                 }
                             }
 
                             if ((target.position - transform.position).sqrMagnitude > weaponRange * weaponRange)
-                                destination = ObstacleHunting(ableToHide);
+                                destination = GetDestinationPoint();
                         }
 
                     } else {
