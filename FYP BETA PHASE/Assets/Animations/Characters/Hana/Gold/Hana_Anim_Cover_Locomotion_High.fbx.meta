@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 95a8251982be9574bb7aefeae57c0e1c
-timeCreated: 1485075233
+guid: 8598915ce26560a4295ac96bf9618d43
+timeCreated: 1485094068
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
@@ -191,11 +191,8 @@ ModelImporter:
     400180: transform8
     400182: Waist_CTRL
     400184: Haha_Joints_GRP
-    7400000: stand_to_cover_crouch_low
-    7400002: cover idle r
-    7400004: cover idle l
-    7400006: cover_idle_left_low
-    7400008: cover_idle_right_low
+    7400000: cover_locomotion_right_high
+    7400002: cover_locomotion_left_high
     9500000: //RootNode
   materials:
     importMaterials: 0
@@ -208,12 +205,13 @@ ModelImporter:
     optimizeGameObjects: 0
     motionNodeName: 
     animationImportErrors: 
-    animationImportWarnings: "Copied Avatar Rig Configuration mis-match. Inbetween
-      bone rotation in copied configuration does not match rotation in animation file\nHana_Anim_Blend_Cover_EnterExit_Low\nClip
-      'Take 001' has import animation warnings that might lower retargeting quality:\nNote:
-      Activate translation DOF on avatar to improve retargeting quality.\n\t'Spine_3_JNT'
-      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'Head_JNT'
-      has translation animation that will be discarded.\n"
+    animationImportWarnings: 'Copied Avatar Rig Configuration mis-match. Bone length
+      in copied configuration does not match position in animation file
+
+      Hana_Anim_Cover_Locomotion_HighCopied Avatar Rig Configuration mis-match. Inbetween
+      bone rotation in copied configuration does not match rotation in animation file
+
+      Hana_Anim_Cover_Locomotion_High'
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     animationCompression: 3
@@ -224,24 +222,24 @@ ModelImporter:
     extraExposedTransformPaths: []
     clipAnimations:
     - serializedVersion: 16
-      name: stand_to_cover_crouch_low
+      name: cover_locomotion_right_high
       takeName: Take 001
       firstFrame: 1
-      lastFrame: 28
+      lastFrame: 40
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
-      loopBlend: 0
+      loopTime: 1
+      loopBlend: 1
       loopBlendOrientation: 1
       loopBlendPositionY: 1
       loopBlendPositionXZ: 0
       keepOriginalOrientation: 1
       keepOriginalPositionY: 0
-      keepOriginalPositionXZ: 1
+      keepOriginalPositionXZ: 0
       heightFromFeet: 1
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
@@ -438,10 +436,10 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: cover_idle_left_low
+      name: cover_locomotion_left_high
       takeName: Take 001
-      firstFrame: 28
-      lastFrame: 30
+      firstFrame: 1
+      lastFrame: 40
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -452,226 +450,12 @@ ModelImporter:
       loopBlend: 1
       loopBlendOrientation: 1
       loopBlendPositionY: 1
-      loopBlendPositionXZ: 1
+      loopBlendPositionXZ: 0
       keepOriginalOrientation: 1
       keepOriginalPositionY: 0
       keepOriginalPositionXZ: 0
       heightFromFeet: 1
       mirror: 1
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask:
-      - path: 
-        weight: 1
-      - path: Haha_Joints_GRP
-        weight: 1
-      - path: Haha_Joints_GRP/Hana_Controller_GRP
-        weight: 0
-      - path: Haha_Joints_GRP/Hana_Controller_GRP/Main_CTRL
-        weight: 0
-      - path: Haha_Joints_GRP/Hana_Controller_GRP/Main_CTRL/Body_CTRL
-        weight: 0
-      - path: Haha_Joints_GRP/Hana_Controller_GRP/Main_CTRL/Body_CTRL/Spine_1_CTRL
-        weight: 0
-      - path: Haha_Joints_GRP/Hana_Controller_GRP/Main_CTRL/Body_CTRL/Spine_1_CTRL/Spine_2_CTRL
-        weight: 0
-      - path: Haha_Joints_GRP/Hana_Controller_GRP/Main_CTRL/Body_CTRL/Spine_1_CTRL/Spine_2_CTRL/Spine_3_CTRL
-        weight: 0
-      - path: Haha_Joints_GRP/Hana_Controller_GRP/Main_CTRL/Body_CTRL/Spine_1_CTRL/Spine_2_CTRL/Spine_3_CTRL/L_Shoulder_CTRL
-        weight: 0
-      - path: Haha_Joints_GRP/Hana_Controller_GRP/Main_CTRL/Body_CTRL/Spine_1_CTRL/Spine_2_CTRL/Spine_3_CTRL/L_Shoulder_CTRL/L_Arm_IK_CTRL
-        weight: 0
-      - path: Haha_Joints_GRP/Hana_Controller_GRP/Main_CTRL/Body_CTRL/Spine_1_CTRL/Spine_2_CTRL/Spine_3_CTRL/L_Shoulder_CTRL/L_Arm_IK_CTRL/L_Arm_IK_HDL
-        weight: 0
-      - path: Haha_Joints_GRP/Hana_Controller_GRP/Main_CTRL/Body_CTRL/Spine_1_CTRL/Spine_2_CTRL/Spine_3_CTRL/L_Shoulder_CTRL/L_Arm_IK_CTRL/L_Hand_Orient_CTRL
-        weight: 0
-      - path: Haha_Joints_GRP/Hana_Controller_GRP/Main_CTRL/Body_CTRL/Spine_1_CTRL/Spine_2_CTRL/Spine_3_CTRL/Neck_CTRL
-        weight: 0
-      - path: Haha_Joints_GRP/Hana_Controller_GRP/Main_CTRL/Body_CTRL/Spine_1_CTRL/Spine_2_CTRL/Spine_3_CTRL/Neck_CTRL/Head_CTRL
-        weight: 0
-      - path: Haha_Joints_GRP/Hana_Controller_GRP/Main_CTRL/Body_CTRL/Spine_1_CTRL/Spine_2_CTRL/Spine_3_CTRL/R_Shoulder_CTRL
-        weight: 0
-      - path: Haha_Joints_GRP/Hana_Controller_GRP/Main_CTRL/Body_CTRL/Spine_1_CTRL/Spine_2_CTRL/Spine_3_CTRL/R_Shoulder_CTRL/R_Arm_IK_CTRL
-        weight: 0
-      - path: Haha_Joints_GRP/Hana_Controller_GRP/Main_CTRL/Body_CTRL/Spine_1_CTRL/Spine_2_CTRL/Spine_3_CTRL/R_Shoulder_CTRL/R_Arm_IK_CTRL/R_Arm_IK_HDL
-        weight: 0
-      - path: Haha_Joints_GRP/Hana_Controller_GRP/Main_CTRL/Body_CTRL/Spine_1_CTRL/Spine_2_CTRL/Spine_3_CTRL/R_Shoulder_CTRL/R_Arm_IK_CTRL/R_Hand_Orient_CTRL
-        weight: 0
-      - path: Haha_Joints_GRP/Hana_Controller_GRP/Main_CTRL/Body_CTRL/Waist_CTRL
-        weight: 0
-      - path: Haha_Joints_GRP/Hana_Controller_GRP/Main_CTRL/L_Ankle_CTRL
-        weight: 0
-      - path: Haha_Joints_GRP/Hana_Controller_GRP/Main_CTRL/L_Ankle_CTRL/L_Ankle_IK_HDL
-        weight: 0
-      - path: Haha_Joints_GRP/Hana_Controller_GRP/Main_CTRL/L_Ankle_CTRL/L_Foot_Orient_CTRL
-        weight: 0
-      - path: Haha_Joints_GRP/Hana_Controller_GRP/Main_CTRL/R_Ankle_CTRL
-        weight: 0
-      - path: Haha_Joints_GRP/Hana_Controller_GRP/Main_CTRL/R_Ankle_CTRL/R_Ankle_IK_HDL
-        weight: 0
-      - path: Haha_Joints_GRP/Hana_Controller_GRP/Main_CTRL/R_Ankle_CTRL/R_Foot_Orient_CTRL
-        weight: 0
-      - path: Haha_Joints_GRP/Hips_JNT
-        weight: 1
-      - path: Haha_Joints_GRP/Hips_JNT/HipControl_JNT
-        weight: 1
-      - path: Haha_Joints_GRP/Hips_JNT/HipControl_JNT/L_Hips_JNT
-        weight: 1
-      - path: Haha_Joints_GRP/Hips_JNT/HipControl_JNT/L_Hips_JNT/L_Knee_JNT
-        weight: 1
-      - path: Haha_Joints_GRP/Hips_JNT/HipControl_JNT/L_Hips_JNT/L_Knee_JNT/L_Ankle_JNT
-        weight: 1
-      - path: Haha_Joints_GRP/Hips_JNT/HipControl_JNT/L_Hips_JNT/L_Knee_JNT/L_Ankle_JNT/L_Toe_End_JNT
-        weight: 0
-      - path: Haha_Joints_GRP/Hips_JNT/HipControl_JNT/R_Hips_JNT
-        weight: 1
-      - path: Haha_Joints_GRP/Hips_JNT/HipControl_JNT/R_Hips_JNT/R_Knee_JNT
-        weight: 1
-      - path: Haha_Joints_GRP/Hips_JNT/HipControl_JNT/R_Hips_JNT/R_Knee_JNT/R_Ankle_JNT
-        weight: 1
-      - path: Haha_Joints_GRP/Hips_JNT/HipControl_JNT/R_Hips_JNT/R_Knee_JNT/R_Ankle_JNT/R_Toe_End_JNT
-        weight: 0
-      - path: Haha_Joints_GRP/Hips_JNT/Spine_1_JNT
-        weight: 1
-      - path: Haha_Joints_GRP/Hips_JNT/Spine_1_JNT/Spine_2_JNT
-        weight: 1
-      - path: Haha_Joints_GRP/Hips_JNT/Spine_1_JNT/Spine_2_JNT/Spine_3_JNT
-        weight: 1
-      - path: Haha_Joints_GRP/Hips_JNT/Spine_1_JNT/Spine_2_JNT/Spine_3_JNT/L_Clavicle_JNT
-        weight: 1
-      - path: Haha_Joints_GRP/Hips_JNT/Spine_1_JNT/Spine_2_JNT/Spine_3_JNT/L_Clavicle_JNT/L_Shoulder_JNT
-        weight: 1
-      - path: Haha_Joints_GRP/Hips_JNT/Spine_1_JNT/Spine_2_JNT/Spine_3_JNT/L_Clavicle_JNT/L_Shoulder_JNT/L_Elbow_JNT
-        weight: 1
-      - path: Haha_Joints_GRP/Hips_JNT/Spine_1_JNT/Spine_2_JNT/Spine_3_JNT/L_Clavicle_JNT/L_Shoulder_JNT/L_Elbow_JNT/L_Hand_JNT
-        weight: 1
-      - path: Haha_Joints_GRP/Hips_JNT/Spine_1_JNT/Spine_2_JNT/Spine_3_JNT/L_Clavicle_JNT/L_Shoulder_JNT/L_Elbow_JNT/L_Hand_JNT/L_Index1_CTRL
-        weight: 1
-      - path: Haha_Joints_GRP/Hips_JNT/Spine_1_JNT/Spine_2_JNT/Spine_3_JNT/L_Clavicle_JNT/L_Shoulder_JNT/L_Elbow_JNT/L_Hand_JNT/L_Index1_CTRL/L_Index2_CTRL
-        weight: 1
-      - path: Haha_Joints_GRP/Hips_JNT/Spine_1_JNT/Spine_2_JNT/Spine_3_JNT/L_Clavicle_JNT/L_Shoulder_JNT/L_Elbow_JNT/L_Hand_JNT/L_Index1_CTRL/L_Index2_CTRL/L_Index3_CTRL
-        weight: 1
-      - path: Haha_Joints_GRP/Hips_JNT/Spine_1_JNT/Spine_2_JNT/Spine_3_JNT/L_Clavicle_JNT/L_Shoulder_JNT/L_Elbow_JNT/L_Hand_JNT/L_Index1_CTRL/L_Index2_CTRL/L_Index3_CTRL/L_Index3_JNT
-        weight: 0
-      - path: Haha_Joints_GRP/Hips_JNT/Spine_1_JNT/Spine_2_JNT/Spine_3_JNT/L_Clavicle_JNT/L_Shoulder_JNT/L_Elbow_JNT/L_Hand_JNT/L_Middle1_CTRL
-        weight: 1
-      - path: Haha_Joints_GRP/Hips_JNT/Spine_1_JNT/Spine_2_JNT/Spine_3_JNT/L_Clavicle_JNT/L_Shoulder_JNT/L_Elbow_JNT/L_Hand_JNT/L_Middle1_CTRL/L_Middle2_CTRL
-        weight: 1
-      - path: Haha_Joints_GRP/Hips_JNT/Spine_1_JNT/Spine_2_JNT/Spine_3_JNT/L_Clavicle_JNT/L_Shoulder_JNT/L_Elbow_JNT/L_Hand_JNT/L_Middle1_CTRL/L_Middle2_CTRL/L_Middle3_CTRL
-        weight: 1
-      - path: Haha_Joints_GRP/Hips_JNT/Spine_1_JNT/Spine_2_JNT/Spine_3_JNT/L_Clavicle_JNT/L_Shoulder_JNT/L_Elbow_JNT/L_Hand_JNT/L_Middle1_CTRL/L_Middle2_CTRL/L_Middle3_CTRL/L_Middle4_JNT
-        weight: 0
-      - path: Haha_Joints_GRP/Hips_JNT/Spine_1_JNT/Spine_2_JNT/Spine_3_JNT/L_Clavicle_JNT/L_Shoulder_JNT/L_Elbow_JNT/L_Hand_JNT/L_Palm_CTRL
-        weight: 1
-      - path: Haha_Joints_GRP/Hips_JNT/Spine_1_JNT/Spine_2_JNT/Spine_3_JNT/L_Clavicle_JNT/L_Shoulder_JNT/L_Elbow_JNT/L_Hand_JNT/L_Palm_CTRL/transform7
-        weight: 1
-      - path: Haha_Joints_GRP/Hips_JNT/Spine_1_JNT/Spine_2_JNT/Spine_3_JNT/L_Clavicle_JNT/L_Shoulder_JNT/L_Elbow_JNT/L_Hand_JNT/L_Palm_CTRL/transform7/L_Ring1_CTRL
-        weight: 1
-      - path: Haha_Joints_GRP/Hips_JNT/Spine_1_JNT/Spine_2_JNT/Spine_3_JNT/L_Clavicle_JNT/L_Shoulder_JNT/L_Elbow_JNT/L_Hand_JNT/L_Palm_CTRL/transform7/L_Ring1_CTRL/L_Ring2_CTRL
-        weight: 1
-      - path: Haha_Joints_GRP/Hips_JNT/Spine_1_JNT/Spine_2_JNT/Spine_3_JNT/L_Clavicle_JNT/L_Shoulder_JNT/L_Elbow_JNT/L_Hand_JNT/L_Palm_CTRL/transform7/L_Ring1_CTRL/L_Ring2_CTRL/L_Ring3_CTRL
-        weight: 1
-      - path: Haha_Joints_GRP/Hips_JNT/Spine_1_JNT/Spine_2_JNT/Spine_3_JNT/L_Clavicle_JNT/L_Shoulder_JNT/L_Elbow_JNT/L_Hand_JNT/L_Palm_CTRL/transform7/L_Ring1_CTRL/L_Ring2_CTRL/L_Ring3_CTRL/L_Ring4_JNT
-        weight: 0
-      - path: Haha_Joints_GRP/Hips_JNT/Spine_1_JNT/Spine_2_JNT/Spine_3_JNT/L_Clavicle_JNT/L_Shoulder_JNT/L_Elbow_JNT/L_Hand_JNT/L_Palm_CTRL/transform8
-        weight: 1
-      - path: Haha_Joints_GRP/Hips_JNT/Spine_1_JNT/Spine_2_JNT/Spine_3_JNT/L_Clavicle_JNT/L_Shoulder_JNT/L_Elbow_JNT/L_Hand_JNT/L_Palm_CTRL/transform8/L_Pinky1_CTRL
-        weight: 1
-      - path: Haha_Joints_GRP/Hips_JNT/Spine_1_JNT/Spine_2_JNT/Spine_3_JNT/L_Clavicle_JNT/L_Shoulder_JNT/L_Elbow_JNT/L_Hand_JNT/L_Palm_CTRL/transform8/L_Pinky1_CTRL/L_Pinky2_CTRL
-        weight: 1
-      - path: Haha_Joints_GRP/Hips_JNT/Spine_1_JNT/Spine_2_JNT/Spine_3_JNT/L_Clavicle_JNT/L_Shoulder_JNT/L_Elbow_JNT/L_Hand_JNT/L_Palm_CTRL/transform8/L_Pinky1_CTRL/L_Pinky2_CTRL/L_Pinky3_CTRL
-        weight: 1
-      - path: Haha_Joints_GRP/Hips_JNT/Spine_1_JNT/Spine_2_JNT/Spine_3_JNT/L_Clavicle_JNT/L_Shoulder_JNT/L_Elbow_JNT/L_Hand_JNT/L_Palm_CTRL/transform8/L_Pinky1_CTRL/L_Pinky2_CTRL/L_Pinky3_CTRL/L_Pinky4_JNT
-        weight: 0
-      - path: Haha_Joints_GRP/Hips_JNT/Spine_1_JNT/Spine_2_JNT/Spine_3_JNT/L_Clavicle_JNT/L_Shoulder_JNT/L_Elbow_JNT/L_Hand_JNT/L_Thumb1_CTRL
-        weight: 1
-      - path: Haha_Joints_GRP/Hips_JNT/Spine_1_JNT/Spine_2_JNT/Spine_3_JNT/L_Clavicle_JNT/L_Shoulder_JNT/L_Elbow_JNT/L_Hand_JNT/L_Thumb1_CTRL/L_Thumb2_CTRL
-        weight: 1
-      - path: Haha_Joints_GRP/Hips_JNT/Spine_1_JNT/Spine_2_JNT/Spine_3_JNT/L_Clavicle_JNT/L_Shoulder_JNT/L_Elbow_JNT/L_Hand_JNT/L_Thumb1_CTRL/L_Thumb2_CTRL/L_Thumb3_JNT
-        weight: 1
-      - path: Haha_Joints_GRP/Hips_JNT/Spine_1_JNT/Spine_2_JNT/Spine_3_JNT/Neck_Base_JNT
-        weight: 1
-      - path: Haha_Joints_GRP/Hips_JNT/Spine_1_JNT/Spine_2_JNT/Spine_3_JNT/Neck_Base_JNT/Head_JNT
-        weight: 1
-      - path: Haha_Joints_GRP/Hips_JNT/Spine_1_JNT/Spine_2_JNT/Spine_3_JNT/Neck_Base_JNT/Head_JNT/Head_Top_End_JNT
-        weight: 0
-      - path: Haha_Joints_GRP/Hips_JNT/Spine_1_JNT/Spine_2_JNT/Spine_3_JNT/R_Clavicle_JNT
-        weight: 1
-      - path: Haha_Joints_GRP/Hips_JNT/Spine_1_JNT/Spine_2_JNT/Spine_3_JNT/R_Clavicle_JNT/R_Shoulder_JNT
-        weight: 1
-      - path: Haha_Joints_GRP/Hips_JNT/Spine_1_JNT/Spine_2_JNT/Spine_3_JNT/R_Clavicle_JNT/R_Shoulder_JNT/R_Elbow_JNT
-        weight: 1
-      - path: Haha_Joints_GRP/Hips_JNT/Spine_1_JNT/Spine_2_JNT/Spine_3_JNT/R_Clavicle_JNT/R_Shoulder_JNT/R_Elbow_JNT/R_Hand_JNT
-        weight: 1
-      - path: Haha_Joints_GRP/Hips_JNT/Spine_1_JNT/Spine_2_JNT/Spine_3_JNT/R_Clavicle_JNT/R_Shoulder_JNT/R_Elbow_JNT/R_Hand_JNT/R_Index1_CTRL
-        weight: 1
-      - path: Haha_Joints_GRP/Hips_JNT/Spine_1_JNT/Spine_2_JNT/Spine_3_JNT/R_Clavicle_JNT/R_Shoulder_JNT/R_Elbow_JNT/R_Hand_JNT/R_Index1_CTRL/R_Index2_CTRL
-        weight: 1
-      - path: Haha_Joints_GRP/Hips_JNT/Spine_1_JNT/Spine_2_JNT/Spine_3_JNT/R_Clavicle_JNT/R_Shoulder_JNT/R_Elbow_JNT/R_Hand_JNT/R_Index1_CTRL/R_Index2_CTRL/R_Index3_CTRL
-        weight: 1
-      - path: Haha_Joints_GRP/Hips_JNT/Spine_1_JNT/Spine_2_JNT/Spine_3_JNT/R_Clavicle_JNT/R_Shoulder_JNT/R_Elbow_JNT/R_Hand_JNT/R_Index1_CTRL/R_Index2_CTRL/R_Index3_CTRL/R_Index4_JNT
-        weight: 0
-      - path: Haha_Joints_GRP/Hips_JNT/Spine_1_JNT/Spine_2_JNT/Spine_3_JNT/R_Clavicle_JNT/R_Shoulder_JNT/R_Elbow_JNT/R_Hand_JNT/R_Middle1_CTRL
-        weight: 1
-      - path: Haha_Joints_GRP/Hips_JNT/Spine_1_JNT/Spine_2_JNT/Spine_3_JNT/R_Clavicle_JNT/R_Shoulder_JNT/R_Elbow_JNT/R_Hand_JNT/R_Middle1_CTRL/R_Middle2_CTRL
-        weight: 1
-      - path: Haha_Joints_GRP/Hips_JNT/Spine_1_JNT/Spine_2_JNT/Spine_3_JNT/R_Clavicle_JNT/R_Shoulder_JNT/R_Elbow_JNT/R_Hand_JNT/R_Middle1_CTRL/R_Middle2_CTRL/R_Middle3_CTRL
-        weight: 1
-      - path: Haha_Joints_GRP/Hips_JNT/Spine_1_JNT/Spine_2_JNT/Spine_3_JNT/R_Clavicle_JNT/R_Shoulder_JNT/R_Elbow_JNT/R_Hand_JNT/R_Middle1_CTRL/R_Middle2_CTRL/R_Middle3_CTRL/R_Middle4_JNT
-        weight: 0
-      - path: Haha_Joints_GRP/Hips_JNT/Spine_1_JNT/Spine_2_JNT/Spine_3_JNT/R_Clavicle_JNT/R_Shoulder_JNT/R_Elbow_JNT/R_Hand_JNT/R_Palm_CTRL
-        weight: 1
-      - path: Haha_Joints_GRP/Hips_JNT/Spine_1_JNT/Spine_2_JNT/Spine_3_JNT/R_Clavicle_JNT/R_Shoulder_JNT/R_Elbow_JNT/R_Hand_JNT/R_Palm_CTRL/transform3
-        weight: 1
-      - path: Haha_Joints_GRP/Hips_JNT/Spine_1_JNT/Spine_2_JNT/Spine_3_JNT/R_Clavicle_JNT/R_Shoulder_JNT/R_Elbow_JNT/R_Hand_JNT/R_Palm_CTRL/transform3/R_Pinky1_CTRL
-        weight: 1
-      - path: Haha_Joints_GRP/Hips_JNT/Spine_1_JNT/Spine_2_JNT/Spine_3_JNT/R_Clavicle_JNT/R_Shoulder_JNT/R_Elbow_JNT/R_Hand_JNT/R_Palm_CTRL/transform3/R_Pinky1_CTRL/R_Pinky2_CTRL
-        weight: 1
-      - path: Haha_Joints_GRP/Hips_JNT/Spine_1_JNT/Spine_2_JNT/Spine_3_JNT/R_Clavicle_JNT/R_Shoulder_JNT/R_Elbow_JNT/R_Hand_JNT/R_Palm_CTRL/transform3/R_Pinky1_CTRL/R_Pinky2_CTRL/R_Pinky3_CTRL
-        weight: 1
-      - path: Haha_Joints_GRP/Hips_JNT/Spine_1_JNT/Spine_2_JNT/Spine_3_JNT/R_Clavicle_JNT/R_Shoulder_JNT/R_Elbow_JNT/R_Hand_JNT/R_Palm_CTRL/transform3/R_Pinky1_CTRL/R_Pinky2_CTRL/R_Pinky3_CTRL/R_Pinky4_JNT
-        weight: 0
-      - path: Haha_Joints_GRP/Hips_JNT/Spine_1_JNT/Spine_2_JNT/Spine_3_JNT/R_Clavicle_JNT/R_Shoulder_JNT/R_Elbow_JNT/R_Hand_JNT/R_Palm_CTRL/transform4
-        weight: 1
-      - path: Haha_Joints_GRP/Hips_JNT/Spine_1_JNT/Spine_2_JNT/Spine_3_JNT/R_Clavicle_JNT/R_Shoulder_JNT/R_Elbow_JNT/R_Hand_JNT/R_Palm_CTRL/transform4/R_Ring1_CTRL
-        weight: 1
-      - path: Haha_Joints_GRP/Hips_JNT/Spine_1_JNT/Spine_2_JNT/Spine_3_JNT/R_Clavicle_JNT/R_Shoulder_JNT/R_Elbow_JNT/R_Hand_JNT/R_Palm_CTRL/transform4/R_Ring1_CTRL/R_Ring2_CTRL
-        weight: 1
-      - path: Haha_Joints_GRP/Hips_JNT/Spine_1_JNT/Spine_2_JNT/Spine_3_JNT/R_Clavicle_JNT/R_Shoulder_JNT/R_Elbow_JNT/R_Hand_JNT/R_Palm_CTRL/transform4/R_Ring1_CTRL/R_Ring2_CTRL/R_Ring3_CTRL
-        weight: 1
-      - path: Haha_Joints_GRP/Hips_JNT/Spine_1_JNT/Spine_2_JNT/Spine_3_JNT/R_Clavicle_JNT/R_Shoulder_JNT/R_Elbow_JNT/R_Hand_JNT/R_Palm_CTRL/transform4/R_Ring1_CTRL/R_Ring2_CTRL/R_Ring3_CTRL/R_Ring4_JNT
-        weight: 0
-      - path: Haha_Joints_GRP/Hips_JNT/Spine_1_JNT/Spine_2_JNT/Spine_3_JNT/R_Clavicle_JNT/R_Shoulder_JNT/R_Elbow_JNT/R_Hand_JNT/R_Thumb1_CTRL
-        weight: 1
-      - path: Haha_Joints_GRP/Hips_JNT/Spine_1_JNT/Spine_2_JNT/Spine_3_JNT/R_Clavicle_JNT/R_Shoulder_JNT/R_Elbow_JNT/R_Hand_JNT/R_Thumb1_CTRL/R_Thumb2_CTRL
-        weight: 1
-      - path: Haha_Joints_GRP/Hips_JNT/Spine_1_JNT/Spine_2_JNT/Spine_3_JNT/R_Clavicle_JNT/R_Shoulder_JNT/R_Elbow_JNT/R_Hand_JNT/R_Thumb1_CTRL/R_Thumb2_CTRL/R_Thumb3_JNT
-        weight: 0
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
-    - serializedVersion: 16
-      name: cover_idle_right_low
-      takeName: Take 001
-      firstFrame: 28
-      lastFrame: 30
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 1
-      loopBlend: 1
-      loopBlendOrientation: 1
-      loopBlendPositionY: 1
-      loopBlendPositionXZ: 1
-      keepOriginalOrientation: 1
-      keepOriginalPositionY: 0
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 1
-      mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events: []

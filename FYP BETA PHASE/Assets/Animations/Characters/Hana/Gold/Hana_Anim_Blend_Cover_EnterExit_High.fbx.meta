@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 95a8251982be9574bb7aefeae57c0e1c
-timeCreated: 1485075233
+guid: 46c13b2bf1e1a66449eaabb9bf074ffe
+timeCreated: 1485094068
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
@@ -191,11 +191,9 @@ ModelImporter:
     400180: transform8
     400182: Waist_CTRL
     400184: Haha_Joints_GRP
-    7400000: stand_to_cover_crouch_low
-    7400002: cover idle r
-    7400004: cover idle l
-    7400006: cover_idle_left_low
-    7400008: cover_idle_right_low
+    7400000: stand_to_cover_crouch_high
+    7400002: cover_idle_left_high
+    7400004: cover_idle_right_high
     9500000: //RootNode
   materials:
     importMaterials: 0
@@ -209,7 +207,7 @@ ModelImporter:
     motionNodeName: 
     animationImportErrors: 
     animationImportWarnings: "Copied Avatar Rig Configuration mis-match. Inbetween
-      bone rotation in copied configuration does not match rotation in animation file\nHana_Anim_Blend_Cover_EnterExit_Low\nClip
+      bone rotation in copied configuration does not match rotation in animation file\nHana_Anim_Blend_Cover_EnterExit_High\nClip
       'Take 001' has import animation warnings that might lower retargeting quality:\nNote:
       Activate translation DOF on avatar to improve retargeting quality.\n\t'Spine_3_JNT'
       is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'Head_JNT'
@@ -224,7 +222,7 @@ ModelImporter:
     extraExposedTransformPaths: []
     clipAnimations:
     - serializedVersion: 16
-      name: stand_to_cover_crouch_low
+      name: stand_to_cover_crouch_high
       takeName: Take 001
       firstFrame: 1
       lastFrame: 28
@@ -241,7 +239,7 @@ ModelImporter:
       loopBlendPositionXZ: 0
       keepOriginalOrientation: 1
       keepOriginalPositionY: 0
-      keepOriginalPositionXZ: 1
+      keepOriginalPositionXZ: 0
       heightFromFeet: 1
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
@@ -438,7 +436,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: cover_idle_left_low
+      name: cover_idle_left_high
       takeName: Take 001
       firstFrame: 28
       lastFrame: 30
@@ -652,7 +650,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: cover_idle_right_low
+      name: cover_idle_right_high
       takeName: Take 001
       firstFrame: 28
       lastFrame: 30
