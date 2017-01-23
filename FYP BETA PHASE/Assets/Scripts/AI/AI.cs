@@ -5,10 +5,60 @@ using System.Collections;
 
 public class AI : AIFunctions {
 
+    public enum AIStates {
+        Idle,
+        Patrol,
+        Escort,
+        Attacking
+    }
+
+    public enum WeaponType {
+        RaycastShooting,
+        Area
+    }
+
+    [Header("Behaviours")]
+    public AIStates currentState;
+    public float reactionTime;
+    public bool ableToHide;
+    public bool ableToCommunicate;
+    public bool toEscort;
+    public bool knowsTarget;
+    protected AIStates defaultState;
+
+    [Header("Seek Settings (Do not touch)")]
+    public float spaceBetweenChecks;
+    public int possibleSpotsPerSide;
+    Vector3[] multiplier;
+
+    [Header("Weapons")]
+    public float damage;
+    public WeaponType attackType;
+    public float attackInterval;
+    public float weaponRange;
+    public bool piercing;
+    public bool ableToDragPlayerOutOfCover;
+    float attackTimer;
+
+    [Header("Raycast Shooting Attack Settings")]
+    public float gunSprayValue;
+    public TrailEffectFade gunEffect;
+
+    [Header("Area Attack Settings")]
+    public float areaTestRadius;
+
+    [Header("Debug")]
+    public bool damageTest;
+    public bool displayDebugMessage;
+
     PatrolModule patrolMod;
     float stateChangeTimer;
 
     void Start() {
+        multiplier = new Vector3[2];
+        multiplier[0] = new Vector3(1, 0, 0);
+        multiplier[1] = new Vector3(0, 0, 1);
+
         gameObject.tag = "Enemy";
 
         guns[0] = transform.Find("Hanna_GunL");
@@ -16,7 +66,6 @@ public class AI : AIFunctions {
 
         agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
         startingPoint = transform.position;
-        eColl = GetComponent<Collider>();
 
         animator = GetComponent<Animator>();
 
@@ -116,7 +165,6 @@ public class AI : AIFunctions {
             case AIStates.Attacking:
                 if (Time.time > stateChangeTimer) {
                     if (agent.velocity.sqrMagnitude == 0) {
-                        //destination = transform.position;
 
                         if (target) {
                             transform.LookAt(target);
@@ -144,9 +192,6 @@ public class AI : AIFunctions {
                     transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
                     agent.destination = destination;
                 }
-                //Debug.Log(destination);
-
-                //Debug.DrawLine(destination, target.position, Color.blue);
 
                 break;
         }
@@ -158,5 +203,67 @@ public class AI : AIFunctions {
         toEscort = false;
         target = GameObject.FindGameObjectWithTag("Player").transform;
         currentState = AIStates.Attacking;
+    }
+
+    public void Attack() {
+        animator.SetInteger("TreeState", 2);
+        if (Time.time > attackTimer) {
+            Transform targetHit = null;
+            switch (attackType) {
+                case WeaponType.RaycastShooting:
+                    Vector3 offset;
+                    offset = new Vector3(Random.Range(-gunSprayValue, gunSprayValue), Random.Range(-gunSprayValue, gunSprayValue), 0);
+                    foreach (Transform gun in guns) {
+                        gun.LookAt(target);
+
+                        gunEffect.transform.position = gun.position;
+                        gunEffect.gameObject.SetActive(true);
+                        gunEffect.ObjectActive();
+                        StartCoroutine(ChangeObjectLocation(gunEffect.gameObject, gun.position + gun.TransformDirection(0, 0, weaponRange) + offset));
+
+                        RaycastHit hit;
+                        Debug.DrawRay(gun.position, gun.TransformDirection(0, 0, weaponRange) + offset, Color.red);
+                        if (Physics.Raycast(gun.position, gun.TransformDirection(0, 0, weaponRange) + offset, out hit))
+                            if (hit.transform.CompareTag("NearPlayer"))
+                                CivillianManager.instance.PlayRandomSound(hit.point);
+
+                        if (Physics.Raycast(gun.position, gun.TransformDirection(0, 0, weaponRange) + offset, out hit, weaponRange, 1))
+                            targetHit = hit.transform.root;
+
+
+                    }
+                    break;
+                case WeaponType.Area:
+                    Collider[] units = Physics.OverlapSphere(transform.position + transform.TransformDirection(0, 0, weaponRange), areaTestRadius);
+
+                    foreach (Collider unit in units)
+                        if (unit.transform.CompareTag("Player"))
+                            targetHit = unit.transform;
+                    break;
+            }
+
+            //Handle hits here
+            if (targetHit != null)
+                if (targetHit != transform) {
+                    Health hp = targetHit.GetComponent<Health>();
+                    AIFunctions ai;
+                    if (hp && hp.isActiveAndEnabled)
+                        hp.ReceiveDamage(damage);
+
+                    if (targetHit.tag == "Player") {
+                        if (ableToDragPlayerOutOfCover) {
+                            CoverSystem inst = targetHit.GetComponent<CoverSystem>();
+                            inst.EnableController();
+                        }
+                    }
+
+                    if ((ai = targetHit.GetComponent<AIFunctions>()) != null) {
+                        //AIManager.instance.AssignHidingPoint(ai.gameObject, gameObject, weaponRange);
+                        //ai.destination = ai.ObstacleHunting(ai.ableToHide);
+                        ai.destination = ai.GetDestinationPoint();
+                    }
+                    attackTimer = Time.time + attackInterval;
+                }
+        }
     }
 }

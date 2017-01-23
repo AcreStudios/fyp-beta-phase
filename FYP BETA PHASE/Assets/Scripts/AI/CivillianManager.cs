@@ -26,6 +26,7 @@ public class CivillianManager : MonoBehaviour {
     public static CivillianManager instance;
     public int civillianCount;
     public TaskList[] taskLists;
+    public AudioClip[] sfxList;
 
     void Awake() {
         instance = this;
@@ -54,5 +55,10 @@ public class CivillianManager : MonoBehaviour {
         taskDuration = 0.1f;
         taskUser = 0;
         return new TaskLocation();
+    }
+
+    public void PlayRandomSound(Vector3 position) {
+        if (sfxList.Length > 0)
+            SoundManager.instance.PlaySoundOnce(position, sfxList[Random.Range(0, sfxList.Length)]);
     }
 }

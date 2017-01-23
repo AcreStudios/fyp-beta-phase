@@ -77,6 +77,7 @@ public class EventTree : MonoBehaviour {
     public int currentEvent;
 
     public Text missionUI;
+    [HideInInspector]
     public List<EventTree> treesDisabled;
 
     public void TreeEnabled(EventTree treeCalling) {
