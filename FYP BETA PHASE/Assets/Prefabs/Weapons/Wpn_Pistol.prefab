@@ -239,7 +239,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 123324}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.1, z: 0.375}
+  m_LocalPosition: {x: -0, y: 0.095, z: 0.275}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 490182}
@@ -650,18 +650,18 @@ MonoBehaviour:
     bulletSpawnPoint: {fileID: 459810}
     casingSpawnPoint: {fileID: 433252}
     casingSpawnSpeed: 5
-    equipPositionR: {x: 0.15, y: 0.055, z: -0.075}
-    equipRotationR: {x: 350, y: 100, z: 265}
-    equipPositionL: {x: 0, y: 0, z: 0}
-    equipRotationL: {x: 0, y: 0, z: 0}
+    equipPositionR: {x: -0.1, y: -0.05, z: 0.025}
+    equipRotationR: {x: -190, y: -256, z: 85}
+    equipPositionL: {x: -0.05, y: -0.05, z: 0.1}
+    equipRotationL: {x: 190, y: -186, z: 15}
     unequipPosition: {x: 0.01, y: -0.15, z: -0.1}
     unequipRotation: {x: 7.5, y: 30, z: 60}
     useAnimation: 1
     fireLayer: 0
     fireName: PistolFire
   ammoSettings:
-    totalAmmo: 1200
-    currentAmmo: 12
+    totalAmmo: 1191
+    currentAmmo: 4
     maxAmmo: 12
   soundSettings:
     reloadSound: {fileID: 8300000, guid: 6dc2076c5e68e0a4db1bd70b32924fe7, type: 3}
@@ -683,8 +683,8 @@ MonoBehaviour:
       impactSounds:
       - {fileID: 8300000, guid: bdfa88e61ae60254194685c061a61d79, type: 3}
   modelSettings:
-    spineRotationRight: {x: -2, y: -1, z: 0}
-    spineRotationLeft: {x: 8, y: 4, z: 0}
+    spineRotationRight: {x: 0, y: -91, z: -89}
+    spineRotationLeft: {x: 0, y: -85, z: -95}
     leftHandIKTarget: {fileID: 0}
     rightHandIKTarget: {fileID: 0}
 --- !u!114 &11486784
@@ -707,10 +707,10 @@ SphereCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 174726}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.75
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &100100000
 Prefab:
@@ -831,7 +831,7 @@ Transform:
   m_GameObject: {fileID: 1000014262801988}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0.08, z: -0.05}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children:
   - {fileID: 4000012437766006}
   - {fileID: 4000011464824030}
