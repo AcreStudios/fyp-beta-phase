@@ -30,6 +30,7 @@ public class CivillianManager : MonoBehaviour {
 
     void Awake() {
         instance = this;
+        //Debug.Log(gameObject);
         for (var i = 0; i < taskLists.Length; i++) {
             GameObject[] taskLocations = GameObject.FindGameObjectsWithTag(taskLists[i].taskTag);
             taskLists[i].tasks = new TaskLocation[taskLocations.Length];

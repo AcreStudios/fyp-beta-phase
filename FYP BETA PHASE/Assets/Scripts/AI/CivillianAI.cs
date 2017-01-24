@@ -49,7 +49,7 @@ public class CivillianAI : AIFunctions {
 
                     if (instance.taskLocation) {
                         target = instance.taskLocation;
-                        destination = ArcBasedPosition(new Vector3(1.5f, 0, 0), target.position);
+                        destination = ArcBasedPosition(target.position - transform.position, target.position, 2f);
                         actions = Actions.PrepareForWalk;
                     } else if (Random.value <= talkativity)
                         FindSomeoneToTalkTo();
@@ -96,7 +96,7 @@ public class CivillianAI : AIFunctions {
 
     public void FindNewTask(CivillianManager.TaskLocation inst, int taskUser) {
         instance = CivillianManager.instance.TaskQuery(gameObject, out timer, out currentTaskUser);
-
+        //Debug.Log(instance.taskLocation);
         if (inst.taskLocation)
             inst.civillianOnTask[taskUser] = null;
     }
@@ -114,7 +114,7 @@ public class CivillianAI : AIFunctions {
         if (Random.value <= talkativity && !target) {
             //To handle AI being queried.
             target = query.transform;
-            destination = ArcBasedPosition(new Vector3(0, 0, 0), transform.position);
+            destination = ArcBasedPosition(new Vector3(1, 0, 0), transform.position, 2);
             agent.destination = destination;
             timer = attentionSpan;
             actions = Actions.WaitingForQuery;
@@ -123,7 +123,7 @@ public class CivillianAI : AIFunctions {
             //To handle the other AI querying.
             query.timer = attentionSpan;
             query.target = transform;
-            query.destination = ArcBasedPosition(new Vector3(1.5f, 0, 0), transform.position);
+            query.destination = ArcBasedPosition(transform.position - query.transform.position, transform.position, 2);
             query.actions = Actions.PrepareForWalk;
             query.civillianTarget = this;
             return true;

@@ -21,22 +21,14 @@ public class AI : AIFunctions {
     public AIStates currentState;
     public float reactionTime;
     public bool ableToHide;
-    public bool ableToCommunicate;
     public bool toEscort;
-    public bool knowsTarget;
     protected AIStates defaultState;
-
-    [Header("Seek Settings (Do not touch)")]
-    public float spaceBetweenChecks;
-    public int possibleSpotsPerSide;
-    Vector3[] multiplier;
 
     [Header("Weapons")]
     public float damage;
     public WeaponType attackType;
     public float attackInterval;
     public float weaponRange;
-    public bool piercing;
     public bool ableToDragPlayerOutOfCover;
     float attackTimer;
 
@@ -47,6 +39,9 @@ public class AI : AIFunctions {
     [Header("Area Attack Settings")]
     public float areaTestRadius;
 
+    [Header("Mischellenous")]
+    public Transform trueHeight;
+
     [Header("Debug")]
     public bool damageTest;
     public bool displayDebugMessage;
@@ -55,10 +50,6 @@ public class AI : AIFunctions {
     float stateChangeTimer;
 
     void Start() {
-        multiplier = new Vector3[2];
-        multiplier[0] = new Vector3(1, 0, 0);
-        multiplier[1] = new Vector3(0, 0, 1);
-
         gameObject.tag = "Enemy";
 
         guns[0] = transform.Find("Hanna_GunL");
@@ -85,13 +76,10 @@ public class AI : AIFunctions {
 
         if (toEscort) {
             currentState = AIStates.Escort;
-            knowsTarget = true;
-
             agent.destination = patrolMod.patrolLocations[0];
         }
 
-        if (knowsTarget)
-            target = GameObject.FindGameObjectWithTag("Player").transform;
+        target = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     void Update() {
@@ -106,7 +94,7 @@ public class AI : AIFunctions {
                 if (target) {
                     AlertOtherTroops();
                     stateChangeTimer = Time.time + reactionTime;
-                    destination = GetDestinationPoint();
+                    destination = GetDestinationPoint(weaponRange);
                     currentState = AIStates.Attacking;
                 } else {
                     if ((startingPoint - transform.position).magnitude < 1) {
@@ -121,7 +109,7 @@ public class AI : AIFunctions {
                 if (target != null) {
                     AlertOtherTroops();
                     stateChangeTimer = Time.time + reactionTime;
-                    destination = GetDestinationPoint();
+                    destination = GetDestinationPoint(weaponRange);
                     currentState = AIStates.Attacking;
                 } else {
                     if ((patrolMod.patrolLocations[patrolMod.currentLocation] - transform.position).magnitude < 1) {
@@ -176,13 +164,13 @@ public class AI : AIFunctions {
                                 //Debug.DrawLine(destination, hit.point, Color.red, 20);
                                 //Debug.DrawLine(transform.position, hit.point, Color.green);
                                 if (hit.transform.root == target) {
-                                    destination = GetDestinationPoint();
+                                    destination = GetDestinationPoint(weaponRange);
                                     //Debug.DrawLine(transform.position, hit.point, Color.red);
                                 }
                             }
 
                             if ((target.position - transform.position).sqrMagnitude > weaponRange * weaponRange)
-                                destination = GetDestinationPoint();
+                                destination = GetDestinationPoint(weaponRange);
                         }
 
                     } else {
@@ -260,7 +248,7 @@ public class AI : AIFunctions {
                     if ((ai = targetHit.GetComponent<AIFunctions>()) != null) {
                         //AIManager.instance.AssignHidingPoint(ai.gameObject, gameObject, weaponRange);
                         //ai.destination = ai.ObstacleHunting(ai.ableToHide);
-                        ai.destination = ai.GetDestinationPoint();
+                        ai.destination = ai.GetDestinationPoint(weaponRange);
                     }
                     attackTimer = Time.time + attackInterval;
                 }

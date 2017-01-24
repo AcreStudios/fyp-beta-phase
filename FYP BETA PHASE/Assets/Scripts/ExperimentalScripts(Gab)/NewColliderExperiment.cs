@@ -20,30 +20,44 @@ public class NewColliderExperiment : MonoBehaviour {
                 Vector3 temp = Vector3.zero;
                 temp = colliders[i].bounds.center - target.position;
 
-                temp.x = (temp.x / Mathf.Abs(temp.x)) * colliders[i].bounds.extents.x;
+                temp.x = (temp.x / Mathf.Abs(temp.x)) * colliders[i].bounds.extents.x; //Formula for directly behind
                 temp.y = 0;
                 temp.z = (temp.z / Mathf.Abs(temp.z)) * colliders[i].bounds.extents.z;
+
+                if (colliders[i].bounds.center.y > 0.5f) {
+                    if (Mathf.Abs(colliders[i].bounds.center.x - target.position.x) > Mathf.Abs(colliders[i].bounds.center.z - target.position.z))
+                        temp.x *= -1;
+                    else
+                        temp.z *= -1;
+                }
 
                 Debug.DrawLine(target.position, colliders[i].bounds.center + temp, Color.red, 5f);
             }
         }
     }
 
-    public void ExperimentForArc(Vector3 givenVector) {
-        float total = Mathf.Abs(givenVector.x) + Mathf.Abs(givenVector.z);
-        
-        for (var i = -total; i < total + 1; i++) { //Need to find a way to add x depending on angle...
-            Vector3 temp = new Vector3();
+    public Vector3 ArcBasedPosition(Vector3 givenVector, Vector3 targetPos, float givenLength) {
+        Vector3 gradient = givenVector.x >= givenVector.z ? givenVector / givenVector.x : givenVector / givenVector.z;
 
-            temp.x = i; //Make the .x + a value which is offset rather than start at 0.
-            temp.z = total - Mathf.Abs(i);
-            //temp += new Vector3(total, 0, 0) - givenVector;
-            temp = Vector3.Normalize(temp) * total;
-            Debug.DrawLine(transform.position, transform.position + temp, Color.red, 5f);
+        gradient *= -1;
 
-            temp.z *= -1;
-            Debug.DrawLine(transform.position, transform.position + temp, Color.blue, 5f);
+        for (var i = -givenLength; i < givenLength + 1; i++) {
+            Vector3 currentPosInCircle = gradient * i;
+            Vector3 reflexedGradient = new Vector3(-(gradient.z), 0, gradient.x) * (givenLength - Mathf.Abs(i));
+
+            Debug.DrawLine(targetPos, Vector3.Normalize(targetPos + currentPosInCircle + reflexedGradient) * givenLength, Color.red, 10);
+            Debug.DrawLine(targetPos, Vector3.Normalize(targetPos + currentPosInCircle - reflexedGradient) * givenLength, Color.blue, 10);
+            //Debug.DrawLine(targetPos, targetPos + (gradient * i), Color.red, 10f);
+            //Debug.DrawLine(targetPos, targetPos + temp, Color.red, 5f);
+            //if (CheckIfPosAvail(targetPos + temp))
+            //return targetPos + temp;s
+
+            //temp.z *= -1;
+            //Debug.DrawLine(targetPos, targetPos + temp, Color.blue, 5f);
+            //if (CheckIfPosAvail(targetPos + temp))
+            //return targetPos + temp;
         }
+        return transform.position;
     }
 }
 
@@ -63,7 +77,7 @@ public class NewColliderExperimentUI : Editor {
                 t.GetNewPoint();
 
             if (GUILayout.Button("Show new arc"))
-                t.ExperimentForArc(t.test);
+                t.ArcBasedPosition(t.transform.position - t.target.position, t.transform.position, 50);
         }
     }
 }

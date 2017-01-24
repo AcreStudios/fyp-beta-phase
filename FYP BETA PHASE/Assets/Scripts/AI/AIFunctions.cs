@@ -13,7 +13,7 @@ public class AIFunctions : MonoBehaviour {
     protected bool showGunEffect;
     protected Animator animator;
     protected UnityEngine.AI.NavMeshAgent agent;
-    
+
     public virtual void DamageRecieved() {
     }
 
@@ -55,8 +55,8 @@ public class AIFunctions : MonoBehaviour {
         obj.transform.position = location;
     }
 
-    public Vector3 GetDestinationPoint() {
-        Collider[] colliders = Physics.OverlapSphere(target.position, 100);
+    public Vector3 GetDestinationPoint(float range) {
+        Collider[] colliders = Physics.OverlapSphere(target.position, range);
 
         for (var i = 0; i < colliders.Length; i++) {
             if (colliders[i].transform.CompareTag("Obstacles")) {
@@ -67,31 +67,37 @@ public class AIFunctions : MonoBehaviour {
                 temp.y = 0;
                 temp.z = (temp.z / Mathf.Abs(temp.z)) * colliders[i].bounds.extents.z;
 
-                if (CheckIfPosAvail(colliders[i].bounds.center + temp))
-                    return colliders[i].bounds.center + temp;
+                if (colliders[i].bounds.center.y > 0.5f) {
+                    if (Mathf.Abs(colliders[i].bounds.center.x - target.position.x) > Mathf.Abs(colliders[i].bounds.center.z - target.position.z))
+                        temp.x *= -1;
+                    else
+                        temp.z *= -1;
+                }
+
+                temp += colliders[i].bounds.center;
+                temp.y = 0;
+                if (CheckIfPosAvail(temp))
+                    return temp;
             }
         }
-        return ArcBasedPosition(new Vector3(20, 0, 0), target.position);
+        return ArcBasedPosition(target.position - transform.position, target.position, range);
     }
 
-    //This method still needs some working on...
-    public Vector3 ArcBasedPosition(Vector3 givenVector, Vector3 targetPos) {
-        float total = Mathf.Abs(givenVector.x) + Mathf.Abs(givenVector.z);
+    public Vector3 ArcBasedPosition(Vector3 givenVector, Vector3 targetPos, float givenLength) {
+        Vector3 gradient = Mathf.Abs(givenVector.x) >= Mathf.Abs(givenVector.z) ? givenVector / Mathf.Abs(givenVector.x) : givenVector / Mathf.Abs(givenVector.z);
 
-        for (var i = -total; i < total + 1; i++) {
-            Vector3 temp = new Vector3();
+        for (var i = -givenLength; i < givenLength + 1; i++) {
+            Vector3 currentPosInCircle = gradient * i;
+            Vector3 reflexedGradient = new Vector3(-(gradient.z), 0, gradient.x) * (givenLength - Mathf.Abs(i));
 
-            temp.x = i;
-            temp.z = total - Mathf.Abs(i);
-            temp = Vector3.Normalize(temp) * total;
-            //Debug.DrawLine(targetPos, targetPos + temp, Color.red, 5f);
-            if (CheckIfPosAvail(targetPos + temp))
-                return targetPos + temp;
+            //Debug.DrawLine(targetPos, targetPos + (Vector3.Normalize(currentPosInCircle - reflexedGradient) * givenLength), Color.red, 10);
+            //Debug.DrawLine(targetPos, targetPos + (Vector3.Normalize(currentPosInCircle + reflexedGradient) * givenLength), Color.blue, 10);
 
-            temp.z *= -1;
-            //Debug.DrawLine(targetPos, targetPos + temp, Color.blue, 5f);
-            if (CheckIfPosAvail(targetPos + temp))
-                return targetPos + temp;
+            if (CheckIfPosAvail(targetPos + (Vector3.Normalize(currentPosInCircle - reflexedGradient) * givenLength)))
+                return targetPos + (Vector3.Normalize(currentPosInCircle - reflexedGradient) * givenLength);
+
+            if (CheckIfPosAvail(targetPos + (Vector3.Normalize(currentPosInCircle + reflexedGradient) * givenLength)))
+                return targetPos + (Vector3.Normalize(currentPosInCircle + reflexedGradient) * givenLength);
         }
         return transform.position;
     }
