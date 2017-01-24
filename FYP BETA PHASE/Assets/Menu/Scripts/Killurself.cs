@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Killurself : MonoBehaviour {
 
-    public Canvas fadeObj;
+    public GameObject fadeObj;
 	// Use this for initialization
 	void Start () {
         StartCoroutine(fadeOuttahere());
@@ -11,6 +11,6 @@ public class Killurself : MonoBehaviour {
 
     IEnumerator fadeOuttahere() {
         yield return new WaitForSeconds(8);
-        fadeObj.enabled = false;
+        fadeObj.SetActive(false);
     }
 }

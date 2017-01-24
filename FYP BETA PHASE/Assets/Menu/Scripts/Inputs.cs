@@ -36,7 +36,7 @@ public class Inputs : MonoBehaviour {
     #endregion
 
     public MenuScript menuScript;
-    public GameObject video;
+    //public GameObject video;
 
     void Awake() {
         menuScript = GetComponent<MenuScript>();
@@ -57,7 +57,7 @@ public class Inputs : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        video.SetActive(true);
+        //video.SetActive(true);
 	}
 	
 	// Update is called once per frame
@@ -263,7 +263,7 @@ public class Inputs : MonoBehaviour {
         }
         #endregion
         #region Misc Key Handler
-        if((Input.anyKeyDown)&&(menuScript.currentState == "Start screen")&&(video == null)) {
+        if((Input.anyKeyDown)&&(menuScript.currentState == "Start screen")) {
             menuScript.SelectStart();
         }
         #endregion

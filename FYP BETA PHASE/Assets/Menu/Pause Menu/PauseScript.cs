@@ -282,7 +282,7 @@ public class PauseScript : MonoBehaviour {
         //Reload Game
     }
     public void SelectQuitTitleYes() {
-        SceneManager.LoadScene("Menu");
+        SceneManager.LoadScene("Menu Return");
     }
     public void SelectQuitYes() {
         Application.Quit();

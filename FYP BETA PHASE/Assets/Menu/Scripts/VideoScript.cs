@@ -29,6 +29,6 @@ public class VideoScript : MonoBehaviour {
     IEnumerator fadeout() {
         yield return new WaitForSeconds(7);
         GOMainCanvas.SetActive(true);
-        Destroy(toDestroy);
+        toDestroy.SetActive(false);
     }
 }
