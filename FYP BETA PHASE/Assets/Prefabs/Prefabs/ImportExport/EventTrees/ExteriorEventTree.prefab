@@ -12338,7 +12338,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1506516339516074
 GameObject:
   m_ObjectHideFlags: 1
@@ -12670,7 +12670,7 @@ GameObject:
   m_IsActive: 0
 --- !u!1 &1515577885225460
 GameObject:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
@@ -12678,7 +12678,7 @@ GameObject:
   - component: {fileID: 4726951362449806}
   - component: {fileID: 114576830965669418}
   m_Layer: 0
-  m_Name: Open World Event Tree
+  m_Name: Mission 1 Event Tree
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19544,6 +19544,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1790456031152382
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4368055113991534}
+  - component: {fileID: 114466637322095766}
+  m_Layer: 0
+  m_Name: Open World Event Tree
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1790614956580350
 GameObject:
   m_ObjectHideFlags: 1
@@ -19929,6 +19945,21 @@ GameObject:
   - component: {fileID: 4463007732289222}
   m_Layer: 0
   m_Name: mixamorig:LeftHandIndex4
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1806786237377050
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4433346731138300}
+  m_Layer: 0
+  m_Name: Missions Event Trees
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25565,7 +25596,7 @@ Transform:
   - {fileID: 4446994013969170}
   - {fileID: 4752436975492170}
   m_Father: {fileID: 4191848231253188}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4022915247020390
 Transform:
@@ -25707,7 +25738,7 @@ Transform:
   - {fileID: 4240854605079474}
   - {fileID: 4319314022514108}
   m_Father: {fileID: 4191848231253188}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4029548900941896
 Transform:
@@ -26325,7 +26356,7 @@ Transform:
   - {fileID: 4924881796726284}
   - {fileID: 4839169014337028}
   m_Father: {fileID: 4191848231253188}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: -70.535, z: 0}
 --- !u!4 &4054832548355656
 Transform:
@@ -27673,7 +27704,7 @@ Transform:
   - {fileID: 4351011764971030}
   - {fileID: 4143057683515892}
   m_Father: {fileID: 4191848231253188}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: -70.535, z: 0}
 --- !u!4 &4113747717381330
 Transform:
@@ -29382,16 +29413,17 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 4231413093702162}
   - {fileID: 4379622729061748}
   - {fileID: 4447342322553206}
   - {fileID: 4054787638043402}
   - {fileID: 4836726631431270}
   - {fileID: 4113496383235300}
   - {fileID: 4029144271143418}
-  - {fileID: 4110516111203808}
-  - {fileID: 4726951362449806}
   - {fileID: 4769442195829862}
+  - {fileID: 4110516111203808}
+  - {fileID: 4368055113991534}
+  - {fileID: 4433346731138300}
+  - {fileID: 4231413093702162}
   - {fileID: 4866502092848520}
   - {fileID: 4021764416069914}
   m_Father: {fileID: 0}
@@ -30117,7 +30149,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4191848231253188}
-  m_RootOrder: 0
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4232040032465522
 Transform:
@@ -32876,6 +32908,19 @@ Transform:
   m_Father: {fileID: 4169008877306494}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4368055113991534
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1790456031152382}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4191848231253188}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4368742577812552
 Transform:
   m_ObjectHideFlags: 1
@@ -33118,7 +33163,7 @@ Transform:
   - {fileID: 4181223214468190}
   - {fileID: 4973300379769262}
   m_Father: {fileID: 4191848231253188}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -70.535, z: 0}
 --- !u!4 &4381242079699844
 Transform:
@@ -34387,6 +34432,20 @@ Transform:
   m_Father: {fileID: 4583781804548124}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 21.692099, y: -15.0574, z: -33.133698}
+--- !u!4 &4433346731138300
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1806786237377050}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4726951362449806}
+  m_Father: {fileID: 4191848231253188}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4433880439918238
 Transform:
   m_ObjectHideFlags: 1
@@ -34743,7 +34802,7 @@ Transform:
   - {fileID: 4744529603437466}
   - {fileID: 4049688919941412}
   m_Father: {fileID: 4191848231253188}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: -70.535, z: 0}
 --- !u!4 &4447807604975300
 Transform:
@@ -40661,8 +40720,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 4191848231253188}
-  m_RootOrder: 8
+  m_Father: {fileID: 4433346731138300}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4726988093714930
 Transform:
@@ -41614,7 +41673,7 @@ Transform:
   - {fileID: 224319960028237578}
   - {fileID: 4061287565442458}
   m_Father: {fileID: 4191848231253188}
-  m_RootOrder: 9
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4769959781087908
 Transform:
@@ -42979,7 +43038,7 @@ Transform:
   - {fileID: 4355750863438770}
   - {fileID: 4271610338895696}
   m_Father: {fileID: 4191848231253188}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: -70.535, z: 0}
 --- !u!4 &4836766107598762
 Transform:
@@ -43759,7 +43818,7 @@ Transform:
   - {fileID: 224603779693993586}
   - {fileID: 4851056259839444}
   m_Father: {fileID: 4191848231253188}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4867106529633082
 Transform:
@@ -54116,20 +54175,16 @@ MonoBehaviour:
   currentState: 0
   reactionTime: 0
   ableToHide: 0
-  ableToCommunicate: 0
   toEscort: 0
-  knowsTarget: 1
-  spaceBetweenChecks: 0.1
-  possibleSpotsPerSide: 20
   damage: 0
   attackType: 1
   attackInterval: 0
   weaponRange: 2
-  piercing: 0
   ableToDragPlayerOutOfCover: 0
   gunSprayValue: 1
   gunEffect: {fileID: 114196605096203044}
   areaTestRadius: 1
+  trueHeight: {fileID: 0}
   damageTest: 0
   displayDebugMessage: 0
 --- !u!114 &114148738234509560
@@ -54264,20 +54319,16 @@ MonoBehaviour:
   currentState: 0
   reactionTime: 0
   ableToHide: 1
-  ableToCommunicate: 0
   toEscort: 0
-  knowsTarget: 1
-  spaceBetweenChecks: 0.1
-  possibleSpotsPerSide: 20
   damage: 20
   attackType: 0
   attackInterval: 1
   weaponRange: 20
-  piercing: 0
   ableToDragPlayerOutOfCover: 0
   gunSprayValue: 1
   gunEffect: {fileID: 114390241938293238}
   areaTestRadius: 1
+  trueHeight: {fileID: 0}
   damageTest: 0
   displayDebugMessage: 0
 --- !u!114 &114188878366929186
@@ -54492,20 +54543,16 @@ MonoBehaviour:
   currentState: 0
   reactionTime: 0
   ableToHide: 1
-  ableToCommunicate: 0
   toEscort: 0
-  knowsTarget: 1
-  spaceBetweenChecks: 0.1
-  possibleSpotsPerSide: 20
   damage: 20
   attackType: 0
   attackInterval: 1
   weaponRange: 20
-  piercing: 0
   ableToDragPlayerOutOfCover: 0
   gunSprayValue: 1
   gunEffect: {fileID: 114677817374324204}
   areaTestRadius: 1
+  trueHeight: {fileID: 0}
   damageTest: 0
   displayDebugMessage: 0
 --- !u!114 &114266626061729910
@@ -54651,7 +54698,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1505394206819006}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 08b2fb0488100794a87dc3262f2e47e9, type: 3}
   m_Name: 
@@ -55938,20 +55985,16 @@ MonoBehaviour:
   currentState: 2
   reactionTime: 0
   ableToHide: 0
-  ableToCommunicate: 0
   toEscort: 1
-  knowsTarget: 0
-  spaceBetweenChecks: 0
-  possibleSpotsPerSide: 0
   damage: 0
   attackType: 0
   attackInterval: 0
   weaponRange: 0
-  piercing: 0
   ableToDragPlayerOutOfCover: 0
   gunSprayValue: 0
   gunEffect: {fileID: 0}
   areaTestRadius: 0
+  trueHeight: {fileID: 0}
   damageTest: 0
   displayDebugMessage: 0
 --- !u!114 &114381538690965096
@@ -56282,6 +56325,54 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   toGetColor: {fileID: 0}
   rateOfDecay: 0.1
+--- !u!114 &114466637322095766
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1790456031152382}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 784a9566fd241f6419011fa024fc36ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  disablePrevTree: 1
+  disableAllOtherActiveTrees: 0
+  disableExceptions: []
+  reactivePrevTrees: 0
+  reactiveExceptions: []
+  events:
+  - eventName: Mission 1 Trigger
+    missionUI: 
+    eventBody:
+    - eventBodyName: Mission 1 Trigger
+      eventTriggers:
+        triggerPosition: {x: 56.50202, y: -0.6941464, z: -47.6713}
+        triggerRadius: 4
+        timer: 0
+        checkIfDestroyed: []
+        key: 101
+      onEventActive:
+        timer: 0
+        duration: 0
+        location: {x: 0, y: 0, z: 0}
+        randomRange: 0
+        spawns: []
+      results:
+        spawns:
+        - {fileID: 1512372814075308}
+        - {fileID: 1480900083479090}
+        toDestroy:
+        - {fileID: 1407197706488578}
+        eventTreesToActivate:
+        - {fileID: 114576830965669418}
+        debugMessage: Mission 1 Start
+        levelNameToLoad: 
+        unableToProceed: 0
+    calibrated: 0
+  currentEvent: 0
+  missionUI: {fileID: 0}
+  treesDisabled: []
 --- !u!114 &114472713964498522
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -56361,20 +56452,16 @@ MonoBehaviour:
   currentState: 0
   reactionTime: 0
   ableToHide: 1
-  ableToCommunicate: 0
   toEscort: 0
-  knowsTarget: 0
-  spaceBetweenChecks: 0.1
-  possibleSpotsPerSide: 20
   damage: 20
   attackType: 0
   attackInterval: 1
   weaponRange: 20
-  piercing: 0
   ableToDragPlayerOutOfCover: 0
   gunSprayValue: 1
   gunEffect: {fileID: 114120927477054602}
   areaTestRadius: 1
+  trueHeight: {fileID: 0}
   damageTest: 0
   displayDebugMessage: 0
 --- !u!114 &114497868102900492
@@ -56394,20 +56481,16 @@ MonoBehaviour:
   currentState: 0
   reactionTime: 0
   ableToHide: 0
-  ableToCommunicate: 0
   toEscort: 0
-  knowsTarget: 1
-  spaceBetweenChecks: 0.1
-  possibleSpotsPerSide: 20
   damage: 0
   attackType: 1
   attackInterval: 0
   weaponRange: 2
-  piercing: 0
   ableToDragPlayerOutOfCover: 0
   gunSprayValue: 1
   gunEffect: {fileID: 114341712044983568}
   areaTestRadius: 1
+  trueHeight: {fileID: 0}
   damageTest: 0
   displayDebugMessage: 0
 --- !u!114 &114499197327113654
@@ -56463,20 +56546,16 @@ MonoBehaviour:
   currentState: 0
   reactionTime: 0
   ableToHide: 1
-  ableToCommunicate: 0
   toEscort: 0
-  knowsTarget: 0
-  spaceBetweenChecks: 0.1
-  possibleSpotsPerSide: 20
   damage: 20
   attackType: 0
   attackInterval: 1
   weaponRange: 20
-  piercing: 0
   ableToDragPlayerOutOfCover: 0
   gunSprayValue: 1
   gunEffect: {fileID: 114211859807455496}
   areaTestRadius: 1
+  trueHeight: {fileID: 0}
   damageTest: 0
   displayDebugMessage: 0
 --- !u!114 &114504915699571602
@@ -56797,7 +56876,7 @@ MonoBehaviour:
   treesDisabled:
   - {fileID: 114961060556478904}
   - {fileID: 114704798642706142}
-  - {fileID: 114576830965669418}
+  - {fileID: 114466637322095766}
 --- !u!114 &114573780869437228
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -56826,9 +56905,323 @@ MonoBehaviour:
   reactivePrevTrees: 0
   reactiveExceptions: []
   events:
-  - eventName: 
+  - eventName: Walk
     missionUI: 
-    eventBody: []
+    eventBody:
+    - eventBodyName: Walk
+      eventTriggers:
+        triggerPosition: {x: 0, y: 0, z: 0}
+        triggerRadius: 0
+        timer: 4
+        checkIfDestroyed: []
+        key: 0
+      onEventActive:
+        timer: 0
+        duration: 0
+        location: {x: 0, y: 0, z: 0}
+        randomRange: 0
+        spawns: []
+      results:
+        spawns:
+        - {fileID: 1334380988189024}
+        toDestroy:
+        - {fileID: 1563885083390616}
+        eventTreesToActivate: []
+        debugMessage: Let's Walk
+        levelNameToLoad: 
+        unableToProceed: 0
+    calibrated: 0
+  - eventName: Hana 4
+    missionUI: 
+    eventBody:
+    - eventBodyName: Hana 4
+      eventTriggers:
+        triggerPosition: {x: 65.34206, y: -0.5835202, z: -46.94711}
+        triggerRadius: 3
+        timer: 0
+        checkIfDestroyed: []
+        key: 0
+      onEventActive:
+        timer: 0
+        duration: 0
+        location: {x: 0, y: 0, z: 0}
+        randomRange: 0
+        spawns: []
+      results:
+        spawns:
+        - {fileID: 1158948609998752}
+        - {fileID: 1670489272286750}
+        toDestroy: []
+        eventTreesToActivate: []
+        debugMessage: how they find out sia
+        levelNameToLoad: 
+        unableToProceed: 0
+    calibrated: 0
+  - eventName: Rebecca 5
+    missionUI: 
+    eventBody:
+    - eventBodyName: 
+      eventTriggers:
+        triggerPosition: {x: 0, y: 0, z: 0}
+        triggerRadius: 0
+        timer: 0
+        checkIfDestroyed: []
+        key: 0
+      onEventActive:
+        timer: 0
+        duration: 0
+        location: {x: 0, y: 0, z: 0}
+        randomRange: 0
+        spawns: []
+      results:
+        spawns:
+        - {fileID: 1256377191266946}
+        - {fileID: 1790614956580350}
+        toDestroy:
+        - {fileID: 1158948609998752}
+        - {fileID: 1670489272286750}
+        eventTreesToActivate: []
+        debugMessage: aiya very easy one
+        levelNameToLoad: 
+        unableToProceed: 0
+    calibrated: 0
+  - eventName: Hana 5
+    missionUI: 
+    eventBody:
+    - eventBodyName: Hana 5
+      eventTriggers:
+        triggerPosition: {x: 81.1827, y: -0.2923992, z: -46.83643}
+        triggerRadius: 3
+        timer: 0
+        checkIfDestroyed: []
+        key: 0
+      onEventActive:
+        timer: 0
+        duration: 0
+        location: {x: 0, y: 0, z: 0}
+        randomRange: 0
+        spawns: []
+      results:
+        spawns:
+        - {fileID: 1602117234429184}
+        - {fileID: 1192047704434084}
+        toDestroy:
+        - {fileID: 1256377191266946}
+        - {fileID: 1790614956580350}
+        eventTreesToActivate: []
+        debugMessage: william
+        levelNameToLoad: 
+        unableToProceed: 0
+    calibrated: 0
+  - eventName: Ambush
+    missionUI: 
+    eventBody:
+    - eventBodyName: Ambush
+      eventTriggers:
+        triggerPosition: {x: 0, y: 0, z: 0}
+        triggerRadius: 0
+        timer: 2
+        checkIfDestroyed: []
+        key: 0
+      onEventActive:
+        timer: 0
+        duration: 0
+        location: {x: 0, y: 0, z: 0}
+        randomRange: 0
+        spawns: []
+      results:
+        spawns:
+        - {fileID: 1017275721911448}
+        - {fileID: 1258962929546486}
+        - {fileID: 1060153957125638}
+        - {fileID: 1531014406760200}
+        - {fileID: 1783646051965212}
+        - {fileID: 1732628344753186}
+        - {fileID: 1982072645099586}
+        toDestroy:
+        - {fileID: 1334380988189024}
+        - {fileID: 1602117234429184}
+        - {fileID: 1192047704434084}
+        eventTreesToActivate: []
+        debugMessage: wa piang
+        levelNameToLoad: 
+        unableToProceed: 0
+    calibrated: 0
+  - eventName: Reinforcements
+    missionUI: 
+    eventBody:
+    - eventBodyName: Reinforcements
+      eventTriggers:
+        triggerPosition: {x: 0, y: 0, z: 0}
+        triggerRadius: 0
+        timer: 10
+        checkIfDestroyed: []
+        key: 0
+      onEventActive:
+        timer: 0
+        duration: 0
+        location: {x: 0, y: 0, z: 0}
+        randomRange: 0
+        spawns: []
+      results:
+        spawns:
+        - {fileID: 1815562556337030}
+        - {fileID: 1424575809230526}
+        - {fileID: 1397483686278042}
+        - {fileID: 1589910468106382}
+        toDestroy:
+        - {fileID: 1732628344753186}
+        - {fileID: 1982072645099586}
+        eventTreesToActivate: []
+        debugMessage: so many i cri
+        levelNameToLoad: 
+        unableToProceed: 0
+    calibrated: 0
+  - eventName: We Scrub
+    missionUI: 
+    eventBody:
+    - eventBodyName: Follow Me!
+      eventTriggers:
+        triggerPosition: {x: 0, y: 0, z: 0}
+        triggerRadius: 0
+        timer: 0
+        checkIfDestroyed:
+        - {fileID: 1017275721911448}
+        - {fileID: 1060153957125638}
+        key: 0
+      onEventActive:
+        timer: 0
+        duration: 0
+        location: {x: 0, y: 0, z: 0}
+        randomRange: 0
+        spawns: []
+      results:
+        spawns:
+        - {fileID: 1692476427526302}
+        - {fileID: 1386649859684450}
+        - {fileID: 1854463352016016}
+        toDestroy:
+        - {fileID: 1397483686278042}
+        - {fileID: 1589910468106382}
+        eventTreesToActivate: []
+        debugMessage: Follow Reb
+        levelNameToLoad: 
+        unableToProceed: 0
+    calibrated: 0
+  - eventName: Okay
+    missionUI: 
+    eventBody:
+    - eventBodyName: Okay
+      eventTriggers:
+        triggerPosition: {x: 0, y: 0, z: 0}
+        triggerRadius: 0
+        timer: 1.5
+        checkIfDestroyed: []
+        key: 0
+      onEventActive:
+        timer: 0
+        duration: 0
+        location: {x: 0, y: 0, z: 0}
+        randomRange: 0
+        spawns: []
+      results:
+        spawns:
+        - {fileID: 1463086042585660}
+        - {fileID: 1650938390144262}
+        toDestroy:
+        - {fileID: 1386649859684450}
+        - {fileID: 1854463352016016}
+        eventTreesToActivate: []
+        debugMessage: lai lai
+        levelNameToLoad: 
+        unableToProceed: 0
+    calibrated: 0
+  - eventName: Rest In Phases
+    missionUI: 
+    eventBody:
+    - eventBodyName: RIP
+      eventTriggers:
+        triggerPosition: {x: 87.31302, y: -0.2924005, z: -32.14301}
+        triggerRadius: 2
+        timer: 3
+        checkIfDestroyed: []
+        key: 0
+      onEventActive:
+        timer: 0
+        duration: 0
+        location: {x: 0, y: 0, z: 0}
+        randomRange: 0
+        spawns: []
+      results:
+        spawns:
+        - {fileID: 1613298921082412}
+        - {fileID: 1536343030904124}
+        toDestroy:
+        - {fileID: 1463086042585660}
+        - {fileID: 1650938390144262}
+        eventTreesToActivate: []
+        debugMessage: ji pai siao liao
+        levelNameToLoad: 
+        unableToProceed: 0
+    calibrated: 0
+  - eventName: No Rebecca!!
+    missionUI: 
+    eventBody:
+    - eventBodyName: Reb baibai
+      eventTriggers:
+        triggerPosition: {x: 0, y: 0, z: 0}
+        triggerRadius: 0
+        timer: 0
+        checkIfDestroyed: []
+        key: 0
+      onEventActive:
+        timer: 0
+        duration: 0
+        location: {x: 0, y: 0, z: 0}
+        randomRange: 0
+        spawns: []
+      results:
+        spawns:
+        - {fileID: 1493444164935318}
+        - {fileID: 1977965259652488}
+        - {fileID: 1193906551209058}
+        toDestroy:
+        - {fileID: 1692476427526302}
+        - {fileID: 1613298921082412}
+        - {fileID: 1536343030904124}
+        eventTreesToActivate: []
+        debugMessage: rebecca mai humji
+        levelNameToLoad: 
+        unableToProceed: 0
+    calibrated: 0
+  - eventName: Clear Mission 1
+    missionUI: 
+    eventBody:
+    - eventBodyName: Return to Open World
+      eventTriggers:
+        triggerPosition: {x: 0, y: 0, z: 0}
+        triggerRadius: 0
+        timer: 3
+        checkIfDestroyed: []
+        key: 0
+      onEventActive:
+        timer: 0
+        duration: 0
+        location: {x: 0, y: 0, z: 0}
+        randomRange: 0
+        spawns: []
+      results:
+        spawns: []
+        toDestroy:
+        - {fileID: 1308793795252444}
+        - {fileID: 1493444164935318}
+        - {fileID: 1977965259652488}
+        - {fileID: 1193906551209058}
+        eventTreesToActivate:
+        - {fileID: 114466637322095766}
+        debugMessage: 
+        levelNameToLoad: 
+        unableToProceed: 0
     calibrated: 0
   currentEvent: 0
   missionUI: {fileID: 0}
@@ -57014,20 +57407,16 @@ MonoBehaviour:
   currentState: 0
   reactionTime: 0
   ableToHide: 1
-  ableToCommunicate: 0
   toEscort: 0
-  knowsTarget: 0
-  spaceBetweenChecks: 0.1
-  possibleSpotsPerSide: 20
   damage: 20
   attackType: 0
   attackInterval: 1
   weaponRange: 20
-  piercing: 0
   ableToDragPlayerOutOfCover: 0
   gunSprayValue: 1
   gunEffect: {fileID: 114893527479781232}
   areaTestRadius: 1
+  trueHeight: {fileID: 0}
   damageTest: 0
   displayDebugMessage: 0
 --- !u!114 &114660323101507824
@@ -57047,20 +57436,16 @@ MonoBehaviour:
   currentState: 0
   reactionTime: 0
   ableToHide: 1
-  ableToCommunicate: 0
   toEscort: 0
-  knowsTarget: 1
-  spaceBetweenChecks: 0.1
-  possibleSpotsPerSide: 20
   damage: 20
   attackType: 0
   attackInterval: 1
   weaponRange: 20
-  piercing: 0
   ableToDragPlayerOutOfCover: 0
   gunSprayValue: 1
   gunEffect: {fileID: 114802139507483668}
   areaTestRadius: 1
+  trueHeight: {fileID: 0}
   damageTest: 0
   displayDebugMessage: 0
 --- !u!114 &114666851305400246
@@ -57113,20 +57498,16 @@ MonoBehaviour:
   currentState: 0
   reactionTime: 0
   ableToHide: 1
-  ableToCommunicate: 0
   toEscort: 0
-  knowsTarget: 1
-  spaceBetweenChecks: 0.1
-  possibleSpotsPerSide: 20
   damage: 20
   attackType: 0
   attackInterval: 1
   weaponRange: 20
-  piercing: 0
   ableToDragPlayerOutOfCover: 0
   gunSprayValue: 1
   gunEffect: {fileID: 114042866758648044}
   areaTestRadius: 1
+  trueHeight: {fileID: 0}
   damageTest: 0
   displayDebugMessage: 0
 --- !u!114 &114677817374324204
@@ -57399,20 +57780,16 @@ MonoBehaviour:
   currentState: 0
   reactionTime: 0
   ableToHide: 1
-  ableToCommunicate: 0
   toEscort: 0
-  knowsTarget: 1
-  spaceBetweenChecks: 0.1
-  possibleSpotsPerSide: 20
   damage: 20
   attackType: 0
   attackInterval: 1
   weaponRange: 20
-  piercing: 0
   ableToDragPlayerOutOfCover: 0
   gunSprayValue: 1
   gunEffect: {fileID: 114207249110056628}
   areaTestRadius: 1
+  trueHeight: {fileID: 0}
   damageTest: 0
   displayDebugMessage: 0
 --- !u!114 &114716764987731108
@@ -57500,20 +57877,16 @@ MonoBehaviour:
   currentState: 2
   reactionTime: 0
   ableToHide: 0
-  ableToCommunicate: 0
   toEscort: 1
-  knowsTarget: 0
-  spaceBetweenChecks: 0
-  possibleSpotsPerSide: 0
   damage: 0
   attackType: 0
   attackInterval: 0
   weaponRange: 0
-  piercing: 0
   ableToDragPlayerOutOfCover: 0
   gunSprayValue: 0
   gunEffect: {fileID: 0}
   areaTestRadius: 0
+  trueHeight: {fileID: 0}
   damageTest: 0
   displayDebugMessage: 0
 --- !u!114 &114731641753794416
@@ -57641,7 +58014,7 @@ MonoBehaviour:
   treesDisabled:
   - {fileID: 114961060556478904}
   - {fileID: 114704798642706142}
-  - {fileID: 114576830965669418}
+  - {fileID: 114466637322095766}
 --- !u!114 &114747537024267950
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -57674,20 +58047,16 @@ MonoBehaviour:
   currentState: 2
   reactionTime: 0
   ableToHide: 0
-  ableToCommunicate: 0
   toEscort: 1
-  knowsTarget: 0
-  spaceBetweenChecks: 0
-  possibleSpotsPerSide: 0
   damage: 0
   attackType: 0
   attackInterval: 0
   weaponRange: 0
-  piercing: 0
   ableToDragPlayerOutOfCover: 0
   gunSprayValue: 0
   gunEffect: {fileID: 0}
   areaTestRadius: 0
+  trueHeight: {fileID: 0}
   damageTest: 0
   displayDebugMessage: 0
 --- !u!114 &114767257640388224
@@ -57707,20 +58076,16 @@ MonoBehaviour:
   currentState: 2
   reactionTime: 0
   ableToHide: 0
-  ableToCommunicate: 0
   toEscort: 1
-  knowsTarget: 0
-  spaceBetweenChecks: 0
-  possibleSpotsPerSide: 0
   damage: 0
   attackType: 0
   attackInterval: 0
   weaponRange: 0
-  piercing: 0
   ableToDragPlayerOutOfCover: 0
   gunSprayValue: 0
   gunEffect: {fileID: 0}
   areaTestRadius: 0
+  trueHeight: {fileID: 0}
   damageTest: 0
   displayDebugMessage: 0
 --- !u!114 &114802139507483668
@@ -57847,20 +58212,16 @@ MonoBehaviour:
   currentState: 0
   reactionTime: 0
   ableToHide: 1
-  ableToCommunicate: 0
   toEscort: 0
-  knowsTarget: 1
-  spaceBetweenChecks: 0.1
-  possibleSpotsPerSide: 20
   damage: 20
   attackType: 0
   attackInterval: 1
   weaponRange: 20
-  piercing: 0
   ableToDragPlayerOutOfCover: 0
   gunSprayValue: 1
   gunEffect: {fileID: 114809940059009632}
   areaTestRadius: 1
+  trueHeight: {fileID: 0}
   damageTest: 0
   displayDebugMessage: 0
 --- !u!114 &114866580897775976
@@ -57880,20 +58241,16 @@ MonoBehaviour:
   currentState: 0
   reactionTime: 0
   ableToHide: 1
-  ableToCommunicate: 0
   toEscort: 0
-  knowsTarget: 1
-  spaceBetweenChecks: 0.1
-  possibleSpotsPerSide: 20
   damage: 20
   attackType: 0
   attackInterval: 1
   weaponRange: 20
-  piercing: 0
   ableToDragPlayerOutOfCover: 0
   gunSprayValue: 1
   gunEffect: {fileID: 114192237371258952}
   areaTestRadius: 1
+  trueHeight: {fileID: 0}
   damageTest: 0
   displayDebugMessage: 0
 --- !u!114 &114875875192358050
@@ -57913,20 +58270,16 @@ MonoBehaviour:
   currentState: 0
   reactionTime: 0
   ableToHide: 1
-  ableToCommunicate: 0
   toEscort: 0
-  knowsTarget: 0
-  spaceBetweenChecks: 0.1
-  possibleSpotsPerSide: 20
   damage: 20
   attackType: 0
   attackInterval: 1
   weaponRange: 20
-  piercing: 0
   ableToDragPlayerOutOfCover: 0
   gunSprayValue: 1
   gunEffect: {fileID: 114462722495042144}
   areaTestRadius: 1
+  trueHeight: {fileID: 0}
   damageTest: 0
   displayDebugMessage: 0
 --- !u!114 &114879073485369308
@@ -58193,8 +58546,202 @@ MonoBehaviour:
         - {fileID: 1294774767772320}
         - {fileID: 1485488433506870}
         eventTreesToActivate:
-        - {fileID: 114576830965669418}
+        - {fileID: 114466637322095766}
         debugMessage: '*sniffs*'
+        levelNameToLoad: 
+        unableToProceed: 0
+    calibrated: 0
+  - eventName: Trigger Open World Introduction
+    missionUI: 
+    eventBody:
+    - eventBodyName: Trigger Open World Dialogue
+      eventTriggers:
+        triggerPosition: {x: 11.2145, y: -0.6941501, z: -4.847233}
+        triggerRadius: 7
+        timer: 0
+        checkIfDestroyed: []
+        key: 0
+      onEventActive:
+        timer: 0
+        duration: 0
+        location: {x: 0, y: 0, z: 0}
+        randomRange: 0
+        spawns: []
+      results:
+        spawns:
+        - {fileID: 1901718576250932}
+        toDestroy:
+        - {fileID: 1077618231306216}
+        - {fileID: 1196254147773826}
+        eventTreesToActivate: []
+        debugMessage: Open World Baby
+        levelNameToLoad: 
+        unableToProceed: 0
+    calibrated: 0
+  - eventName: Hana 1
+    missionUI: 
+    eventBody:
+    - eventBodyName: Hana 1
+      eventTriggers:
+        triggerPosition: {x: 0, y: 0, z: 0}
+        triggerRadius: 0
+        timer: 3
+        checkIfDestroyed: []
+        key: 0
+      onEventActive:
+        timer: 0
+        duration: 0
+        location: {x: 0, y: 0, z: 0}
+        randomRange: 0
+        spawns: []
+      results:
+        spawns:
+        - {fileID: 1911332050044752}
+        - {fileID: 1050740246512766}
+        toDestroy: []
+        eventTreesToActivate: []
+        debugMessage: Hello?
+        levelNameToLoad: 
+        unableToProceed: 0
+    calibrated: 0
+  - eventName: Rebecca 1
+    missionUI: 
+    eventBody:
+    - eventBodyName: Reb 1
+      eventTriggers:
+        triggerPosition: {x: 0, y: 0, z: 0}
+        triggerRadius: 0
+        timer: 1
+        checkIfDestroyed: []
+        key: 0
+      onEventActive:
+        timer: 0
+        duration: 0
+        location: {x: 0, y: 0, z: 0}
+        randomRange: 0
+        spawns: []
+      results:
+        spawns:
+        - {fileID: 1128729652799182}
+        - {fileID: 1152292381453510}
+        toDestroy:
+        - {fileID: 1911332050044752}
+        - {fileID: 1050740246512766}
+        eventTreesToActivate: []
+        debugMessage: is you oki
+        levelNameToLoad: 
+        unableToProceed: 0
+    calibrated: 0
+  - eventName: Hana 2
+    missionUI: 
+    eventBody:
+    - eventBodyName: 
+      eventTriggers:
+        triggerPosition: {x: 0, y: 0, z: 0}
+        triggerRadius: 0
+        timer: 3.5
+        checkIfDestroyed: []
+        key: 0
+      onEventActive:
+        timer: 0
+        duration: 0
+        location: {x: 0, y: 0, z: 0}
+        randomRange: 0
+        spawns: []
+      results:
+        spawns:
+        - {fileID: 1743895406873170}
+        - {fileID: 1723202762525128}
+        toDestroy:
+        - {fileID: 1128729652799182}
+        - {fileID: 1152292381453510}
+        eventTreesToActivate: []
+        debugMessage: i oki, wru
+        levelNameToLoad: 
+        unableToProceed: 0
+    calibrated: 0
+  - eventName: Rebecca 2
+    missionUI: 
+    eventBody:
+    - eventBodyName: Reb 2
+      eventTriggers:
+        triggerPosition: {x: 0, y: 0, z: 0}
+        triggerRadius: 0
+        timer: 3.2
+        checkIfDestroyed: []
+        key: 0
+      onEventActive:
+        timer: 0
+        duration: 0
+        location: {x: 0, y: 0, z: 0}
+        randomRange: 0
+        spawns: []
+      results:
+        spawns:
+        - {fileID: 1635045768129854}
+        - {fileID: 1197404885228556}
+        toDestroy:
+        - {fileID: 1743895406873170}
+        - {fileID: 1723202762525128}
+        eventTreesToActivate: []
+        debugMessage: eden sq bb
+        levelNameToLoad: 
+        unableToProceed: 0
+    calibrated: 0
+  - eventName: Rebecca 2.5
+    missionUI: 
+    eventBody:
+    - eventBodyName: Reb 2.5
+      eventTriggers:
+        triggerPosition: {x: 0, y: 0, z: 0}
+        triggerRadius: 0
+        timer: 1.5
+        checkIfDestroyed: []
+        key: 0
+      onEventActive:
+        timer: 0
+        duration: 0
+        location: {x: 0, y: 0, z: 0}
+        randomRange: 0
+        spawns: []
+      results:
+        spawns:
+        - {fileID: 1176409434948504}
+        - {fileID: 1805028298171288}
+        toDestroy:
+        - {fileID: 1635045768129854}
+        - {fileID: 1197404885228556}
+        eventTreesToActivate: []
+        debugMessage: meet me there bb
+        levelNameToLoad: 
+        unableToProceed: 0
+    calibrated: 0
+  - eventName: Trigger True Open World
+    missionUI: 
+    eventBody:
+    - eventBodyName: Open World Tree
+      eventTriggers:
+        triggerPosition: {x: 0, y: 0, z: 0}
+        triggerRadius: 0
+        timer: 2.5
+        checkIfDestroyed: []
+        key: 0
+      onEventActive:
+        timer: 0
+        duration: 0
+        location: {x: 0, y: 0, z: 0}
+        randomRange: 0
+        spawns: []
+      results:
+        spawns:
+        - {fileID: 1563885083390616}
+        - {fileID: 1407197706488578}
+        toDestroy:
+        - {fileID: 1176409434948504}
+        - {fileID: 1805028298171288}
+        eventTreesToActivate:
+        - {fileID: 114466637322095766}
+        debugMessage: Here we go
         levelNameToLoad: 
         unableToProceed: 0
     calibrated: 0
@@ -58203,7 +58750,7 @@ MonoBehaviour:
   treesDisabled:
   - {fileID: 114571298317573472}
   - {fileID: 114704798642706142}
-  - {fileID: 114576830965669418}
+  - {fileID: 114466637322095766}
 --- !u!114 &114962744405059682
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -58287,20 +58834,16 @@ MonoBehaviour:
   currentState: 0
   reactionTime: 0
   ableToHide: 1
-  ableToCommunicate: 0
   toEscort: 0
-  knowsTarget: 1
-  spaceBetweenChecks: 0.1
-  possibleSpotsPerSide: 20
   damage: 20
   attackType: 0
   attackInterval: 1
   weaponRange: 20
-  piercing: 0
   ableToDragPlayerOutOfCover: 0
   gunSprayValue: 1
   gunEffect: {fileID: 114176066850716060}
   areaTestRadius: 1
+  trueHeight: {fileID: 0}
   damageTest: 0
   displayDebugMessage: 0
 --- !u!124 &124865773020162858
