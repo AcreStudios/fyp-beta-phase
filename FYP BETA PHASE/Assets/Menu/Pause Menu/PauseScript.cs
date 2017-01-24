@@ -262,36 +262,51 @@ public class PauseScript : MonoBehaviour {
         reloadCanvas.reloadCanvas.SetActive(true);
         quitTitleCanvas.quitTitleCanvas.SetActive(false);
         quitCanvas.quitCanvas.SetActive(false);
-        currentState = "Reload Screen";
+        currentState = "MOReloadNo";
     }
     public void SelectQuitTitle() {
         pauseCanvas.pauseCanvas.SetActive(false);
         reloadCanvas.reloadCanvas.SetActive(false);
         quitTitleCanvas.quitTitleCanvas.SetActive(true);
         quitCanvas.quitCanvas.SetActive(false);
-        currentState = "Quit Title Screen";
+        currentState = "MOQTNo";
     }
     public void SelectQuit() {
         pauseCanvas.pauseCanvas.SetActive(false);
         reloadCanvas.reloadCanvas.SetActive(false);
         quitTitleCanvas.quitTitleCanvas.SetActive(false);
         quitCanvas.quitCanvas.SetActive(true);
-        currentState = "Quit Screen";
+        currentState = "MOQCNo";
     }
     public void SelectReloadYes() {
         //Reload Game
     }
     public void SelectQuitTitleYes() {
-        SceneManager.LoadScene("Menu_Improvised");
+        SceneManager.LoadScene("Menu");
     }
     public void SelectQuitYes() {
         Application.Quit();
     }
-    public void SelectNo() {
+    public void SelectNoReload() {
         pauseCanvas.pauseCanvas.SetActive(true);
         reloadCanvas.reloadCanvas.SetActive(false);
         quitTitleCanvas.quitTitleCanvas.SetActive(false);
         quitCanvas.quitCanvas.SetActive(false);
+        currentState = "MOReload";
+    }
+    public void SelectNoQT() {
+        pauseCanvas.pauseCanvas.SetActive(true);
+        reloadCanvas.reloadCanvas.SetActive(false);
+        quitTitleCanvas.quitTitleCanvas.SetActive(false);
+        quitCanvas.quitCanvas.SetActive(false);
+        currentState = "MOQuitTitle";
+    }
+    public void SelectNoQC() {
+        pauseCanvas.pauseCanvas.SetActive(true);
+        reloadCanvas.reloadCanvas.SetActive(false);
+        quitTitleCanvas.quitTitleCanvas.SetActive(false);
+        quitCanvas.quitCanvas.SetActive(false);
+        currentState = "MOQuit";
     }
     #endregion
     private void HandleInput() {
@@ -386,7 +401,7 @@ public class PauseScript : MonoBehaviour {
                 SelectReloadYes();
             }
             else if (currentState == "MOReloadNo") {
-                SelectNo();
+                SelectNoReload();
             }
             #endregion
             #region Quit Title Canvas
@@ -394,7 +409,7 @@ public class PauseScript : MonoBehaviour {
                 SelectQuitTitleYes();
             }
             else if (currentState == "MOQTNo") {
-                SelectNo();
+                SelectNoQT();
             }
             #endregion
             #region Quit Canvas
@@ -402,7 +417,7 @@ public class PauseScript : MonoBehaviour {
                 SelectQuitYes();
             }
             else if (currentState == "MOQCNo") {
-                SelectNo();
+                SelectNoQC();
             }
             #endregion
         }
@@ -413,13 +428,13 @@ public class PauseScript : MonoBehaviour {
                 SelectResume();
             }
             else if ((currentState == "Reload Screen")||(currentState == "MOReloadYes")||(currentState == "MOReloadNo")) {
-                SelectNo();
+                SelectNoReload();
             }
             else if ((currentState == "Quit Title Screen") || (currentState == "MOQTYes") || (currentState == "MOQTNo")) {
-                SelectNo();
+                SelectNoQT();
             }
             else if ((currentState == "Quit Screen") || (currentState == "MOQCYes") || (currentState == "MOQCNo")) {
-                SelectNo();
+                SelectNoQC();
             }
         }
         #endregion

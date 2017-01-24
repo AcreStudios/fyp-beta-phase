@@ -35,7 +35,7 @@ public class BeforeMenu : MonoBehaviour {
 	}
 
     public void nextScene() {
-        SceneManager.LoadScene("Menu_Improvised");
+        SceneManager.LoadScene("Menu");
     }
 
     public void disclaimerClick() {

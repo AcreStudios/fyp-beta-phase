@@ -362,7 +362,7 @@ public class MenuScript : MonoBehaviour {
     }
     public void loadApplication() {
         if(inputs.keySpace) {
-            SceneManager.LoadScene("Interior02");
+            SceneManager.LoadScene("AcreHQ");
         }
     }
     public void SelectDevMenu() {
@@ -374,10 +374,10 @@ public class MenuScript : MonoBehaviour {
         currentState = "Dev Screen";
     }
     public void SelectInterior() {
-        SceneManager.LoadScene("Interior02");
+        SceneManager.LoadScene("AcreHQ");
     }
     public void SelectExterior() {
-        SceneManager.LoadScene("Exterior03");
+        SceneManager.LoadScene("Eden");
     }
     #endregion
 
