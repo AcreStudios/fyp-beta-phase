@@ -3,6 +3,13 @@ using System.Collections;
 
 public class AIFunctions : MonoBehaviour {
 
+    [Header("Cover Settings")]
+    public Transform minHeightForCover;
+    public Transform maxHeightForCover;
+    public bool ableToHide;
+    protected Vector3[] obstacleHuntingMultiplier;
+
+    [Header("Target-Related Settings")]
     public Vector3 destination;
     public Collider destinationMarker;
     public Transform target;
@@ -13,6 +20,15 @@ public class AIFunctions : MonoBehaviour {
     protected bool showGunEffect;
     protected Animator animator;
     protected UnityEngine.AI.NavMeshAgent agent;
+
+    void Awake() {
+        obstacleHuntingMultiplier = new Vector3[4];
+
+        obstacleHuntingMultiplier[0] = new Vector3(1, 1, 1);
+        obstacleHuntingMultiplier[1] = new Vector3(-1, 1, 1);
+        obstacleHuntingMultiplier[2] = new Vector3(1, 1, -1);
+        obstacleHuntingMultiplier[3] = new Vector3(-1, 1, -1);
+    }
 
     public virtual void DamageRecieved() {
     }
@@ -56,34 +72,45 @@ public class AIFunctions : MonoBehaviour {
     }
 
     public Vector3 GetDestinationPoint(float range) {
-        Collider[] colliders = Physics.OverlapSphere(target.position, range);
+        if (ableToHide) {
 
-        for (var i = 0; i < colliders.Length; i++) {
-            if (colliders[i].transform.CompareTag("Obstacles")) {
-                Vector3 temp = Vector3.zero;
-                temp = colliders[i].bounds.center - target.position;
+            Vector3 tempGradient = Vector3.Normalize(transform.position - target.position);
 
-                temp.x = (temp.x / Mathf.Abs(temp.x)) * colliders[i].bounds.extents.x;
-                temp.y = 0;
-                temp.z = (temp.z / Mathf.Abs(temp.z)) * colliders[i].bounds.extents.z;
+            for (var j = 0; j < obstacleHuntingMultiplier.Length; j++) {
+                //Debug.DrawLine(target.position, target.position + (new Vector3(tempGradient.x * obstacleHuntingMultiplier[j].x, 0, tempGradient.z * obstacleHuntingMultiplier[j].z) * (range / 2)),Color.black,5);
+                Collider[] colliders = Physics.OverlapSphere(target.position + (new Vector3(tempGradient.x * obstacleHuntingMultiplier[j].x, 0, tempGradient.z * obstacleHuntingMultiplier[j].z) * (range / 2)), range / 2);
 
-                if (colliders[i].bounds.center.y > 0.5f) {
-                    if (Mathf.Abs(colliders[i].bounds.center.x - target.position.x) > Mathf.Abs(colliders[i].bounds.center.z - target.position.z))
-                        temp.x *= -1;
-                    else
-                        temp.z *= -1;
+                for (var i = 0; i < colliders.Length; i++) {
+                    if (colliders[i].transform.CompareTag("Untagged"))
+                        if (colliders[i].bounds.center.y + colliders[i].bounds.extents.y > minHeightForCover.position.y) {
+                            Vector3 temp = Vector3.zero;
+                            temp = colliders[i].bounds.center - target.position;
+
+                            temp.x = (temp.x / Mathf.Abs(temp.x)) * colliders[i].bounds.extents.x;
+                            temp.z = (temp.z / Mathf.Abs(temp.z)) * colliders[i].bounds.extents.z;
+
+                            if (colliders[i].bounds.center.y > maxHeightForCover.position.y) {
+                                if (Mathf.Abs(colliders[i].bounds.center.x - target.position.x) > Mathf.Abs(colliders[i].bounds.center.z - target.position.z))
+                                    temp.x *= -1;
+                                else
+                                    temp.z *= -1;
+                            }
+
+                            temp += colliders[i].bounds.center;
+                            temp.y = transform.position.y;
+                            if (CheckIfPosAvail(temp))
+                                return temp;
+                        }
                 }
-
-                temp += colliders[i].bounds.center;
-                temp.y = 0;
-                if (CheckIfPosAvail(temp))
-                    return temp;
             }
         }
         return ArcBasedPosition(target.position - transform.position, target.position, range);
     }
 
     public Vector3 ArcBasedPosition(Vector3 givenVector, Vector3 targetPos, float givenLength) {
+        givenVector.y = 0;
+        targetPos.y = transform.position.y;
+
         Vector3 gradient = Mathf.Abs(givenVector.x) >= Mathf.Abs(givenVector.z) ? givenVector / Mathf.Abs(givenVector.x) : givenVector / Mathf.Abs(givenVector.z);
 
         for (var i = -givenLength; i < givenLength + 1; i++) {
@@ -103,7 +130,7 @@ public class AIFunctions : MonoBehaviour {
     }
 
     public bool CheckIfPosAvail(Vector3 temp) {
-        temp.y = 0.1f;
+        temp.y = transform.position.y;
         bool hitFloor = false;
 
         Collider[] inCollision = Physics.OverlapCapsule(temp, temp, 1);

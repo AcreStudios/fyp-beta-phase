@@ -20,7 +20,6 @@ public class AI : AIFunctions {
     [Header("Behaviours")]
     public AIStates currentState;
     public float reactionTime;
-    public bool ableToHide;
     public bool toEscort;
     protected AIStates defaultState;
 
@@ -38,9 +37,6 @@ public class AI : AIFunctions {
 
     [Header("Area Attack Settings")]
     public float areaTestRadius;
-
-    [Header("Mischellenous")]
-    public Transform trueHeight;
 
     [Header("Debug")]
     public bool damageTest;
@@ -172,7 +168,6 @@ public class AI : AIFunctions {
                             if ((target.position - transform.position).sqrMagnitude > weaponRange * weaponRange)
                                 destination = GetDestinationPoint(weaponRange);
                         }
-
                     } else {
                         animator.SetInteger("TreeState", 1);
                         transform.LookAt(destination);
@@ -238,18 +233,15 @@ public class AI : AIFunctions {
                     if (hp && hp.isActiveAndEnabled)
                         hp.ReceiveDamage(damage);
 
-                    if (targetHit.tag == "Player") {
+                    if (targetHit.tag == "Player")
                         if (ableToDragPlayerOutOfCover) {
                             CoverSystem inst = targetHit.GetComponent<CoverSystem>();
                             inst.EnableController();
                         }
-                    }
 
-                    if ((ai = targetHit.GetComponent<AIFunctions>()) != null) {
-                        //AIManager.instance.AssignHidingPoint(ai.gameObject, gameObject, weaponRange);
-                        //ai.destination = ai.ObstacleHunting(ai.ableToHide);
+                    if ((ai = targetHit.GetComponent<AIFunctions>()) != null)
                         ai.destination = ai.GetDestinationPoint(weaponRange);
-                    }
+
                     attackTimer = Time.time + attackInterval;
                 }
         }

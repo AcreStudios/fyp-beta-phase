@@ -25,8 +25,11 @@ public class CivillianManager : MonoBehaviour {
     public List<CivillianAI> civillianAIList = new List<CivillianAI>();
     public static CivillianManager instance;
     public int civillianCount;
+    public GameObject civillian;
     public TaskList[] taskLists;
     public AudioClip[] sfxList;
+
+    MeshFilter[] floors;
 
     void Awake() {
         instance = this;
@@ -39,6 +42,16 @@ public class CivillianManager : MonoBehaviour {
                 taskLists[i].tasks[j].civillianOnTask = new GameObject[taskLists[i].taskCapacity];
             }
         }
+
+        GameObject[] floor = GameObject.FindGameObjectsWithTag("Floor");
+        floors = new MeshFilter[floor.Length];
+
+        for (var i = 0; i < floors.Length; i++) 
+            floors[i] = floor[i].GetComponent<MeshFilter>();
+           
+        for (var i = 0; i < civillianCount; i++)
+            SpawnOnRandomFloor(civillian);
+
     }
 
     public TaskLocation TaskQuery(GameObject query, out float taskDuration, out int taskUser) {
@@ -61,5 +74,12 @@ public class CivillianManager : MonoBehaviour {
     public void PlayRandomSound(Vector3 position) {
         if (sfxList.Length > 0)
             SoundManager.instance.PlaySoundOnce(position, sfxList[Random.Range(0, sfxList.Length)]);
+    }
+
+    public void SpawnOnRandomFloor(GameObject civillian) {
+        MeshFilter floorChoose = floors[Random.Range(0, floors.Length)];
+
+        Vector3 spawnLocation = floorChoose.mesh.vertices[Random.Range(0, floorChoose.mesh.vertices.Length)];
+        Instantiate(civillian, new Vector3(spawnLocation.x* floorChoose.transform.localScale.x,0, spawnLocation.z * floorChoose.transform.localScale.z) + floorChoose.transform.position, Quaternion.identity);
     }
 }

@@ -57,9 +57,12 @@ public class CivillianAI : AIFunctions {
                 break;
 
             case Actions.PerformTask:
+                transform.LookAt(target);
+
                 if (timer <= Time.time) {
                     actions = Actions.CheckForTask;
                     colorChanging.material.color = Color.blue;
+                    target = null;
                 }
                 break;
 
@@ -71,12 +74,13 @@ public class CivillianAI : AIFunctions {
                     FindSomeoneToTalkTo();
                 }
 
-                if (agent.velocity.sqrMagnitude > 0) {
+                if (agent.velocity.sqrMagnitude > 0 || (destination - transform.position).sqrMagnitude < 5)
                     actions = Actions.Walk;
-                }
                 break;
 
             case Actions.Walk:
+                transform.LookAt(destination);
+
                 if (agent.velocity.sqrMagnitude == 0) {
                     actions = Actions.PerformTask;
                     timer += Time.time;
@@ -114,7 +118,7 @@ public class CivillianAI : AIFunctions {
         if (Random.value <= talkativity && !target) {
             //To handle AI being queried.
             target = query.transform;
-            destination = ArcBasedPosition(new Vector3(1, 0, 0), transform.position, 2);
+            destination = ArcBasedPosition(new Vector3(1,0,0),transform.position,2);
             agent.destination = destination;
             timer = attentionSpan;
             actions = Actions.WaitingForQuery;
