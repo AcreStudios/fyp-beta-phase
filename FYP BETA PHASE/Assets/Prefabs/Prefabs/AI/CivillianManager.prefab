@@ -20,7 +20,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4052353600002944}
   - component: {fileID: 114314412429072714}
-  - component: {fileID: 114239765338739352}
   m_Layer: 0
   m_Name: CivillianManager
   m_TagString: Untagged
@@ -41,17 +40,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114239765338739352
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1144648733888736}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 12f4e28a6e6bfc3468f8d2dd3db0cf73, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114314412429072714
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -64,6 +52,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   civillianAIList: []
+  aiList: []
+  hostile: 0
   civillianCount: 100
   civillian: {fileID: 1621552198432266, guid: 13c284741faa661488a219892687d6b7, type: 2}
   taskLists:

@@ -48,6 +48,9 @@ public class AI : AIFunctions {
     void Start() {
         gameObject.tag = "Enemy";
 
+        CivillianManager.instance.aiList.Add(this);
+        gameObject.name = (CivillianManager.instance.aiList.Count - 1).ToString();
+
         guns[0] = transform.Find("Hanna_GunL");
         linecastCheck = transform.Find("LinecastChecker");
 
@@ -75,7 +78,8 @@ public class AI : AIFunctions {
             agent.destination = patrolMod.patrolLocations[0];
         }
 
-        target = GameObject.FindGameObjectWithTag("Player").transform;
+        if (CivillianManager.instance.hostile)
+            HostileKnown();
     }
 
     void Update() {
@@ -186,6 +190,8 @@ public class AI : AIFunctions {
         toEscort = false;
         target = GameObject.FindGameObjectWithTag("Player").transform;
         currentState = AIStates.Attacking;
+
+        base.DamageRecieved();
     }
 
     public void Attack() {
@@ -225,7 +231,6 @@ public class AI : AIFunctions {
                     break;
             }
 
-            //Handle hits here
             if (targetHit != null)
                 if (targetHit != transform) {
                     Health hp = targetHit.GetComponent<Health>();
@@ -245,5 +250,9 @@ public class AI : AIFunctions {
                     attackTimer = Time.time + attackInterval;
                 }
         }
+    }
+
+    public void HostileKnown() {
+        target = GameObject.FindGameObjectWithTag("Player").transform;
     }
 }

@@ -6,7 +6,7 @@ using UnityEngine.AI;
 public class CivillianAI : AIFunctions {
 
     public enum Actions {
-        CheckForTask, PerformTask, Walk, PrepareForWalk, WaitingForQuery
+        CheckForTask, PerformTask, Walk, PrepareForWalk, WaitingForQuery, RunFromPlayer
     }
 
     public Actions actions;
@@ -17,6 +17,8 @@ public class CivillianAI : AIFunctions {
     //public float socialbility = 0.5f;
     public float attentionSpan = 5;
     public float sightRange = 10;
+    public float fearRandomiserMin = 2;
+    public float fearRandomiserMax = 5;
     public bool randomlyGeneratedValues;
 
     CivillianManager.TaskLocation instance;
@@ -27,6 +29,8 @@ public class CivillianAI : AIFunctions {
     Renderer colorChanging;
 
     void Start() {
+        animator = GetComponent<Animator>();
+
         colorChanging = GetComponent<Renderer>();
         CivillianManager.instance.civillianAIList.Add(this);
         gameObject.tag = "Civillian";
@@ -39,6 +43,9 @@ public class CivillianAI : AIFunctions {
             //socialbility = Random.value;
             attentionSpan = Random.Range(5, 60);
         }
+
+        if (CivillianManager.instance.hostile)
+            Scared();
     }
 
     void Update() {
@@ -54,10 +61,12 @@ public class CivillianAI : AIFunctions {
                     } else if (Random.value <= talkativity)
                         FindSomeoneToTalkTo();
                 }
+                animator.SetInteger("TreeState", 0);
                 break;
 
             case Actions.PerformTask:
                 transform.LookAt(target);
+                animator.SetInteger("TreeState", 0);
 
                 if (timer <= Time.time) {
                     actions = Actions.CheckForTask;
@@ -68,6 +77,7 @@ public class CivillianAI : AIFunctions {
 
             case Actions.PrepareForWalk:
                 agent.destination = destination;
+                animator.SetInteger("TreeState", 0);
 
                 if (destination == transform.position) {
                     target = null;
@@ -80,6 +90,7 @@ public class CivillianAI : AIFunctions {
 
             case Actions.Walk:
                 transform.LookAt(destination);
+                animator.SetInteger("TreeState", 1);
 
                 if (agent.velocity.sqrMagnitude == 0) {
                     actions = Actions.PerformTask;
@@ -94,13 +105,26 @@ public class CivillianAI : AIFunctions {
                     }
                 }
                 break;
+
+            case Actions.RunFromPlayer:
+
+                if ((target.position - destination).sqrMagnitude < (sightRange * 10) * (sightRange * 10)) {
+                    destination = ArcBasedPosition(target.position - transform.position, target.position, sightRange * 10);
+                    agent.destination = destination;
+                }
+
+                if (agent.velocity.sqrMagnitude > 0)
+                    animator.SetInteger("TreeState", 1);
+                else
+                    animator.SetInteger("TreeState", 0);
+                break;
         }
         destinationMarker.transform.position = destination;
     }
 
     public void FindNewTask(CivillianManager.TaskLocation inst, int taskUser) {
         instance = CivillianManager.instance.TaskQuery(gameObject, out timer, out currentTaskUser);
-        //Debug.Log(instance.taskLocation);
+
         if (inst.taskLocation)
             inst.civillianOnTask[taskUser] = null;
     }
@@ -118,7 +142,7 @@ public class CivillianAI : AIFunctions {
         if (Random.value <= talkativity && !target) {
             //To handle AI being queried.
             target = query.transform;
-            destination = ArcBasedPosition(new Vector3(1,0,0),transform.position,2);
+            destination = ArcBasedPosition(new Vector3(1, 0, 0), transform.position, 2);
             agent.destination = destination;
             timer = attentionSpan;
             actions = Actions.WaitingForQuery;
@@ -133,5 +157,15 @@ public class CivillianAI : AIFunctions {
             return true;
         }
         return false;
+    }
+
+    public void Scared() {
+        actions = Actions.RunFromPlayer;
+        target = GameObject.FindGameObjectWithTag("Player").transform;
+        agent.speed *= 2;
+    }
+
+    public override void DamageRecieved() {
+        base.DamageRecieved();
     }
 }

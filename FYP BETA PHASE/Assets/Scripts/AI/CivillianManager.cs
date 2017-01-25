@@ -23,7 +23,11 @@ public class CivillianManager : MonoBehaviour {
 
     [HideInInspector]
     public List<CivillianAI> civillianAIList = new List<CivillianAI>();
+    [HideInInspector]
+    public List<AI> aiList = new List<AI>();
+
     public static CivillianManager instance;
+    public bool hostile;
     public int civillianCount;
     public GameObject civillian;
     public TaskList[] taskLists;
@@ -46,9 +50,9 @@ public class CivillianManager : MonoBehaviour {
         GameObject[] floor = GameObject.FindGameObjectsWithTag("Floor");
         floors = new MeshFilter[floor.Length];
 
-        for (var i = 0; i < floors.Length; i++) 
+        for (var i = 0; i < floors.Length; i++)
             floors[i] = floor[i].GetComponent<MeshFilter>();
-           
+
         for (var i = 0; i < civillianCount; i++)
             SpawnOnRandomFloor(civillian);
 
@@ -80,6 +84,16 @@ public class CivillianManager : MonoBehaviour {
         MeshFilter floorChoose = floors[Random.Range(0, floors.Length)];
 
         Vector3 spawnLocation = floorChoose.mesh.vertices[Random.Range(0, floorChoose.mesh.vertices.Length)];
-        Instantiate(civillian, new Vector3(spawnLocation.x* floorChoose.transform.localScale.x,0, spawnLocation.z * floorChoose.transform.localScale.z) + floorChoose.transform.position, Quaternion.identity);
+        Instantiate(civillian, new Vector3(spawnLocation.x * floorChoose.transform.localScale.x, 0, spawnLocation.z * floorChoose.transform.localScale.z) + floorChoose.transform.position, Quaternion.identity);
+    }
+
+    public void AISetToHostile() {
+        hostile = true;
+
+        for (var i = 0; i < civillianAIList.Count; i++) 
+            civillianAIList[i].Scared();
+
+        for (var i = 0; i < aiList.Count; i++)
+            aiList[i].HostileKnown();
     }
 }

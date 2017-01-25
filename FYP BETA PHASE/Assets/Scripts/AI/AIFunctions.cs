@@ -31,6 +31,7 @@ public class AIFunctions : MonoBehaviour {
     }
 
     public virtual void DamageRecieved() {
+        CivillianManager.instance.AISetToHostile();
     }
 
     public void AlertOtherTroops() {

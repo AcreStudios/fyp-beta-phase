@@ -45,6 +45,7 @@ public class EventTree : MonoBehaviour {
         public EventTree[] eventTreesToActivate;
         public string debugMessage;
         public string levelNameToLoad;
+        public bool setAIAsHostile;
         public bool unableToProceed;
     }
 
@@ -212,6 +213,9 @@ public class EventTree : MonoBehaviour {
 
         if (endResult.levelNameToLoad != "")
             SceneManager.LoadScene(endResult.levelNameToLoad);
+
+        if (endResult.setAIAsHostile)
+            CivillianManager.instance.AISetToHostile();
 
         if (!endResult.unableToProceed) {
             currentEvent++;
