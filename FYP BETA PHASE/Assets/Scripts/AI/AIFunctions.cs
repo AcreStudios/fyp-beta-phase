@@ -93,7 +93,7 @@ public class AIFunctions : MonoBehaviour {
             tempGradient.z = (tempGradient.z / Mathf.Abs(tempGradient.z));
 
             for (var j = 0; j < obstacleHuntingMultiplier.Length; j++) {
-                Debug.DrawLine(target.position, target.position + (new Vector3(tempGradient.x * obstacleHuntingMultiplier[j].x, 0, tempGradient.z * obstacleHuntingMultiplier[j].z) * (range / 2)), Color.black, 5);
+                //Debug.DrawLine(target.position, target.position + (new Vector3(tempGradient.x * obstacleHuntingMultiplier[j].x, 0, tempGradient.z * obstacleHuntingMultiplier[j].z) * (range / 2)), Color.black, 5);
                 Collider[] colliders = Physics.OverlapSphere(target.position + (new Vector3(tempGradient.x * obstacleHuntingMultiplier[j].x, 0, tempGradient.z * obstacleHuntingMultiplier[j].z) * (range / 2)), range / 2);
 
                 for (var i = 0; i < colliders.Length; i++) {

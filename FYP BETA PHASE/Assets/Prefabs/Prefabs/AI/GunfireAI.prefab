@@ -27,11 +27,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 157470}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.4095578, y: 2.892643, z: -4.233746}
+  m_LocalRotation: {x: -0, y: -0.39243022, z: -0, w: 0.9197818}
+  m_LocalPosition: {x: 1.7822084, y: 2.8, z: 2.031495}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4000013247374296}
+  - {fileID: 4570161670830466}
+  - {fileID: 4276162074633870}
   - {fileID: 4259776057183560}
   - {fileID: 4000010768397644}
   - {fileID: 4000010593769550}
@@ -108,7 +110,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minHeightForCover: {fileID: 4484299086737726}
   maxHeightForCover: {fileID: 4483790614644018}
-  ableToHide: 0
+  durationInCover: 0
+  ableToHide: 1
   destination: {x: 0, y: 0, z: 0}
   destinationMarker: {fileID: 136000011771728808}
   target: {fileID: 0}
@@ -132,7 +135,7 @@ CapsuleCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 157470}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.5
   m_Height: 2
@@ -1426,7 +1429,7 @@ GameObject:
   - component: {fileID: 4489656856529730}
   m_Layer: 9
   m_Name: R_Ankle_CTRL
-  m_TagString: Untagged
+  m_TagString: Joints
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1441,7 +1444,7 @@ GameObject:
   - component: {fileID: 4184937781429414}
   m_Layer: 9
   m_Name: L_Index3_CTRL
-  m_TagString: Untagged
+  m_TagString: Joints
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1471,7 +1474,7 @@ GameObject:
   - component: {fileID: 4226014124987282}
   m_Layer: 9
   m_Name: L_Hand_Orient_CTRL
-  m_TagString: Untagged
+  m_TagString: Joints
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1518,7 +1521,7 @@ GameObject:
   - component: {fileID: 4473154522693946}
   m_Layer: 9
   m_Name: L_Pinky3_CTRL
-  m_TagString: Untagged
+  m_TagString: Joints
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1533,7 +1536,7 @@ GameObject:
   - component: {fileID: 4835877196822452}
   m_Layer: 9
   m_Name: R_Pinky1_CTRL
-  m_TagString: Untagged
+  m_TagString: Joints
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1548,7 +1551,7 @@ GameObject:
   - component: {fileID: 4905217879813320}
   m_Layer: 9
   m_Name: L_Arm_IK_CTRL
-  m_TagString: Untagged
+  m_TagString: Joints
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1563,7 +1566,7 @@ GameObject:
   - component: {fileID: 4423017816660064}
   m_Layer: 9
   m_Name: R_Ankle_IK_HDL
-  m_TagString: Untagged
+  m_TagString: Joints
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1578,7 +1581,7 @@ GameObject:
   - component: {fileID: 4069338773377628}
   m_Layer: 9
   m_Name: R_Thumb2_CTRL
-  m_TagString: Untagged
+  m_TagString: Joints
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1593,7 +1596,7 @@ GameObject:
   - component: {fileID: 4256227358592740}
   m_Layer: 9
   m_Name: L_Ankle_IK_HDL
-  m_TagString: Untagged
+  m_TagString: Joints
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1608,7 +1611,7 @@ GameObject:
   - component: {fileID: 4963085847303506}
   m_Layer: 9
   m_Name: R_Middle3_CTRL
-  m_TagString: Untagged
+  m_TagString: Joints
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1639,7 +1642,7 @@ GameObject:
   - component: {fileID: 4710071787293046}
   m_Layer: 9
   m_Name: L_Index1_CTRL
-  m_TagString: Untagged
+  m_TagString: Joints
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1657,7 +1660,7 @@ GameObject:
   - component: {fileID: 144660860088669014}
   m_Layer: 9
   m_Name: R_Shoulder_JNT
-  m_TagString: Untagged
+  m_TagString: Joints
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1672,7 +1675,7 @@ GameObject:
   - component: {fileID: 4621085331234032}
   m_Layer: 9
   m_Name: R_Thumb3_JNT
-  m_TagString: Untagged
+  m_TagString: Joints
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1703,7 +1706,7 @@ GameObject:
   - component: {fileID: 4064807454616636}
   m_Layer: 9
   m_Name: L_Index2_CTRL
-  m_TagString: Untagged
+  m_TagString: Joints
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1718,7 +1721,7 @@ GameObject:
   - component: {fileID: 4286321427843870}
   m_Layer: 9
   m_Name: R_Hand_Orient_CTRL
-  m_TagString: Untagged
+  m_TagString: Joints
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1733,7 +1736,7 @@ GameObject:
   - component: {fileID: 4207626207558526}
   m_Layer: 9
   m_Name: L_Ankle_CTRL
-  m_TagString: Untagged
+  m_TagString: Joints
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1748,7 +1751,7 @@ GameObject:
   - component: {fileID: 4500579457506428}
   m_Layer: 9
   m_Name: R_Arm_IK_CTRL
-  m_TagString: Untagged
+  m_TagString: Joints
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1779,7 +1782,7 @@ GameObject:
   - component: {fileID: 4569714201445516}
   m_Layer: 9
   m_Name: L_Thumb1_CTRL
-  m_TagString: Untagged
+  m_TagString: Joints
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1794,7 +1797,7 @@ GameObject:
   - component: {fileID: 4811304860517620}
   m_Layer: 9
   m_Name: Waist_CTRL
-  m_TagString: Untagged
+  m_TagString: Joints
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1809,7 +1812,7 @@ GameObject:
   - component: {fileID: 4358348157652698}
   m_Layer: 9
   m_Name: L_Index3_JNT
-  m_TagString: Untagged
+  m_TagString: Joints
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1824,7 +1827,7 @@ GameObject:
   - component: {fileID: 4099595897764870}
   m_Layer: 9
   m_Name: R_Ankle_JNT
-  m_TagString: Untagged
+  m_TagString: Joints
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1839,7 +1842,7 @@ GameObject:
   - component: {fileID: 4242629646469902}
   m_Layer: 9
   m_Name: L_Shoulder_CTRL
-  m_TagString: Untagged
+  m_TagString: Joints
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1870,7 +1873,7 @@ GameObject:
   - component: {fileID: 4856212352291420}
   m_Layer: 9
   m_Name: R_Ring2_CTRL
-  m_TagString: Untagged
+  m_TagString: Joints
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1885,7 +1888,7 @@ GameObject:
   - component: {fileID: 4862544071596370}
   m_Layer: 9
   m_Name: L_Thumb2_CTRL
-  m_TagString: Untagged
+  m_TagString: Joints
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1900,7 +1903,7 @@ GameObject:
   - component: {fileID: 4147350334954054}
   m_Layer: 9
   m_Name: L_Ankle_JNT
-  m_TagString: Untagged
+  m_TagString: Joints
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1915,7 +1918,7 @@ GameObject:
   - component: {fileID: 4136269832899354}
   m_Layer: 9
   m_Name: L_Arm_IK_HDL
-  m_TagString: Untagged
+  m_TagString: Joints
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1962,7 +1965,7 @@ GameObject:
   - component: {fileID: 4664027922372876}
   m_Layer: 9
   m_Name: L_Middle2_CTRL
-  m_TagString: Untagged
+  m_TagString: Joints
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1977,7 +1980,7 @@ GameObject:
   - component: {fileID: 4479847311186426}
   m_Layer: 9
   m_Name: Neck_CTRL
-  m_TagString: Untagged
+  m_TagString: Joints
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1992,7 +1995,7 @@ GameObject:
   - component: {fileID: 4792689006506546}
   m_Layer: 9
   m_Name: R_Index3_CTRL
-  m_TagString: Untagged
+  m_TagString: Joints
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2038,7 +2041,7 @@ GameObject:
   - component: {fileID: 4368688789579318}
   m_Layer: 9
   m_Name: R_Palm_CTRL
-  m_TagString: Untagged
+  m_TagString: Joints
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2053,6 +2056,21 @@ GameObject:
   - component: {fileID: 4550380795772280}
   m_Layer: 9
   m_Name: enemy_Joints_GRP
+  m_TagString: Joints
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1424153076022700
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4570161670830466}
+  m_Layer: 0
+  m_Name: max
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2068,7 +2086,7 @@ GameObject:
   - component: {fileID: 4137305284497784}
   m_Layer: 9
   m_Name: transform7
-  m_TagString: Untagged
+  m_TagString: Joints
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2099,7 +2117,7 @@ GameObject:
   - component: {fileID: 4095052166011156}
   m_Layer: 9
   m_Name: L_Ring2_CTRL
-  m_TagString: Untagged
+  m_TagString: Joints
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2130,7 +2148,7 @@ GameObject:
   - component: {fileID: 4335626648481984}
   m_Layer: 9
   m_Name: Neck_Base_JNT
-  m_TagString: Untagged
+  m_TagString: Joints
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2145,7 +2163,7 @@ GameObject:
   - component: {fileID: 4098700365712582}
   m_Layer: 9
   m_Name: Main_CTRL
-  m_TagString: Untagged
+  m_TagString: Joints
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2160,7 +2178,7 @@ GameObject:
   - component: {fileID: 4392240496066650}
   m_Layer: 9
   m_Name: R_Clavicle_JNT
-  m_TagString: Untagged
+  m_TagString: Joints
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2178,7 +2196,7 @@ GameObject:
   - component: {fileID: 144748991544525784}
   m_Layer: 9
   m_Name: L_Knee_JNT
-  m_TagString: Untagged
+  m_TagString: Joints
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2211,7 +2229,7 @@ GameObject:
   - component: {fileID: 144853746784797310}
   m_Layer: 9
   m_Name: L_Hips_JNT
-  m_TagString: Untagged
+  m_TagString: Joints
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2226,7 +2244,7 @@ GameObject:
   - component: {fileID: 4683438970710810}
   m_Layer: 9
   m_Name: R_Ring3_CTRL
-  m_TagString: Untagged
+  m_TagString: Joints
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2241,7 +2259,7 @@ GameObject:
   - component: {fileID: 4613758419856372}
   m_Layer: 9
   m_Name: L_Palm_CTRL
-  m_TagString: Untagged
+  m_TagString: Joints
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2271,7 +2289,7 @@ GameObject:
   - component: {fileID: 4531218480192364}
   m_Layer: 9
   m_Name: L_Thumb3_JNT
-  m_TagString: Untagged
+  m_TagString: Joints
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2286,7 +2304,7 @@ GameObject:
   - component: {fileID: 4638945731911758}
   m_Layer: 9
   m_Name: L_Pinky1_CTRL
-  m_TagString: Untagged
+  m_TagString: Joints
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2301,7 +2319,7 @@ GameObject:
   - component: {fileID: 4739801680717176}
   m_Layer: 9
   m_Name: R_Index4_JNT
-  m_TagString: Untagged
+  m_TagString: Joints
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2316,7 +2334,7 @@ GameObject:
   - component: {fileID: 4921445463013102}
   m_Layer: 9
   m_Name: R_Thumb1_CTRL
-  m_TagString: Untagged
+  m_TagString: Joints
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2362,7 +2380,7 @@ GameObject:
   - component: {fileID: 4701602896701596}
   m_Layer: 9
   m_Name: enemy_Controller_GRP
-  m_TagString: Untagged
+  m_TagString: Joints
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2377,7 +2395,7 @@ GameObject:
   - component: {fileID: 4367498772878344}
   m_Layer: 9
   m_Name: L_Middle1_CTRL
-  m_TagString: Untagged
+  m_TagString: Joints
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2392,7 +2410,7 @@ GameObject:
   - component: {fileID: 4733062497525418}
   m_Layer: 9
   m_Name: Head_CTRL
-  m_TagString: Untagged
+  m_TagString: Joints
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2407,7 +2425,7 @@ GameObject:
   - component: {fileID: 4510028897371200}
   m_Layer: 9
   m_Name: transform4
-  m_TagString: Untagged
+  m_TagString: Joints
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2422,7 +2440,7 @@ GameObject:
   - component: {fileID: 4585144381962778}
   m_Layer: 9
   m_Name: Spine_3_CTRL
-  m_TagString: Untagged
+  m_TagString: Joints
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2437,7 +2455,7 @@ GameObject:
   - component: {fileID: 4851502879270250}
   m_Layer: 9
   m_Name: R_Index1_CTRL
-  m_TagString: Untagged
+  m_TagString: Joints
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2452,7 +2470,7 @@ GameObject:
   - component: {fileID: 4891020286320760}
   m_Layer: 9
   m_Name: R_Pinky2_CTRL
-  m_TagString: Untagged
+  m_TagString: Joints
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2470,7 +2488,7 @@ GameObject:
   - component: {fileID: 144942151698359196}
   m_Layer: 9
   m_Name: R_Knee_JNT
-  m_TagString: Untagged
+  m_TagString: Joints
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2488,7 +2506,7 @@ GameObject:
   - component: {fileID: 144209391702356436}
   m_Layer: 9
   m_Name: Spine_1_JNT
-  m_TagString: Untagged
+  m_TagString: Joints
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2503,7 +2521,7 @@ GameObject:
   - component: {fileID: 4267405756015510}
   m_Layer: 9
   m_Name: Spine_3_JNT
-  m_TagString: Untagged
+  m_TagString: Joints
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2518,7 +2536,7 @@ GameObject:
   - component: {fileID: 4911832379922750}
   m_Layer: 9
   m_Name: R_Pinky4_JNT
-  m_TagString: Untagged
+  m_TagString: Joints
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2533,7 +2551,7 @@ GameObject:
   - component: {fileID: 4428429641937038}
   m_Layer: 9
   m_Name: R_Middle4_JNT
-  m_TagString: Untagged
+  m_TagString: Joints
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2564,7 +2582,7 @@ GameObject:
   - component: {fileID: 4178153486349234}
   m_Layer: 9
   m_Name: L_Middle4_JNT
-  m_TagString: Untagged
+  m_TagString: Joints
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2582,6 +2600,21 @@ GameObject:
   - component: {fileID: 144010575258146438}
   m_Layer: 9
   m_Name: L_Shoulder_JNT
+  m_TagString: Joints
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1653124347612610
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4276162074633870}
+  m_Layer: 0
+  m_Name: min
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2597,7 +2630,7 @@ GameObject:
   - component: {fileID: 4899116418961036}
   m_Layer: 9
   m_Name: transform8
-  m_TagString: Untagged
+  m_TagString: Joints
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2612,7 +2645,7 @@ GameObject:
   - component: {fileID: 4521502206977220}
   m_Layer: 9
   m_Name: L_Ring1_CTRL
-  m_TagString: Untagged
+  m_TagString: Joints
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2627,7 +2660,7 @@ GameObject:
   - component: {fileID: 4685822417781190}
   m_Layer: 9
   m_Name: Head_Top_End_JNT
-  m_TagString: Untagged
+  m_TagString: Joints
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2642,7 +2675,7 @@ GameObject:
   - component: {fileID: 4956766249695374}
   m_Layer: 9
   m_Name: L_Pinky4_JNT
-  m_TagString: Untagged
+  m_TagString: Joints
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2657,7 +2690,7 @@ GameObject:
   - component: {fileID: 4642655978286500}
   m_Layer: 9
   m_Name: R_Middle2_CTRL
-  m_TagString: Untagged
+  m_TagString: Joints
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2704,7 +2737,7 @@ GameObject:
   - component: {fileID: 4733221041290588}
   m_Layer: 9
   m_Name: L_Ring3_CTRL
-  m_TagString: Untagged
+  m_TagString: Joints
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2722,7 +2755,7 @@ GameObject:
   - component: {fileID: 144622635702719830}
   m_Layer: 9
   m_Name: R_Elbow_JNT
-  m_TagString: Untagged
+  m_TagString: Joints
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2737,7 +2770,7 @@ GameObject:
   - component: {fileID: 4492427220846202}
   m_Layer: 9
   m_Name: L_Foot_Orient_CTRL
-  m_TagString: Untagged
+  m_TagString: Joints
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2752,7 +2785,7 @@ GameObject:
   - component: {fileID: 4797317697746366}
   m_Layer: 9
   m_Name: L_Pinky2_CTRL
-  m_TagString: Untagged
+  m_TagString: Joints
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2782,7 +2815,7 @@ GameObject:
   - component: {fileID: 4597157641702346}
   m_Layer: 9
   m_Name: R_Hand_JNT
-  m_TagString: Untagged
+  m_TagString: Joints
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2797,7 +2830,7 @@ GameObject:
   - component: {fileID: 4775501754256086}
   m_Layer: 9
   m_Name: L_Middle3_CTRL
-  m_TagString: Untagged
+  m_TagString: Joints
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2812,7 +2845,7 @@ GameObject:
   - component: {fileID: 4994061408666658}
   m_Layer: 9
   m_Name: R_Ring1_CTRL
-  m_TagString: Untagged
+  m_TagString: Joints
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2827,7 +2860,7 @@ GameObject:
   - component: {fileID: 4195973611333896}
   m_Layer: 9
   m_Name: HipControl_JNT
-  m_TagString: Untagged
+  m_TagString: Joints
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2842,7 +2875,7 @@ GameObject:
   - component: {fileID: 4881958621411110}
   m_Layer: 9
   m_Name: Spine_2_CTRL
-  m_TagString: Untagged
+  m_TagString: Joints
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2857,7 +2890,7 @@ GameObject:
   - component: {fileID: 4003268987640182}
   m_Layer: 9
   m_Name: Spine_1_CTRL
-  m_TagString: Untagged
+  m_TagString: Joints
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2887,7 +2920,7 @@ GameObject:
   - component: {fileID: 4538224153766664}
   m_Layer: 9
   m_Name: Body_CTRL
-  m_TagString: Untagged
+  m_TagString: Joints
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2902,7 +2935,7 @@ GameObject:
   - component: {fileID: 4113382737261462}
   m_Layer: 9
   m_Name: R_Shoulder_CTRL
-  m_TagString: Untagged
+  m_TagString: Joints
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2917,7 +2950,7 @@ GameObject:
   - component: {fileID: 4050287802958222}
   m_Layer: 9
   m_Name: R_Pinky3_CTRL
-  m_TagString: Untagged
+  m_TagString: Joints
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2935,7 +2968,7 @@ GameObject:
   - component: {fileID: 144454588622586390}
   m_Layer: 9
   m_Name: Head_JNT
-  m_TagString: Untagged
+  m_TagString: Joints
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2950,7 +2983,7 @@ GameObject:
   - component: {fileID: 4184034815056282}
   m_Layer: 9
   m_Name: R_Toe_End_JNT
-  m_TagString: Untagged
+  m_TagString: Joints
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2984,7 +3017,7 @@ GameObject:
   - component: {fileID: 144197312862953322}
   m_Layer: 9
   m_Name: R_Hips_JNT
-  m_TagString: Untagged
+  m_TagString: Joints
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3002,7 +3035,7 @@ GameObject:
   - component: {fileID: 144927275150327732}
   m_Layer: 9
   m_Name: L_Elbow_JNT
-  m_TagString: Untagged
+  m_TagString: Joints
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3017,7 +3050,7 @@ GameObject:
   - component: {fileID: 4625138292367894}
   m_Layer: 9
   m_Name: R_Foot_Orient_CTRL
-  m_TagString: Untagged
+  m_TagString: Joints
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3032,7 +3065,7 @@ GameObject:
   - component: {fileID: 4211612403168676}
   m_Layer: 9
   m_Name: R_Arm_IK_HDL
-  m_TagString: Untagged
+  m_TagString: Joints
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3063,7 +3096,7 @@ GameObject:
   - component: {fileID: 4881057621175148}
   m_Layer: 9
   m_Name: Spine_2_JNT
-  m_TagString: Untagged
+  m_TagString: Joints
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3078,7 +3111,7 @@ GameObject:
   - component: {fileID: 4832717253420094}
   m_Layer: 9
   m_Name: R_Index2_CTRL
-  m_TagString: Untagged
+  m_TagString: Joints
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3093,7 +3126,7 @@ GameObject:
   - component: {fileID: 4838002416076604}
   m_Layer: 9
   m_Name: R_Middle1_CTRL
-  m_TagString: Untagged
+  m_TagString: Joints
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3108,7 +3141,7 @@ GameObject:
   - component: {fileID: 4907338371461574}
   m_Layer: 9
   m_Name: R_Ring4_JNT
-  m_TagString: Untagged
+  m_TagString: Joints
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3123,7 +3156,7 @@ GameObject:
   - component: {fileID: 4560644682568410}
   m_Layer: 9
   m_Name: transform3
-  m_TagString: Untagged
+  m_TagString: Joints
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3138,7 +3171,7 @@ GameObject:
   - component: {fileID: 4620711719854252}
   m_Layer: 9
   m_Name: L_Toe_End_JNT
-  m_TagString: Untagged
+  m_TagString: Joints
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3153,7 +3186,7 @@ GameObject:
   - component: {fileID: 4079621920365574}
   m_Layer: 9
   m_Name: L_Hand_JNT
-  m_TagString: Untagged
+  m_TagString: Joints
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3184,7 +3217,7 @@ GameObject:
   - component: {fileID: 4114450938074510}
   m_Layer: 9
   m_Name: L_Ring4_JNT
-  m_TagString: Untagged
+  m_TagString: Joints
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3215,7 +3248,7 @@ GameObject:
   - component: {fileID: 4495969230420590}
   m_Layer: 9
   m_Name: L_Clavicle_JNT
-  m_TagString: Untagged
+  m_TagString: Joints
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3232,7 +3265,7 @@ GameObject:
   - component: {fileID: 54268754642464526}
   m_Layer: 9
   m_Name: Hips_JNT
-  m_TagString: Untagged
+  m_TagString: Joints
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3388,7 +3421,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 405478}
-  m_RootOrder: 3
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4000010604658956
 Transform:
@@ -3451,7 +3484,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000014291141578}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4000011274309034}
@@ -3464,7 +3497,7 @@ Transform:
   - {fileID: 4000011104059908}
   - {fileID: 4000012014403494}
   m_Father: {fileID: 405478}
-  m_RootOrder: 2
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4000010880915858
 Transform:
@@ -3956,7 +3989,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 405478}
-  m_RootOrder: 4
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4000012564670902
 Transform:
@@ -4769,7 +4802,7 @@ Transform:
   - {fileID: 4731542553470668}
   - {fileID: 4550380795772280}
   m_Father: {fileID: 405478}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4265867010310176
 Transform:
@@ -4803,6 +4836,19 @@ Transform:
   - {fileID: 4392240496066650}
   m_Father: {fileID: 4881057621175148}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4276162074633870
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1653124347612610}
+  m_LocalRotation: {x: -0, y: 0.39243022, z: -0, w: 0.9197818}
+  m_LocalPosition: {x: -4.521453, y: 0.8959999, z: -4.3370166}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 405478}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4285927885897060
 Transform:
@@ -4966,7 +5012,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 405478}
-  m_RootOrder: 5
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4423017816660064
 Transform:
@@ -5047,7 +5093,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 405478}
-  m_RootOrder: 7
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4484299086737726
 Transform:
@@ -5060,7 +5106,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 405478}
-  m_RootOrder: 6
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4489656856529730
 Transform:
@@ -5272,6 +5318,19 @@ Transform:
   - {fileID: 4862544071596370}
   m_Father: {fileID: 4079621920365574}
   m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4570161670830466
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1424153076022700}
+  m_LocalRotation: {x: -0, y: 0.39243022, z: -0, w: 0.9197818}
+  m_LocalPosition: {x: -4.521453, y: 1.2410002, z: -4.3370166}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 405478}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4575431520317102
 Transform:
@@ -8163,7 +8222,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: -1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.000000046100467, y: 0.40327013, z: 0.000000074040145}
+  m_ConnectedAnchor: {x: 0.000000056810677, y: 0.4032699, z: 0.000000057742}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: 1}
   m_TwistLimitSpring:
@@ -8205,7 +8264,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: -1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.18698575, y: 0.33972475, z: -0.008008879}
+  m_ConnectedAnchor: {x: 0.1869857, y: 0.33972478, z: -0.008009039}
   serializedVersion: 2
   m_SwingAxis: {x: -1, y: 0, z: 0}
   m_TwistLimitSpring:
@@ -8247,7 +8306,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.0000010057587, y: 0.098567724, z: -0.012231495}
+  m_ConnectedAnchor: {x: 0.0000011058735, y: 0.098567486, z: -0.012232045}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: 1}
   m_TwistLimitSpring:
@@ -8289,7 +8348,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: -1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.090939455, y: -0.06611695, z: -0.0005518731}
+  m_ConnectedAnchor: {x: 0.090939246, y: -0.06611671, z: -0.0005514056}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: 1}
   m_TwistLimitSpring:
@@ -8331,7 +8390,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: -1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.09094245, y: -0.066115476, z: -0.0005518183}
+  m_ConnectedAnchor: {x: -0.090942495, y: -0.066115476, z: -0.0005519859}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: 1}
   m_TwistLimitSpring:
@@ -8373,7 +8432,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.000000070780516, y: 0.27312586, z: -0.000000033527613}
+  m_ConnectedAnchor: {x: -0.000000044703484, y: 0.27312598, z: -0.000000018626451}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: -1}
   m_TwistLimitSpring:
@@ -8415,7 +8474,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: -1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.00000017136335, y: 0.27315474, z: 0.000000029802322}
+  m_ConnectedAnchor: {x: -0.000000603497, y: 0.2731551, z: -0.00000029802322}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: -1}
   m_TwistLimitSpring:
@@ -8457,7 +8516,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: -1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.18698333, y: 0.33971956, z: -0.008011434}
+  m_ConnectedAnchor: {x: -0.18698366, y: 0.3397196, z: -0.008011617}
   serializedVersion: 2
   m_SwingAxis: {x: 1, y: 0, z: 0}
   m_TwistLimitSpring:
@@ -8499,7 +8558,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.0000070917545, y: 0.49542087, z: 0.06961455}
+  m_ConnectedAnchor: {x: -0.0000072598555, y: 0.49542072, z: 0.06961374}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: 1}
   m_TwistLimitSpring:
@@ -8541,7 +8600,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: -1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.00000001792796, y: 0.40326318, z: -0.00000011129305}
+  m_ConnectedAnchor: {x: 0.00000010151416, y: 0.40326318, z: -0.00000041304156}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: 1}
   m_TwistLimitSpring:
@@ -8583,7 +8642,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 1, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.35599822, y: 0.0017796457, z: 0.18194008}
+  m_ConnectedAnchor: {x: -0.355998, y: 0.0017795563, z: 0.1819404}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: 1}
   m_TwistLimitSpring:
@@ -8625,7 +8684,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.110000014, y: -0.107326746, z: -0.02974338}
+  m_ConnectedAnchor: {x: 0.110000305, y: -0.107326746, z: -0.029743182}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: 1}
   m_TwistLimitSpring:
@@ -8667,7 +8726,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: -1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 2.4651903e-34, y: 0.06330633, z: 0.001899533}
+  m_ConnectedAnchor: {x: 0.00000021234155, y: 0.06330633, z: 0.0018997565}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 1, z: 0}
   m_TwistLimitSpring:
@@ -8709,7 +8768,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: -1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.5283408, y: 0.043920577, z: 0}
+  m_ConnectedAnchor: {x: -0.52834105, y: 0.043920815, z: 0.00000014156103}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 1, z: 0}
   m_TwistLimitSpring:
@@ -8751,7 +8810,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: -1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.20277995, y: -0.0000028964132, z: -0.0032100677}
+  m_ConnectedAnchor: {x: 0.20278026, y: -0.0000034086406, z: -0.0032098293}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: -1, z: 0}
   m_TwistLimitSpring:
@@ -8793,7 +8852,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: -1, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.35599822, y: 0.0017796457, z: -0.18193996}
+  m_ConnectedAnchor: {x: -0.35599798, y: 0.0017797053, z: -0.1819404}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: -1}
   m_TwistLimitSpring:
@@ -8835,7 +8894,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.0000000148293635, y: -0.42000002, z: 0.010000209}
+  m_ConnectedAnchor: {x: 0.00000023849037, y: -0.42000002, z: 0.009999846}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: 1}
   m_TwistLimitSpring:
@@ -8877,7 +8936,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.110000014, y: -0.107326746, z: -0.02974338}
+  m_ConnectedAnchor: {x: -0.109999806, y: -0.107326746, z: -0.029743316}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: 1}
   m_TwistLimitSpring:
@@ -8919,7 +8978,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: 1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.20277984, y: 0.0000031143427, z: 0.0032100454}
+  m_ConnectedAnchor: {x: -0.20278005, y: 0.0000029951334, z: 0.0032100454}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 1, z: 0}
   m_TwistLimitSpring:
@@ -8961,7 +9020,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.000000014901161, y: -0.42000002, z: 0.010000209}
+  m_ConnectedAnchor: {x: 0.000000014901161, y: -0.42000002, z: 0.0100003285}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: 1}
   m_TwistLimitSpring:

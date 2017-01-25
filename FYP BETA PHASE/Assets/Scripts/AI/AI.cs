@@ -159,19 +159,19 @@ public class AI : AIFunctions {
                 if (Time.time > stateChangeTimer) {
                     if (agent.velocity.sqrMagnitude == 0) {
                         if (target) {
-                            if (Time.time > inCoverTimer) {
+                            //if (Time.time > inCoverTimer) {
                                 transform.LookAt(target);
                                 Attack();
-                            } else
-                                switch (coverType) {
-                                    case CoverType.Low:
-                                        animator.SetInteger("TreeState", 3);
-                                        break;
-                                }
+                            //} else
+                                //switch (coverType) {
+                                   // case CoverType.Low:
+                                       // animator.SetInteger("TreeState", 3);
+                                      //  break;
+                                //}
 
                             RaycastHit hit;
 
-                            if (Physics.Linecast(new Vector3(destination.x, minHeightForCover.position.y, destination.z), target.position, out hit))
+                            if (Physics.Linecast(destination, target.position, out hit))
                                 if (hit.transform.root == target) {
                                     destination = GetDestinationPoint(weaponRange);
                                     inCoverTimer = Time.time;
@@ -233,8 +233,6 @@ public class AI : AIFunctions {
 
                         if (Physics.Raycast(gun.position, gun.TransformDirection(0, 0, weaponRange) + offset, out hit, weaponRange, 1))
                             targetHit = hit.transform.root;
-
-
                     }
                     break;
                 case WeaponType.Area:
