@@ -231,8 +231,10 @@ public class AI : AIFunctions {
                             if (hit.transform.CompareTag("NearPlayer"))
                                 CivillianManager.instance.PlayRandomSound(hit.point);
 
-                        if (Physics.Raycast(gun.position, gun.TransformDirection(0, 0, weaponRange) + offset, out hit, weaponRange, 1))
+                        if (Physics.Raycast(maxHeightForCover.position, gun.TransformDirection(0, 0, weaponRange) + offset, out hit, weaponRange, 1))
                             targetHit = hit.transform.root;
+
+                        Debug.Log(targetHit);
                     }
                     break;
                 case WeaponType.Area:
