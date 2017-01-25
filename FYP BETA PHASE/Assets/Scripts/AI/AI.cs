@@ -161,7 +161,7 @@ public class AI : AIFunctions {
 
                             RaycastHit hit;
 
-                            if (Physics.Linecast(destination, target.position, out hit)) {
+                            if (Physics.Linecast(new Vector3(destination.x, minHeightForCover.position.y, destination.z), target.position, out hit)) {
                                 //Debug.DrawLine(destination, hit.point, Color.red, 20);
                                 //Debug.DrawLine(transform.position, hit.point, Color.green);
                                 if (hit.transform.root == target) {

@@ -5930,6 +5930,7 @@ GameObject:
   - component: {fileID: 676904007}
   - component: {fileID: 676904006}
   - component: {fileID: 676904005}
+  - component: {fileID: 676904010}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -6005,6 +6006,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &676904010
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 676904004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12f4e28a6e6bfc3468f8d2dd3db0cf73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &698353322
 GameObject:
   m_ObjectHideFlags: 0
@@ -8277,6 +8289,11 @@ Prefab:
       propertyPath: hostile
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114314412429072714, guid: b9a6cda35b105e0428095c28d124d66f,
+        type: 2}
+      propertyPath: civillianCount
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b9a6cda35b105e0428095c28d124d66f, type: 2}
   m_IsPrefabParent: 0
@@ -8359,7 +8376,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1067510046
 Transform:
   m_ObjectHideFlags: 0
