@@ -49,11 +49,11 @@ public class Footsteps : MonoBehaviour
 		{
 			MeshRenderer mRend = hit.collider.GetComponent<MeshRenderer>();
 			if(mRend)
-				StartCoroutine(PlayMeshSound(mRend, intensity));
+				StartCoroutine(PlayMeshSound(mRend, intensity, hit.point));
 		}
 	}
 
-	private IEnumerator PlayMeshSound(MeshRenderer rend, float intensity) // Compare material to footstep sound
+	private IEnumerator PlayMeshSound(MeshRenderer rend, float intensity, Vector3 hitPos) // Compare material to footstep sound
 	{
 		yield return new WaitForSeconds(stepsDelay);
 
@@ -69,11 +69,11 @@ public class Footsteps : MonoBehaviour
 						{
 							if(soundManager) // If we have a sound manager
 							{
-								soundManager.PlaySound(audioSrc,
-									gTypes.footstepSounds[Random.Range(0, gTypes.footstepSounds.Length)],
+								soundManager.PlaySoundOnce(hitPos,
+									gTypes.footstepSounds[Random.Range(0, gTypes.footstepSounds.Length)], 2f,
 									randomizePitch,
 									minPitch,
-									maxPitch, intensity);
+									maxPitch, intensity * footstepVolume);
 							}
 						}
 					}
