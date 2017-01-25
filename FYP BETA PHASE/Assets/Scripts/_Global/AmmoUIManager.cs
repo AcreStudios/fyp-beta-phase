@@ -47,19 +47,14 @@ public class AmmoUIManager : MonoBehaviour
 		// Turn off at start
 		ToggleAmmobar(false);
 	}
-	
+
 	public void UpdateAmmobar(int curAmmo) // Call this to update ammobar 
 	{
-		if(curAmmo == 12)
-		{
-			foreach(GameObject b in ammobar)
-				b.SetActive(true);
-		}
-		else
-			ammobar[curAmmo].SetActive(false);
+		foreach(GameObject b in ammobar)
+			b.SetActive(false);
 
-		print(curAmmo);
-
+		for(int i = 0; i < curAmmo; i++)
+			ammobar[i].SetActive(true);
 	}
 
 	public void ToggleAmmobar(bool enabled) // Turn it on/off
