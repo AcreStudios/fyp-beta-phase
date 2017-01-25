@@ -27,6 +27,7 @@ public class AI : AIFunctions {
     [Header("Weapons")]
     public float damage;
     public WeaponType attackType;
+    public Vector3 weaponOffset = new Vector3(0,1.276f,0);
     public float attackInterval;
     public float weaponRange;
     public bool ableToDragPlayerOutOfCover;
@@ -218,7 +219,7 @@ public class AI : AIFunctions {
                     Vector3 offset;
                     offset = new Vector3(Random.Range(-gunSprayValue, gunSprayValue), Random.Range(-gunSprayValue, gunSprayValue), 0);
                     foreach (Transform gun in guns) {
-                        gun.LookAt(target);
+                        gun.LookAt(target.position + weaponOffset);
 
                         gunEffect.transform.position = gun.position;
                         gunEffect.gameObject.SetActive(true);
