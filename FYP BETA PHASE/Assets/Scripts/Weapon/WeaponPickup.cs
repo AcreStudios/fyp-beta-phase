@@ -68,6 +68,7 @@ public class WeaponPickup : MonoBehaviour
 
 		wpnHandler.weaponsList.Add(weapon);
 		wpnHandler.SetupWeapon();
+		wpnHandler.SwitchNextWeapon();
 
 		if(pickupSound)
 			SoundManager.GetInstance().PlaySoundOnce(transform.position, pickupSound);

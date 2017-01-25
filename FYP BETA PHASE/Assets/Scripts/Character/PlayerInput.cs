@@ -127,7 +127,7 @@ public class PlayerInput : MonoBehaviour
 		if(!_aiming)
 			charMove.AnimateCharacter(_targetV, _targetH);
 		else
-			charMove.AnimateCharacter(_targetV * .49f, _targetH * .49f);
+			charMove.AnimateCharacter(_targetV * .75f, _targetH * .75f);
 
 		// Jump
 		if(_spacebar)
