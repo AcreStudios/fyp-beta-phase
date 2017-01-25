@@ -39,7 +39,7 @@ public class Footsteps : MonoBehaviour
 		audioSrc.volume = footstepVolume;
 	}
 
-	private void PlayFootstepSound() // Raycast down from each foot
+	public void PlayFootstepSound(float intensity) // Raycast down from each foot
 	{
 		RaycastHit hit;
 		Vector3 start = trans.position + trans.up;
@@ -49,11 +49,11 @@ public class Footsteps : MonoBehaviour
 		{
 			MeshRenderer mRend = hit.collider.GetComponent<MeshRenderer>();
 			if(mRend)
-				StartCoroutine(PlayMeshSound(mRend));
+				StartCoroutine(PlayMeshSound(mRend, intensity));
 		}
 	}
 
-	private IEnumerator PlayMeshSound(MeshRenderer rend) // Compare material to footstep sound
+	private IEnumerator PlayMeshSound(MeshRenderer rend, float intensity) // Compare material to footstep sound
 	{
 		yield return new WaitForSeconds(stepsDelay);
 
@@ -73,7 +73,7 @@ public class Footsteps : MonoBehaviour
 									gTypes.footstepSounds[Random.Range(0, gTypes.footstepSounds.Length)],
 									randomizePitch,
 									minPitch,
-									maxPitch);
+									maxPitch, intensity);
 							}
 						}
 					}
