@@ -9,7 +9,8 @@ public class AI : AIFunctions {
         Idle,
         Patrol,
         Escort,
-        Attacking
+        Attacking,
+        InCover
     }
 
     public enum WeaponType {
@@ -253,6 +254,7 @@ public class AI : AIFunctions {
     }
 
     public void HostileKnown() {
-        target = GameObject.FindGameObjectWithTag("Player").transform;
+        if (currentState != AIStates.Escort)
+            target = GameObject.FindGameObjectWithTag("Player").transform;
     }
 }

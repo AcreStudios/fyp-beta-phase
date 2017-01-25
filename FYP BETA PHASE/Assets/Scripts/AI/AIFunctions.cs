@@ -21,7 +21,11 @@ public class AIFunctions : MonoBehaviour {
     protected Animator animator;
     protected UnityEngine.AI.NavMeshAgent agent;
 
+    Health hpScript;
+
     void Awake() {
+
+        hpScript = GetComponent<Health>();
         obstacleHuntingMultiplier = new Vector3[4];
 
         obstacleHuntingMultiplier[0] = new Vector3(1, 1, 1);
@@ -31,7 +35,11 @@ public class AIFunctions : MonoBehaviour {
     }
 
     public virtual void DamageRecieved() {
-        CivillianManager.instance.AISetToHostile();
+        if (!CivillianManager.instance.hostile)
+            CivillianManager.instance.AISetToHostile();
+
+        if (hpScript.curHealth <= 0)
+            enabled = false;
     }
 
     public void AlertOtherTroops() {
@@ -76,9 +84,11 @@ public class AIFunctions : MonoBehaviour {
         if (ableToHide) {
 
             Vector3 tempGradient = Vector3.Normalize(transform.position - target.position);
+            tempGradient.x = (tempGradient.x / Mathf.Abs(tempGradient.x));
+            tempGradient.z = (tempGradient.z / Mathf.Abs(tempGradient.z));
 
             for (var j = 0; j < obstacleHuntingMultiplier.Length; j++) {
-                //Debug.DrawLine(target.position, target.position + (new Vector3(tempGradient.x * obstacleHuntingMultiplier[j].x, 0, tempGradient.z * obstacleHuntingMultiplier[j].z) * (range / 2)),Color.black,5);
+                Debug.DrawLine(target.position, target.position + (new Vector3(tempGradient.x * obstacleHuntingMultiplier[j].x, 0, tempGradient.z * obstacleHuntingMultiplier[j].z) * (range / 2)),Color.black,5);
                 Collider[] colliders = Physics.OverlapSphere(target.position + (new Vector3(tempGradient.x * obstacleHuntingMultiplier[j].x, 0, tempGradient.z * obstacleHuntingMultiplier[j].z) * (range / 2)), range / 2);
 
                 for (var i = 0; i < colliders.Length; i++) {
