@@ -27,7 +27,7 @@ public class AI : AIFunctions {
     [Header("Weapons")]
     public float damage;
     public WeaponType attackType;
-    public Vector3 weaponOffset = new Vector3(0,1.276f,0);
+    public Vector3 weaponOffset = new Vector3(0, 1.276f, 0);
     public float attackInterval;
     public float weaponRange;
     public bool ableToDragPlayerOutOfCover;
@@ -232,7 +232,7 @@ public class AI : AIFunctions {
                             if (hit.transform.CompareTag("NearPlayer"))
                                 CivillianManager.instance.PlayRandomSound(hit.point);
 
-                        if (Physics.Raycast(maxHeightForCover.position, gun.TransformDirection(0, 0, weaponRange) + offset, out hit, weaponRange, 1))
+                        if (Physics.Raycast(gun.position, gun.TransformDirection(0, 0, weaponRange) + offset, out hit))
                             targetHit = hit.transform.root;
 
                         Debug.Log(targetHit);
