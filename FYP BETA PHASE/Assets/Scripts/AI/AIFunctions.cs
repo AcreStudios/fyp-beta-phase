@@ -3,9 +3,13 @@ using System.Collections;
 
 public class AIFunctions : MonoBehaviour {
 
+    public enum CoverType {
+        None, High, Low
+    }
     [Header("Cover Settings")]
     public Transform minHeightForCover;
     public Transform maxHeightForCover;
+    public float durationInCover;
     public bool ableToHide;
     protected Vector3[] obstacleHuntingMultiplier;
 
@@ -20,7 +24,8 @@ public class AIFunctions : MonoBehaviour {
     protected bool showGunEffect;
     protected Animator animator;
     protected UnityEngine.AI.NavMeshAgent agent;
-
+    protected CoverType coverType;
+    //protected Vector3 
     Health hpScript;
 
     void Awake() {
@@ -88,7 +93,7 @@ public class AIFunctions : MonoBehaviour {
             tempGradient.z = (tempGradient.z / Mathf.Abs(tempGradient.z));
 
             for (var j = 0; j < obstacleHuntingMultiplier.Length; j++) {
-                Debug.DrawLine(target.position, target.position + (new Vector3(tempGradient.x * obstacleHuntingMultiplier[j].x, 0, tempGradient.z * obstacleHuntingMultiplier[j].z) * (range / 2)),Color.black,5);
+                Debug.DrawLine(target.position, target.position + (new Vector3(tempGradient.x * obstacleHuntingMultiplier[j].x, 0, tempGradient.z * obstacleHuntingMultiplier[j].z) * (range / 2)), Color.black, 5);
                 Collider[] colliders = Physics.OverlapSphere(target.position + (new Vector3(tempGradient.x * obstacleHuntingMultiplier[j].x, 0, tempGradient.z * obstacleHuntingMultiplier[j].z) * (range / 2)), range / 2);
 
                 for (var i = 0; i < colliders.Length; i++) {
@@ -99,8 +104,10 @@ public class AIFunctions : MonoBehaviour {
 
                             temp.x = (temp.x / Mathf.Abs(temp.x)) * colliders[i].bounds.extents.x;
                             temp.z = (temp.z / Mathf.Abs(temp.z)) * colliders[i].bounds.extents.z;
+                            coverType = CoverType.Low;
 
                             if (colliders[i].bounds.center.y > maxHeightForCover.position.y) {
+                                coverType = CoverType.High;
                                 if (Mathf.Abs(colliders[i].bounds.center.x - target.position.x) > Mathf.Abs(colliders[i].bounds.center.z - target.position.z))
                                     temp.x *= -1;
                                 else
@@ -115,6 +122,7 @@ public class AIFunctions : MonoBehaviour {
                 }
             }
         }
+        coverType = CoverType.None;
         return ArcBasedPosition(target.position - transform.position, target.position, range);
     }
 

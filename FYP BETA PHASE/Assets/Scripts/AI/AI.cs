@@ -45,6 +45,7 @@ public class AI : AIFunctions {
 
     PatrolModule patrolMod;
     float stateChangeTimer;
+    float inCoverTimer;
 
     void Start() {
         gameObject.tag = "Enemy";
@@ -154,24 +155,29 @@ public class AI : AIFunctions {
             case AIStates.Attacking:
                 if (Time.time > stateChangeTimer) {
                     if (agent.velocity.sqrMagnitude == 0) {
-
                         if (target) {
-                            transform.LookAt(target);
-                            Attack();
+                            if (Time.time > inCoverTimer) {
+                                transform.LookAt(target);
+                                Attack();
+                            } else
+                                switch (coverType) {
+                                    case CoverType.Low:
+                                        animator.SetInteger("TreeState", 3);
+                                        break;
+                                }
 
                             RaycastHit hit;
 
-                            if (Physics.Linecast(new Vector3(destination.x, minHeightForCover.position.y, destination.z), target.position, out hit)) {
-                                //Debug.DrawLine(destination, hit.point, Color.red, 20);
-                                //Debug.DrawLine(transform.position, hit.point, Color.green);
+                            if (Physics.Linecast(new Vector3(destination.x, minHeightForCover.position.y, destination.z), target.position, out hit))
                                 if (hit.transform.root == target) {
                                     destination = GetDestinationPoint(weaponRange);
-                                    //Debug.DrawLine(transform.position, hit.point, Color.red);
+                                    inCoverTimer = Time.time;
                                 }
-                            }
 
-                            if ((target.position - transform.position).sqrMagnitude > weaponRange * weaponRange)
+                            if ((target.position - transform.position).sqrMagnitude > weaponRange * weaponRange) {
                                 destination = GetDestinationPoint(weaponRange);
+                                inCoverTimer = Time.time;
+                            }
                         }
                     } else {
                         animator.SetInteger("TreeState", 1);
@@ -180,7 +186,9 @@ public class AI : AIFunctions {
                     transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
                     agent.destination = destination;
                 }
+                break;
 
+            case AIStates.InCover:
                 break;
         }
 
@@ -191,6 +199,9 @@ public class AI : AIFunctions {
         toEscort = false;
         target = GameObject.FindGameObjectWithTag("Player").transform;
         currentState = AIStates.Attacking;
+
+        if (coverType == CoverType.Low)
+            inCoverTimer += durationInCover;
 
         base.DamageRecieved();
     }
@@ -242,7 +253,8 @@ public class AI : AIFunctions {
                     if (targetHit.tag == "Player")
                         if (ableToDragPlayerOutOfCover) {
                             CoverSystem inst = targetHit.GetComponent<CoverSystem>();
-                            inst.EnableController();
+                            if (inst)
+                                inst.EnableController();
                         }
 
                     if ((ai = targetHit.GetComponent<AIFunctions>()) != null)
