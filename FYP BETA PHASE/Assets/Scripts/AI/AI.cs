@@ -46,6 +46,7 @@ public class AI : AIFunctions {
     PatrolModule patrolMod;
     float stateChangeTimer;
     float inCoverTimer;
+    bool recentlyGotPoint;
 
     void Start() {
         gameObject.tag = "Enemy";
@@ -137,13 +138,15 @@ public class AI : AIFunctions {
                         transform.LookAt(target);
                         transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
                         animator.SetInteger("TreeState", 0);
-                        if ((target.position - transform.position).sqrMagnitude < 5) {
+                        if ((target.position - transform.position).sqrMagnitude < 5 && !recentlyGotPoint) {
                             patrolMod.currentLocation++;
                             agent.destination = patrolMod.patrolLocations[patrolMod.currentLocation];
+                            recentlyGotPoint = true;
                         }
                     } else {
                         agent.destination = patrolMod.patrolLocations[patrolMod.currentLocation];
                         animator.SetInteger("TreeState", 1);
+                        recentlyGotPoint = false;
                     }
                 } else {
                     transform.LookAt(target);
