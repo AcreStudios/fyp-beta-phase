@@ -62,11 +62,14 @@ public class Health : MonoBehaviour
 
 	void Awake()
 	{
-		characterController = GetComponent<CharacterController>();
 		ragdollHandler = GetComponentInChildren<RagdollHandler>();
 
 		// Initialise
-		currentRedTintTransparency = new Color(1f, 1f, 1f, 0f);
+		if(isPlayer)
+		{
+			currentRedTintTransparency = new Color(1f, 1f, 1f, 0f);
+			characterController = GetComponent<CharacterController>();
+		}
 	}
 
 	void Update()
@@ -87,20 +90,23 @@ public class Health : MonoBehaviour
 			ReceiveDamage();
 		}
 
-		// Update damage feedback
-		LerpTargetColor();
-
-		// Health regeneration
-		curHealth = Mathf.Clamp(curHealth, 0f, 100f);
-
-		switch(HealthRegenMode)
+		if(isPlayer)
 		{
-			case HealthRegen.ONESHOT:
-				OneShotHealthRegen();
-				break;
-			case HealthRegen.OVERTIME:
-				OverTimeRegen();
-				break;
+			// Update damage feedback
+			LerpTargetColor();
+
+			// Health regeneration
+			curHealth = Mathf.Clamp(curHealth, 0f, 100f);
+
+			switch(HealthRegenMode)
+			{
+				case HealthRegen.ONESHOT:
+					OneShotHealthRegen();
+					break;
+				case HealthRegen.OVERTIME:
+					OverTimeRegen();
+					break;
+			}
 		}
 	}
 
@@ -157,15 +163,17 @@ public class Health : MonoBehaviour
 
 		curHealth -= dmg;
 
+		// If no health, die
+		if(curHealth <= 0)
+			Die();
+
+		if(!isPlayer) return;
+
 		// Damage feedback
 		FlashScreenOnDamage();
 
 		// Reset oneshot regeneration timer
 		triggerOneShotRegenTimer = TriggerOneShotRegenDelay;
-
-		// If no health, die
-		if(curHealth <= 0)
-			Die();
 	}
 
 	private void FlashScreenOnDamage()
@@ -190,9 +198,12 @@ public class Health : MonoBehaviour
 
 	private void Die()
 	{
-		characterController.enabled = false;
-		BloodSpatterImage.color = new Color(0f, 0f, 0f, 0f);
-		RedTintImage.color = new Color(0f, 0f, 0f, 0f);
+		if(isPlayer)
+		{
+			characterController.enabled = false;
+			BloodSpatterImage.color = new Color(0f, 0f, 0f, 0f);
+			RedTintImage.color = new Color(0f, 0f, 0f, 0f);
+		}
 
 		if(ragdollHandler)
 			ragdollHandler.BecomeRagdoll();
