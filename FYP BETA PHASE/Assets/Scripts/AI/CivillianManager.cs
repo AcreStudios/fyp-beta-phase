@@ -31,8 +31,9 @@ public class CivillianManager : MonoBehaviour {
     public int civillianCount;
     public GameObject civillian;
     public TaskList[] taskLists;
-    public AudioClip[] sfxList;
-
+    public AudioClip[] gunShotList;
+    public AudioClip[] flyByList;
+    
     MeshFilter[] floors;
 
     void Awake() {
@@ -75,9 +76,9 @@ public class CivillianManager : MonoBehaviour {
         return new TaskLocation();
     }
 
-    public void PlayRandomSound(Vector3 position) {
-        if (sfxList.Length > 0)
-            SoundManager.instance.PlaySoundOnce(position, sfxList[Random.Range(0, sfxList.Length)]);
+    public void PlayRandomSound(AudioClip[] audioGroup, Vector3 position) {
+        if (audioGroup.Length > 0)
+            SoundManager.instance.PlaySoundOnce(position, audioGroup[Random.Range(0, audioGroup.Length)]);
     }
 
     public void SpawnOnRandomFloor(GameObject civillian) {
@@ -90,7 +91,7 @@ public class CivillianManager : MonoBehaviour {
     public void AISetToHostile() {
         hostile = true;
 
-        for (var i = 0; i < civillianAIList.Count; i++) 
+        for (var i = 0; i < civillianAIList.Count; i++)
             civillianAIList[i].Scared();
 
         for (var i = 0; i < aiList.Count; i++)

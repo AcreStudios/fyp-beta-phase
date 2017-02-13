@@ -9,8 +9,7 @@ public class AI : AIFunctions {
         Idle,
         Patrol,
         Escort,
-        Attacking,
-        InCover
+        Attacking
     }
 
     public enum WeaponType {
@@ -21,7 +20,9 @@ public class AI : AIFunctions {
     [Header("Behaviours")]
     public AIStates currentState;
     public float reactionTime;
+    public float movespeedAttackMoveReduction;
     public bool toEscort;
+    public bool camp;
     protected AIStates defaultState;
 
     [Header("Weapons")]
@@ -96,7 +97,6 @@ public class AI : AIFunctions {
         switch (currentState) {
             case AIStates.Idle:
                 if (target) {
-                    AlertOtherTroops();
                     stateChangeTimer = Time.time + reactionTime;
                     destination = GetDestinationPoint(weaponRange);
                     currentState = AIStates.Attacking;
@@ -111,7 +111,6 @@ public class AI : AIFunctions {
 
             case AIStates.Patrol:
                 if (target != null) {
-                    AlertOtherTroops();
                     stateChangeTimer = Time.time + reactionTime;
                     destination = GetDestinationPoint(weaponRange);
                     currentState = AIStates.Attacking;
@@ -168,6 +167,8 @@ public class AI : AIFunctions {
                                     case CoverType.Low:
                                         animator.SetInteger("TreeState", 3);
                                         break;
+                                    case CoverType.High:
+                                        break;
                                 }
 
                             RaycastHit hit;
@@ -190,9 +191,6 @@ public class AI : AIFunctions {
                     transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
                     agent.destination = destination;
                 }
-                break;
-
-            case AIStates.InCover:
                 break;
         }
 
@@ -228,14 +226,14 @@ public class AI : AIFunctions {
 
                         RaycastHit hit;
                         Debug.DrawRay(gun.position, gun.TransformDirection(0, 0, weaponRange) + offset, Color.red);
+                        CivillianManager.instance.PlayRandomSound(CivillianManager.instance.gunShotList, transform.position);
+
                         if (Physics.Raycast(gun.position, gun.TransformDirection(0, 0, weaponRange) + offset, out hit))
                             if (hit.transform.CompareTag("NearPlayer"))
-                                CivillianManager.instance.PlayRandomSound(hit.point);
+                                CivillianManager.instance.PlayRandomSound(CivillianManager.instance.flyByList, hit.point);
 
                         if (Physics.Raycast(gun.position, gun.TransformDirection(0, 0, weaponRange) + offset, out hit))
                             targetHit = hit.transform.root;
-
-                        Debug.Log(targetHit);
                     }
                     break;
                 case WeaponType.Area:
@@ -262,7 +260,7 @@ public class AI : AIFunctions {
                         }
 
                     if ((ai = targetHit.GetComponent<AIFunctions>()) != null)
-                        ai.destination = ai.GetDestinationPoint(weaponRange);
+                        ai.destination = GetDestinationPoint((ai as AI).weaponRange);
 
                     attackTimer = Time.time + attackInterval;
                 }

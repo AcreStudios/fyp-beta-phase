@@ -53,8 +53,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   civillianAIList: []
   aiList: []
-  hostile: 0
-  civillianCount: 100
+  hostile: 1
+  civillianCount: 0
   civillian: {fileID: 1621552198432266, guid: 13c284741faa661488a219892687d6b7, type: 2}
   taskLists:
   - taskName: Use a computer
@@ -69,7 +69,12 @@ MonoBehaviour:
     taskCapacity: 2
     taskTimer: 1
     animationWhenPerformingTask: {fileID: 0}
-  sfxList:
+  gunShotList:
+  - {fileID: 8300000, guid: f503db8a94c9b974bb072314410ecdf1, type: 3}
+  - {fileID: 8300000, guid: 237bd07d66371f842be2a2a5ef5079ed, type: 3}
+  - {fileID: 8300000, guid: ba9370da12e905e48abe3ac471557f6f, type: 3}
+  - {fileID: 8300000, guid: 2669ee9172864ba4990cfb6130c9e19c, type: 3}
+  flyByList:
   - {fileID: 8300000, guid: 4c518cc2caf936f43a4581fb4bc3dc82, type: 3}
   - {fileID: 8300000, guid: 4175c834cb2f64c4fb45c3933926f331, type: 3}
   - {fileID: 8300000, guid: 9c23b5539ad966749a63dead8583c0a9, type: 3}
